@@ -9,8 +9,18 @@
 		<param-name>flex.class.path</param-name>
 		<param-value>/WEB-INF/flex/hotfixes,/WEB-INF/flex/jars</param-value>
 	</context-param>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/conf/applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
 
-    <!-- Http Flex Session attribute and binding listener support -->
+	<!-- Http Flex Session attribute and binding listener support -->
     <listener>
         <listener-class>flex.messaging.HttpFlexSession</listener-class>
     </listener>
