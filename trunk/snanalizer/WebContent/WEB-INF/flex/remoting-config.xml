@@ -10,4 +10,11 @@
         <channel ref="my-amf"/>
     </default-channels>
 
+    <destination id="testService">
+    	<properties>
+    		<factory>spring</factory>
+    		<source>testService</source>
+    	</properties>
+    </destination>
+
 </service>
