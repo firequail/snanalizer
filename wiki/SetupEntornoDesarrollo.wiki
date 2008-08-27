@@ -11,3 +11,16 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
+= Software para bajar =
+
+*Adobe Flex Builder Professional 3 (me termine bajando el free trial de 60 dias) - http://www.adobe.com/cfusion/entitlement/index.cfm?e=flex3email
+*apache-tomcat-6.0.16.zip - http://download.nextag.com/apache/tomcat/tomcat-6/v6.0.16/bin/apache-tomcat-6.0.16.zip
+*mysql-5.0.51b-win32.zip - http://dev.mysql.com/get/Downloads/MySQL-5.0/mysql-5.0.51b-win32.zip/from/pick
+*mysql-gui-tools-5.0-r12-win32.msi - http://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-gui-tools-5.0-r12-win32.msi/from/pick
+*jdk6 Update 7 (solo si no tienen ya java 6 instalado) - http://java.sun.com/javase/downloads/index.jsp
+
+= Adobe Flex Builder =
+Instalar el Flex Builder
+lo instale todo por default, en C:\Program Files\Adobe\Flex Builder 3
+te pide el serial la primera vez: 1377-4160-6909-6447-1553-7506
