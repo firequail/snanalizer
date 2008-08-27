@@ -19,7 +19,6 @@ jdk6 Update 7 (solo si no tienen ya java 6 instalado) - http://java.sun.com/java
 == Adobe Flex Builder ==
   * Instalar el Flex Builder
   * lo instale todo por default, en C:\Program Files\Adobe\Flex Builder 3
-  * te pide el serial la primera vez: 1377-4160-6909-6447-1553-7506
 
 == Web and Java EE Development plugin ==
   * en el menu del flex builder, ir a Help>Software Updates>Find and Install
