@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flexProperties flexServerType="8" flexWarLocation="C:/Documents and Settings/sg0973499/My Documents/development/blazeds.war" serverContextRoot="/WebContent" serverRoot="C:/Documents and Settings/sg0973499/My Documents/Flex Builder 3/snanalizer/WebContent" serverRootURL="http://localhost:8080/snanalizer" toolCompile="true" useServerFlexSDK="false" version="1"/>
+<flexProperties flexServerType="8" flexWarLocation="../WebContent/WEB-INF/lib/blazeds.war" serverContextRoot="../WebContent" serverRoot="../WebContent" serverRootURL="http://localhost:8080/snanalizer" toolCompile="true" useServerFlexSDK="false" version="1"/>
