@@ -123,6 +123,13 @@ jdk6 Update 7 (solo si no tienen ya java 6 instalado) - http://java.sun.com/java
   * click en Finish
   * hacer click en el boton Start the server
 
+== Crear DB ==
+  * Si se bajaron el codigo correctamente, deberian tener un archivo q se llama db.sql en la raiz del proyecto (yo lo tengo en mydocuments/flex builder 3/snanalizer).
+  * Abrir el MySQL Query Browser
+  * File->Open Script
+  * Abrir el archivo db.sql
+  * Click en Execute (boton verde arriba a la derecha)
+
 == Ejecutar la app ==
   * checkear en la vista Servers que el Tomcat este en Started
   * ir a la perspective Flex Development (boton arriba a la derecha) (solo hace falta la primera vez, despues se puede ejecutar desde la perspective Java tambien)
