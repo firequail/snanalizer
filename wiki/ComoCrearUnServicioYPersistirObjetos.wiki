@@ -2,7 +2,7 @@
 
 = Servicios =
 
-Desde la aplicacion flex que corre en el browser, vamos a estar llamando a servicios que corren en el servidor para ejecutar funcionalidades como crear un usuario, obtener los nodos de una red, etc.
+Desde la aplicacion flex que corre en el browser, vamos a estar llamando a servicios que corren en el servidor para ejecutar funcionalidades como crear un usuario, obtener los nodos de una red, ejecutar estadisticas, etc.
 
 Un servicio es simplemente un objeto java comun y corriente, al que desde flex le podemos invocar metodos. Ver la clase UsuariosServiceImpl como ejemplo.
 
