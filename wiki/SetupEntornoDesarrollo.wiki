@@ -88,7 +88,7 @@ jdk6 Update 7 (solo si no tienen ya java 6 instalado) - http://java.sun.com/java
   * Logearse con su user de gmail
   * En la seccion Source, hacer click en el link 'googlecode.com password'
   * ahi va a estar en negrita su password para el SVN
-  * en el FlexBuilder ir a Window>Perspective>Other
+  * en el Flex Builder ir a Window>Perspective>Other
   * Seleccionar SVN Repository Exploring
   * Click OK
   * Hacer click en el boton New Repository Location (icono amarillo con un signo de suma verde)
