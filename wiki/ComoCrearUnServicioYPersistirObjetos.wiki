@@ -8,7 +8,7 @@ Un servicio es simplemente un objeto java comun y corriente, al que desde flex l
 
 == Como crear un servicio ==
 
-Todo servicio que creemos va a estar compuesto por un interface y su implementacion. Por ejemplo para el servicio de abm de usuarios, tenemos dos archivos: UsuarioService.java y UsuarioServiceImpl.java.
+Todo servicio que creemos va a estar compuesto por un interface y su implementacion. Por ejemplo para el servicio de abm de usuarios, tenemos dos archivos: UsuarioService y UsuarioServiceImpl.
 
 Una vez creados la interface y la implementacion del servicio, hay que configurarlo en los archivos java-src/snanalizer/services/services-context.xml y WebContent/WEB-INF/flex/remoting-config.xml. Usar como ejemplo la configuracion de los otros servicios en estos mismos archivos.
 
