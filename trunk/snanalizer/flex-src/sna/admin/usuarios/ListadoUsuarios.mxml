@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="load()" width="100%" height="100%">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+
+	<mx:RemoteObject id="usuariosService" destination="usuariosService">
+	</mx:RemoteObject>
+
+	<mx:DataGrid id="usuarios" dataProvider="{usuariosService.getAll.lastResult}" doubleClickEnabled="true" doubleClick="modificarUsuario()" width="100%" height="100%">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Email" dataField="email"/>
+			<mx:DataGridColumn headerText="Rol" dataField="rol"/>
+		</mx:columns>
+	</mx:DataGrid>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			
+			public function load():void {
+				usuariosService.getAll();
+			}
+			
+			private function modificarUsuario():void {
+				dispatchEvent(ResultEvent.createEvent(usuarios.selectedItem));
+			}
+		]]>
+	</mx:Script>
+</mx:Canvas>

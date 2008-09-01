@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:admin="sna.admin.*" xmlns:portal="sna.portal.*" xmlns:analisis="sna.analisis.*" horizontalAlign="center" verticalAlign="middle">
+	<mx:states>
+		<mx:State name="Portal">
+			<mx:RemoveChild target="{login}"/>
+			<mx:AddChild position="lastChild">
+				<portal:Portal/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Administracion">
+			<mx:RemoveChild target="{login}"/>
+			<mx:AddChild position="lastChild">
+				<admin:Administracion/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Analisis">
+			<mx:RemoveChild target="{login}"/>
+			<mx:AddChild position="lastChild">
+				<analisis:Analisis/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+
+	<sna:Login result="handleLoginResult(event)" id="login"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			
+			private function handleLoginResult(event:ResultEvent):void
+			{
+				var usuario:Object = event.result;
+				
+				if(usuario.rol == "RECURSO"){
+					this.currentState = "Portal";
+					
+				} else if(usuario.rol == "ADMIN"){
+					this.currentState = "Administracion";
+					
+				} else if(usuario.rol == "ANALISTA"){
+					this.currentState = "Analisis";
+				}
+			}
+			
+			private function logout():void {
+				this.currentState = "";
+			}
+		]]>
+	</mx:Script>
+	
+</mx:Application>

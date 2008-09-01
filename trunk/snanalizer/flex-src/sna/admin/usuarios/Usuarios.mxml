@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:usuarios="sna.admin.usuarios.*" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+	<mx:states>
+		<mx:State name="NuevoUsuario">
+			<mx:RemoveChild target="{panel1}"/>
+			<mx:AddChild position="lastChild">
+				<usuarios:NuevoUsuario result="editarUsuarioOK(event)"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="EditarUsuario">
+			<mx:RemoveChild target="{panel1}"/>
+			<mx:AddChild position="lastChild">
+				<usuarios:EditarUsuario id="editarUsuario" result="editarUsuarioOK(event)"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Panel title="Listado de usuarios" id="panel1" width="402" height="300">
+		<mx:HBox>
+			<usuarios:ListadoUsuarios id="listadoUsuarios" result="modificarUsuario(event)" width="382" height="224"/>
+		</mx:HBox>
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button label="Nuevo Usuario" click="nuevoUsuario()"/>
+		</mx:ControlBar>
+	</mx:Panel>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			
+			private function nuevoUsuario():void {
+				this.currentState = "NuevoUsuario";
+			}
+			
+			private function modificarUsuario(event:ResultEvent):void {
+				this.currentState = "EditarUsuario";
+				editarUsuario.usuario = event.result;
+			}
+			
+			private function editarUsuarioOK(event:ResultEvent):void {
+				this.currentState = "";
+				listadoUsuarios.load();
+			}
+			
+		]]>
+	</mx:Script>
+	
+</mx:VBox>

@@ -16,5 +16,19 @@
     		<source>testService</source>
     	</properties>
     </destination>
+    
+    <destination id="loginService">
+    	<properties>
+    		<factory>spring</factory>
+    		<source>loginService</source>
+    	</properties>
+    </destination>
+    
+    <destination id="usuariosService">
+    	<properties>
+    		<factory>spring</factory>
+    		<source>usuariosService</source>
+    	</properties>
+    </destination>
 
 </service>
