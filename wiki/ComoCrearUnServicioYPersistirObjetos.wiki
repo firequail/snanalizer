@@ -30,7 +30,7 @@ Para usar el repositorio desde un servicio, tenemos que crear una variable de in
 
 = Objetos de negocio =
 
-Los objetos de negocio son las entidades que necesitamos persistir en la db, como usuarios, recursos, etc.
+Los objetos de negocio son las entidades que necesitamos persistir en la db, como usuarios, encuestas, etc.
 
 == Como crear un objeto de negocio ==
 
