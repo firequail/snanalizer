@@ -34,7 +34,7 @@ Los objetos de negocio son las entidades que necesitamos persistir en la db, com
 
 == Como crear un objeto de negocio ==
 
-Todo objeto de negocio tiene que ser una subclase de DomainEntity. De esta clase, el objeto de negocio va a heredar el id y algunos metodos necesarios para la persistencia que no hace falta conocerlos. Ver la clase Usuario como ejemplo.
+Todo objeto de negocio tiene que ser una subclase de DomainEntity. De esta clase el objeto de negocio va a heredar el id y algunos metodos necesarios para la persistencia que no hace falta conocerlos. Ver la clase Usuario como ejemplo.
 
 Crear una tabla en la base de datos con el mismo nombre que la clase del objeto de negocio creado. Las columnas de la base de datos se tienen que llamar igual que las variables de instancia del objeto de negocio.
 
