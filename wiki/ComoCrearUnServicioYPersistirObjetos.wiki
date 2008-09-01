@@ -26,7 +26,7 @@ Todo repositorio va a ser una subclase de BaseRepository. Esta clase nos provee 
 
 Una vez creadas la clase y la interface del repositorio, hay que configurarlo en java-src/snanalizer/data/dataContext.xml. Usar como ejemplo la configuracion de los otros repositorios en ese mismo archivo.
 
-Para usar el repositorio desde un servicio, tenemos que crear una variable de instancia en el servicio para el repositorio, crearle un getter y un setter, y anotar la variable de instancia con @Resource. Ver UsuarioServiceImpl como ejemplo.
+Para usar el repositorio desde un servicio, tenemos que crear una variable de instancia en el servicio para el repositorio, crearle un getter y un setter, y anotar la variable de instancia con @Resource. Ver UsuariosServiceImpl como ejemplo.
 
 = Objetos de negocio =
 
