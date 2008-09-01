@@ -45,7 +45,7 @@ public abstract class DomainEntity {
 	 * Devuelve la clase que representa la entidad de esta instancia. Debido a
 	 * la utilizacion de proxies para implementar cierto comportamiento
 	 * aspecteado el metodo getClass() devuelve la clase proxy, en vez de la
-	 * clase proxiada. Este metod permite conocer la clase qeu representa la
+	 * clase proxiada. Este metodo permite conocer la clase que representa la
 	 * entidad antes de ser proxiada
 	 * 
 	 * @return La instancia de clase que representa la entidad de dominio de
