@@ -8,3 +8,4 @@ CREATE TABLE  `sna`.`usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 INSERT INTO usuario (email, password, rol) VALUES ("admin", "admin", "ADMIN");
+INSERT INTO usuario (email, password, rol) VALUES ("pepe", "pepe", "ANALISTA");
