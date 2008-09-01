@@ -2,7 +2,7 @@
 
 = Software para bajar =
 
-Adobe Flex Builder Professional 3 (me termine bajando el free trial de 60 dias) - http://www.adobe.com/cfusion/entitlement/index.cfm?e=flex3email
+Adobe Flex Builder Professional 3 (este es el free trial de 60 dias, pero pueden usar otro si quieren) - http://www.adobe.com/cfusion/entitlement/index.cfm?e=flex3email
 
 apache-tomcat-6.0.16.zip - http://download.nextag.com/apache/tomcat/tomcat-6/v6.0.16/bin/apache-tomcat-6.0.16.zip
 
