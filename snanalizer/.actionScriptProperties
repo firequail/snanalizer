@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<actionScriptProperties mainApplicationPath="snanalizer.mxml" version="3">
+<actionScriptProperties mainApplicationPath="sna/snanalizer.mxml" version="3">
 <compiler additionalCompilerArguments="-services &quot;../WebContent/WEB-INF/flex/services-config.xml&quot; -locale en_US" copyDependentFiles="true" enableModuleDebug="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersion="9.0.124" htmlPlayerVersionCheck="true" outputFolderPath="bin-debug" rootURL="http://localhost:8080/snanalizer" sourceFolderPath="flex-src" strict="true" useApolloConfig="false" verifyDigests="true" warn="true">
 <compilerSourcePath/>
 <libraryPath defaultLinkType="1">
@@ -9,7 +9,7 @@
 <sourceAttachmentPath/>
 </compiler>
 <applications>
-<application path="snanalizer.mxml"/>
+<application path="sna/snanalizer.mxml"/>
 </applications>
 <modules/>
 <buildCSSFiles/>

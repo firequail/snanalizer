@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%">
+	<mx:ApplicationControlBar width="100%">
+		<mx:Image/>
+		<mx:Label text="Social Networks Analyzer" color="#43445A" fontWeight="bold" fontStyle="italic" textDecoration="normal" fontSize="20"/>
+		<mx:Spacer width="100%"/>
+		<mx:Button label="Salir" click="logout()"/>
+	</mx:ApplicationControlBar>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			
+			private function logout():void {
+				//tirar un evento de logout
+				Alert.show("No hay logout todavía :P");
+			}
+			
+		]]>
+	</mx:Script>
+</mx:Canvas>

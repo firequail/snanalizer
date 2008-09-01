@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:Panel title="Nuevo usuario">
+		<mx:Form id="form1" defaultButton="{okButton}">
+			<mx:FormItem label="Email" tabIndex="1">
+				<mx:TextInput id="email"/>
+			</mx:FormItem>
+			<mx:FormItem label="Contraseña" tabIndex="2">
+				<mx:TextInput id="password1" displayAsPassword="true"/>
+			</mx:FormItem>
+			<mx:FormItem label="Repetir Contraseña" tabIndex="3">
+				<mx:TextInput id="password2" displayAsPassword="true"/>
+			</mx:FormItem>
+			<mx:FormItem label="Rol" tabIndex="4">
+				<sna:DataComboBox id="rolCombo">
+					<mx:ArrayCollection>
+	                 <mx:Object label="Administrador" data="ADMIN"/>
+	                 <mx:Object label="Recurso" data="RECURSO"/>
+	                 <mx:Object label="Analista" data="ANALISTA"/>
+	              </mx:ArrayCollection> 
+				</sna:DataComboBox>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
+			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
+		</mx:ControlBar>
+	</mx:Panel>
+	
+	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			
+			private function guardar():void {
+				usuariosService.crear(email.text, password1.text, rolCombo.selectedData);
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			private function cancelar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+		]]>
+	</mx:Script>
+	
+</mx:VBox>

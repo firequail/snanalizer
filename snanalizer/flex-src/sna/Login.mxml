@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+
+	<mx:RemoteObject id="loginService" destination="loginService" showBusyCursor="true">
+		<mx:method name="login" result="loginOK(event)" fault="loginFailed(event)"/>
+	</mx:RemoteObject>
+
+	<mx:Panel title="Login" id="loginPanel">
+		<mx:Form defaultButton="{loginButton}">
+			<mx:FormItem label="Email" tabIndex="1">
+				<mx:TextInput id="txtEmail" tabIndex="1"/>
+			</mx:FormItem>
+			<mx:FormItem label="Contraseña" tabIndex="2">
+				<mx:TextInput id="txtPassword" displayAsPassword="true" tabIndex="2"/>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:ControlBar horizontalAlign="right" id="controlbar1">
+			<mx:Button id="loginButton" label="Ingresar" click="login()" tabIndex="3" />
+		</mx:ControlBar>
+	</mx:Panel>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			private function login():void {
+				loginService.login(txtEmail.text, txtPassword.text);
+			}
+			
+			private function loginOK(event:ResultEvent):void {
+				dispatchEvent(ResultEvent.createEvent(event.result));
+			}
+			
+			private function loginFailed(event:FaultEvent):void {
+				//aca viene si el loginService tira exception, por ejemplo si el user no existe o la pass esta mal
+				
+				Alert.show("Email o password incorrectos.");
+			}
+			
+		]]>
+	</mx:Script>
+	
+</mx:VBox>
+
+

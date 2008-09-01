@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
-
-	<mx:RemoteObject id="testService" destination="testService" showBusyCursor="true"/>
-
-	<mx:Label text="Fecha acutal: "/>
-	<mx:Label text="{testService.getDate.lastResult}" x="91"/>
-	<mx:Button label="Actualizar fecha" click="testService.getDate()" x="10" y="26"/>
-</mx:Application>
