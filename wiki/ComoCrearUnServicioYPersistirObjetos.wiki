@@ -22,9 +22,9 @@ Los repositorios son nuestra capa de datos, a traves de estos vamos a persistir 
 
 Al igual que con los servicios, tenemos que crear una interface y una implementacion para cada repositorio. Ver UsuarioRepository y UsuarioRepositoryImpl como ejemplo.
 
-Todo repositorio va a ser una subclase de BaseRepository. Esta clase nos provee del vamos con algunas funcionalidades basicas de un repositorio: grabar un objeto en la db, borrarlo y hacer consultas basicas. Esto quiere decir que los repositorios que creemos solo van consistir en metodos para hacer consultas, ya que grabar y borrar ya esta implementado en BaseRepository.
+Todo repositorio va a ser una subclase de BaseRepository. Esta clase nos provee del vamos con algunas funcionalidades basicas de un repositorio: grabar un objeto en la db, borrarlo y hacer consultas basicas. Esto quiere decir que los repositorios que creemos solo van consistir en metodos para hacer consultas, ya que grabar y borrar ya estan implementado en BaseRepository.
 
-Una vez creadas las clase y la interface del repositorio, hay que configurarlo en java-src/snanalizer/data/dataContext.xml. Usar como ejemplo la configuracion de los otros repositorios en ese mismo archivo.
+Una vez creadas la clase y la interface del repositorio, hay que configurarlo en java-src/snanalizer/data/dataContext.xml. Usar como ejemplo la configuracion de los otros repositorios en ese mismo archivo.
 
 Para usar el repositorio desde un servicio, tenemos que crear una variable de instancia en el servicio para el repositorio, crearle un getter y un setter, y anotar la variable de instancia con @Resource. Ver UsuarioServiceImpl como ejemplo.
 
