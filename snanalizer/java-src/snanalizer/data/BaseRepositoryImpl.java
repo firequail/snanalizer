@@ -31,7 +31,7 @@ public class BaseRepositoryImpl<E extends DomainEntity> implements BaseRepositor
 	}
 
 	@SuppressWarnings("unchecked")
-	public E getById(Long id) {
+	public E getById(Integer id) {
 		return (E) createCriteria().add(Restrictions.eq("id", id))
 				.uniqueResult();
 	}
@@ -40,7 +40,7 @@ public class BaseRepositoryImpl<E extends DomainEntity> implements BaseRepositor
 		this.sessionFactory.getCurrentSession().save(newEntity);
 	}
 
-	public void remove(Long id) {
+	public void remove(Integer id) {
 		E e = getById(id);
 		this.sessionFactory.getCurrentSession().delete(e);
 	}

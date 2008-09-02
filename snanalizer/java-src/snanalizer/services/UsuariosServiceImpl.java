@@ -32,7 +32,7 @@ public class UsuariosServiceImpl implements UsuariosService {
 		usuarios.add(usuario);
 	}
 
-	public void modificar(Long id, String email, String password, String rol) {
+	public void modificar(Integer id, String email, String password, String rol) {
 		Usuario usuario = usuarios.getById(id);
 		usuario.setEmail(email);
 		usuario.setPassword(password);

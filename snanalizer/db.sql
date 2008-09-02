@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS `sna`.`usuario`;
 CREATE TABLE  `sna`.`usuario` (
-  `id` bigint(20) unsigned NOT NULL auto_increment,
-  `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `rol` varchar(45) NOT NULL,
+  `id` INTEGER NOT NULL auto_increment,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `rol` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
