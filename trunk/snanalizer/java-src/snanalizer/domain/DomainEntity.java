@@ -8,9 +8,9 @@ import javax.persistence.Transient;
 
 @MappedSuperclass
 public abstract class DomainEntity {
-	private Long id;
+	private Integer id;
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		if (id < 1) {
 			this.id = null;
 		} else {
@@ -20,7 +20,7 @@ public abstract class DomainEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
