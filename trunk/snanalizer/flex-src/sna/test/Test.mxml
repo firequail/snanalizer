@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
+	<mx:RemoteObject id="testService" destination="testService"/>
+	
+	<mx:Button x="136" y="66" label="Test" click="testService.test()"/>
+	
+</mx:Canvas>

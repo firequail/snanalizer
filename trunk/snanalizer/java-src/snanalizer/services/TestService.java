@@ -1,11 +1,7 @@
 package snanalizer.services;
-import java.util.Date;
 
+public interface TestService {
 
-public class TestService {
+	public void test();
 
-	public String getDate()
-	{
-		return new Date().toString();
-	}
 }
