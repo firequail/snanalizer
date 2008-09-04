@@ -1,5 +1,6 @@
 package snanalizer.domain;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,8 +10,8 @@ import javax.persistence.OneToMany;
 public class Red extends DomainEntity {
 
 	private String descripcion;
-	
-	private List<PuntoDeVista> puntosDeVista;
+
+	private List<PuntoDeVista> puntosDeVista = new LinkedList<PuntoDeVista>();
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
