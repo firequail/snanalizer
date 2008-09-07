@@ -40,7 +40,7 @@ public class TestServiceImpl implements TestService {
 	
 	private void crearRedDePrueba() {
 		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
-		puntoDeVista1.setDescripcion("Quien la tiene clara con usabilidad?");
+		puntoDeVista1.setDescripcion("Quien la tiene clara con testing?");
 		save(puntoDeVista1);
 		
 		Red red1 = new Red();
@@ -58,8 +58,8 @@ public class TestServiceImpl implements TestService {
 		save(recurso4);
 
 		// creo un grafo en forma de estrella
-		save(new Relacion(recurso1, recurso2, 3, puntoDeVista1));
-		save(new Relacion(recurso1, recurso3, 3, puntoDeVista1));
-		save(new Relacion(recurso1, recurso4, 3, puntoDeVista1));
+		save(new Relacion(recurso2, recurso1, 3, puntoDeVista1));
+		save(new Relacion(recurso2, recurso3, 3, puntoDeVista1));
+		save(new Relacion(recurso2, recurso4, 3, puntoDeVista1));
 	}
 }

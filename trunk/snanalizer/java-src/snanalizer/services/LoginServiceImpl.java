@@ -4,20 +4,20 @@ import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import snanalizer.data.UsuarioRepository;
+import snanalizer.data.UsuariosRepository;
 import snanalizer.domain.Usuario;
 
 @Transactional
 public class LoginServiceImpl implements LoginService {
 
 	@Resource
-	private UsuarioRepository usuarios;
+	private UsuariosRepository usuarios;
 
-	public void setUsuarios(UsuarioRepository usuarios) {
+	public void setUsuarios(UsuariosRepository usuarios) {
 		this.usuarios = usuarios;
 	}
 
-	public UsuarioRepository getUsuarios() {
+	public UsuariosRepository getUsuarios() {
 		return usuarios;
 	}
 

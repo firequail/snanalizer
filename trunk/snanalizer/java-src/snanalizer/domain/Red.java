@@ -13,6 +13,8 @@ public class Red extends DomainEntity {
 
 	private List<PuntoDeVista> puntosDeVista = new LinkedList<PuntoDeVista>();
 
+	private List<Recurso> recursos = new LinkedList<Recurso>();
+	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
@@ -28,5 +30,14 @@ public class Red extends DomainEntity {
 	@OneToMany
 	public List<PuntoDeVista> getPuntosDeVista() {
 		return puntosDeVista;
+	}
+
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
+	}
+
+	@OneToMany
+	public List<Recurso> getRecursos() {
+		return recursos;
 	}
 }

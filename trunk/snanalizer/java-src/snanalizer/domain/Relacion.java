@@ -59,4 +59,8 @@ public class Relacion extends DomainEntity {
 	public PuntoDeVista getPuntoDeVista() {
 		return puntoDeVista;
 	}
+	
+	public String toXML() {
+		return "<Edge fromID=\"" + getOrigen().getId() + "\" toID=\"" + getDestino().getId() + "\" edgeLabel=\"Relacion 1\" flow=\"50\" color=\"0x556b2f\" edgeClass=\"sun\" edgeIcon=\"NoChange\" />";
+	}
 }

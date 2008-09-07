@@ -19,8 +19,6 @@ package sna
 					while (!cursor.afterLast) {
 						var obj:Object = cursor.current;
 						
-						var info:Object = ObjectUtil.getClassInfo(obj);
-						
 						if ( obj[dataField] == value ) {
 							super.selectedItem = obj;
 							return;
@@ -31,8 +29,9 @@ package sna
 			}
 		}
 		
+		[Bindable]
 		public function get selectedData():Object {
-			return selectedItem.data;
+			return selectedItem[dataField];
 		}
 	}
 }
