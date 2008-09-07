@@ -7,10 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 public class Red extends DomainEntity {
 
 	private String descripcion;
+
+	private List<Recurso> recursos;
 
 	private List<PuntoDeVista> puntosDeVista = new LinkedList<PuntoDeVista>();
 
@@ -26,8 +31,19 @@ public class Red extends DomainEntity {
 		this.puntosDeVista = puntosDeVista;
 	}
 
-	@OneToMany( fetch = FetchType.EAGER )
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
 	public List<PuntoDeVista> getPuntosDeVista() {
 		return puntosDeVista;
+	}
+
+	public void setRecursos(List<Recurso> recursos) {
+		this.recursos = recursos;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	public List<Recurso> getRecursos() {
+		return recursos;
 	}
 }
