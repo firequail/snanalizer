@@ -5,6 +5,7 @@
 	creationComplete="init()">
 	
 	<mx:RemoteObject id="redesService" destination="redesService">
+		<mx:method name="getRedes" result="loadPuntosDeVista()"/>
 		<mx:method name="getPuntosDeVista" result="grafo.refresh()"/>
 	</mx:RemoteObject>
 	
@@ -12,7 +13,7 @@
 		<mx:Panel title="Controles" height="100%">
 			<mx:VBox width="100%" height="100%">
 				<mx:Label text="Red"/>
-				<sna:DataComboBox id="redesCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getRedes.lastResult}"/>
+				<sna:DataComboBox id="redesCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getRedes.lastResult}" change="loadPuntosDeVista()"/>
 				<mx:Label text="Punto de vista"/>
 				<sna:DataComboBox id="puntosDeVistaCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getPuntosDeVista.lastResult}" change="grafo.refresh()"/>
 				<mx:Button label="Actualizar" click="grafo.refresh()"/>
@@ -27,9 +28,14 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			
 			private function init():void {
 				redesService.getRedes();
-				redesService.getPuntosDeVista(1);
+			}
+			
+			private function loadPuntosDeVista():void {
+				redesService.getPuntosDeVista(redesCombo.selectedData as int);
 			}
 		]]>
 	</mx:Script>
