@@ -10,5 +10,4 @@ public interface RedesService {
 	public String getGrafo(int puntoDeVistaId) throws FileNotFoundException;
 
 	public List<PuntoDeVista> getPuntosDeVista(int redId);
-
 }

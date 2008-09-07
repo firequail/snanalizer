@@ -29,7 +29,9 @@ package sna
 			}
 		}
 		
-		[Bindable]
+		[Bindable("change")]
+	    [Bindable("collectionChange")]
+	    [Bindable("valueCommit")]
 		public function get selectedData():Object {
 			return selectedItem[dataField];
 		}

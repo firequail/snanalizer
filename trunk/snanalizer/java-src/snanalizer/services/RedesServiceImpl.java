@@ -1,7 +1,6 @@
 package snanalizer.services;
 
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -25,7 +24,7 @@ public class RedesServiceImpl implements RedesService {
 	PuntosDeVistaRepository puntosDeVista;
 
 	@Resource
-	RedesRepository redes;
+	RedesRepository redesRepository;
 
 	@Resource
 	private RelacionesRepository relaciones;
@@ -38,12 +37,12 @@ public class RedesServiceImpl implements RedesService {
 		return puntosDeVista;
 	}
 
-	public void setRedes(RedesRepository redes) {
-		this.redes = redes;
+	public void setRedesRepository(RedesRepository redes) {
+		this.redesRepository = redes;
 	}
 
-	public RedesRepository getRedes() {
-		return redes;
+	public RedesRepository getRedesRepository() {
+		return redesRepository;
 	}
 
 	public void setRelaciones(RelacionesRepository relaciones) {
@@ -86,14 +85,8 @@ public class RedesServiceImpl implements RedesService {
 		
 	}
 
-	private String getGrafoHardcodeado() {
-		return "<Graph><Node id=\"1\" name=\"0\" desc=\"Nodo 1\" nodeColor=\"0x333333\" nodeSize=\"32\" nodeClass=\"earth\" nodeIcon=\"center\" x=\"10\" y=\"10\" />"
-				+ "<Node id=\"2\" name=\"A\" desc=\"Nodo 2\" nodeColor=\"0x8F8FFF\" nodeSize=\"12\" nodeClass=\"tree\" nodeIcon=\"2\" x=\"10\" y=\"15\" />"
-				+ "<Edge fromID=\"1\" toID=\"2\" edgeLabel=\"Relacion 1\" flow=\"50\" color=\"0x556b2f\" edgeClass=\"sun\" edgeIcon=\"NoChange\" /></Graph>";
-	}
-
 	public List<PuntoDeVista> getPuntosDeVista(int redId) {
-		Red red = redes.getById(redId);
+		Red red = redesRepository.getById(redId);
 		return puntosDeVista.getPuntosDeVista(red);
 	}
 }
