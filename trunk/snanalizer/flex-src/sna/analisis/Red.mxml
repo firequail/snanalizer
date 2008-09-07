@@ -12,7 +12,7 @@
 		<mx:Panel title="Controles" height="100%">
 			<mx:VBox width="100%" height="100%">
 				<mx:Label text="Red"/>
-				<sna:DataComboBox/>
+				<sna:DataComboBox id="redesCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getRedes.lastResult}"/>
 				<mx:Label text="Punto de vista"/>
 				<sna:DataComboBox id="puntosDeVistaCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getPuntosDeVista.lastResult}" change="grafo.refresh()"/>
 				<mx:Button label="Actualizar" click="grafo.refresh()"/>
@@ -28,6 +28,7 @@
 	<mx:Script>
 		<![CDATA[
 			private function init():void {
+				redesService.getRedes();
 				redesService.getPuntosDeVista(1);
 			}
 		]]>

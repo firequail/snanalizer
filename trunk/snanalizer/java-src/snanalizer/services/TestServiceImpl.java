@@ -96,11 +96,11 @@ public class TestServiceImpl implements TestService {
 		for (PuntoDeVista puntoDeVista: puntosDeVista.getAll()) {
 			puntosDeVista.remove(puntoDeVista);
 		}
-		for (Recurso recurso: recursos.getAll()) {
-			recursos.remove(recurso);
-		}
 		for (Relacion relacion: relaciones.getAll()) {
 			relaciones.remove(relacion);
+		}
+		for (Recurso recurso: recursos.getAll()) {
+			recursos.remove(recurso);
 		}
 	}
 

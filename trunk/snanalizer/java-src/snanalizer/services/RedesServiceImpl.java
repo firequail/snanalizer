@@ -1,6 +1,5 @@
 package snanalizer.services;
 
-import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -21,10 +20,10 @@ import snanalizer.domain.Relacion;
 public class RedesServiceImpl implements RedesService {
 
 	@Resource
-	PuntosDeVistaRepository puntosDeVista;
+	public PuntosDeVistaRepository puntosDeVista;
 
 	@Resource
-	RedesRepository redesRepository;
+	public RedesRepository redesRepository;
 
 	@Resource
 	private RelacionesRepository relaciones;
@@ -53,40 +52,45 @@ public class RedesServiceImpl implements RedesService {
 		return relaciones;
 	}
 
-	public String getGrafo(int puntoDeVistaId) throws FileNotFoundException {
+	public String getGrafo(int puntoDeVistaId) {
 		PuntoDeVista puntoDeVista = puntosDeVista.getById(puntoDeVistaId);
 		List<Relacion> listaRelaciones = relaciones.getRelaciones(puntoDeVista);
-		
+
 		HashSet<Recurso> conjuntoDeRecursos = new HashSet<Recurso>();
-		
+
 		for (Relacion relacion : listaRelaciones) {
 			conjuntoDeRecursos.add(relacion.getOrigen());
 			conjuntoDeRecursos.add(relacion.getDestino());
 		}
-		
+
 		return buildGrafo(conjuntoDeRecursos, listaRelaciones);
 	}
 
 	private String buildGrafo(Collection<Recurso> recursos,
 			Collection<Relacion> listaRelaciones) {
+
 		StringBuilder builder = new StringBuilder("<Graph>");
-		
+
 		for (Recurso recurso : recursos) {
 			builder.append(recurso.toXml());
 		}
-		
+
 		for (Relacion relacion : listaRelaciones) {
 			builder.append(relacion.toXML());
 		}
-		
+
 		builder.append("</Graph>");
-		
+
 		return builder.toString();
-		
+
 	}
 
 	public List<PuntoDeVista> getPuntosDeVista(int redId) {
 		Red red = redesRepository.getById(redId);
 		return puntosDeVista.getPuntosDeVista(red);
+	}
+
+	public List<Red> getRedes() {
+		return redesRepository.getAll();
 	}
 }
