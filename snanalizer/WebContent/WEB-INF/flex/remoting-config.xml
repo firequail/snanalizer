@@ -30,5 +30,12 @@
     		<source>usuariosService</source>
     	</properties>
     </destination>
+    
+    <destination id="redesService">
+    	<properties>
+    		<factory>spring</factory>
+    		<source>redesService</source>
+    	</properties>
+    </destination>
 
 </service>

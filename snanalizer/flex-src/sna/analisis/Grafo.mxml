@@ -2,10 +2,18 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ravis="org.un.cava.birdeye.ravis.graphLayout.visual.*"
 	xmlns:lc="org.un.cava.birdeye.ravis.components.ui.controls.layouterControls.*"
 	xmlns:dp="org.un.cava.birdeye.ravis.components.ui.dataPresentation.*"
-	creationComplete="initData();" width="100%" height="100%">
+	width="100%" height="100%">
+
+	<mx:RemoteObject id="redesService" destination="redesService">
+		<mx:method name="getGrafo" result="initData(event)"/>
+	</mx:RemoteObject>
+	
+	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
 
 	<mx:Script>
 		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.rpc.events.ResultEvent;
 			import org.un.cava.birdeye.ravis.graphLayout.layout.ForceDirectedLayouter;
 			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.FlowEdgeRenderer;
 			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.FlowCurveEdgeRenderer;
@@ -50,20 +58,36 @@
 			// important to ensure we are done with the main initialisation
 			private var initDone:Boolean = false;
 			
+			private var _puntoDeVistaId:int;
+			
+			public function set puntoDeVistaId(value:int):void {
+				_puntoDeVistaId = value;
+				//refresh();
+			}
+			
+			public function refresh():void {
+				redesService.getGrafo(_puntoDeVistaId);
+			}
+			
+			private function initData(event:ResultEvent):void {
+				initGraph();
+			}
+			
 			/**
 			 * event handler for HTTPService, does all the remaining required
 			 * initialisation
 			 * */
-			private function initData():void {
-												
+			private function initGraph():void {
+				var xmlData:XML = new XML(redesService.getGrafo.lastResult);
+				
 				/* create and init a graph object with the XML data */
-				graph = new org.un.cava.birdeye.ravis.graphLayout.data.Graph("XMLAsDocsGraph",false,xmldata);
+				graph = new org.un.cava.birdeye.ravis.graphLayout.data.Graph("XMLAsDocsGraph",false,xmlData);
 				
 				/* set the graph in the VGraph object, this automatically
 				 * initializes the VGraph items; 
 				 * note: vgraph is the id of the mxml specified VisualGraph component */
 				vgraph.graph = graph;
-
+				
 				/* set the default layouter type */
 				layouter = new ConcentricRadialLayouter(vgraph);
 				//layouter = new ForceDirectedLayouter(vgraph);
@@ -83,33 +107,25 @@
 				
 				/* select a root node, most layouters requires a root node
 				 * Note: Id 1 is referring to node id in the XML file */
-				startRoot = graph.nodeByStringId("1").vnode;
+				//startRoot = graph.nodeByStringId("1").vnode;
 						
 				/* set if edge labels should be displayed */
 				vgraph.displayEdgeLabels = false;
 
 				/* the following kicks it off .... */
-				vgraph.currentRootVNode = startRoot;
+				//vgraph.currentRootVNode = startRoot;
+				vgraph.currentRootVNode = graph.nodes[0].vnode;				
 				initDone = true;
 				vgraph.draw();
 			}
 		]]>
 	</mx:Script>					
 
-	<mx:XML id="xmldata" source="graph.xml" />	
-	<mx:Panel id="main" title="Red" width="100%" height="100%" 
-		verticalAlign="middle" horizontalAlign="center" 
-		borderColor="#CCCCCC" paddingBottom="5" horizontalGap="5">
-		<mx:Canvas id="graphCnvs" width="100%" height="100%"  >		
-			<ravis:VisualGraph id="vgraph" width="100%" height="100%" 
-				paddingBottom="5" left="0" right="0" top="0" bottom="0"
-				backgroundColor="#FFFFFF" alpha="1"
-				itemRenderer="org.un.cava.birdeye.ravis.components.renderers.nodes.RotatedRectNodeRenderer"
-				edgeLabelRenderer="sna.analisis.renderers.edgelabels.mxml.basicEdgeLabelRenderer"
-				visibilityLimitActive="true"
-				>
-			</ravis:VisualGraph>
-		</mx:Canvas>
-	</mx:Panel>
-	
+	<ravis:VisualGraph id="vgraph" width="100%" height="100%" 
+		paddingBottom="5" left="0" right="0" top="0" bottom="0"
+		backgroundColor="#FFFFFF" alpha="1"
+		itemRenderer="org.un.cava.birdeye.ravis.components.renderers.nodes.RotatedRectNodeRenderer"
+		edgeLabelRenderer="sna.analisis.renderers.edgelabels.mxml.basicEdgeLabelRenderer"
+		visibilityLimitActive="true">
+	</ravis:VisualGraph>	
 </mx:Canvas>

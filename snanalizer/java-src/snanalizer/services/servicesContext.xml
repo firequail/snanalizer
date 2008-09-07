@@ -16,5 +16,7 @@
 	<bean id="loginService" class="snanalizer.services.LoginServiceImpl"/>
 		
 	<bean id="usuariosService" class="snanalizer.services.UsuariosServiceImpl"/>
+	
+	<bean id="redesService" class="snanalizer.services.RedesServiceImpl"/>
 
 </beans>

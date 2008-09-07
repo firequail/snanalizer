@@ -13,6 +13,12 @@
 
 	<import resource="hibernateContext.xml"/>
 
-	<bean id="usuarioRepository" class="snanalizer.data.UsuarioRepositoryImpl"/>
+	<bean id="usuariosRepository" class="snanalizer.data.UsuariosRepositoryImpl"/>
+	
+	<bean id="redesRepository" class="snanalizer.data.RedesRepositoryImpl"/>
+	
+	<bean id="puntosDeVistaRepository" class="snanalizer.data.PuntosDeVistaRepositoryImpl"/>
+	
+	<bean id="relacionesRepository" class="snanalizer.data.RelacionesRepositoryImpl"/>
 	
 </beans>

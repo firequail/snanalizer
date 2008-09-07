@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:sna="sna.*" xmlns:analisis="sna.analisis.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"
+	xmlns:sna="sna.*" xmlns:analisis="sna.analisis.*"
+	xmlns:vc="org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.*"
+	creationComplete="init()">
+	
+	<mx:RemoteObject id="redesService" destination="redesService">
+		<mx:method name="getPuntosDeVista" result="handleGetPuntosDeVista(event)"/>
+	</mx:RemoteObject>
+	
 	<mx:HBox width="100%" height="100%">
 		<mx:Panel title="Controles" height="100%">
 			<mx:VBox width="100%" height="100%">
 				<mx:Label text="Red"/>
 				<sna:DataComboBox/>
 				<mx:Label text="Punto de vista"/>
-				<sna:DataComboBox/>
+				<sna:DataComboBox id="puntosDeVistaCombo" labelField="descripcion" dataField="id" change="handlePuntoDeVistaChange(event)"/>
+				<mx:Button label="Actualizar" click="createNewGrafo()"/>
 			</mx:VBox>
 		</mx:Panel>
-		<analisis:Grafo/>
+		<mx:Panel title="Red" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" borderColor="#CCCCCC" paddingBottom="5" horizontalGap="5">
+			<mx:Canvas id="graphCanvas" width="100%" height="100%"  >
+			</mx:Canvas>
+		</mx:Panel>
 	</mx:HBox>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			
+			private var grafo:Grafo;
+			
+			private function init():void {
+				redesService.getPuntosDeVista(1);
+			}
+			
+			private function createNewGrafo():void {
+				if (grafo != null ) {
+					graphCanvas.removeChild(grafo);
+				}
+				grafo = new Grafo();
+				grafo.addEventListener(FlexEvent.CREATION_COMPLETE, grafoRefresh);
+				graphCanvas.addChild(grafo);
+				grafo.puntoDeVistaId = puntosDeVistaCombo.selectedData as int;
+			}
+			
+			private function grafoRefresh(event:FlexEvent):void {
+				grafo.refresh();
+			}
+			
+			private function handleGetPuntosDeVista(event:ResultEvent):void {
+				puntosDeVistaCombo.dataProvider = event.result;
+				createNewGrafo();
+			}
+			
+			private function handlePuntoDeVistaChange(event:ListEvent):void {
+				createNewGrafo();
+			}
+		]]>
+	</mx:Script>
 </mx:Canvas>

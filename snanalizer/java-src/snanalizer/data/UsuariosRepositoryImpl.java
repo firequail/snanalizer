@@ -5,8 +5,8 @@ import org.hibernate.criterion.Restrictions;
 
 import snanalizer.domain.Usuario;
 
-public class UsuarioRepositoryImpl extends BaseRepositoryImpl<Usuario> implements
-		UsuarioRepository {
+public class UsuariosRepositoryImpl extends BaseRepositoryImpl<Usuario> implements
+		UsuariosRepository {
 
 	public Usuario getUsuario(String email, String password) {
 
