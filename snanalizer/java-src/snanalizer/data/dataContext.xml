@@ -21,4 +21,6 @@
 	
 	<bean id="relacionesRepository" class="snanalizer.data.RelacionesRepositoryImpl"/>
 	
+	<bean id="recursosRepository" class="snanalizer.data.RecursosRepositoryImpl"/>
+	
 </beans>

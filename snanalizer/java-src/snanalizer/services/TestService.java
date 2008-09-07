@@ -2,6 +2,6 @@ package snanalizer.services;
 
 public interface TestService {
 
-	public void test();
+	public void recrearDB();
 
 }

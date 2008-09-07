@@ -2,6 +2,6 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300">
 	<mx:RemoteObject id="testService" destination="testService"/>
 	
-	<mx:Button x="136" y="66" label="Test" click="testService.test()"/>
+	<mx:Button x="136" y="66" label="Recrear DB" click="testService.recrearDB()"/>
 	
 </mx:Canvas>
