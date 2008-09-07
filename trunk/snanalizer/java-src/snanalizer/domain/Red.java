@@ -15,8 +15,6 @@ public class Red extends DomainEntity {
 
 	private String descripcion;
 
-	private List<Recurso> recursos;
-
 	private List<PuntoDeVista> puntosDeVista = new LinkedList<PuntoDeVista>();
 
 	public void setDescripcion(String descripcion) {
@@ -35,15 +33,5 @@ public class Red extends DomainEntity {
 	@Fetch(FetchMode.SUBSELECT)
 	public List<PuntoDeVista> getPuntosDeVista() {
 		return puntosDeVista;
-	}
-
-	public void setRecursos(List<Recurso> recursos) {
-		this.recursos = recursos;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER)
-	@Fetch(FetchMode.SUBSELECT)
-	public List<Recurso> getRecursos() {
-		return recursos;
 	}
 }
