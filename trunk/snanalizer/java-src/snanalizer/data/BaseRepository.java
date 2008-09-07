@@ -13,5 +13,7 @@ public interface BaseRepository<E extends DomainEntity> {
 	public void add(E newEntity);
 
 	public void remove(Integer id);
+	
+	public void remove(E entity);
 
 }

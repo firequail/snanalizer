@@ -44,6 +44,10 @@ public class BaseRepositoryImpl<E extends DomainEntity> implements BaseRepositor
 		E e = getById(id);
 		this.sessionFactory.getCurrentSession().delete(e);
 	}
+	
+	public void remove(E entity) {
+		this.sessionFactory.getCurrentSession().delete(entity);
+	}
 
 	protected Criteria createCriteria() {
 		return this.sessionFactory.getCurrentSession()
