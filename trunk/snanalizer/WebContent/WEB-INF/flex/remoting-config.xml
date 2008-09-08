@@ -37,5 +37,12 @@
     		<source>redesService</source>
     	</properties>
     </destination>
+    
+        <destination id="datosMaestrosService">
+    	<properties>
+    		<factory>spring</factory>
+    		<source>datosMaestrosService</source>
+    	</properties>
+    </destination>
 
 </service>

@@ -13,21 +13,35 @@
 				<usuarios:EditarUsuario id="editarUsuario" result="editarUsuarioOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="EliminarUsuario">
+			<mx:RemoveChild target="{panel1}"/>
+			<mx:AddChild position="lastChild">
+				<usuarios:EliminarUsuario id="eliminarUsuario" result="eliminarUsuarioOK(event)"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	<mx:Panel title="Listado de usuarios" id="panel1" width="402" height="300">
 		<mx:HBox>
-			<usuarios:ListadoUsuarios id="listadoUsuarios" result="modificarUsuario(event)" width="382" height="224"/>
+			<usuarios:ListadoUsuarios id="listadoUsuarios" click="butEliminar.enabled=true" result="modificarUsuario(event)" width="382" height="224"/>
 		</mx:HBox>
-		<mx:ControlBar horizontalAlign="right">
+		<mx:ControlBar horizontalAlign="middle">
+			<mx:Button id="butEliminar" label="Eliminar Usuario" color="red" click="removerUsuario(listadoUsuarios.usuarios.selectedItem)" enabled="false"/>
 			<mx:Button label="Nuevo Usuario" click="nuevoUsuario()"/>
 		</mx:ControlBar>
+		   
 	</mx:Panel>
+	
+	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
+
 	
 	<mx:Script>
 		<![CDATA[
+			import sna.snanalizer;
+			import mx.events.CloseEvent;
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 			
+		
 			private function nuevoUsuario():void {
 				this.currentState = "NuevoUsuario";
 			}
@@ -37,10 +51,24 @@
 				editarUsuario.usuario = event.result;
 			}
 			
+			
+			private function removerUsuario(usuario:Object):void {
+				this.currentState = "EliminarUsuario";
+				eliminarUsuario.usuario = usuario;
+			}
+	
 			private function editarUsuarioOK(event:ResultEvent):void {
 				this.currentState = "";
 				listadoUsuarios.load();
+				butEliminar.enabled = false;
 			}
+			
+			private function eliminarUsuarioOK(event:ResultEvent):void {
+				this.currentState = "";
+				listadoUsuarios.load();
+				butEliminar.enabled = false;
+			}
+	
 			
 		]]>
 	</mx:Script>
