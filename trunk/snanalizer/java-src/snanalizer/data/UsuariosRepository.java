@@ -6,4 +6,5 @@ public interface UsuariosRepository extends BaseRepository<Usuario> {
 
 	public Usuario getUsuario(String username, String password);
 
+	public void removeAllRecursos();
 }

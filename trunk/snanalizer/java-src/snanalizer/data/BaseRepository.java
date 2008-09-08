@@ -15,5 +15,6 @@ public interface BaseRepository<E extends DomainEntity> {
 	public void remove(Integer id);
 	
 	public void remove(E entity);
-
+	
+	public void removeAll();
 }
