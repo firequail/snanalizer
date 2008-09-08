@@ -38,4 +38,8 @@ public class UsuariosServiceImpl implements UsuariosService {
 		usuario.setPassword(password);
 		usuario.setRol(rol);
 	}
+	
+	public void eliminar(Integer id) {
+		usuarios.remove(id);
+	}
 }

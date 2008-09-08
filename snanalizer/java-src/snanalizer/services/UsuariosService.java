@@ -11,5 +11,7 @@ public interface UsuariosService {
 	public void modificar(Integer id, String email, String password, String rol);
 	
 	public void crear(String email, String password, String rol);
+	
+	public void eliminar(Integer id);
 
 }

@@ -4,13 +4,12 @@
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 
-	<mx:RemoteObject id="usuariosService" destination="usuariosService">
+	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService">
 	</mx:RemoteObject>
 
-	<mx:DataGrid id="usuarios" dataProvider="{usuariosService.getAll.lastResult}" doubleClickEnabled="true" doubleClick="modificarUsuario()" width="100%" height="100%">
+	<mx:DataGrid id="datosMaestros" dataProvider="{datosMaestrosService.getAll.lastResult}" doubleClickEnabled="true" doubleClick="verAtributos()" width="100%" height="100%">
 		<mx:columns>
-			<mx:DataGridColumn headerText="Email" dataField="email"/>
-			<mx:DataGridColumn headerText="Rol" dataField="rol"/>
+			<mx:DataGridColumn headerText="Descripción" dataField="descripcion"/>
 		</mx:columns>
 	</mx:DataGrid>
 	
@@ -20,11 +19,12 @@
 			import mx.rpc.events.ResultEvent;
 			
 			public function load():void {
-				usuariosService.getAll();
+				datosMaestrosService.getAll();
 			}
 			
-			private function modificarUsuario():void {
-				dispatchEvent(ResultEvent.createEvent(usuarios.selectedItem));
+			private function verAtributos():void {
+				//dispatchEvent();
+				Alert.show("Este evento va a llevar a la modificación de atributos");
 			}
 			
 		]]>

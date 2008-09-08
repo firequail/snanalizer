@@ -18,5 +18,7 @@
 	<bean id="usuariosService" class="snanalizer.services.UsuariosServiceImpl"/>
 	
 	<bean id="redesService" class="snanalizer.services.RedesServiceImpl"/>
+	
+	<bean id="datosMaestrosService" class="snanalizer.services.DatosMaestrosServiceImpl"/>
 
 </beans>

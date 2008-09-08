@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:Panel title="Eliminar usuario">
+	<mx:Form id="form1" defaultButton="{okButton}" >
+			<mx:Label id="lblleyenda" text="Se eliminará el siguiente usuario:" />
+			<mx:Label id="lblid" text="ID: {usuario.id}" />
+			<mx:Label id="lblemail" text="E-Mail: {usuario.email}"/>
+			<mx:Label id="lblrol" text="Rol: {usuario.rol}" />
+	</mx:Form>
+	<mx:ControlBar horizontalAlign="right">
+		<mx:Button id="okButton" label="OK" click="eliminar()" tabIndex="5" />
+		<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
+	</mx:ControlBar>	
+	</mx:Panel>
+	
+	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
+	
+	<mx:Script>
+		<![CDATA[
+
+			import mx.rpc.events.ResultEvent;
+			import mx.controls.Alert;
+			
+			[Bindable]
+			public var usuario:Object;
+						
+			private function eliminar():void {
+				usuariosService.eliminar(usuario.id);
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			private function cancelar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+
+			
+		]]>
+	</mx:Script>
+
+
+</mx:VBox>
