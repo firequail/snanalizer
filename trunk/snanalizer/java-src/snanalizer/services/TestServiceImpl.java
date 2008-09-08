@@ -11,11 +11,13 @@ import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.data.RelacionesRepository;
 import snanalizer.data.UsuariosRepository;
+import snanalizer.data.DatosMaestrosRepository;
 import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.domain.Usuario;
+import snanalizer.domain.DatoMaestro;
 
 @Transactional
 public class TestServiceImpl implements TestService {
@@ -34,6 +36,9 @@ public class TestServiceImpl implements TestService {
 
 	@Resource
 	private UsuariosRepository usuarios;
+	
+	@Resource
+	private DatosMaestrosRepository datosMaestros;
 
 	public String getDate() {
 		return new Date().toString();
@@ -45,6 +50,7 @@ public class TestServiceImpl implements TestService {
 		crearRedDePrueba2();
 		crearRedDePrueba3();
 		crearRedDePrueba4();
+		crearDatosMaestros();
 	}
 
 	private void cleanDB() {
@@ -194,6 +200,20 @@ public class TestServiceImpl implements TestService {
 		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista2));
 	}
 
+	private void crearDatosMaestros() {
+		DatoMaestro dm1 = new DatoMaestro();
+		DatoMaestro dm2 = new DatoMaestro();
+		DatoMaestro dm3 = new DatoMaestro();
+		
+		dm1.setDescripcion("Area");
+		dm2.setDescripcion("Puesto");
+		dm3.setDescripcion("Seniority");
+		
+		datosMaestros.add(dm1);
+		datosMaestros.add(dm2);
+		datosMaestros.add(dm3);
+	}
+	
 	public void setRedes(RedesRepository redes) {
 		this.redes = redes;
 	}
