@@ -61,6 +61,6 @@ public class Relacion extends DomainEntity {
 	}
 	
 	public String toXML() {
-		return "<Edge fromID=\"" + getOrigen().getId() + "\" toID=\"" + getDestino().getId() + "\" edgeLabel=\"Relacion 1\" flow=\"50\" color=\"0x556b2f\" edgeClass=\"sun\" edgeIcon=\"NoChange\" />";
+		return "<Edge fromID=\"" + getOrigen().getId() + "\" toID=\"" + getDestino().getId() + "\" edgeLabel=\"" + getIntensidad() + "\" />";
 	}
 }
