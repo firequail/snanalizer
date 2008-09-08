@@ -7,15 +7,31 @@ public class Usuario extends DomainEntity {
 	private String email;
 	private String password;
 	private String rol;
+	private String nombre = "";
+	private String apellido = "";
 
 	public Usuario() {
-		
+
 	}
-	
+
 	public Usuario(String email, String password, String rol) {
 		this.email = email;
 		this.password = password;
 		this.rol = rol;
+	}
+
+	public Usuario(String email, String password, String rol, String nombre,
+			String apellido) {
+		this.email = email;
+		this.password = password;
+		this.rol = rol;
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+
+	public Usuario(String nombre, String apellido) {
+		this.nombre = nombre;
+		this.apellido = apellido;
 	}
 
 	public void setEmail(String email) {
@@ -40,5 +56,21 @@ public class Usuario extends DomainEntity {
 
 	public String getRol() {
 		return rol;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getApellido() {
+		return apellido;
 	}
 }

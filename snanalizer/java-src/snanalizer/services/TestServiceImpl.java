@@ -10,26 +10,31 @@ import snanalizer.data.PuntosDeVistaRepository;
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.data.RelacionesRepository;
+import snanalizer.data.UsuariosRepository;
 import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
+import snanalizer.domain.Usuario;
 
 @Transactional
 public class TestServiceImpl implements TestService {
 
 	@Resource
 	private RedesRepository redes;
-	
+
 	@Resource
 	private PuntosDeVistaRepository puntosDeVista;
-	
+
 	@Resource
 	private RecursosRepository recursos;
-	
+
 	@Resource
 	private RelacionesRepository relaciones;
-	
+
+	@Resource
+	private UsuariosRepository usuarios;
+
 	public String getDate() {
 		return new Date().toString();
 	}
@@ -43,18 +48,11 @@ public class TestServiceImpl implements TestService {
 	}
 
 	private void cleanDB() {
-		for (Red red : redes.getAll()) {
-			redes.remove(red);
-		}
-		for (PuntoDeVista puntoDeVista: puntosDeVista.getAll()) {
-			puntosDeVista.remove(puntoDeVista);
-		}
-		for (Relacion relacion: relaciones.getAll()) {
-			relaciones.remove(relacion);
-		}
-		for (Recurso recurso: recursos.getAll()) {
-			recursos.remove(recurso);
-		}
+		redes.removeAll();
+		puntosDeVista.removeAll();
+		relaciones.removeAll();
+		recursos.removeAll();
+		usuarios.removeAllRecursos();
 	}
 
 	private void crearRedDePrueba1() {
@@ -67,19 +65,28 @@ public class TestServiceImpl implements TestService {
 		puntoDeVista1.setRed(red1);
 		redes.add(red1);
 
-		Recurso recurso1 = new Recurso();
-		Recurso recurso2 = new Recurso();
-		Recurso recurso3 = new Recurso();
-		Recurso recurso4 = new Recurso();
+		Usuario usuario1 = new Usuario("Pepe", "Lopez");
+		Usuario usuario2 = new Usuario("Nestor", "Ticolis");
+		Usuario usuario3 = new Usuario("Juan", "Candado");
+		Usuario usuario4 = new Usuario("Ariel", "Ortega");
+		usuarios.add(usuario1);
+		usuarios.add(usuario2);
+		usuarios.add(usuario3);
+		usuarios.add(usuario4);
+		
+		Recurso recurso1 = new Recurso(usuario1);
+		Recurso recurso2 = new Recurso(usuario2);
+		Recurso recurso3 = new Recurso(usuario3);
+		Recurso recurso4 = new Recurso(usuario4);
 		recursos.add(recurso1);
 		recursos.add(recurso2);
 		recursos.add(recurso3);
 		recursos.add(recurso4);
 
 		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(recurso1, recurso2, 3, puntoDeVista1));
-		relaciones.add(new Relacion(recurso1, recurso3, 3, puntoDeVista1));
-		relaciones.add(new Relacion(recurso1, recurso4, 3, puntoDeVista1));
+		relaciones.add(new Relacion(recurso2, recurso1, 3, puntoDeVista1));
+		relaciones.add(new Relacion(recurso2, recurso3, 3, puntoDeVista1));
+		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista1));
 	}
 
 	private void crearRedDePrueba2() {
@@ -91,21 +98,35 @@ public class TestServiceImpl implements TestService {
 		puntoDeVista2.setRed(red1);
 		redes.add(red1);
 
-		Recurso recurso5 = new Recurso();
-		Recurso recurso6 = new Recurso();
-		Recurso recurso7 = new Recurso();
-		Recurso recurso8 = new Recurso();
+		Usuario usuario1 = new Usuario("Pepe", "Lopez");
+		Usuario usuario2 = new Usuario("Nestor", "Ticolis");
+		Usuario usuario3 = new Usuario("Juan", "Candado");
+		Usuario usuario4 = new Usuario("Ariel", "Ortega");
+		Usuario usuario5 = new Usuario("Anibal", "Ibarra");
+		usuarios.add(usuario1);
+		usuarios.add(usuario2);
+		usuarios.add(usuario3);
+		usuarios.add(usuario4);
+		usuarios.add(usuario5);
+		
+		Recurso recurso1 = new Recurso(usuario1);
+		Recurso recurso2 = new Recurso(usuario2);
+		Recurso recurso3 = new Recurso(usuario3);
+		Recurso recurso4 = new Recurso(usuario4);
+		Recurso recurso5 = new Recurso(usuario5);
+		recursos.add(recurso1);
+		recursos.add(recurso2);
+		recursos.add(recurso3);
+		recursos.add(recurso4);
 		recursos.add(recurso5);
-		recursos.add(recurso6);
-		recursos.add(recurso7);
-		recursos.add(recurso8);
 
 		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(recurso6, recurso5, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso6, recurso7, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso6, recurso8, 3, puntoDeVista2));
+		relaciones.add(new Relacion(recurso2, recurso1, 3, puntoDeVista2));
+		relaciones.add(new Relacion(recurso2, recurso3, 3, puntoDeVista2));
+		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista2));
+		relaciones.add(new Relacion(recurso3, recurso5, 3, puntoDeVista2));
 	}
-	
+
 	private void crearRedDePrueba3() {
 		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
 		puntoDeVista1.setDescripcion("pto de vista 1");
@@ -116,19 +137,28 @@ public class TestServiceImpl implements TestService {
 		puntoDeVista1.setRed(red1);
 		redes.add(red1);
 
-		Recurso recurso9 = new Recurso();
-		Recurso recurso10 = new Recurso();
-		Recurso recurso11 = new Recurso();
-		Recurso recurso12 = new Recurso();
-		recursos.add(recurso9);
-		recursos.add(recurso10);
-		recursos.add(recurso11);
-		recursos.add(recurso12);
+		Usuario usuario1 = new Usuario("Pepe", "Lopez");
+		Usuario usuario2 = new Usuario("Nestor", "Ticolis");
+		Usuario usuario3 = new Usuario("Juan", "Candado");
+		Usuario usuario4 = new Usuario("Ariel", "Ortega");
+		usuarios.add(usuario1);
+		usuarios.add(usuario2);
+		usuarios.add(usuario3);
+		usuarios.add(usuario4);
+		
+		Recurso recurso1 = new Recurso(usuario1);
+		Recurso recurso2 = new Recurso(usuario2);
+		Recurso recurso3 = new Recurso(usuario3);
+		Recurso recurso4 = new Recurso(usuario4);
+		recursos.add(recurso1);
+		recursos.add(recurso2);
+		recursos.add(recurso3);
+		recursos.add(recurso4);
 
 		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(recurso9, recurso10, 3, puntoDeVista1));
-		relaciones.add(new Relacion(recurso9, recurso11, 3, puntoDeVista1));
-		relaciones.add(new Relacion(recurso9, recurso12, 3, puntoDeVista1));
+		relaciones.add(new Relacion(recurso2, recurso1, 3, puntoDeVista1));
+		relaciones.add(new Relacion(recurso2, recurso3, 3, puntoDeVista1));
+		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista1));
 	}
 
 	private void crearRedDePrueba4() {
@@ -140,19 +170,28 @@ public class TestServiceImpl implements TestService {
 		puntoDeVista2.setRed(red1);
 		redes.add(red1);
 
-		Recurso recurso13 = new Recurso();
-		Recurso recurso14 = new Recurso();
-		Recurso recurso15 = new Recurso();
-		Recurso recurso16 = new Recurso();
-		recursos.add(recurso13);
-		recursos.add(recurso14);
-		recursos.add(recurso15);
-		recursos.add(recurso16);
+		Usuario usuario1 = new Usuario("Pepe", "Lopez");
+		Usuario usuario2 = new Usuario("Nestor", "Ticolis");
+		Usuario usuario3 = new Usuario("Juan", "Candado");
+		Usuario usuario4 = new Usuario("Ariel", "Ortega");
+		usuarios.add(usuario1);
+		usuarios.add(usuario2);
+		usuarios.add(usuario3);
+		usuarios.add(usuario4);
+		
+		Recurso recurso1 = new Recurso(usuario1);
+		Recurso recurso2 = new Recurso(usuario2);
+		Recurso recurso3 = new Recurso(usuario3);
+		Recurso recurso4 = new Recurso(usuario4);
+		recursos.add(recurso1);
+		recursos.add(recurso2);
+		recursos.add(recurso3);
+		recursos.add(recurso4);
 
 		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(recurso14, recurso13, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso14, recurso15, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso14, recurso16, 3, puntoDeVista2));
+		relaciones.add(new Relacion(recurso2, recurso1, 3, puntoDeVista2));
+		relaciones.add(new Relacion(recurso2, recurso3, 3, puntoDeVista2));
+		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista2));
 	}
 
 	public void setRedes(RedesRepository redes) {
@@ -185,5 +224,13 @@ public class TestServiceImpl implements TestService {
 
 	public RelacionesRepository getRelaciones() {
 		return relaciones;
+	}
+
+	public void setUsuarios(UsuariosRepository usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public UsuariosRepository getUsuarios() {
+		return usuarios;
 	}
 }
