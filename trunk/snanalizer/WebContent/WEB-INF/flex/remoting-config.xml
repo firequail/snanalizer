@@ -44,5 +44,9 @@
     		<source>datosMaestrosService</source>
     	</properties>
     </destination>
+        <destination id="atributosService">
+        	<properties>
+        		<factory>spring</factory>
+        		<source>atributosService</source></properties></destination>
 
 </service>
