@@ -23,6 +23,8 @@
 	
 	<bean id="recursosRepository" class="snanalizer.data.RecursosRepositoryImpl"/>
 	
-	<bean id="datosMaestrosRepository" class="snanalizer.data.DatosMaestrosRepositoryImpl"/>
-	
+	<bean id="datosMaestrosRepository" class="snanalizer.data.DatosMaestrosRepositoryImpl"/><bean
+		id="atributosRepository" class="snanalizer.data.AtributosRepositoryImpl">
+</bean>
+
 </beans>

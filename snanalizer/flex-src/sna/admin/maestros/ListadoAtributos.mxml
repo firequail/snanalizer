@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="load()" width="100%" height="100%">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+
+	<mx:RemoteObject id="atributosService" destination="atributosService">
+	</mx:RemoteObject>
+
+	<mx:DataGrid id="atributos" dataProvider="{atributosService.getAll.lastResult}" doubleClickEnabled="true" doubleClick="editarAtributo()" width="100%" height="100%">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Nombre" dataField="nombre"/>
+			<mx:DataGridColumn headerText="Descripción" dataField="descripcion"/>
+			<mx:DataGridColumn headerText="Estado" dataField="estado"/>
+		</mx:columns>
+	</mx:DataGrid>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			
+			public function load():void {
+				atributosService.getAll();
+			}
+			
+			private function editarAtributo():void {
+				//dispatchEvent();
+				Alert.show("Este evento va a llevar a la modificación del atributo");
+			}
+			
+		]]>
+	</mx:Script>
+</mx:Canvas>
