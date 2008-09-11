@@ -6,40 +6,38 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Relacion extends DomainEntity {
 
-	private Recurso origen;
+	private Nodo origen;
 
-	private Recurso destino;
+	private Nodo destino;
 
 	private int intensidad;
 	
-	private PuntoDeVista puntoDeVista;
-
 	public Relacion() {
 		
 	}
 	
-	public Relacion(Recurso origen, Recurso destino, int intensidad, PuntoDeVista puntoDeVista) {
+	public Relacion(Nodo origen, Nodo destino, int intensidad) {
 		this.origen = origen;
 		this.destino = destino;
 		this.intensidad = intensidad;
-		this.puntoDeVista = puntoDeVista;
+		origen.getRelaciones().add(this);
 	}
 
-	public void setOrigen(Recurso origen) {
+	public void setOrigen(Nodo origen) {
 		this.origen = origen;
 	}
 
 	@ManyToOne
-	public Recurso getOrigen() {
+	public Nodo getOrigen() {
 		return origen;
 	}
 
-	public void setDestino(Recurso destino) {
+	public void setDestino(Nodo destino) {
 		this.destino = destino;
 	}
 
 	@ManyToOne
-	public Recurso getDestino() {
+	public Nodo getDestino() {
 		return destino;
 	}
 
@@ -51,16 +49,7 @@ public class Relacion extends DomainEntity {
 		return intensidad;
 	}
 
-	public void setPuntoDeVista(PuntoDeVista puntoDeVista) {
-		this.puntoDeVista = puntoDeVista;
-	}
-
-	@ManyToOne
-	public PuntoDeVista getPuntoDeVista() {
-		return puntoDeVista;
-	}
-	
-	public String toXML() {
+	public String toXml() {
 		return "<Edge fromID=\"" + getOrigen().getId() + "\" toID=\"" + getDestino().getId() + "\" edgeLabel=\"" + getIntensidad() + "\" />";
 	}
 }

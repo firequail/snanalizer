@@ -1,18 +1,16 @@
 package snanalizer.services;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import snanalizer.data.NodosRepository;
 import snanalizer.data.PuntosDeVistaRepository;
 import snanalizer.data.RedesRepository;
-import snanalizer.data.RelacionesRepository;
+import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
-import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 
@@ -26,7 +24,7 @@ public class RedesServiceImpl implements RedesService {
 	public RedesRepository redesRepository;
 
 	@Resource
-	private RelacionesRepository relaciones;
+	private NodosRepository nodosRepository;
 
 	public void setPuntosDeVista(PuntosDeVistaRepository puntosDeVista) {
 		this.puntosDeVista = puntosDeVista;
@@ -44,39 +42,33 @@ public class RedesServiceImpl implements RedesService {
 		return redesRepository;
 	}
 
-	public void setRelaciones(RelacionesRepository relaciones) {
-		this.relaciones = relaciones;
+	public void setNodosRepository(NodosRepository nodosRepository) {
+		this.nodosRepository = nodosRepository;
 	}
 
-	public RelacionesRepository getRelaciones() {
-		return relaciones;
+	public NodosRepository getNodosRepository() {
+		return nodosRepository;
 	}
 
 	public String getGrafo(int puntoDeVistaId) {
 		PuntoDeVista puntoDeVista = puntosDeVista.getById(puntoDeVistaId);
-		List<Relacion> listaRelaciones = relaciones.getRelaciones(puntoDeVista);
+		List<Nodo> nodos = nodosRepository.getNodos(puntoDeVista);
 
-		HashSet<Recurso> conjuntoDeRecursos = new HashSet<Recurso>();
-
-		for (Relacion relacion : listaRelaciones) {
-			conjuntoDeRecursos.add(relacion.getOrigen());
-			conjuntoDeRecursos.add(relacion.getDestino());
-		}
-
-		return buildGrafo(conjuntoDeRecursos, listaRelaciones);
+		return buildGrafo(nodos);
 	}
 
-	private String buildGrafo(Collection<Recurso> recursos,
-			Collection<Relacion> listaRelaciones) {
+	private String buildGrafo(List<Nodo> nodos) {
 
 		StringBuilder builder = new StringBuilder("<Graph>");
 
-		for (Recurso recurso : recursos) {
-			builder.append(recurso.toXml());
+		for (Nodo nodo : nodos) {
+			builder.append(nodo.toXml());
 		}
-
-		for (Relacion relacion : listaRelaciones) {
-			builder.append(relacion.toXML());
+		
+		for (Nodo nodo : nodos) {
+			for (Relacion relacion : nodo.getRelaciones()) {
+				builder.append(relacion.toXml());
+			}
 		}
 
 		builder.append("</Graph>");
