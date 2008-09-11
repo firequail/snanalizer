@@ -6,18 +6,20 @@ import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import snanalizer.data.DatosMaestrosRepository;
+import snanalizer.data.NodosRepository;
 import snanalizer.data.PuntosDeVistaRepository;
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.data.RelacionesRepository;
 import snanalizer.data.UsuariosRepository;
-import snanalizer.data.DatosMaestrosRepository;
+import snanalizer.domain.DatoMaestro;
+import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.domain.Usuario;
-import snanalizer.domain.DatoMaestro;
 
 @Transactional
 public class TestServiceImpl implements TestService {
@@ -36,6 +38,9 @@ public class TestServiceImpl implements TestService {
 
 	@Resource
 	private UsuariosRepository usuarios;
+	
+	@Resource
+	private NodosRepository nodos;
 	
 	@Resource
 	private DatosMaestrosRepository datosMaestros;
@@ -59,6 +64,7 @@ public class TestServiceImpl implements TestService {
 		relaciones.removeAll();
 		recursos.removeAll();
 		usuarios.removeAllRecursos();
+		nodos.removeAll();
 	}
 
 	private void crearRedDePrueba1() {
@@ -88,20 +94,29 @@ public class TestServiceImpl implements TestService {
 		recursos.add(recurso2);
 		recursos.add(recurso3);
 		recursos.add(recurso4);
-
+		
+		Nodo nodo1 = new Nodo(recurso1, puntoDeVista1);
+		Nodo nodo2 = new Nodo(recurso2, puntoDeVista1);
+		Nodo nodo3 = new Nodo(recurso3, puntoDeVista1);
+		Nodo nodo4 = new Nodo(recurso4, puntoDeVista1);
+		nodos.add(nodo1);
+		nodos.add(nodo2);
+		nodos.add(nodo3);
+		nodos.add(nodo4);
+		
 		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(recurso2, recurso1, 3, puntoDeVista1));
-		relaciones.add(new Relacion(recurso2, recurso3, 3, puntoDeVista1));
-		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista1));
+		relaciones.add(new Relacion(nodo2, nodo1, 3));
+		relaciones.add(new Relacion(nodo2, nodo3, 3));
+		relaciones.add(new Relacion(nodo2, nodo4, 3));
 	}
 
 	private void crearRedDePrueba2() {
-		PuntoDeVista puntoDeVista2 = new PuntoDeVista();
-		puntoDeVista2.setDescripcion("Quien la tiene clara con testing?");
-		puntosDeVista.add(puntoDeVista2);
+		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
+		puntoDeVista1.setDescripcion("Quien la tiene clara con testing?");
+		puntosDeVista.add(puntoDeVista1);
 
 		Red red1 = redes.getAll().get(0);
-		puntoDeVista2.setRed(red1);
+		puntoDeVista1.setRed(red1);
 		redes.add(red1);
 
 		Usuario usuario1 = new Usuario("Pepe", "Lopez");
@@ -126,11 +141,22 @@ public class TestServiceImpl implements TestService {
 		recursos.add(recurso4);
 		recursos.add(recurso5);
 
+		Nodo nodo1 = new Nodo(recurso1, puntoDeVista1);
+		Nodo nodo2 = new Nodo(recurso2, puntoDeVista1);
+		Nodo nodo3 = new Nodo(recurso3, puntoDeVista1);
+		Nodo nodo4 = new Nodo(recurso4, puntoDeVista1);
+		Nodo nodo5 = new Nodo(recurso5, puntoDeVista1);
+		nodos.add(nodo1);
+		nodos.add(nodo2);
+		nodos.add(nodo3);
+		nodos.add(nodo4);
+		nodos.add(nodo5);
+		
 		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(recurso2, recurso1, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso2, recurso3, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso3, recurso5, 3, puntoDeVista2));
+		relaciones.add(new Relacion(nodo2, nodo1, 3));
+		relaciones.add(new Relacion(nodo2, nodo3, 3));
+		relaciones.add(new Relacion(nodo2, nodo4, 3));
+		relaciones.add(new Relacion(nodo3, nodo5, 3));
 	}
 
 	private void crearRedDePrueba3() {
@@ -160,20 +186,29 @@ public class TestServiceImpl implements TestService {
 		recursos.add(recurso2);
 		recursos.add(recurso3);
 		recursos.add(recurso4);
-
+		
+		Nodo nodo1 = new Nodo(recurso1, puntoDeVista1);
+		Nodo nodo2 = new Nodo(recurso2, puntoDeVista1);
+		Nodo nodo3 = new Nodo(recurso3, puntoDeVista1);
+		Nodo nodo4 = new Nodo(recurso4, puntoDeVista1);
+		nodos.add(nodo1);
+		nodos.add(nodo2);
+		nodos.add(nodo3);
+		nodos.add(nodo4);
+		
 		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(recurso2, recurso1, 3, puntoDeVista1));
-		relaciones.add(new Relacion(recurso2, recurso3, 3, puntoDeVista1));
-		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista1));
+		relaciones.add(new Relacion(nodo2, nodo1, 3));
+		relaciones.add(new Relacion(nodo2, nodo3, 3));
+		relaciones.add(new Relacion(nodo2, nodo4, 3));
 	}
 
 	private void crearRedDePrueba4() {
-		PuntoDeVista puntoDeVista2 = new PuntoDeVista();
-		puntoDeVista2.setDescripcion("pto de vista 2");
-		puntosDeVista.add(puntoDeVista2);
+		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
+		puntoDeVista1.setDescripcion("pto de vista 2");
+		puntosDeVista.add(puntoDeVista1);
 
 		Red red1 = redes.getAll().get(1);
-		puntoDeVista2.setRed(red1);
+		puntoDeVista1.setRed(red1);
 		redes.add(red1);
 
 		Usuario usuario1 = new Usuario("Pepe", "Lopez");
@@ -193,11 +228,19 @@ public class TestServiceImpl implements TestService {
 		recursos.add(recurso2);
 		recursos.add(recurso3);
 		recursos.add(recurso4);
-
-		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(recurso2, recurso1, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso2, recurso3, 3, puntoDeVista2));
-		relaciones.add(new Relacion(recurso2, recurso4, 3, puntoDeVista2));
+		
+		Nodo nodo1 = new Nodo(recurso1, puntoDeVista1);
+		Nodo nodo2 = new Nodo(recurso2, puntoDeVista1);
+		Nodo nodo3 = new Nodo(recurso3, puntoDeVista1);
+		Nodo nodo4 = new Nodo(recurso4, puntoDeVista1);
+		nodos.add(nodo1);
+		nodos.add(nodo2);
+		nodos.add(nodo3);
+		nodos.add(nodo4);
+		
+		// creo un grafo con el nodo4 aislado
+		relaciones.add(new Relacion(nodo2, nodo1, 3));
+		relaciones.add(new Relacion(nodo2, nodo3, 3));
 	}
 
 	private void crearDatosMaestros() {
@@ -252,5 +295,13 @@ public class TestServiceImpl implements TestService {
 
 	public UsuariosRepository getUsuarios() {
 		return usuarios;
+	}
+
+	public void setNodos(NodosRepository nodos) {
+		this.nodos = nodos;
+	}
+
+	public NodosRepository getNodos() {
+		return nodos;
 	}
 }

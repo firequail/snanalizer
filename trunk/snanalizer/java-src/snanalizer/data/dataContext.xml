@@ -11,20 +11,30 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<import resource="hibernateContext.xml"/>
+	<import resource="hibernateContext.xml" />
 
-	<bean id="usuariosRepository" class="snanalizer.data.UsuariosRepositoryImpl"/>
-	
-	<bean id="redesRepository" class="snanalizer.data.RedesRepositoryImpl"/>
-	
-	<bean id="puntosDeVistaRepository" class="snanalizer.data.PuntosDeVistaRepositoryImpl"/>
-	
-	<bean id="relacionesRepository" class="snanalizer.data.RelacionesRepositoryImpl"/>
-	
-	<bean id="recursosRepository" class="snanalizer.data.RecursosRepositoryImpl"/>
-	
-	<bean id="datosMaestrosRepository" class="snanalizer.data.DatosMaestrosRepositoryImpl"/><bean
-		id="atributosRepository" class="snanalizer.data.AtributosRepositoryImpl">
-</bean>
+	<bean id="usuariosRepository"
+		class="snanalizer.data.UsuariosRepositoryImpl" />
+
+	<bean id="redesRepository"
+		class="snanalizer.data.RedesRepositoryImpl" />
+
+	<bean id="puntosDeVistaRepository"
+		class="snanalizer.data.PuntosDeVistaRepositoryImpl" />
+
+	<bean id="relacionesRepository"
+		class="snanalizer.data.RelacionesRepositoryImpl" />
+
+	<bean id="recursosRepository"
+		class="snanalizer.data.RecursosRepositoryImpl" />
+
+	<bean id="nodosRepository"
+		class="snanalizer.data.NodosRepositoryImpl" />
+
+	<bean id="datosMaestrosRepository"
+		class="snanalizer.data.DatosMaestrosRepositoryImpl" />
+
+	<bean id="atributosRepository"
+		class="snanalizer.data.AtributosRepositoryImpl" />
 
 </beans>
