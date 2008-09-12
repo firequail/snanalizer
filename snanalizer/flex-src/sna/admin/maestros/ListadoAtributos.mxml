@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="load()" width="100%" height="100%">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"  xmlns:maestros="sna.admin.maestros.*" creationComplete="load()" width="100%" height="100%">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 
+	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService">
+		<mx:method name="getAtributos" />
+	</mx:RemoteObject>
 	<mx:RemoteObject id="atributosService" destination="atributosService">
 	</mx:RemoteObject>
+	
 
-	<mx:DataGrid id="atributos" dataProvider="{atributosService.getAll.lastResult}" doubleClickEnabled="true" doubleClick="editarAtributo()" width="100%" height="100%">
+	<mx:DataGrid id="atributos" dataProvider="{datosMaestrosService.getAtributos.lastResult}"  doubleClickEnabled="true" doubleClick="editarAtributo()" width="100%" height="100%">
 		<mx:columns>
 			<mx:DataGridColumn headerText="Nombre" dataField="nombre"/>
 			<mx:DataGridColumn headerText="Descripción" dataField="descripcion"/>
@@ -15,18 +19,25 @@
 		</mx:columns>
 	</mx:DataGrid>
 	
+
+	
 	<mx:Script>
 		<![CDATA[
+
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 			
+			[Bindable]
+			public var datoMaestro:Object;
+			
 			public function load():void {
-				atributosService.getAll();
+				datosMaestrosService.getAtributos(datoMaestro.id as int);
+
 			}
 			
 			private function editarAtributo():void {
 				//dispatchEvent();
-				Alert.show("Este evento va a llevar a la modificación del atributo");
+				//Alert.show(datoMaestro.id);
 			}
 			
 		]]>

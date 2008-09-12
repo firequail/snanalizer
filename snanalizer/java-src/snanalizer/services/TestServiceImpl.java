@@ -13,6 +13,7 @@ import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.data.RelacionesRepository;
 import snanalizer.data.UsuariosRepository;
+import snanalizer.data.AtributosRepository;
 import snanalizer.domain.DatoMaestro;
 import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
@@ -20,6 +21,7 @@ import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.domain.Usuario;
+import snanalizer.domain.Atributo;
 
 @Transactional
 public class TestServiceImpl implements TestService {
@@ -32,6 +34,9 @@ public class TestServiceImpl implements TestService {
 
 	@Resource
 	private RecursosRepository recursos;
+	
+	@Resource
+	private AtributosRepository atributos;
 
 	@Resource
 	private RelacionesRepository relaciones;
@@ -65,6 +70,7 @@ public class TestServiceImpl implements TestService {
 		recursos.removeAll();
 		usuarios.removeAllRecursos();
 		nodos.removeAll();
+		atributos.removeAll();
 	}
 
 	private void crearRedDePrueba1() {
@@ -248,10 +254,52 @@ public class TestServiceImpl implements TestService {
 		DatoMaestro dm2 = new DatoMaestro();
 		DatoMaestro dm3 = new DatoMaestro();
 		
+		Atributo atr1_dm1 = new Atributo();
+		Atributo atr2_dm1 = new Atributo();
+		Atributo atr3_dm1 = new Atributo();
+		Atributo atr1_dm2 = new Atributo();		
+		Atributo atr2_dm2 = new Atributo();
+		Atributo atr3_dm2 = new Atributo();
+		Atributo atr1_dm3 = new Atributo();
+		Atributo atr2_dm3 = new Atributo();
+		Atributo atr3_dm3 = new Atributo();
+
+		atr1_dm1.setNombre("DEV");
+		atr2_dm1.setNombre("DEV");
+		atr3_dm1.setNombre("DEV");
+		atr1_dm2.setNombre("FA");
+		atr2_dm2.setNombre("DEV");
+		atr3_dm2.setNombre("QC");
+		atr1_dm3.setNombre("Junior");
+		atr2_dm3.setNombre("Semisenior");
+		atr3_dm3.setNombre("Senior");
+		
+		atributos.add(atr1_dm1);
+		atributos.add(atr2_dm1);
+		atributos.add(atr3_dm1);
+		atributos.add(atr1_dm2);
+		atributos.add(atr2_dm2);
+		atributos.add(atr3_dm2);
+		atributos.add(atr1_dm3);
+		atributos.add(atr2_dm3);
+		atributos.add(atr3_dm3);
+		
+		atr1_dm1.setDatoMaestro(dm1);
+		atr2_dm1.setDatoMaestro(dm1);
+		atr3_dm1.setDatoMaestro(dm1);
+		atr1_dm2.setDatoMaestro(dm2);
+		atr2_dm2.setDatoMaestro(dm2);
+		atr3_dm2.setDatoMaestro(dm2);
+		atr1_dm3.setDatoMaestro(dm3);
+		atr2_dm3.setDatoMaestro(dm3);
+		atr3_dm3.setDatoMaestro(dm3);
+
+				
 		dm1.setDescripcion("Area");
 		dm2.setDescripcion("Puesto");
 		dm3.setDescripcion("Seniority");
 		
+				
 		datosMaestros.add(dm1);
 		datosMaestros.add(dm2);
 		datosMaestros.add(dm3);

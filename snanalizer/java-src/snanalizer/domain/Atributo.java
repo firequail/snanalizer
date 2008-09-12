@@ -1,12 +1,14 @@
 package snanalizer.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Atributo extends DomainEntity {
 	private String nombre;
 	private String descripcion;
 	private Boolean estado;
+	private DatoMaestro datoMaestro;
 
 	public Atributo() {
 		
@@ -41,4 +43,14 @@ public class Atributo extends DomainEntity {
 	public Boolean getEstado() {
 		return estado;
 	}
+	
+	public void setDatoMaestro(DatoMaestro datoMaestro) {
+		this.datoMaestro = datoMaestro;
+	}
+
+	@ManyToOne
+	public DatoMaestro getDatoMaestro() {
+		return datoMaestro;
+	}
+	
 }
