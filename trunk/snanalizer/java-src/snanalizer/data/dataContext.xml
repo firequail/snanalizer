@@ -36,5 +36,7 @@
 
 	<bean id="atributosRepository"
 		class="snanalizer.data.AtributosRepositoryImpl" />
+		
+
 
 </beans>

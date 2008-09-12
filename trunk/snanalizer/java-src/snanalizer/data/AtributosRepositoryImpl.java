@@ -1,19 +1,27 @@
 package snanalizer.data;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import snanalizer.domain.Atributo;
+import snanalizer.domain.DatoMaestro;
+
 
 public class AtributosRepositoryImpl extends BaseRepositoryImpl<Atributo> implements
 		AtributosRepository {
 
-	public Atributo getAtributo(String nombre) {
 
+	public Atributo getAtributo() {
+		return null;
+	
+	}
+	
+	public List<Atributo> getAtributos(DatoMaestro dm) {
 		Criteria criteria = createCriteria();
+		criteria.add(Restrictions.eq("datoMaestro", dm));
 
-		criteria.add(Restrictions.eq("nombre", nombre));
-		
-		return findUnique(criteria);
+		return find(criteria);
 	}
 }

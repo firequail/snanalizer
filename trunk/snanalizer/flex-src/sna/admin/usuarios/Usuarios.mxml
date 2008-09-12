@@ -21,7 +21,7 @@
 		</mx:State>
 	</mx:states>
 	<mx:Panel title="Listado de usuarios" id="panel1" width="402" height="300">
-		<mx:HBox>
+		<mx:HBox backgroundAlpha="0.0">
 			<usuarios:ListadoUsuarios id="listadoUsuarios" click="butEliminar.enabled=true" result="modificarUsuario(event)" width="382" height="224"/>
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">

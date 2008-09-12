@@ -11,6 +11,9 @@
 			<mx:Canvas label="Datos Maestros" width="100%" height="100%">
 				<maestros:DatosMaestros/>
 			</mx:Canvas>
+			<!--<mx:Canvas label="Atributos" width="100%" height="100%">
+				<maestros:Atributos/>
+			</mx:Canvas>-->
 		</mx:TabNavigator>
 	</mx:Panel>
 	
