@@ -7,3 +7,8 @@
   * Se puede debugear tanto codigo java como flex, por separado o ambos a la vez.
   * Poner breakpoints en la linea de codigo en donde se quiere debugear. Se ponen haciendo doble-click a la derecha del numero de linea.
   * Usar la aplicacion y el debugger va a parar en los breakpoints. Ahi van a poder ver los valores de las variables e ir ejecutando paso a paso usando los controles del debugger.
+  * Algunos shortcuts: 
+    * F5 - Step Into
+    * F6 - Step Over
+    * F7 - Step Return
+    * F8 - Resume
