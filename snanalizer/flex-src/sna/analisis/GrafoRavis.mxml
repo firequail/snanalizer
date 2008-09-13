@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ravis="org.un.cava.birdeye.ravis.graphLayout.visual.*"
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ravis="org.un.cava.birdeye.ravis.graphLayout.visual.*"
 	xmlns:lc="org.un.cava.birdeye.ravis.components.ui.controls.layouterControls.*"
 	xmlns:dp="org.un.cava.birdeye.ravis.components.ui.dataPresentation.*"
 	width="100%" height="100%">
-
-	<mx:RemoteObject id="redesService" destination="redesService">
-		<mx:method name="getGrafo" result="initData(event)"/>
-	</mx:RemoteObject>
 	
-	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
-
 	<mx:Script>
 		<![CDATA[
 			import mx.binding.utils.BindingUtils;
@@ -36,14 +30,8 @@
 			import org.un.cava.birdeye.ravis.graphLayout.visual.VisualGraph;			
 			import org.un.cava.birdeye.ravis.components.renderers.nodes.RotatedRectNodeRenderer;
 			
-			// These are the item renderers
 			import sna.analisis.renderers.nodes.mxml.basicNodeRenderer;
 			import sna.analisis.renderers.edgelabels.mxml.basicEdgeLabelRenderer;
-
-			/* 
-			 * The following local variables hold various
-			 * important object references
-			 */
 
 			// graph datastructure object
 			private var graph:IGraph;
@@ -58,28 +46,9 @@
 			// important to ensure we are done with the main initialisation
 			private var initDone:Boolean = false;
 			
-			private var _puntoDeVistaId:int;
+			public var xmlData:XML;
 			
-			public function set puntoDeVistaId(value:int):void {
-				_puntoDeVistaId = value;
-				//refresh();
-			}
-			
-			public function refresh():void {
-				redesService.getGrafo(_puntoDeVistaId);
-			}
-			
-			private function initData(event:ResultEvent):void {
-				initGraph();
-			}
-			
-			/**
-			 * event handler for HTTPService, does all the remaining required
-			 * initialisation
-			 * */
-			private function initGraph():void {
-				var xmlData:XML = new XML(redesService.getGrafo.lastResult);
-				
+			public function init():void {
 				/* create and init a graph object with the XML data */
 				graph = new org.un.cava.birdeye.ravis.graphLayout.data.Graph("XMLAsDocsGraph",false,xmlData);
 				
@@ -128,4 +97,4 @@
 		edgeLabelRenderer="sna.analisis.renderers.edgelabels.mxml.basicEdgeLabelRenderer"
 		visibilityLimitActive="true">
 	</ravis:VisualGraph>	
-</mx:Canvas>
+</mx:Panel>
