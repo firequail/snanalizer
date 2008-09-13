@@ -37,7 +37,7 @@
 			private function verAtributos(event:ResultEvent):void {
 				//this.currentState = "ListadoAtributos";
 				panel2.visible = true;
-				listadoAtributos.datoMaestro = event.result;
+				listadoAtributos.setDatoMaestro(event.result);
 			}
 			
 				]]>
