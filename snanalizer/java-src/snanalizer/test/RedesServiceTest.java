@@ -1,13 +1,10 @@
 package snanalizer.test;
 
-import java.util.List;
-
 import junit.framework.TestCase;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import snanalizer.domain.Red;
 import snanalizer.services.RedesService;
 
 public class RedesServiceTest extends TestCase {
@@ -29,13 +26,6 @@ public class RedesServiceTest extends TestCase {
 	 */
 	protected void tearDown() {
 
-	}
-
-	public void testGetRedes() {
-		List<Red> redes = redesService.getRedes();
-
-		System.out.println(redes);
-		assertNotNull(redes);
 	}
 
 	public void testGetGrafo() {
