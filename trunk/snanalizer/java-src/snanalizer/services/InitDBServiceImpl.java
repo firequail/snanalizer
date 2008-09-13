@@ -135,6 +135,110 @@ public class InitDBServiceImpl implements InitDBService {
 	}
 
 	private void crearRedDePrueba2() {
+		Usuario usuario1 = new Usuario("r13@hotmail.com", "", "RECURSO", "Pepe", "Lopez");
+		Usuario usuario2 = new Usuario("r14@hotmail.com", "", "RECURSO", "Nestor", "Ticolis");
+		Usuario usuario3 = new Usuario("r15@hotmail.com", "", "RECURSO", "Juan", "Candado");
+		Usuario usuario4 = new Usuario("r16@hotmail.com", "", "RECURSO", "Ariel", "Ortega");
+		Usuario usuario5 = new Usuario("r17@hotmail.com", "", "RECURSO", "Hector", "Alterio");
+		usuarios.add(usuario1);
+		usuarios.add(usuario2);
+		usuarios.add(usuario3);
+		usuarios.add(usuario4);
+		usuarios.add(usuario5);
+	
+		Recurso recurso1 = new Recurso(usuario1);
+		Recurso recurso2 = new Recurso(usuario2);
+		Recurso recurso3 = new Recurso(usuario3);
+		Recurso recurso4 = new Recurso(usuario4);
+		Recurso recurso5 = new Recurso(usuario5);
+		recursos.add(recurso1);
+		recursos.add(recurso2);
+		recursos.add(recurso3);
+		recursos.add(recurso4);
+		recursos.add(recurso5);
+	
+		Nodo nodo1 = new Nodo(recurso1);
+		Nodo nodo2 = new Nodo(recurso2);
+		Nodo nodo3 = new Nodo(recurso3);
+		Nodo nodo4 = new Nodo(recurso4);
+		Nodo nodo5 = new Nodo(recurso5);
+		nodos.add(nodo1);
+		nodos.add(nodo2);
+		nodos.add(nodo3);
+		nodos.add(nodo4);
+		nodos.add(nodo5);
+	
+		PuntoDeVista puntoDeVista1 = new PuntoDeVista("pto de vista 2");
+		puntosDeVista.add(puntoDeVista1);
+	
+		puntoDeVista1.getNodos().add(nodo1);
+		puntoDeVista1.getNodos().add(nodo2);
+		puntoDeVista1.getNodos().add(nodo3);
+		puntoDeVista1.getNodos().add(nodo4);
+		puntoDeVista1.getNodos().add(nodo5);
+	
+		Red red1 = redes.getAll().get(0);
+		redes.add(red1);
+	
+		red1.getPuntosDeVista().add(puntoDeVista1);
+	
+		// creo un grafo
+		relaciones.add(new Relacion(nodo2, nodo1, 3));
+		relaciones.add(new Relacion(nodo2, nodo3, 3));
+	
+		// creo otro grafo desconectado del anterior
+		relaciones.add(new Relacion(nodo4, nodo5, 3));
+	}
+
+	private void crearRedDePrueba3() {
+		Usuario usuario1 = new Usuario("r9@hotmail.com", "", "RECURSO", "Pepe", "Lopez");
+		Usuario usuario2 = new Usuario("r10@hotmail.com", "", "RECURSO", "Nestor", "Ticolis");
+		Usuario usuario3 = new Usuario("r11hotmail.com", "", "RECURSO", "Juan", "Candado");
+		Usuario usuario4 = new Usuario("r12@hotmail.com", "", "RECURSO", "Ariel", "Ortega");
+		usuarios.add(usuario1);
+		usuarios.add(usuario2);
+		usuarios.add(usuario3);
+		usuarios.add(usuario4);
+	
+		Recurso recurso1 = new Recurso(usuario1);
+		Recurso recurso2 = new Recurso(usuario2);
+		Recurso recurso3 = new Recurso(usuario3);
+		Recurso recurso4 = new Recurso(usuario4);
+		recursos.add(recurso1);
+		recursos.add(recurso2);
+		recursos.add(recurso3);
+		recursos.add(recurso4);
+	
+		Nodo nodo1 = new Nodo(recurso1);
+		Nodo nodo2 = new Nodo(recurso2);
+		Nodo nodo3 = new Nodo(recurso3);
+		Nodo nodo4 = new Nodo(recurso4);
+		nodos.add(nodo1);
+		nodos.add(nodo2);
+		nodos.add(nodo3);
+		nodos.add(nodo4);
+	
+		PuntoDeVista puntoDeVista1 = new PuntoDeVista("pto de vista 1");
+		puntosDeVista.add(puntoDeVista1);
+	
+		puntoDeVista1.getNodos().add(nodo1);
+		puntoDeVista1.getNodos().add(nodo2);
+		puntoDeVista1.getNodos().add(nodo3);
+		puntoDeVista1.getNodos().add(nodo4);
+	
+		Red red1 = new Red();
+		red1.setDescripcion("Red de Prueba2");
+		redes.add(red1);
+	
+		red1.getPuntosDeVista().add(puntoDeVista1);
+	
+		// creo un grafo en forma de estrella
+		relaciones.add(new Relacion(nodo2, nodo1, 3));
+		relaciones.add(new Relacion(nodo2, nodo3, 3));
+		relaciones.add(new Relacion(nodo2, nodo4, 3));
+	}
+
+	private void crearRedDePrueba4() {
 		Usuario usuario1 = new Usuario("r5@hotmail.com", "", "RECURSO", "Pepe", "Lopez");
 		Usuario usuario2 = new Usuario("r6@hotmail.com", "", "RECURSO", "Nestor", "Ticolis");
 		Usuario usuario3 = new Usuario("r7@hotmail.com", "", "RECURSO", "Juan", "Candado");
@@ -178,7 +282,7 @@ public class InitDBServiceImpl implements InitDBService {
 		puntoDeVista1.getNodos().add(nodo4);
 		puntoDeVista1.getNodos().add(nodo5);
 
-		Red red1 = redes.getAll().get(0);
+		Red red1 = redes.getAll().get(1);
 		redes.add(red1);
 
 		red1.getPuntosDeVista().add(puntoDeVista1);
@@ -188,110 +292,6 @@ public class InitDBServiceImpl implements InitDBService {
 		relaciones.add(new Relacion(nodo2, nodo3, 3));
 		relaciones.add(new Relacion(nodo2, nodo4, 3));
 		relaciones.add(new Relacion(nodo3, nodo5, 3));
-	}
-
-	private void crearRedDePrueba3() {
-		Usuario usuario1 = new Usuario("r9@hotmail.com", "", "RECURSO", "Pepe", "Lopez");
-		Usuario usuario2 = new Usuario("r10@hotmail.com", "", "RECURSO", "Nestor", "Ticolis");
-		Usuario usuario3 = new Usuario("r11hotmail.com", "", "RECURSO", "Juan", "Candado");
-		Usuario usuario4 = new Usuario("r12@hotmail.com", "", "RECURSO", "Ariel", "Ortega");
-		usuarios.add(usuario1);
-		usuarios.add(usuario2);
-		usuarios.add(usuario3);
-		usuarios.add(usuario4);
-
-		Recurso recurso1 = new Recurso(usuario1);
-		Recurso recurso2 = new Recurso(usuario2);
-		Recurso recurso3 = new Recurso(usuario3);
-		Recurso recurso4 = new Recurso(usuario4);
-		recursos.add(recurso1);
-		recursos.add(recurso2);
-		recursos.add(recurso3);
-		recursos.add(recurso4);
-
-		Nodo nodo1 = new Nodo(recurso1);
-		Nodo nodo2 = new Nodo(recurso2);
-		Nodo nodo3 = new Nodo(recurso3);
-		Nodo nodo4 = new Nodo(recurso4);
-		nodos.add(nodo1);
-		nodos.add(nodo2);
-		nodos.add(nodo3);
-		nodos.add(nodo4);
-
-		PuntoDeVista puntoDeVista1 = new PuntoDeVista("pto de vista 1");
-		puntosDeVista.add(puntoDeVista1);
-
-		puntoDeVista1.getNodos().add(nodo1);
-		puntoDeVista1.getNodos().add(nodo2);
-		puntoDeVista1.getNodos().add(nodo3);
-		puntoDeVista1.getNodos().add(nodo4);
-
-		Red red1 = new Red();
-		red1.setDescripcion("Red de Prueba2");
-		redes.add(red1);
-
-		red1.getPuntosDeVista().add(puntoDeVista1);
-
-		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(nodo2, nodo1, 3));
-		relaciones.add(new Relacion(nodo2, nodo3, 3));
-		relaciones.add(new Relacion(nodo2, nodo4, 3));
-	}
-
-	private void crearRedDePrueba4() {
-		Usuario usuario1 = new Usuario("r13@hotmail.com", "", "RECURSO", "Pepe", "Lopez");
-		Usuario usuario2 = new Usuario("r14@hotmail.com", "", "RECURSO", "Nestor", "Ticolis");
-		Usuario usuario3 = new Usuario("r15@hotmail.com", "", "RECURSO", "Juan", "Candado");
-		Usuario usuario4 = new Usuario("r16@hotmail.com", "", "RECURSO", "Ariel", "Ortega");
-		Usuario usuario5 = new Usuario("r17@hotmail.com", "", "RECURSO", "Hector", "Alterio");
-		usuarios.add(usuario1);
-		usuarios.add(usuario2);
-		usuarios.add(usuario3);
-		usuarios.add(usuario4);
-		usuarios.add(usuario5);
-
-		Recurso recurso1 = new Recurso(usuario1);
-		Recurso recurso2 = new Recurso(usuario2);
-		Recurso recurso3 = new Recurso(usuario3);
-		Recurso recurso4 = new Recurso(usuario4);
-		Recurso recurso5 = new Recurso(usuario5);
-		recursos.add(recurso1);
-		recursos.add(recurso2);
-		recursos.add(recurso3);
-		recursos.add(recurso4);
-		recursos.add(recurso5);
-
-		Nodo nodo1 = new Nodo(recurso1);
-		Nodo nodo2 = new Nodo(recurso2);
-		Nodo nodo3 = new Nodo(recurso3);
-		Nodo nodo4 = new Nodo(recurso4);
-		Nodo nodo5 = new Nodo(recurso5);
-		nodos.add(nodo1);
-		nodos.add(nodo2);
-		nodos.add(nodo3);
-		nodos.add(nodo4);
-		nodos.add(nodo5);
-
-		PuntoDeVista puntoDeVista1 = new PuntoDeVista("pto de vista 2");
-		puntosDeVista.add(puntoDeVista1);
-
-		puntoDeVista1.getNodos().add(nodo1);
-		puntoDeVista1.getNodos().add(nodo2);
-		puntoDeVista1.getNodos().add(nodo3);
-		puntoDeVista1.getNodos().add(nodo4);
-		puntoDeVista1.getNodos().add(nodo5);
-
-		Red red1 = redes.getAll().get(1);
-		redes.add(red1);
-
-		red1.getPuntosDeVista().add(puntoDeVista1);
-
-		// creo un grafo
-		relaciones.add(new Relacion(nodo2, nodo1, 3));
-		relaciones.add(new Relacion(nodo2, nodo3, 3));
-
-		// creo otro grafo desconectado del anterior
-		relaciones.add(new Relacion(nodo4, nodo5, 3));
 	}
 
 	private void crearDatosMaestros() {
