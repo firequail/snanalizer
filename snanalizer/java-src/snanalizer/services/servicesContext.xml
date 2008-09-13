@@ -12,6 +12,8 @@
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<bean id="testService" class="snanalizer.services.TestServiceImpl"/>
+
+	<bean id="initDBService" class="snanalizer.services.InitDBServiceImpl"/>
 	
 	<bean id="loginService" class="snanalizer.services.LoginServiceImpl"/>
 		

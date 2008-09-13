@@ -16,6 +16,13 @@
     		<source>testService</source>
     	</properties>
     </destination>
+
+    <destination id="initDBService">
+    	<properties>
+    		<factory>spring</factory>
+    		<source>initDBService</source>
+    	</properties>
+    </destination>
     
     <destination id="loginService">
     	<properties>
