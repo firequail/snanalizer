@@ -70,6 +70,7 @@ public class TestServiceImpl implements TestService {
 		recursos.removeAll();
 		usuarios.removeAllRecursos();
 		nodos.removeAll();
+		datosMaestros.removeAll();
 		atributos.removeAll();
 	}
 
