@@ -25,7 +25,7 @@ public class DatosMaestrosServiceImpl implements DatosMaestrosService {
 	
 	public AtributosRepository getAtributos() {
 		return atributos;
-	} 
+	}
 	
 	public List<Atributo> getAtributos(int datoMaestroId) {
 		DatoMaestro dm = datosMaestros.getById(datoMaestroId);

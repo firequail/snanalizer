@@ -10,6 +10,7 @@
 </compiler>
 <applications>
 <application path="sna/snanalizer.mxml"/>
+<application path="sna/jumppage.mxml"/>
 </applications>
 <modules/>
 <buildCSSFiles/>
