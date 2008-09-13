@@ -2,11 +2,13 @@ package snanalizer.domain;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -21,25 +23,26 @@ public class Nodo extends DomainEntity {
 
 	private Recurso recurso;
 
-	private PuntoDeVista puntoDeVista;
-
 	public Nodo() {
 
 	}
 
-	public Nodo(Recurso recurso, PuntoDeVista puntoDeVista) {
+	public Nodo(Recurso recurso) {
 		this.recurso = recurso;
-		this.puntoDeVista = puntoDeVista;
 	}
 
 	public void setRelaciones(List<Relacion> relaciones) {
 		this.relaciones = relaciones;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
 	public List<Relacion> getRelaciones() {
 		return relaciones;
+	}
+
+	public void addRelacion(Relacion relacion) {
+		getRelaciones().add(relacion);
 	}
 
 	public void setRecurso(Recurso recurso) {
@@ -51,19 +54,33 @@ public class Nodo extends DomainEntity {
 		return recurso;
 	}
 
-	public void setPuntoDeVista(PuntoDeVista puntoDeVista) {
-		this.puntoDeVista = puntoDeVista;
+	@Transient
+	public Grafo getGrafo() {
+		Grafo grafo = new Grafo();
+		recorrerGrafo(grafo);
+		return grafo;
 	}
 
-	@ManyToOne
-	public PuntoDeVista getPuntoDeVista() {
-		return puntoDeVista;
+	private void recorrerGrafo(Grafo grafo) {
+		if (!grafo.contains(this)) {
+			grafo.add(this);
+			for (Relacion relacion : getRelaciones()) {
+				relacion.getOrigen().recorrerGrafo(grafo);
+				relacion.getDestino().recorrerGrafo(grafo);
+			}
+		}
 	}
 
 	public String toXml() {
 		// TODO: usar StringBuilder
-		return "<Node id=\"" + getId() + "\" name=\""
+		return "  <Node id=\"" + getId() + "\" name=\""
 				+ getRecurso().getNombre() + " " + getRecurso().getApellido()
-				+ "\"/>";
+				+ "\"/>\n";
+	}
+	
+	public void addRelacionesTo(Set<Relacion> conjuntoRelaciones) {
+		for (Relacion relacion : getRelaciones()) {
+			conjuntoRelaciones.add(relacion);
+		}
 	}
 }

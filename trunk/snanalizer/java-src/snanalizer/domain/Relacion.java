@@ -20,7 +20,8 @@ public class Relacion extends DomainEntity {
 		this.origen = origen;
 		this.destino = destino;
 		this.intensidad = intensidad;
-		origen.getRelaciones().add(this);
+		origen.addRelacion(this);
+		destino.addRelacion(this);
 	}
 
 	public void setOrigen(Nodo origen) {
@@ -50,6 +51,6 @@ public class Relacion extends DomainEntity {
 	}
 
 	public String toXml() {
-		return "<Edge fromID=\"" + getOrigen().getId() + "\" toID=\"" + getDestino().getId() + "\" edgeLabel=\"" + getIntensidad() + "\" />";
+		return "  <Edge fromID=\"" + getOrigen().getId() + "\" toID=\"" + getDestino().getId() + "\" edgeLabel=\"" + getIntensidad() + "\" />\n";
 	}
 }
