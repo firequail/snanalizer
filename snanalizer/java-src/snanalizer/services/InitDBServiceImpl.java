@@ -310,8 +310,8 @@ public class InitDBServiceImpl implements InitDBService {
 		Atributo atr3_dm3 = new Atributo();
 
 		atr1_dm1.setNombre("DEV");
-		atr2_dm1.setNombre("DEV");
-		atr3_dm1.setNombre("DEV");
+		atr2_dm1.setNombre("RRHH");
+		atr3_dm1.setNombre("Finances");
 		atr1_dm2.setNombre("FA");
 		atr2_dm2.setNombre("DEV");
 		atr3_dm2.setNombre("QC");

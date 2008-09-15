@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:maestros="sna.admin.maestros.*" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
-	<!--<mx:states>
-		<mx:State name="ListadoAtributos">
+	<mx:states>
+		<mx:State name="PanelAtributos">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
-				<maestros:ListadoAtributos id="listadoAtributos" />
-			</mx:AddChild>
+				<maestros:Atributos id="panelAtributos" result="atributosOK(event)" />
+			</mx:AddChild>	
+			
 		</mx:State>
-	</mx:states>-->
+	</mx:states>
 	<mx:Panel title="Listado de Datos Maestros" id="panel1" width="402" height="300">
 		<mx:HBox>
-			<maestros:ListadoDatosMaestros id="listadoDatosMaestros" result="verAtributos(event)"   width="382" height="224"/>
+			<maestros:ListadoDatosMaestros id="listadoDatosMaestros" result="verAtributos(event)" width="382" height="224"/>
 		</mx:HBox>
-	</mx:Panel>
-	<mx:Panel title="Listado de Atributos" id="panel2" visible="false" width="402" height="300">
-		<mx:HBox>
-			<maestros:ListadoAtributos id="listadoAtributos"  width="382" height="224"/>
-		</mx:HBox>
-	</mx:Panel>
-	
 
+	</mx:Panel>
 
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
 	<mx:RemoteObject id="atributosService" destination="atributosService"/>
 	
-		
+
 		
 		<mx:Script>
 		<![CDATA[
@@ -35,11 +30,19 @@
 			import mx.rpc.events.ResultEvent;
 			
 			private function verAtributos(event:ResultEvent):void {
-				//this.currentState = "ListadoAtributos";
-				panel2.visible = true;
-				listadoAtributos.setDatoMaestro(event.result);
+				
+				this.currentState = "PanelAtributos";
+				panelAtributos.setDatoMaestro(event.result);
+				//panel2.visible = true;
+				
 			}
 			
+			private function atributosOK(event:ResultEvent):void {
+				this.currentState = "";
+				listadoDatosMaestros.load();
+			}
+			
+
 				]]>
 		</mx:Script>
 </mx:VBox>

@@ -11,13 +11,14 @@
 	</mx:RemoteObject>
 	
 
-	<mx:DataGrid id="atributos" dataProvider="{datosMaestrosService.getAtributos.lastResult}"  doubleClickEnabled="true" doubleClick="editarAtributo()" width="100%" height="100%">
+	<mx:DataGrid id="atributos" dataProvider="{datosMaestrosService.getAtributos.lastResult}"  doubleClickEnabled="true" doubleClick="modificarAtributo()" width="100%" height="100%">
 		<mx:columns>
 			<mx:DataGridColumn headerText="Nombre" dataField="nombre"/>
 			<mx:DataGridColumn headerText="Descripción" dataField="descripcion"/>
 			<mx:DataGridColumn headerText="Estado" dataField="estado"/>
 		</mx:columns>
 	</mx:DataGrid>
+
 	
 
 	
@@ -35,10 +36,26 @@
 				datosMaestrosService.getAtributos(datoMaestro.id as int);
 			}
 			
-			private function editarAtributo():void {
+			private function modificarAtributo():void {
+				dispatchEvent(ResultEvent.createEvent(atributos.selectedItem));
+			}
+			
+			public function refreshGrid():void {
+				datosMaestrosService.getAtributos(datoMaestro.id as int);
+			}
+			
+			/*private function editarAtributo():void {
 				//dispatchEvent();
 				//Alert.show(datoMaestro.id);
 			}
+			
+			private function removerAtributo():void {
+	
+			}
+			
+			private function nuevoAtributo():void {
+				
+			}*/
 			
 		]]>
 	</mx:Script>
