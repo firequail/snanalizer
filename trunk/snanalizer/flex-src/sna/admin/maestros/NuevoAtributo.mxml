@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:Panel title="Nuevo Atributo">
+		<mx:Form id="form1" defaultButton="{okButton}">
+			<mx:FormItem label="Nombre" tabIndex="1">
+				<mx:TextInput id="nombre" text="" />
+			</mx:FormItem>
+			<mx:FormItem label="Descripción" tabIndex="2">
+				<mx:TextInput id="descripcion" text="" />
+			</mx:FormItem>
+			<mx:FormItem label="Activo" tabIndex="3">
+				<mx:CheckBox id="activo" selected="true" />
+			</mx:FormItem>
+			
+		</mx:Form>
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
+			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
+		</mx:ControlBar>
+	</mx:Panel>
+	
+	<mx:RemoteObject id="atributosService" destination="atributosService"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			
+			private function guardar():void {
+			//	atributosService.crear(nombre.text, descripcion.text, /*DATOMAESTRO*/);
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			private function cancelar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+		]]>
+	</mx:Script>
+	
+</mx:VBox>

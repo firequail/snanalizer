@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:maestros="sna.admin.maestros.*" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
 	<mx:states>
 		<mx:State name="NuevoAtributo">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
-				<atributos:NuevoAtributo result="editarAtributoOK(event)"/>
+				<maestros:NuevoAtributo result="editarAtributoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="EditarAtributo">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
-				<atributos:EditarAtributo id="editarAtributo" result="editarAtributoOK(event)"/>
+				<maestros:EditarAtributo id="editarAtributo" result="editarAtributoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
 
-	<mx:Panel title="Listado de Atributos de -unDatoMaestro-" id="panel1" width="402" height="300">
+	<mx:Panel title="Listado de Atributos" id="panel1" width="402" height="300">
 		<mx:HBox>
-			<maestros:ListadoAtributos id="listadoAtributos"  width="382" height="224"/>
+			<maestros:ListadoAtributos id="listadoAtributos" result="modificarAtributo(event)" width="382" height="224"/>
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Nuevo Atributo" click="nuevoAtributo()"/>
+			<mx:Button label="Volver a Datos Maestros" click="backToDatosMaestros()"/>
 		</mx:ControlBar>
 		   
 	</mx:Panel>
 
+	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
 	<mx:RemoteObject id="atributosService" destination="atributosService"/>
 	
 	<mx:Script>
@@ -34,7 +40,18 @@
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 			
-		
+			[Bindable]
+			private var _datoMaestro:Object;
+			
+			public function setDatoMaestro(value:Object):void {
+				_datoMaestro = value;
+				listadoAtributos.setDatoMaestro(_datoMaestro);
+			}
+			
+			private function backToDatosMaestros():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
 			private function nuevoAtributo():void {
 				this.currentState = "NuevoAtributo";
 			}
@@ -46,8 +63,11 @@
 			
 			private function editarAtributoOK(event:ResultEvent):void {
 				this.currentState = "";
-				listadoAtributos.load();
+				listadoAtributos.refreshGrid();
+				
 			}
+			
+
 			
 		]]>
 	</mx:Script>
