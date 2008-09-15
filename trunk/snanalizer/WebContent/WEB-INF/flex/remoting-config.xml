@@ -45,15 +45,22 @@
     	</properties>
     </destination>
     
-        <destination id="datosMaestrosService">
+    <destination id="datosMaestrosService">
     	<properties>
     		<factory>spring</factory>
     		<source>datosMaestrosService</source>
     	</properties>
     </destination>
-        <destination id="atributosService">
+    <destination id="atributosService">
         	<properties>
         		<factory>spring</factory>
-        		<source>atributosService</source></properties></destination>
-
+        		<source>atributosService</source>
+        	</properties>
+    </destination>
+	<destination id="recursosService">
+        	<properties>
+        		<factory>spring</factory>
+        		<source>recursosService</source>
+        	</properties>
+    </destination>
 </service>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:recursos="sna.admin.recursos.*" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+
+	<mx:Panel title="Listado de Recursos" id="panel1" width="402" height="300">
+		<mx:HBox>
+			<recursos:ListadoRecursos id="listadoRecursos" width="382" height="224"/>
+		</mx:HBox>
+
+	</mx:Panel>
+
+	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	
+	
+
+		
+		<mx:Script>
+		<![CDATA[
+		
+			import sna.snanalizer;
+			import mx.events.CloseEvent;
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			
+
+				]]>
+		</mx:Script>
+</mx:VBox>
+
