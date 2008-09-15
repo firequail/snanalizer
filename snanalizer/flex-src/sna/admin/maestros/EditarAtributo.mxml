@@ -3,9 +3,9 @@
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
-	
+		
 	<mx:Panel title="Modificar Atributo">
-		<mx:Form id="form1" defaultButton="{okButton}">
+		<mx:Form id="form1">
 			<mx:FormItem label="Nombre" tabIndex="1">
 				<mx:TextInput id="nombre" text="{atributo.nombre}"/>
 			</mx:FormItem>
@@ -18,10 +18,13 @@
 
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
-			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
+			<mx:Button id="okButton" label="OK" tabIndex="5" />
 			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
 		</mx:ControlBar>
 	</mx:Panel>
+	
+	<!-- Validación de campos -->
+	<mx:StringValidator source="{nombre}" property="text" requiredFieldError="Campo requerido" trigger="{okButton}" triggerEvent="click" valid="guardar()" />
 	
 	<mx:RemoteObject id="atributosService" destination="atributosService"/>
 	
