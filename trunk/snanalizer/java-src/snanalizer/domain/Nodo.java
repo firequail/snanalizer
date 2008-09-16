@@ -13,6 +13,8 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import snanalizer.util.XmlTagBuilder;
+
 @Entity
 public class Nodo extends DomainEntity {
 
@@ -72,12 +74,14 @@ public class Nodo extends DomainEntity {
 	}
 
 	public String toXml() {
-		// TODO: usar StringBuilder
-		return "  <Node id=\"" + getId() + "\" name=\""
-				+ getRecurso().getNombre() + " " + getRecurso().getApellido()
-				+ "\"/>\n";
+		XmlTagBuilder builder = new XmlTagBuilder("Node");
+
+		builder.addAttribute("id", getId());
+		builder.addAttribute("name", getRecurso().getNombreYApellido());
+
+		return "  " + builder.toString() + "\n";
 	}
-	
+
 	public void addRelacionesTo(Set<Relacion> conjuntoRelaciones) {
 		for (Relacion relacion : getRelaciones()) {
 			conjuntoRelaciones.add(relacion);
