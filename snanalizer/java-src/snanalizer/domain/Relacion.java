@@ -2,6 +2,7 @@ package snanalizer.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import snanalizer.util.XmlTagBuilder;
 
@@ -13,6 +14,8 @@ public class Relacion extends DomainEntity {
 	private Nodo destino;
 
 	private int intensidad;
+	
+	private int toIntensity;
 
 	public Relacion() {
 
@@ -52,15 +55,28 @@ public class Relacion extends DomainEntity {
 		return intensidad;
 	}
 
+	public void setToIntensity(int toIntensity) {
+		this.toIntensity = toIntensity;
+	}
+
+	@Transient
+	public int getToIntensity() {
+		return toIntensity;
+	}
+
 	public String toXml() {
 		XmlTagBuilder builder = new XmlTagBuilder("Edge");
 
 		builder.addAttribute("fromID", getOrigen().getId());
 		builder.addAttribute("toID", getDestino().getId());
 		builder.addAttribute("edgeLabel", getIntensidad());
-		builder.addAttribute("fromIntensity", 3);
-		builder.addAttribute("toIntensity", 2);
+		builder.addAttribute("fromIntensity", getIntensidad());
+		builder.addAttribute("toIntensity", getToIntensity());
 		
 		return "  " + builder.toString() + "\n";
+	}
+	
+	public String toString() {
+		return getOrigen().getRecurso().getNombreYApellido() + "-" + getDestino().getRecurso().getNombreYApellido();
 	}
 }

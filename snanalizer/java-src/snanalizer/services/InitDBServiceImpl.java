@@ -129,9 +129,11 @@ public class InitDBServiceImpl implements InitDBService {
 		Relacion relacion1 = new Relacion(nodo2, nodo1, 3);
 		Relacion relacion2 = new Relacion(nodo2, nodo3, 3);
 		Relacion relacion3 = new Relacion(nodo2, nodo4, 3);
+		Relacion relacion4 = new Relacion(nodo3, nodo2, 3);
 		relaciones.add(relacion1);
 		relaciones.add(relacion2);
 		relaciones.add(relacion3);
+		relaciones.add(relacion4);
 	}
 
 	private void crearRedDePrueba2() {
