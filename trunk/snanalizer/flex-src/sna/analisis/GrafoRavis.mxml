@@ -77,7 +77,7 @@
 				//startRoot = graph.nodeByStringId("1").vnode;
 						
 				/* set if edge labels should be displayed */
-				vgraph.displayEdgeLabels = false;
+				vgraph.displayEdgeLabels = true;
 
 				/* the following kicks it off .... */
 				//vgraph.currentRootVNode = startRoot;

@@ -3,10 +3,9 @@ package sna.analisis.renderers.edges {
 	import flash.display.Graphics;
 	import flash.geom.Point;
 	
-	import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.BaseEdgeRenderer;
 	import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualEdge;
 	import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualNode;
-	import org.un.cava.birdeye.ravis.utils.Geometry;
+	import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.BaseEdgeRenderer;
 
 
 	/**
@@ -63,8 +62,16 @@ package sna.analisis.renderers.edges {
 			_g.moveTo(fP.x, fP.y);
 			_g.lineTo(tP.x, tP.y);
 			
-			drawArrow(fP, tP);
-			drawArrow(tP, fP);
+			var fromIntensity:int = parseInt(vedge.data.@fromIntensity.toString());
+			var toIntensity:int = parseInt(vedge.data.@toIntensity.toString());
+			
+			if (fromIntensity > 0) {
+				drawArrow(fP, tP);
+			} 
+			
+			if (toIntensity > 0) {
+				drawArrow(tP, fP);
+			}
 			
 			_g.endFill();
 			
