@@ -19,6 +19,13 @@ public class Atributo extends DomainEntity {
 		this.descripcion = descripcion;
 		this.estado = estado;
 	}
+	
+	public Atributo(String nombre, String descripcion, Boolean estado,DatoMaestro dm) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.datoMaestro = dm;
+	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

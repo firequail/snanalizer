@@ -11,5 +11,7 @@ public interface AtributosService {
 	public void modificar(Integer id, String nombre, String descripcion, Boolean estado);
 	
 	public void crear(String nombre, String descripcion, Boolean estado);
+	
+	public void crear(String nombre, String descripcion, Boolean estado,int datoMaestroId);
 
 }

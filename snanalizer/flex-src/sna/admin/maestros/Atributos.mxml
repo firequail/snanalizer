@@ -8,7 +8,7 @@
 		<mx:State name="NuevoAtributo">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
-				<maestros:NuevoAtributo result="editarAtributoOK(event)"/>
+				<maestros:NuevoAtributo id="newAtributo" result="editarAtributoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="EditarAtributo">
@@ -46,6 +46,7 @@
 			public function setDatoMaestro(value:Object):void {
 				_datoMaestro = value;
 				listadoAtributos.setDatoMaestro(_datoMaestro);
+				//newAtributo.setDatoMaestro(_datoMaestro);
 			}
 			
 			private function backToDatosMaestros():void {
@@ -54,6 +55,8 @@
 			
 			private function nuevoAtributo():void {
 				this.currentState = "NuevoAtributo";
+				newAtributo.setDatoMaestro(_datoMaestro);
+				
 			}
 			
 			private function modificarAtributo(event:ResultEvent):void {
