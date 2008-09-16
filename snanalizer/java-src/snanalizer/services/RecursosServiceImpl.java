@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import snanalizer.data.RecursosRepository;
 import snanalizer.domain.Recurso;
 
+@Transactional
 public class RecursosServiceImpl implements RecursosService {
 
 	@Resource
