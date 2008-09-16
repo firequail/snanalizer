@@ -11,11 +11,11 @@ public class Relacion extends DomainEntity {
 	private Nodo destino;
 
 	private int intensidad;
-	
+
 	public Relacion() {
-		
+
 	}
-	
+
 	public Relacion(Nodo origen, Nodo destino, int intensidad) {
 		this.origen = origen;
 		this.destino = destino;
@@ -51,6 +51,22 @@ public class Relacion extends DomainEntity {
 	}
 
 	public String toXml() {
-		return "  <Edge fromID=\"" + getOrigen().getId() + "\" toID=\"" + getDestino().getId() + "\" edgeLabel=\"" + getIntensidad() + "\" />\n";
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("  <Edge ");
+
+		addField(builder, "fromID", getOrigen().getId());
+		addField(builder, "toID", getDestino().getId());
+		addField(builder, "edgeLabel", getIntensidad());
+		addField(builder, "fromIntensity", 0);
+		addField(builder, "toIntensity", 3);
+		
+		builder.append("/>\n");
+		return builder.toString();
+	}
+
+	private void addField(StringBuilder builder, String fieldName,
+			Object fieldValue) {
+		builder.append(fieldName + "=\"" + fieldValue + "\" ");
 	}
 }
