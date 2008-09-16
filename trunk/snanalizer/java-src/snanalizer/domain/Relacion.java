@@ -58,8 +58,8 @@ public class Relacion extends DomainEntity {
 		addField(builder, "fromID", getOrigen().getId());
 		addField(builder, "toID", getDestino().getId());
 		addField(builder, "edgeLabel", getIntensidad());
-		addField(builder, "fromIntensity", 0);
-		addField(builder, "toIntensity", 3);
+		addField(builder, "fromIntensity", 3);
+		addField(builder, "toIntensity", 2);
 		
 		builder.append("/>\n");
 		return builder.toString();
