@@ -232,10 +232,11 @@ public class InitDBServiceImpl implements InitDBService {
 	
 		red1.getPuntosDeVista().add(puntoDeVista1);
 	
-		// creo un grafo en forma de estrella
+		// creo un grafo con dos relaciones entre nodo2 y nodo1
 		relaciones.add(new Relacion(nodo2, nodo1, 3));
 		relaciones.add(new Relacion(nodo2, nodo3, 3));
 		relaciones.add(new Relacion(nodo2, nodo4, 3));
+		relaciones.add(new Relacion(nodo1, nodo2, 3));
 	}
 
 	private void crearRedDePrueba4() {

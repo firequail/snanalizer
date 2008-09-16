@@ -13,9 +13,8 @@
 			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.FlowCurveEdgeRenderer;
 			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.DirectedBalloonEdgeRenderer;
 			import org.un.cava.birdeye.ravis.graphLayout.layout.CircularLayouter;
-			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.CircularEdgeRenderer;
 			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.DirectedArrowEdgeRenderer;
-			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.BaseEdgeRenderer;
+			import sna.analisis.renderers.edges.SNAEdgeRenderer;
 
 			import org.un.cava.birdeye.ravis.graphLayout.data.INode;
 			import org.un.cava.birdeye.ravis.graphLayout.data.IGraph;
@@ -26,7 +25,6 @@
 			import org.un.cava.birdeye.ravis.graphLayout.visual.IEdgeRenderer;
 			import org.un.cava.birdeye.ravis.graphLayout.layout.ILayoutAlgorithm;
 			import org.un.cava.birdeye.ravis.graphLayout.layout.ConcentricRadialLayouter;
-			import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.BaseEdgeRenderer;
 			import org.un.cava.birdeye.ravis.graphLayout.visual.VisualGraph;			
 			import org.un.cava.birdeye.ravis.components.renderers.nodes.RotatedRectNodeRenderer;
 			
@@ -50,7 +48,7 @@
 			
 			public function init():void {
 				/* create and init a graph object with the XML data */
-				graph = new org.un.cava.birdeye.ravis.graphLayout.data.Graph("XMLAsDocsGraph",false,xmlData);
+					graph = new org.un.cava.birdeye.ravis.graphLayout.data.Graph("XMLAsDocsGraph",false,xmlData);
 				
 				/* set the graph in the VGraph object, this automatically
 				 * initializes the VGraph items; 
@@ -67,7 +65,7 @@
 				layouter.autoFitEnabled = true;
 				
 				/* create and set an EdgeRenderer */
-				vgraph.edgeRenderer = new BaseEdgeRenderer(vgraph.edgeDrawGraphics);
+				vgraph.edgeRenderer = new SNAEdgeRenderer(vgraph.edgeDrawGraphics);
 				//vgraph.edgeRenderer = new FlowEdgeRenderer(vgraph.edgeDrawGraphics);
 				
 				/* set the visibility limit options, default 2 

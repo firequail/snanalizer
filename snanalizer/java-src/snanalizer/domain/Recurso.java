@@ -19,48 +19,40 @@ public class Recurso extends DomainEntity {
 	private Atributo seniority;
 	private Boolean estado;
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-		this.nombre = this.getUsuario().getNombre();
-		this.apellido = this.getUsuario().getApellido();
+	public Recurso() {
+
 	}
 
-	public Recurso() {
-		
-	}
-	
 	public Recurso(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-		
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@ManyToOne
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
+
 	@ManyToOne
 	public Atributo _getArea() {
 		return area;
 	}
-	
+
 	@Transient
 	public String getNombre() {
 		return getUsuario().getNombre();
 	}
-	
+
 	@Transient
 	public String getApellido() {
 		return getUsuario().getApellido();
 	}
-	
+
 	@Transient
 	public String getArea() {
 		return _getArea().getNombre();
-	}
-	
-	public String toXml() {
-		//TODO: usar StringBuilder
-		return "<Node id=\"" + getId() + "\" name=\"" + getNombre() + " " + getApellido() + "\"/>";
 	}
 }
