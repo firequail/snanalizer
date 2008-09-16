@@ -3,6 +3,8 @@ package snanalizer.domain;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import snanalizer.util.XmlTagBuilder;
+
 @Entity
 public class Relacion extends DomainEntity {
 
@@ -51,22 +53,14 @@ public class Relacion extends DomainEntity {
 	}
 
 	public String toXml() {
-		StringBuilder builder = new StringBuilder();
-		
-		builder.append("  <Edge ");
+		XmlTagBuilder builder = new XmlTagBuilder("Edge");
 
-		addField(builder, "fromID", getOrigen().getId());
-		addField(builder, "toID", getDestino().getId());
-		addField(builder, "edgeLabel", getIntensidad());
-		addField(builder, "fromIntensity", 3);
-		addField(builder, "toIntensity", 2);
+		builder.addAttribute("fromID", getOrigen().getId());
+		builder.addAttribute("toID", getDestino().getId());
+		builder.addAttribute("edgeLabel", getIntensidad());
+		builder.addAttribute("fromIntensity", 3);
+		builder.addAttribute("toIntensity", 2);
 		
-		builder.append("/>\n");
-		return builder.toString();
-	}
-
-	private void addField(StringBuilder builder, String fieldName,
-			Object fieldValue) {
-		builder.append(fieldName + "=\"" + fieldValue + "\" ");
+		return "  " + builder.toString() + "\n";
 	}
 }

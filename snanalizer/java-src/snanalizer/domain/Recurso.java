@@ -36,6 +36,11 @@ public class Recurso extends DomainEntity {
 		return usuario;
 	}
 
+	@Transient
+	public String getNombreYApellido() {
+		return getNombre() + " " + getApellido();
+	}
+
 	@ManyToOne
 	public Atributo _getArea() {
 		return area;
