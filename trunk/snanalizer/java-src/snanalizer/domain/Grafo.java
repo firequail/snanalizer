@@ -1,6 +1,9 @@
 package snanalizer.domain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Grafo {
@@ -26,6 +29,48 @@ public class Grafo {
 		}
 		return conjuntoRelaciones;
 	}
+	
+	public List<Relacion> getEdges() {
+		HashMap<Nodo, HashMap<Nodo, Relacion>> edgesMap = new HashMap<Nodo, HashMap<Nodo, Relacion>>();
+		
+		for (Relacion edge : getRelaciones()) {
+			HashMap<Nodo, Relacion> edgesDestino = edgesMap.get(edge.getDestino());
+			if (edgesDestino != null) {
+				Relacion edgeHermano = edgesDestino.get(edge.getOrigen());
+				if ( edgeHermano != null ) {
+					edgeHermano.setToIntensity(edge.getIntensidad());
+					continue;
+				} else {
+					agregarEdge(edgesMap, edge);
+				}
+			} else {
+				agregarEdge(edgesMap, edge);
+			}
+		}
+		
+		ArrayList<Relacion> edges = new ArrayList<Relacion>();
+		
+		for (HashMap<Nodo, Relacion> edgesDestino : edgesMap.values()) {
+			for (Relacion relacion : edgesDestino.values()) {
+				edges.add(relacion);
+			}
+		}
+		
+		return edges;
+	}
+
+	private void agregarEdge(HashMap<Nodo, HashMap<Nodo, Relacion>> edgesMap,
+			Relacion edge) {
+		
+		HashMap<Nodo, Relacion> edgesOrigen = edgesMap.get(edge.getOrigen());
+		if (edgesOrigen != null) {
+			edgesOrigen.put(edge.getDestino(), edge);
+		} else {
+			HashMap<Nodo, Relacion> nuevoEdgesOrigen = new HashMap<Nodo, Relacion>();
+			edgesMap.put(edge.getOrigen(), nuevoEdgesOrigen);
+			nuevoEdgesOrigen.put(edge.getDestino(), edge);
+		}
+	}
 
 	public String toXml() {
 		StringBuilder builder = new StringBuilder("<Graph>\n");
@@ -34,7 +79,7 @@ public class Grafo {
 			builder.append(nodo.toXml());
 		}
 
-		for (Relacion relacion : getRelaciones()) {
+		for (Relacion relacion : getEdges()) {
 			builder.append(relacion.toXml());
 		}
 
