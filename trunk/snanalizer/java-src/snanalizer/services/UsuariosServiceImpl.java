@@ -46,4 +46,8 @@ public class UsuariosServiceImpl implements UsuariosService {
 	public void eliminar(Integer id) {
 		usuarios.remove(id);
 	}
+
+	public Usuario getById(int id) {
+		return usuarios.getById(id);
+	}
 }

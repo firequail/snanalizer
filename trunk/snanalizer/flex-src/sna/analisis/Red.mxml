@@ -20,16 +20,14 @@
 			</mx:VBox>
 		</mx:Panel>
 		<mx:Panel title="Red" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" borderColor="#CCCCCC" paddingBottom="5" horizontalGap="5">
-			<mx:Accordion id="accordion" width="100%" height="100%">
+			<mx:HBox id="accordion" width="100%" height="100%">
 				<mx:Canvas label="Grafo" id="graphCanvas" width="100%" height="100%"  >
 					<analisis:Grafo id="grafo" puntoDeVistaId="{puntosDeVistaCombo.selectedData}"/>
 				</mx:Canvas>
-				<mx:Canvas label="Seleccion" id="seleccionCanvas" width="100%" height="100%"  >
-					<mx:HBox>
-						<mx:Label id="selec" text="Nodo seleccionado: "/>
-					</mx:HBox>
+				<mx:Canvas label="Seleccion" id="seleccionCanvas" width="200" height="100%"  >
+					<analisis:Seleccion id="seleccion"/>
 				</mx:Canvas>
-			</mx:Accordion>
+			</mx:HBox>
 		</mx:Panel>
 	</mx:HBox>
 	
@@ -45,7 +43,7 @@
 			}
 			
 			private function nodeSelected(e:NodeSelectedEvent):void {
-				selec.text = "Nodo seleccionado: " + e.nodeId;
+				seleccion.nodeId = e.nodeId;
 			}
 			
 			private function loadPuntosDeVista():void {

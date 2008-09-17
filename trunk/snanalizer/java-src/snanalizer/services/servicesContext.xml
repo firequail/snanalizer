@@ -26,5 +26,7 @@
 	<bean id="atributosService" class="snanalizer.services.AtributosServiceImpl"/>
 	
 	<bean id="recursosService" class="snanalizer.services.RecursosServiceImpl"/>
+
+	<bean id="nodosService" class="snanalizer.services.NodosServiceImpl"/>
 	
 </beans>
