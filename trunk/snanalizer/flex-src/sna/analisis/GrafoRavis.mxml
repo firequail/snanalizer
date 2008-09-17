@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ravis="org.un.cava.birdeye.ravis.graphLayout.visual.*"
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ravis="sna.analisis.ravis.*"
 	xmlns:lc="org.un.cava.birdeye.ravis.components.ui.controls.layouterControls.*"
 	xmlns:dp="org.un.cava.birdeye.ravis.components.ui.dataPresentation.*"
 	width="100%" height="100%">
 	
+	<mx:Metadata>
+		[Event(name=NodeSelectedEvent.NODE_SELECTED, type="sna.analisis.ravis.NodeSelectedEvent")]
+	</mx:Metadata>
+	
 	<mx:Script>
 		<![CDATA[
+			import org.un.cava.birdeye.ravis.utils.events.VGraphEvent;
+			import mx.controls.Alert;
+			import sna.analisis.ravis.NodeSelectedEvent;
 			import mx.binding.utils.BindingUtils;
 			import mx.rpc.events.ResultEvent;
 			import org.un.cava.birdeye.ravis.graphLayout.layout.ForceDirectedLayouter;
@@ -46,7 +53,12 @@
 			
 			public var xmlData:XML;
 			
+			private function nodeSelected(e:NodeSelectedEvent):void {
+				dispatchEvent(e);
+			}
+			
 			public function init():void {
+				
 				/* create and init a graph object with the XML data */
 					graph = new org.un.cava.birdeye.ravis.graphLayout.data.Graph("XMLAsDocsGraph",false,xmlData);
 				
@@ -84,6 +96,8 @@
 				vgraph.currentRootVNode = graph.nodes[0].vnode;				
 				initDone = true;
 				vgraph.draw();
+				
+				vgraph.addEventListener(NodeSelectedEvent.NODE_SELECTED, nodeSelected);
 			}
 		]]>
 	</mx:Script>					
