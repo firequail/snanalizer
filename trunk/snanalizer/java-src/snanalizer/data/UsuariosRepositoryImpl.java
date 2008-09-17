@@ -31,4 +31,12 @@ public class UsuariosRepositoryImpl extends BaseRepositoryImpl<Usuario> implemen
 			remove(usuario);
 		}
 	}
+
+	public List<Usuario> getNoRecursos() {
+		Criteria criteria = createCriteria();
+		
+		criteria.add(Restrictions.ne("rol", "RECURSO"));
+		
+		return find(criteria);
+	}
 }
