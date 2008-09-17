@@ -23,6 +23,10 @@ public class UsuariosServiceImpl implements UsuariosService {
 		return usuarios;
 	}
 
+	public List<Usuario> getNoRecursos() {
+		return usuarios.getNoRecursos();
+	}
+	
 	public List<Usuario> getAll() {
 		return usuarios.getAll();
 	}
