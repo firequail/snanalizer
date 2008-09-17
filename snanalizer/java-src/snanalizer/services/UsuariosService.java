@@ -15,5 +15,7 @@ public interface UsuariosService {
 	public void crear(String email, String password, String rol);
 	
 	public void eliminar(Integer id);
+	
+	public Usuario getById(int id);
 
 }
