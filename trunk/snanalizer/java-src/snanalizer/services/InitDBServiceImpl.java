@@ -186,7 +186,9 @@ public class InitDBServiceImpl implements InitDBService {
 	
 		// creo un grafo
 		relaciones.add(new Relacion(nodo2, nodo1, 3));
-		relaciones.add(new Relacion(nodo2, nodo3, 3));
+		
+		// dejo el nodo 3 desconectado
+		//relaciones.add(new Relacion(nodo2, nodo3, 3));
 	
 		// creo otro grafo desconectado del anterior
 		relaciones.add(new Relacion(nodo4, nodo5, 3));

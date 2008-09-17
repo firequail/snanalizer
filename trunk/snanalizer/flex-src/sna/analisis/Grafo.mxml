@@ -9,12 +9,14 @@
 		<mx:method name="getGrafo" result="crearGrafos(event)"/>
 	</mx:RemoteObject>
 	
-	<mx:HBox id="grid" width="100%" height="100%">
+	<mx:Grid id="grid" width="100%" height="100%">
 		
-	</mx:HBox>
+	</mx:Grid>
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.containers.GridRow;
+			import mx.containers.GridItem;
 			import mx.collections.ArrayCollection;
 			import mx.events.FlexEvent;
 			import mx.events.ListEvent;
@@ -23,16 +25,40 @@
 			
 			public var puntoDeVistaId:Object;
 			
+			private var columnaActual:int;
+			
+			private var rowActual:GridRow;
+			
 			private function crearGrafos(event:ResultEvent):void {
 				var xmlData:XMLList = new XMLList(redesService.getGrafo.lastResult)
 				
 				grid.removeAllChildren();
-								
+				columnaActual = 0;
+				
 				for each(var xmlGraph:XML in xmlData) {
 					var grafo:GrafoRavis = new GrafoRavis();
 					grafo.xmlData = xmlGraph;
 					grafo.addEventListener(FlexEvent.CREATION_COMPLETE, initGrafo);
-					grid.addChild(grafo);
+					addGrafo(grafo);
+				}
+			}
+			
+			private function addGrafo(grafo:GrafoRavis):void {
+				if (columnaActual == 0) {
+					rowActual = new GridRow();
+					rowActual.percentHeight = 100;
+					rowActual.percentWidth = 100;
+					grid.addChild(rowActual);
+				}
+				var item:GridItem = new GridItem();
+				item.addChild(grafo);
+				item.percentHeight = 100;
+				item.percentWidth = 100;
+				rowActual.addChild(item);
+				
+				columnaActual++;
+				if (columnaActual > 1){
+					columnaActual = 0;
 				}
 			}
 			
