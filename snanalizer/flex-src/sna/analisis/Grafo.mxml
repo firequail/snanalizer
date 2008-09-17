@@ -5,6 +5,10 @@
 	xmlns:grafo="sna.analisis.*"
 	width="100%" height="100%">
 
+	<mx:Metadata>
+		[Event(name=NodeSelectedEvent.NODE_SELECTED, type="sna.analisis.ravis.NodeSelectedEvent")]
+	</mx:Metadata>
+	
 	<mx:RemoteObject id="redesService" destination="redesService">
 		<mx:method name="getGrafo" result="crearGrafos(event)"/>
 	</mx:RemoteObject>
@@ -15,6 +19,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import sna.analisis.ravis.NodeSelectedEvent;
 			import mx.containers.GridRow;
 			import mx.containers.GridItem;
 			import mx.collections.ArrayCollection;
@@ -39,6 +44,7 @@
 					var grafo:GrafoRavis = new GrafoRavis();
 					grafo.xmlData = xmlGraph;
 					grafo.addEventListener(FlexEvent.CREATION_COMPLETE, initGrafo);
+					grafo.addEventListener(NodeSelectedEvent.NODE_SELECTED, nodeSelected);
 					addGrafo(grafo);
 				}
 			}
@@ -68,6 +74,10 @@
 			
 			private function initGrafo(event:FlexEvent):void {
 				(event.target as GrafoRavis).init();
+			}
+			
+			private function nodeSelected(e:NodeSelectedEvent):void {
+				dispatchEvent(e);
 			}
 			
 		]]>
