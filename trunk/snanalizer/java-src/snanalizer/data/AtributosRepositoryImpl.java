@@ -24,4 +24,6 @@ public class AtributosRepositoryImpl extends BaseRepositoryImpl<Atributo> implem
 
 		return find(criteria);
 	}
+	
+	
 }

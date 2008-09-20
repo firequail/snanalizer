@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="load()">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:Panel title="Modificar Recurso">
+		<mx:Form id="form1" defaultButton="{okButton}">
+			<mx:FormItem label="Nombre" tabIndex="1">
+				<mx:TextInput id="nombre" text="{recurso.usuario.nombre}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Apellido" tabIndex="1">
+				<mx:TextInput id="apellido" text="{recurso.usuario.apellido}"/>
+			</mx:FormItem>
+			<mx:FormItem label="E-Mail" tabIndex="1">
+				<mx:TextInput id="email" text="{recurso.usuario.email}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Contraseña" tabIndex="2">
+				<mx:TextInput id="password1" displayAsPassword="true" text="{recurso.usuario.password}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Repetir Contraseña" tabIndex="3">
+				<mx:TextInput id="password2" displayAsPassword="true" text="{recurso.usuario.password}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Area" tabIndex="4">
+				<sna:DataComboBox id="rolCombo" dataProvider="{listaAreas}">
+				</sna:DataComboBox>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
+			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
+		</mx:ControlBar>
+	</mx:Panel>
+	
+	
+	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
+		
+	<mx:Script>
+		<![CDATA[
+
+			import mx.collections.ArrayCollection;
+			import mx.rpc.events.ResultEvent;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var recurso:Object;
+			[Bindable]
+			public var listaAreas:ArrayCollection;
+			[Bindable]
+			public var listaPuestos:ArrayCollection;
+			[Bindable]
+			public var listaSeniorities:ArrayCollection;
+						
+			private function guardar():void {
+				//recursosService.modificar(recurso.id, email.text, password1.text, rolCombo.selectedData);
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			private function cancelar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			private function load():void {
+				listaAreas = datosMaestrosService.getAtributos("Area");
+				listaPuestos = datosMaestrosService.getAtributos("Puesto");
+				listaSeniorities = datosMaestrosService.getAtributos("Seniority");
+			}
+
+			
+		]]>
+	</mx:Script>
+	
+</mx:VBox>
