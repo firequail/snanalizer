@@ -63,10 +63,4 @@
         		<source>recursosService</source>
         	</properties>
     </destination>
-	<destination id="nodosService">
-        	<properties>
-        		<factory>spring</factory>
-        		<source>nodosService</source>
-        	</properties>
-    </destination>
 </service>

@@ -38,6 +38,7 @@ public abstract class DomainEntity {
 		if (!this.getEntityClass().equals(otherEntity.getEntityClass())) {
 			return false;
 		}
+		
 		return this.getId().equals(otherEntity.getId());
 	}
 
@@ -59,6 +60,10 @@ public abstract class DomainEntity {
 
 	@Override
 	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
 		if (!(obj instanceof DomainEntity)) {
 			return false;
 		}

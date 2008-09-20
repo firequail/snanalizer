@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel title="Informacion del recurso" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Label text="{redesService.getNodo.lastResult.recurso.usuario.email}"/>
+
+	<mx:RemoteObject id="redesService" destination="redesService">
+	</mx:RemoteObject>
+	
+	<mx:Script>
+		<![CDATA[
+			
+			public function set nodeId(nodeId:int):void {
+				redesService.getNodo(nodeId);
+			} 
+			
+		]]>
+	</mx:Script>
+</mx:Panel>

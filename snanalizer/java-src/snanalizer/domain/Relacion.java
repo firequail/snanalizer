@@ -14,7 +14,7 @@ public class Relacion extends DomainEntity {
 	private Nodo destino;
 
 	private int intensidad;
-	
+
 	private int toIntensity;
 
 	public Relacion() {
@@ -72,11 +72,14 @@ public class Relacion extends DomainEntity {
 		builder.addAttribute("edgeLabel", getIntensidad());
 		builder.addAttribute("fromIntensity", getIntensidad());
 		builder.addAttribute("toIntensity", getToIntensity());
-		
+
 		return "  " + builder.toString() + "\n";
 	}
-	
+
 	public String toString() {
-		return getOrigen().getRecurso().getNombreYApellido() + "-" + getDestino().getRecurso().getNombreYApellido();
+		return getOrigen().getRecurso().getNombreYApellido() + "-"
+				+ getDestino().getRecurso().getNombreYApellido();
 	}
+
+
 }

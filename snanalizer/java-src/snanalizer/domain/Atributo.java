@@ -11,16 +11,17 @@ public class Atributo extends DomainEntity {
 	private DatoMaestro datoMaestro;
 
 	public Atributo() {
-		
+
 	}
-	
+
 	public Atributo(String nombre, String descripcion, Boolean estado) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.estado = estado;
 	}
-	
-	public Atributo(String nombre, String descripcion, Boolean estado,DatoMaestro dm) {
+
+	public Atributo(String nombre, String descripcion, Boolean estado,
+			DatoMaestro dm) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.estado = estado;
@@ -50,7 +51,7 @@ public class Atributo extends DomainEntity {
 	public Boolean getEstado() {
 		return estado;
 	}
-	
+
 	public void setDatoMaestro(DatoMaestro datoMaestro) {
 		this.datoMaestro = datoMaestro;
 	}
@@ -59,5 +60,5 @@ public class Atributo extends DomainEntity {
 	public DatoMaestro getDatoMaestro() {
 		return datoMaestro;
 	}
-	
+
 }

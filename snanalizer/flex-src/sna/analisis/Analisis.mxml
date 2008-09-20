@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Box xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:analisis="sna.analisis.*" xmlns:composite="sna.analisis.composite.*" width="100%" height="100%">
 	<sna:ControlBar/>
-	<mx:Panel layout="absolute"  title="Analisis" width="100%" height="100%">
+	<mx:Panel title="Analisis" width="100%" height="100%">
 	
 		<analisis:Red/>
 	
