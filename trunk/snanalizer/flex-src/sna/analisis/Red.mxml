@@ -1,54 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"
-	xmlns:sna="sna.*" xmlns:analisis="sna.analisis.*"
-	xmlns:vc="org.un.cava.birdeye.ravis.components.ui.controls.vgraphControls.*"
-	creationComplete="init()">
-	
-	<mx:RemoteObject id="redesService" destination="redesService">
-		<mx:method name="getRedes" result="loadPuntosDeVista()"/>
-		<mx:method name="getPuntosDeVista" result="grafo.refresh()"/>
-	</mx:RemoteObject>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:analisis="sna.analisis.*">
 	
 	<mx:HBox width="100%" height="100%">
-		<mx:Panel title="Controles" height="100%">
-			<mx:VBox width="100%" height="100%">
-				<mx:Label text="Red"/>
-				<sna:DataComboBox id="redesCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getRedes.lastResult}" change="loadPuntosDeVista()"/>
-				<mx:Label text="Punto de vista"/>
-				<sna:DataComboBox id="puntosDeVistaCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getPuntosDeVista.lastResult}" change="grafo.refresh()"/>
-				<mx:Button label="Actualizar" click="grafo.refresh()"/>
-			</mx:VBox>
-		</mx:Panel>
-		<mx:Panel title="Red" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" borderColor="#CCCCCC" paddingBottom="5" horizontalGap="5">
-			<mx:HBox id="accordion" width="100%" height="100%">
-				<mx:Canvas label="Grafo" id="graphCanvas" width="100%" height="100%"  >
-					<analisis:Grafo id="grafo" puntoDeVistaId="{puntosDeVistaCombo.selectedData}"/>
-				</mx:Canvas>
-				<mx:Canvas label="Seleccion" id="seleccionCanvas" width="200" height="100%"  >
-					<analisis:Seleccion id="seleccion"/>
-				</mx:Canvas>
-			</mx:HBox>
-		</mx:Panel>
+		<mx:VBox width="100%" height="100%">
+			<analisis:Controles id="controles" change="grafo.refresh()"/>
+			<analisis:Grafo id="grafo" puntoDeVistaId="{controles.puntoDeVista.id}"/>
+		</mx:VBox>
+		<analisis:InfoNodo id="infoNodo" nodeId="{grafo.selectedNodeId}"/>
 	</mx:HBox>
 	
-	<mx:Script>
-		<![CDATA[
-			import sna.analisis.ravis.NodeSelectedEvent;
-			import mx.controls.Alert;
-			import mx.rpc.events.ResultEvent;
-			
-			private function init():void {
-				grafo.addEventListener(NodeSelectedEvent.NODE_SELECTED,nodeSelected);
-				redesService.getRedes();
-			}
-			
-			private function nodeSelected(e:NodeSelectedEvent):void {
-				seleccion.nodeId = e.nodeId;
-			}
-			
-			private function loadPuntosDeVista():void {
-				redesService.getPuntosDeVista(redesCombo.selectedData as int);
-			}
-		]]>
-	</mx:Script>
 </mx:Canvas>

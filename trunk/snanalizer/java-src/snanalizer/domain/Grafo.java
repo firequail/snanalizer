@@ -3,12 +3,13 @@ package snanalizer.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 public class Grafo {
 
-	private Set<Nodo> nodos = new HashSet<Nodo>();
+	private List<Nodo> nodos = new LinkedList<Nodo>();
 
 	public boolean contains(Nodo nodo) {
 		return nodos.contains(nodo);
@@ -18,7 +19,7 @@ public class Grafo {
 		nodos.add(nodo);
 	}
 
-	public Set<Nodo> getNodos() {
+	public List<Nodo> getNodos() {
 		return nodos;
 	}
 

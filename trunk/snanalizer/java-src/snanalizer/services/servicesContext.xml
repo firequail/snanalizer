@@ -27,6 +27,4 @@
 	
 	<bean id="recursosService" class="snanalizer.services.RecursosServiceImpl"/>
 
-	<bean id="nodosService" class="snanalizer.services.NodosServiceImpl"/>
-	
 </beans>

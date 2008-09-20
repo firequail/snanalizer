@@ -60,4 +60,39 @@ public class Recurso extends DomainEntity {
 	public String getArea() {
 		return _getArea().getNombre();
 	}
+
+	public Object getAtributo(DatoMaestro datoMaestro) {
+		//TODO: devolver el atributo correspondiente al dato maestro
+		if ("area".equalsIgnoreCase(datoMaestro.getDescripcion())){
+			return area;
+		}
+		if ("puesto".equalsIgnoreCase(datoMaestro.getDescripcion())){
+			return puesto;
+		}
+		if ("seniority".equalsIgnoreCase(datoMaestro.getDescripcion())){
+			return seniority;
+		}
+		return null;
+	}
+	
+	public void setAtributo(Atributo atributo) {
+		if ("area".equalsIgnoreCase(atributo.getDatoMaestro().getDescripcion())){
+			this.area = atributo;
+		}
+		if ("puesto".equalsIgnoreCase(atributo.getDatoMaestro().getDescripcion())){
+			this.puesto = atributo;
+		}
+		if ("seniority".equalsIgnoreCase(atributo.getDatoMaestro().getDescripcion())){
+			this.seniority = atributo;
+		}
+	}
+
+	public void setPuesto(Atributo puesto) {
+		this.puesto = puesto;
+	}
+
+	@ManyToOne
+	public Atributo getPuesto() {
+		return puesto;
+	}
 }
