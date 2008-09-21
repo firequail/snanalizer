@@ -11,7 +11,6 @@ import snanalizer.data.NodosRepository;
 import snanalizer.data.PuntosDeVistaRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.domain.DatoMaestro;
-import snanalizer.domain.Grafo;
 import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Red;
@@ -27,7 +26,7 @@ public class RedesServiceImpl implements RedesService {
 
 	@Resource
 	private NodosRepository nodosRepository;
-	
+
 	@Resource
 	private DatosMaestrosRepository datosMaestrosRepository;
 
@@ -55,7 +54,8 @@ public class RedesServiceImpl implements RedesService {
 		return nodosRepository;
 	}
 
-	public void setDatosMaestrosRepository(DatosMaestrosRepository datosMaestrosRepository) {
+	public void setDatosMaestrosRepository(
+			DatosMaestrosRepository datosMaestrosRepository) {
 		this.datosMaestrosRepository = datosMaestrosRepository;
 	}
 
@@ -71,28 +71,28 @@ public class RedesServiceImpl implements RedesService {
 	public List<Red> getRedes() {
 		return redesRepository.getAll();
 	}
-
-	public String getGrafo(int puntoDeVistaId) {
-		PuntoDeVista puntoDeVista = puntosDeVista.getById(puntoDeVistaId);
-		return puntoDeVista.toXml();
-	}
 	
+	public List<DatoMaestro> getDatosMaestros() {
+		return datosMaestrosRepository.getAll();
+	}
+
 	public Nodo getNodo(int id) {
 		return nodosRepository.getById(id);
 	}
 
-	public String getGrafoAgrupado(Integer idPtoVista, Integer idDatoMaestro) {
+	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro) {
 		PuntoDeVista puntoDeVista = puntosDeVista.getById(idPtoVista);
-		DatoMaestro datoMaestro = datosMaestrosRepository.getById(idDatoMaestro);
-		
-		List<Grafo> subgrafosAgrupados = puntoDeVista.getSubgrafosAgrupados(datoMaestro);
-		
-		StringBuilder builder = new StringBuilder();
 
-		for (Grafo subgrafo : subgrafosAgrupados) {
-			builder.append(subgrafo.toXml());
+		if (idDatoMaestro == null) {
+
+			return puntoDeVista.toXml();
+
+		} else {
+
+			DatoMaestro datoMaestro = datosMaestrosRepository
+					.getById(idDatoMaestro);
+
+			return puntoDeVista.toXml(datoMaestro);
 		}
-
-		return builder.toString();
 	}
 }

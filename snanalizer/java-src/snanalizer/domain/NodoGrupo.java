@@ -6,8 +6,9 @@ public class NodoGrupo extends Nodo {
 
 	}
 
-	public NodoGrupo(Recurso recurso) {
+	public NodoGrupo(Recurso recurso, int id) {
 		super(recurso);
+		setId(id);
 	}
 
 	public boolean equals(Object obj) {
