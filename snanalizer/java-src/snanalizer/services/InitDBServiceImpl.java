@@ -49,6 +49,9 @@ public class InitDBServiceImpl implements InitDBService {
 
 	@Resource
 	private DatosMaestrosRepository datosMaestros;
+	
+	@Resource
+	private AtributosRepository atributos;
 
 	public void initDB() {
 		// Inicializar la DB para produccion
@@ -102,6 +105,23 @@ public class InitDBServiceImpl implements InitDBService {
 		Recurso recurso2 = new Recurso(usuario2);
 		Recurso recurso3 = new Recurso(usuario3);
 		Recurso recurso4 = new Recurso(usuario4);
+		
+		recurso1.setArea(atributos.getAll().get(0));
+		recurso1.setPuesto(atributos.getAll().get(4));
+		recurso1.setSeniority(atributos.getAll().get(6));
+		
+		recurso2.setArea(atributos.getAll().get(0));
+		recurso2.setPuesto(atributos.getAll().get(4));
+		recurso2.setSeniority(atributos.getAll().get(7));
+		
+		recurso3.setArea(atributos.getAll().get(0));
+		recurso3.setPuesto(atributos.getAll().get(5));
+		recurso3.setSeniority(atributos.getAll().get(8));
+		
+		recurso4.setArea(atributos.getAll().get(0));
+		recurso4.setPuesto(atributos.getAll().get(4));
+		recurso4.setSeniority(atributos.getAll().get(7));
+		
 		recursos.add(recurso1);
 		recursos.add(recurso2);
 		recursos.add(recurso3);
