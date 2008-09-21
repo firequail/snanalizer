@@ -41,10 +41,6 @@ public class Recurso extends DomainEntity {
 		return getNombre() + " " + getApellido();
 	}
 
-	@ManyToOne
-	public Atributo _getArea() {
-		return area;
-	}
 
 	@Transient
 	public String getNombre() {
@@ -56,10 +52,6 @@ public class Recurso extends DomainEntity {
 		return getUsuario().getApellido();
 	}
 
-	@Transient
-	public String getArea() {
-		return _getArea().getNombre();
-	}
 
 	public Object getAtributo(DatoMaestro datoMaestro) {
 		//TODO: devolver el atributo correspondiente al dato maestro
@@ -94,5 +86,23 @@ public class Recurso extends DomainEntity {
 	@ManyToOne
 	public Atributo getPuesto() {
 		return puesto;
+	}
+	
+	@ManyToOne
+	public Atributo getArea() {
+		return area;
+	}
+	
+	public void setArea(Atributo area) {
+		this.area = area;
+	}
+	
+	@ManyToOne
+	public Atributo getSeniority() {
+		return seniority;
+	}
+	
+	public void setSeniority(Atributo seniority) {
+		this.seniority = seniority;
 	}
 }
