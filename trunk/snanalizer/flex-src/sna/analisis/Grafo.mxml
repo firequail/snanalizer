@@ -27,7 +27,7 @@
 			import mx.rpc.events.ResultEvent;
 			
 			public function refresh():void {
-				redesService.getGrafo(puntoDeVistaId as int);
+				redesService.getGrafo(puntoDeVistaId as int, datoMaestroId as int);
 			}
 			
 			[Bindable("nodeSelected")]
@@ -36,6 +36,8 @@
 			}
 			
 			public var puntoDeVistaId:Object;
+
+			public var datoMaestroId:Object;
 			
 			private var columnaActual:int;
 			

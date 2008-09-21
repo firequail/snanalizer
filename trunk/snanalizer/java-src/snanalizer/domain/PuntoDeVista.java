@@ -49,8 +49,26 @@ public class PuntoDeVista extends DomainEntity {
 		return nodos;
 	}
 
+	public String toXml() {
+		return toXml(getSubgrafos(getNodos()));
+	}
+
+	public String toXml(DatoMaestro datoMaestro) {
+		return toXml(getSubgrafosAgrupados(datoMaestro));
+	}
+
+	private String toXml(List<Grafo> subgrafos) {
+		StringBuilder builder = new StringBuilder();
+
+		for (Grafo subgrafo : subgrafos) {
+			builder.append(subgrafo.toXml());
+		}
+
+		return builder.toString();
+	}
+
 	@Transient
-	public List<Grafo> getSubgrafos(Collection<Nodo> nodos) {
+	private List<Grafo> getSubgrafos(Collection<Nodo> nodos) {
 		List<Nodo> nodosRestantes = new LinkedList<Nodo>(nodos);
 		List<Grafo> subgrafos = new LinkedList<Grafo>();
 
@@ -64,20 +82,8 @@ public class PuntoDeVista extends DomainEntity {
 		return subgrafos;
 	}
 
-	public String toXml() {
-		StringBuilder builder = new StringBuilder();
-
-		for (Grafo subgrafo : getSubgrafos(getNodos())) {
-			builder.append(subgrafo.toXml());
-		}
-
-		return builder.toString();
-	}
-
 	@Transient
-	public List<Grafo> getSubgrafosAgrupados(DatoMaestro datoMaestro) {
-
-		// Tal vez haya q crear un clase grupo en vez de nodo
+	private List<Grafo> getSubgrafosAgrupados(DatoMaestro datoMaestro) {
 		Map<Atributo, Nodo> mapaAtributosGrupos = crearMapaGrupos(datoMaestro);
 
 		asignarRelaciones(mapaAtributosGrupos, getRelaciones(), datoMaestro);
@@ -97,7 +103,8 @@ public class PuntoDeVista extends DomainEntity {
 			Nodo grupoDestino = mapaAtributosGrupos.get(relacion.getDestino()
 					.getRecurso().getAtributo(datoMaestro));
 
-			if (grupoOrigen != null && grupoDestino != null) {
+			if (grupoOrigen != null && grupoDestino != null
+					&& grupoOrigen != grupoDestino) {
 				new RelacionGrupo(grupoOrigen, grupoDestino, relacion
 						.getIntensidad());
 			}
@@ -119,21 +126,22 @@ public class PuntoDeVista extends DomainEntity {
 		HashMap<Atributo, Nodo> grupos = new HashMap<Atributo, Nodo>(
 				datoMaestro.getAtributos().size());
 
+		int id = 1;
 		for (Atributo atributo : datoMaestro.getAtributos()) {
-			Nodo nodo = crearGrupo(atributo);
+			Nodo nodo = crearGrupo(atributo, id);
 			grupos.put(atributo, nodo);
+			id++;
 		}
 
 		return grupos;
 	}
 
-	private Nodo crearGrupo(Atributo atributo) {
-		// TODO: quick hack, un grupo no tiene ni recurso ni usuario, pensar en
-		// usar una clase grupo en lugar de un nodo
+	private Nodo crearGrupo(Atributo atributo, int id) {
+		// TODO: quick hack, un grupo no tiene ni recurso ni usuario
 		Usuario usuario = new Usuario();
 		usuario.setEmail(atributo.getNombre());
 		usuario.setNombre(atributo.getNombre());
-		Nodo nodo = new NodoGrupo(new Recurso(usuario));
+		Nodo nodo = new NodoGrupo(new Recurso(usuario), id);
 		return nodo;
 	}
 }

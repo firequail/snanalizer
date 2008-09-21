@@ -1,15 +1,31 @@
 package sna
 {
+	import mx.collections.ArrayCollection;
 	import mx.collections.IViewCursor;
 	import mx.controls.ComboBox;
-	import mx.utils.ObjectUtil;
 	
 	public class DataComboBox extends ComboBox {
 		
 		public var dataField:String = "data";
+		private var _unselectedLabel:String;
 		
 		public function DataComboBox() {
 			super();
+		}
+		
+		override public function set dataProvider(value:Object):void {
+			if (_unselectedLabel == null || value == null) {
+				super.dataProvider = value;
+			} else {
+				var unselected:Object = new Object();
+				unselected[dataField] = null;
+				unselected[labelField] = _unselectedLabel;
+				super.dataProvider = new PromptArrayCollection([unselected],value as ArrayCollection);
+			}
+		}
+		
+		public function set unselectedLabel(value:String):void {
+			_unselectedLabel = value;
 		}
 		
 		public function set selectedData(value:Object):void {
