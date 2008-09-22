@@ -29,12 +29,18 @@ public class DatosMaestrosServiceImpl implements DatosMaestrosService {
 	
 	public List<Atributo> getAtributos(int datoMaestroId) {
 		DatoMaestro dm = datosMaestros.getById(datoMaestroId);
-		return atributos.getAtributos(dm);
+		//return atributos.getAtributos(dm);
+		return dm.getAtributos();
 	}
 	
-	public List<Atributo> getAtributos(String desc) {
+	public List<Atributo> getAtributosByDesc(String desc) {
 		DatoMaestro dm = datosMaestros.getDatoMaestro(desc);
-		return this.getAtributos(dm.getId());
+		//return atributos.getAtributos(dm);
+		return dm.getAtributos();
 	}
+	
+	public List<Atributo> getAreas() { return this.getAtributosByDesc("Area"); }
+	public List<Atributo> getPuestos() { return this.getAtributosByDesc("Puesto"); }
+	public List<Atributo> getSeniorities() { return this.getAtributosByDesc("Seniority"); }
 
 }
