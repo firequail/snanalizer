@@ -5,7 +5,6 @@
 	</mx:Metadata>
 
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService">
-		<mx:method name="getAtributos" />
 	</mx:RemoteObject>
 	
 
