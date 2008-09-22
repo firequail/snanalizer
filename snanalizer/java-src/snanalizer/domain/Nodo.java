@@ -33,6 +33,13 @@ public class Nodo extends DomainEntity {
 		this.recurso = recurso;
 	}
 
+	public Relacion linkTo(Nodo nodoDestino, int intensidad) {
+		Relacion relacion = new Relacion(this, nodoDestino, intensidad);
+		this.addRelacion(relacion);
+		nodoDestino.addRelacion(relacion);
+		return relacion;
+	}
+
 	public void setRelaciones(List<Relacion> relaciones) {
 		this.relaciones = relaciones;
 	}

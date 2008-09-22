@@ -105,8 +105,7 @@ public class PuntoDeVista extends DomainEntity {
 
 			if (grupoOrigen != null && grupoDestino != null
 					&& grupoOrigen != grupoDestino) {
-				new RelacionGrupo(grupoOrigen, grupoDestino, relacion
-						.getIntensidad());
+				grupoOrigen.linkTo(grupoDestino, relacion.getIntensidad());
 			}
 		}
 	}

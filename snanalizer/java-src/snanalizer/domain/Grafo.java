@@ -23,7 +23,7 @@ public class Grafo {
 		return nodos;
 	}
 
-	public Set<Relacion> getRelaciones() {
+	private Set<Relacion> getRelaciones() {
 		Set<Relacion> conjuntoRelaciones = new HashSet<Relacion>();
 		for (Nodo nodo : nodos) {
 			nodo.addRelacionesTo(conjuntoRelaciones);
@@ -31,7 +31,7 @@ public class Grafo {
 		return conjuntoRelaciones;
 	}
 	
-	public List<Relacion> getEdges() {
+	private List<Relacion> getEdges() {
 		HashMap<Nodo, HashMap<Nodo, Relacion>> edgesMap = new HashMap<Nodo, HashMap<Nodo, Relacion>>();
 		
 		for (Relacion edge : getRelaciones()) {
