@@ -18,7 +18,7 @@ public class Installer {
 		"snanalizer/applicationContext.xml");
 	}
 
-	private void install() {
+	public void install() {
 		System.out.print("Installing SNA...");
 		
 		initDB();

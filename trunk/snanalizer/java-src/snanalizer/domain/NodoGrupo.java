@@ -10,6 +10,22 @@ public class NodoGrupo extends Nodo {
 		super(recurso);
 		setId(id);
 	}
+	
+	public Relacion linkTo(Nodo nodoDestino, int intensidad) {
+		for (Relacion relacion : getRelaciones()) {
+			if (relacion.getDestino().equals(nodoDestino)) {
+				relacion.setIntensidad(relacion.getIntensidad() + intensidad);
+				return relacion;
+			}
+		}
+		
+		RelacionGrupo relacion = new RelacionGrupo(this,
+				nodoDestino, intensidad);
+		this.addRelacion(relacion);
+		nodoDestino.addRelacion(relacion);
+		
+		return relacion;
+	}
 
 	public boolean equals(Object obj) {
 		if (this == obj) {

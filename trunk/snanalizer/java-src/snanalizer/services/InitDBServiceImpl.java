@@ -22,6 +22,7 @@ import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.domain.Usuario;
+import snanalizer.install.Installer;
 
 @Transactional
 public class InitDBServiceImpl implements InitDBService {
@@ -53,6 +54,10 @@ public class InitDBServiceImpl implements InitDBService {
 	@Resource
 	private AtributosRepository atributos;
 
+	public static void main(String[] args) {
+		new Installer().install();
+	}
+	
 	public void initDB() {
 		// Inicializar la DB para produccion
 	}
@@ -156,10 +161,10 @@ public class InitDBServiceImpl implements InitDBService {
 		red1.getPuntosDeVista().add(puntoDeVista1);
 
 		// creo un grafo en forma de estrella
-		Relacion relacion1 = new Relacion(nodo2, nodo1, 3);
-		Relacion relacion2 = new Relacion(nodo2, nodo3, 3);
-		Relacion relacion3 = new Relacion(nodo2, nodo4, 3);
-		Relacion relacion4 = new Relacion(nodo3, nodo2, 3);
+		Relacion relacion1 = nodo2.linkTo(nodo1, 3);
+		Relacion relacion2 = nodo2.linkTo(nodo3, 3);
+		Relacion relacion3 = nodo2.linkTo(nodo4, 3);
+		Relacion relacion4 = nodo3.linkTo(nodo2, 3);
 		relaciones.add(relacion1);
 		relaciones.add(relacion2);
 		relaciones.add(relacion3);
@@ -220,13 +225,14 @@ public class InitDBServiceImpl implements InitDBService {
 		red1.getPuntosDeVista().add(puntoDeVista1);
 
 		// creo un grafo
-		relaciones.add(new Relacion(nodo2, nodo1, 3));
+		Relacion relacion1 = nodo2.linkTo(nodo1, 3);
+		relaciones.add(relacion1);
 
 		// dejo el nodo 3 desconectado
-		// relaciones.add(new Relacion(nodo2, nodo3, 3));
 
 		// creo otro grafo desconectado del anterior
-		relaciones.add(new Relacion(nodo4, nodo5, 3));
+		Relacion relacion2 = nodo4.linkTo(nodo5, 3);
+		relaciones.add(relacion2);
 	}
 
 	private void crearRedDePrueba3() {
@@ -276,10 +282,14 @@ public class InitDBServiceImpl implements InitDBService {
 		red1.getPuntosDeVista().add(puntoDeVista1);
 
 		// creo un grafo con dos relaciones entre nodo2 y nodo1
-		relaciones.add(new Relacion(nodo2, nodo1, 3));
-		relaciones.add(new Relacion(nodo2, nodo3, 3));
-		relaciones.add(new Relacion(nodo2, nodo4, 3));
-		relaciones.add(new Relacion(nodo1, nodo2, 3));
+		Relacion relacion1 = nodo2.linkTo(nodo1, 3);
+		Relacion relacion2 = nodo2.linkTo(nodo3, 3);
+		Relacion relacion3 = nodo2.linkTo(nodo4, 3);
+		Relacion relacion4 = nodo1.linkTo(nodo2, 3);
+		relaciones.add(relacion1);
+		relaciones.add(relacion2);
+		relaciones.add(relacion3);
+		relaciones.add(relacion4);
 	}
 
 	private void crearRedDePrueba4() {
@@ -337,10 +347,14 @@ public class InitDBServiceImpl implements InitDBService {
 		red1.getPuntosDeVista().add(puntoDeVista1);
 
 		// creo un grafo en forma de estrella
-		relaciones.add(new Relacion(nodo2, nodo1, 3));
-		relaciones.add(new Relacion(nodo2, nodo3, 3));
-		relaciones.add(new Relacion(nodo2, nodo4, 3));
-		relaciones.add(new Relacion(nodo3, nodo5, 3));
+		Relacion relacion1 = nodo2.linkTo(nodo1, 3);
+		Relacion relacion2 = nodo2.linkTo(nodo3, 3);
+		Relacion relacion3 = nodo2.linkTo(nodo4, 3);
+		Relacion relacion4 = nodo3.linkTo(nodo5, 3);
+		relaciones.add(relacion1);
+		relaciones.add(relacion2);
+		relaciones.add(relacion3);
+		relaciones.add(relacion4);
 	}
 
 	private void crearDatosMaestros() {

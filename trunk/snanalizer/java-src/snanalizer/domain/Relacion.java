@@ -25,8 +25,6 @@ public class Relacion extends DomainEntity {
 		this.origen = origen;
 		this.destino = destino;
 		this.intensidad = intensidad;
-		origen.addRelacion(this);
-		destino.addRelacion(this);
 	}
 
 	public void setOrigen(Nodo origen) {
