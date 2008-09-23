@@ -24,12 +24,12 @@
 				<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="nombre" dataProvider="{datosMaestrosService.getAreas.lastResult}" selectedData="{recurso.area.nombre}" >
 				</sna:DataComboBox>
 			</mx:FormItem>
-			<mx:FormItem label="Puesto" tabIndex="4">
+			<mx:FormItem label="Puesto" tabIndex="5">
 				<sna:DataComboBox id="puestoCombo" labelField="nombre" dataField="nombre"  dataProvider="{datosMaestrosService.getPuestos.lastResult}" selectedData="{recurso.puesto.nombre}" >
 				</sna:DataComboBox>
 			</mx:FormItem>
-			<mx:FormItem label="Seniority" tabIndex="4">
-				<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="nombre" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" selectedData="{recurso.senioriy.nombre}" >
+			<mx:FormItem label="Seniority" tabIndex="6">
+				<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="nombre" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" selectedData="{recurso.seniority.nombre}" >
 				</sna:DataComboBox>
 			</mx:FormItem>
 		</mx:Form>
