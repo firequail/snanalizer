@@ -3,6 +3,7 @@ package snanalizer.services;
 import java.util.List;
 
 import snanalizer.domain.DatoMaestro;
+import snanalizer.domain.Filtro;
 import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Red;
@@ -15,7 +16,7 @@ public interface RedesService {
 	
 	public Nodo getNodo(int id);
 
-	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro);
+	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro, Filtro filtro);
 
 	public List<DatoMaestro> getDatosMaestros();
 }

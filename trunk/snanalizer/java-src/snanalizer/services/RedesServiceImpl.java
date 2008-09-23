@@ -11,6 +11,7 @@ import snanalizer.data.NodosRepository;
 import snanalizer.data.PuntosDeVistaRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.domain.DatoMaestro;
+import snanalizer.domain.Filtro;
 import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Red;
@@ -80,7 +81,7 @@ public class RedesServiceImpl implements RedesService {
 		return nodosRepository.getById(id);
 	}
 
-	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro) {
+	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro, Filtro filtro) {
 		PuntoDeVista puntoDeVista = puntosDeVista.getById(idPtoVista);
 
 		if (idDatoMaestro == null) {

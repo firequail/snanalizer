@@ -35,7 +35,7 @@ public class RedesServiceTest extends TestCase {
 	public void testGetGrafo() {
 		Integer idPtoVista = redesService.getRedes().get(1).getPuntosDeVista()
 				.get(1).getId();
-		String grafo = redesService.getGrafo(idPtoVista, null);
+		String grafo = redesService.getGrafo(idPtoVista, null, null);
 
 		System.out.println(grafo);
 		assertNotNull(grafo);
@@ -45,7 +45,7 @@ public class RedesServiceTest extends TestCase {
 		Integer idPtoVista = redesService.getRedes().get(0).getPuntosDeVista()
 				.get(0).getId();
 		Integer idDatoMaestro = datosMaestrosService.getAll().get(1).getId();
-		String grafo = redesService.getGrafo(idPtoVista, idDatoMaestro);
+		String grafo = redesService.getGrafo(idPtoVista, idDatoMaestro, null);
 
 		System.out.println(grafo);
 		assertNotNull(grafo);
