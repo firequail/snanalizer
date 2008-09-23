@@ -27,7 +27,7 @@
 			import mx.rpc.events.ResultEvent;
 			
 			public function refresh():void {
-				redesService.getGrafo(puntoDeVistaId as int, datoMaestroId as int);
+				redesService.getGrafo(puntoDeVistaId as int, datoMaestroId as int, filtro);
 			}
 			
 			[Bindable("nodeSelected")]
@@ -38,6 +38,20 @@
 			public var puntoDeVistaId:Object;
 
 			public var datoMaestroId:Object;
+			
+			public function set areaId(value:Object):void {
+				filtro.areaId = value as int;
+			}
+
+			public function set puestoId(value:Object):void {
+				filtro.puestoId = value as int;
+			}
+
+			public function set seniorityId(value:Object):void {
+				filtro.seniorityId = value as int;
+			}
+			
+			private var filtro:Filtro = new Filtro();
 			
 			private var columnaActual:int;
 			

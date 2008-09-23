@@ -18,6 +18,18 @@
 			<mx:Label text="Agrupar por"/>
 			<sna:DataComboBox id="datosMaestrosCombo" labelField="descripcion" dataField="id" unselectedLabel="Ninguno" dataProvider="{redesService.getDatosMaestros.lastResult}" change="fireChange()"/>
 		</mx:VBox>
+		<mx:VBox>
+			<mx:Label text="Area"/>
+			<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="id" unselectedLabel="Todas" dataProvider="{datosMaestrosService.getAreas.lastResult}" change="fireChange()"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:Label text="Puesto"/>
+			<sna:DataComboBox id="puestoCombo" labelField="nombre" dataField="id" unselectedLabel="Todos" dataProvider="{datosMaestrosService.getPuestos.lastResult}" change="fireChange()"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:Label text="Seniority"/>
+			<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" unselectedLabel="Todos" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" change="fireChange()"/>
+		</mx:VBox>
 	</mx:HBox>
 	<mx:HBox width="100%" height="100%">
 		<mx:VBox  width="100%" height="100%" verticalAlign="bottom" horizontalAlign="right">
@@ -30,6 +42,9 @@
 		<mx:method name="getPuntosDeVista" result="fireChange()"/>
 	</mx:RemoteObject>
 	
+	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService">
+	</mx:RemoteObject>
+	
 	<mx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
@@ -37,6 +52,9 @@
 			private function init():void {
 				redesService.getRedes();
 				redesService.getDatosMaestros();
+				datosMaestrosService.getAreas();
+				datosMaestrosService.getPuestos();
+				datosMaestrosService.getSeniorities();
 			}
 			
 			private function loadPuntosDeVista():void {
@@ -57,6 +75,20 @@
 				return datosMaestrosCombo.selectedItem;
 			}
 			
+			[Bindable("change")]
+			public function get area():Object {
+				return areaCombo.selectedItem;
+			}
+			
+			[Bindable("change")]
+			public function get puesto():Object {
+				return puestoCombo.selectedItem;
+			}
+			
+			[Bindable("change")]
+			public function get seniority():Object {
+				return seniorityCombo.selectedItem;
+			}
 		]]>
 	</mx:Script>
 </mx:Panel>
