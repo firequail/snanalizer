@@ -24,6 +24,7 @@
 	              </mx:ArrayCollection> 
 				</sna:DataComboBox>
 			</mx:FormItem>
+
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
 			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />

@@ -25,6 +25,9 @@
 				<sna:DataComboBox id="rolCombo" dataProvider="{listaAreas}">
 				</sna:DataComboBox>
 			</mx:FormItem>
+			<mx:FormItem>
+				<sna:FileUpload	width="100%" height="100%"/>
+			</mx:FormItem>
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
 			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />

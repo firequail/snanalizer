@@ -25,6 +25,7 @@
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 			
+			
 			[Bindable]
 			private var datoMaestro:Object;
 			
@@ -43,18 +44,6 @@
 				
 			}
 			
-			/*private function editarAtributo():void {
-				//dispatchEvent();
-				//Alert.show(datoMaestro.id);
-			}
-			
-			private function removerAtributo():void {
-	
-			}
-			
-			private function nuevoAtributo():void {
-				
-			}*/
 			
 		]]>
 	</mx:Script>
