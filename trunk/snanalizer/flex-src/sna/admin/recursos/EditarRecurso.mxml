@@ -29,7 +29,7 @@
 				</sna:DataComboBox>
 			</mx:FormItem>
 			<mx:FormItem label="Seniority" tabIndex="6">
-				<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="nombre" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" selectedData="{recurso.seniority.nombre}" >
+				<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" selectedData="{recurso.seniority.id}" >
 				</sna:DataComboBox>
 			</mx:FormItem>
 		</mx:Form>
@@ -66,9 +66,7 @@
 				datosMaestrosService.getAreas();
 				datosMaestrosService.getPuestos();
 				datosMaestrosService.getSeniorities();
-
 			}
-			
 		
 		]]>
 	</mx:Script>

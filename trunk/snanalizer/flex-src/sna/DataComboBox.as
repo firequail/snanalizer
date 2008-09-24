@@ -8,6 +8,7 @@ package sna
 		
 		public var dataField:String = "data";
 		private var _unselectedLabel:String;
+		private var initialSelectedData:Object;
 		
 		public function DataComboBox() {
 			super();
@@ -22,6 +23,7 @@ package sna
 				unselected[labelField] = _unselectedLabel;
 				super.dataProvider = new PromptArrayCollection([unselected],value as ArrayCollection);
 			}
+			selectedData = this.initialSelectedData;
 		}
 		
 		public function set unselectedLabel(value:String):void {
@@ -29,7 +31,8 @@ package sna
 		}
 		
 		public function set selectedData(value:Object):void {
-			if (value != null && selectedIndex == -1) {
+			this.initialSelectedData = value;
+			if (value != null ) {
 				if (collection && collection.length) {
 					var cursor:IViewCursor = collection.createCursor();
 					while (!cursor.afterLast) {
