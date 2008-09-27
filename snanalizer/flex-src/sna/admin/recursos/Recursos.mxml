@@ -21,6 +21,7 @@
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Nuevo Recurso" click="nuevoRecurso()"/>
+			<mx:Button label="Visualizar Recurso" click="visualizarRecurso()"/>
 		</mx:ControlBar>
 	</mx:Panel>
 
@@ -52,6 +53,9 @@
 				this.currentState = "NuevoRecurso";
 			}
 
+			private function visualizarRecurso():void {
+				this.currentState="VisualizarRecurso";
+			}
 				]]>
 		</mx:Script>
 </mx:VBox>

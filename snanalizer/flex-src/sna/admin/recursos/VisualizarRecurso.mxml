@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Panel title="Visualizar Recurso" xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300">
-	<mx:Label x="0" y="10" text="{redesService.getNodo.lastResult.recurso.usuario.email}"/>
+	<mx:Label x="0" y="10" text="{recurso.usuario.nombre}"/>
 	
+	<mx:RemoteObject id="redesService" destination="redesService">
+	</mx:RemoteObject>
 	
 </mx:Panel>
