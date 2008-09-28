@@ -23,6 +23,26 @@ public class Recurso extends DomainEntity {
 	private Atributo area;
 	private Atributo puesto;
 	private Atributo seniority;
+	private String estadoCivil;
+	private String localidad;
+	private Atributo provincia;
+	private String titulo;
+	private Atributo institucion;
+	private Integer anioIngreso;
+	private Integer anioEgreso;
+	private Atributo idioma1;
+	private Atributo idioma2;
+	private Atributo idioma3;
+	private Atributo nivelIdioma1;
+	private Atributo nivelIdioma2;
+	private Atributo nivelIdioma3;
+	private Atributo hobbie1;
+	private Atributo hobbie2;
+	private Atributo hobbie3;
+	private Atributo hobbie4;
+	private Atributo hobbie5;
+	private Atributo hobbie6;
+	private String experiencia;
 	private Boolean estado;
 	
 	@Basic(fetch=LAZY)
@@ -141,6 +161,181 @@ public class Recurso extends DomainEntity {
 
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
+	}
+	
+	public void setIdioma1(Atributo idioma) {
+		this.idioma1 = idioma;
+	}
+
+	@ManyToOne
+	public Atributo getIdioma1() {
+		return idioma1;
+	}
+	
+	public void setIdioma2(Atributo idioma) {
+		this.idioma2 = idioma;
+	}
+
+	@ManyToOne
+	public Atributo getIdioma2() {
+		return idioma2;
+	}
+	
+	public void setIdioma3(Atributo idioma) {
+		this.idioma3 = idioma;
+	}
+
+	@ManyToOne
+	public Atributo getIdioma3() {
+		return idioma3;
+	}
+	
+	public void setNivelIdioma1(Atributo nivelIdioma) {
+		this.nivelIdioma1 = nivelIdioma;
+	}
+
+	@ManyToOne
+	public Atributo getNivelIdioma1() {
+		return nivelIdioma1;
+	}
+	
+	public void setNivelIdioma2(Atributo nivelIdioma) {
+		this.nivelIdioma2 = nivelIdioma;
+	}
+
+	@ManyToOne
+	public Atributo getNivelIdioma2() {
+		return nivelIdioma2;
+	}
+	
+	public void setNivelIdioma3(Atributo nivelIdioma) {
+		this.nivelIdioma3 = nivelIdioma;
+	}
+
+	@ManyToOne
+	public Atributo getNivelIdioma3() {
+		return nivelIdioma3;
+	}
+	
+	public void setHobbie1(Atributo hobbie) {
+		this.hobbie1 = hobbie;
+	}
+
+	@ManyToOne
+	public Atributo getHobbie1() {
+		return hobbie1;
+	}
+	
+	public void setHobbie2(Atributo hobbie) {
+		this.hobbie2 = hobbie;
+	}
+
+	@ManyToOne
+	public Atributo getHobbie2() {
+		return hobbie2;
+	}
+	
+	public void setHobbie3(Atributo hobbie) {
+		this.hobbie3 = hobbie;
+	}
+
+	@ManyToOne
+	public Atributo getHobbie3() {
+		return hobbie3;
+	}
+	
+	public void setHobbie4(Atributo hobbie) {
+		this.hobbie4 = hobbie;
+	}
+
+	@ManyToOne
+	public Atributo getHobbie4() {
+		return hobbie4;
+	}
+	
+	public void setHobbie5(Atributo hobbie) {
+		this.hobbie5 = hobbie;
+	}
+
+	@ManyToOne
+	public Atributo getHobbie5() {
+		return hobbie5;
+	}
+	
+	public void setHobbie6(Atributo hobbie) {
+		this.hobbie6 = hobbie;
+	}
+
+	@ManyToOne
+	public Atributo getHobbie6() {
+		return hobbie6;
+	}
+	
+	public void setProvincia(Atributo provincia) {
+		this.provincia = provincia;
+	}
+
+	@ManyToOne
+	public Atributo getProvincia() {
+		return provincia;
+	}
+	
+	public void setInstitucion(Atributo institucion) {
+		this.institucion = institucion;
+	}
+
+	@ManyToOne
+	public Atributo getInstitucion() {
+		return institucion;
+	}
+	
+	
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+	
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+	
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+	
+	public void setAnioIngreso(Integer anioIngreso) {
+		this.anioIngreso = anioIngreso;
+	}
+
+	public Integer getAnioIngreso() {
+		return anioIngreso;
+	}
+	
+	public void setAnioEgreso(Integer anioEgreso) {
+		this.anioEgreso = anioEgreso;
+	}
+
+	public Integer getAnioEgreso() {
+		return anioEgreso;
+	}
+	
+	public void setExperiencia(String experiencia) {
+		this.experiencia = experiencia;
+	}
+
+	public String getExperiencia() {
+		return experiencia;
 	}
 	
 	

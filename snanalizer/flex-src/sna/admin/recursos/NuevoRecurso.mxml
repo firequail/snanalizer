@@ -60,16 +60,10 @@
 			
 			[Bindable]
 			public var recurso:Object;
-			[Bindable]
-			public var listaAreas:ArrayCollection;
-			[Bindable]
-			public var listaPuestos:ArrayCollection;
-			[Bindable]
-			public var listaSeniorities:ArrayCollection;
+
 						
 			private function guardar():void {
 				recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int);
-				//photo.startUploading();
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			

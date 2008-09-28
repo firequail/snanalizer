@@ -14,14 +14,19 @@
 				<recursos:EditarRecurso id="editarRecurso" result="editarRecursoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="VisualizarRecurso">
+			<mx:RemoveChild target="{panel1}"/>
+			<mx:AddChild position="lastChild">
+				<recursos:VisualizarRecurso id="mostrarRecurso" result="verRecursosOK(event)"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	<mx:Panel title="Listado de Recursos" id="panel1" width="402" height="300">
 		<mx:HBox>
-			<recursos:ListadoRecursos id="listadoRecursos" result="modificarRecurso(event)" width="382" height="224"/>
+			<recursos:ListadoRecursos id="listadoRecursos" result="verRecurso(event)" width="382" height="224"/>
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Nuevo Recurso" click="nuevoRecurso()"/>
-			<mx:Button label="Visualizar Recurso" click="visualizarRecurso()"/>
 		</mx:ControlBar>
 	</mx:Panel>
 
@@ -39,9 +44,9 @@
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 			
-			private function modificarRecurso(event:ResultEvent):void {
-				this.currentState = "EditarRecurso";
-				editarRecurso.recurso = event.result;
+			private function verRecurso(event:ResultEvent):void {
+				this.currentState = "VisualizarRecurso";
+				mostrarRecurso.recurso = event.result;
 			}
 			
 			private function editarRecursoOK(event:ResultEvent):void {
@@ -53,9 +58,22 @@
 				this.currentState = "NuevoRecurso";
 			}
 
-			private function visualizarRecurso():void {
-				this.currentState="VisualizarRecurso";
+			private function verRecursosOK(event:ResultEvent):void {
+				if(event.result==null) {
+					this.currentState = "";
+					listadoRecursos.load();	
+				}
+				else
+				{
+					this.currentState = "EditarRecurso";
+					editarRecurso.recurso = event.result;
+				}
+				
 			}
+
+			//private function visualizarRecurso():void {
+				//this.currentState="VisualizarRecurso";
+			//}
 				]]>
 		</mx:Script>
 </mx:VBox>

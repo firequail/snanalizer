@@ -24,11 +24,11 @@
 				<mx:DateField id="dtf" selectedDate="{recurso.fechaNac}"/>
 			</mx:FormItem>
 			<mx:FormItem label="Area" tabIndex="4">
-				<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="nombre" dataProvider="{datosMaestrosService.getAreas.lastResult}" selectedData="{recurso.area.nombre}" >
+				<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getAreas.lastResult}" selectedData="{recurso.area.id}" >
 				</sna:DataComboBox>
 			</mx:FormItem>
 			<mx:FormItem label="Puesto" tabIndex="5">
-				<sna:DataComboBox id="puestoCombo" labelField="nombre" dataField="nombre"  dataProvider="{datosMaestrosService.getPuestos.lastResult}" selectedData="{recurso.puesto.nombre}" >
+				<sna:DataComboBox id="puestoCombo" labelField="nombre" dataField="id"  dataProvider="{datosMaestrosService.getPuestos.lastResult}" selectedData="{recurso.puesto.id}" >
 				</sna:DataComboBox>
 			</mx:FormItem>
 			<mx:FormItem label="Seniority" tabIndex="6">
@@ -58,9 +58,10 @@
 			
 			[Bindable]
 			public var recurso:Object;
+
 						
 			private function guardar():void {
-				//recursosService.modificar(recurso.id, email.text, password1.text, rolCombo.selectedData);
+				recursosService.modificar(recurso.id,nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int);
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
