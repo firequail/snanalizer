@@ -39,12 +39,16 @@
 			<mx:FormItem label="Foto">
 				<sna:FileUpload id="photo" uploadUrl="http://localhost:8080/snanalizer/helloworld.jsp"  width="100%" height="100%"/>
 			</mx:FormItem>
+			<mx:FormItem label="Activo" tabIndex="3">
+				<mx:CheckBox id="activo" selected="true" />
+			</mx:FormItem>
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
 			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
 			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
 		</mx:ControlBar>
 	</mx:Panel>
+	
 	
 	
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
@@ -57,14 +61,16 @@
 			import mx.collections.ArrayCollection;
 			import mx.rpc.events.ResultEvent;
 			import mx.collections.ArrayCollection;
+
+
 			
 			[Bindable]
 			public var recurso:Object;
 
 						
 			private function guardar():void {
-				recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int);
-				dispatchEvent(ResultEvent.createEvent());
+					recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,activo.selected);
+					dispatchEvent(ResultEvent.createEvent());
 			}
 			
 			private function cancelar():void {

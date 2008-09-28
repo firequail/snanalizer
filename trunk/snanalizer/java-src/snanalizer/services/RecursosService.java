@@ -10,8 +10,8 @@ public interface RecursosService {
 	
 	public List<Recurso> getAll();
 	
-	public void crear(String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior);
+	public void crear(String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior,boolean estado);
 	
-	public void modificar(int id,String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior);
+	public void modificar(int id,String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior,boolean estado);
 
 }
