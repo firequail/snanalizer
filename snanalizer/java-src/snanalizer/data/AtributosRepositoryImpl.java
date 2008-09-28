@@ -21,18 +21,6 @@ public class AtributosRepositoryImpl extends BaseRepositoryImpl<Atributo> implem
 	
 	}
 	
-	/*
-		public Usuario getUsuario(String email, String password) {
-
-		Criteria criteria = createCriteria();
-
-		criteria.add(Restrictions.eq("email", email));
-		criteria.add(Restrictions.eq("password", password));
-
-		return findUnique(criteria);
-	} 
-	
-	 */
 	
 	public List<Atributo> getAtributos(DatoMaestro dm) {
 		Criteria criteria = createCriteria();
