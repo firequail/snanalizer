@@ -8,7 +8,7 @@
 	
 
 
-	<mx:DataGrid id="recursos"  dataProvider="{recursosService.getAll.lastResult}" doubleClickEnabled="true" doubleClick="modificarRecurso()"  width="100%" height="100%">
+	<mx:DataGrid id="recursos"  dataProvider="{recursosService.getAll.lastResult}" doubleClickEnabled="true" doubleClick="verRecurso()"  width="100%" height="100%">
 		<mx:columns>
 			<mx:DataGridColumn headerText="Nombre">
 				<mx:itemRenderer>
@@ -65,7 +65,7 @@
 				recursosService.getAll();
 			}
 
-			private function modificarRecurso():void {
+			private function verRecurso():void {
 				dispatchEvent(ResultEvent.createEvent(recursos.selectedItem));
 			}
 			

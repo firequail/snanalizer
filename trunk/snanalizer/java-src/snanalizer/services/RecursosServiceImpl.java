@@ -36,19 +36,27 @@ public class RecursosServiceImpl implements RecursosService {
 		usuario.setApellido(apellido);
 		usuario.setNombre(nombre);
 		Recurso recurso = new Recurso(usuario);
-		Atributo objArea = new Atributo();
-		Atributo objPuesto = new Atributo();
-		Atributo objSeniority = new Atributo();
-		objArea = atributos.getAtributo(area);
-		objPuesto = atributos.getAtributo(puesto);
-		objSeniority = atributos.getAtributo(senior);
-		recurso.setArea(objArea);
-		recurso.setPuesto(objPuesto);
-		recurso.setSeniority(objSeniority);
+		recurso.setArea(atributos.getAtributo(area));
+		recurso.setPuesto(atributos.getAtributo(puesto));
+		recurso.setSeniority(atributos.getAtributo(area));
 		recurso.setFechaNac(fecha);
 		usuarios.add(usuario);
 		recursos.add(recurso);
 	}
+	
+	public void modificar(int id,String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior) {
+		Recurso recurso = recursos.getById(id);
+		Usuario usuario = recurso.getUsuario();
+		usuario.setApellido(apellido);
+		usuario.setNombre(nombre);
+		usuario.setEmail(email);
+		usuario.setPassword(password);
+		recurso.setArea(atributos.getAtributo(area));
+		recurso.setPuesto(atributos.getAtributo(puesto));
+		recurso.setSeniority(atributos.getAtributo(senior));
+		recurso.setFechaNac(fecha);
+	}
+
 	
 
 	
