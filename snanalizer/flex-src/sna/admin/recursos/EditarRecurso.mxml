@@ -20,6 +20,9 @@
 			<mx:FormItem label="Repetir Contraseña" tabIndex="3">
 				<mx:TextInput id="password2" displayAsPassword="true" text="{recurso.usuario.password}"/>
 			</mx:FormItem>
+			<mx:FormItem label="Fecha de Nacimiento" tabIndex="3">
+				<mx:DateField id="dtf" selectedDate="{recurso.fechaNac}"/>
+			</mx:FormItem>
 			<mx:FormItem label="Area" tabIndex="4">
 				<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="nombre" dataProvider="{datosMaestrosService.getAreas.lastResult}" selectedData="{recurso.area.nombre}" >
 				</sna:DataComboBox>
@@ -31,6 +34,9 @@
 			<mx:FormItem label="Seniority" tabIndex="6">
 				<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" selectedData="{recurso.seniority.id}" >
 				</sna:DataComboBox>
+			</mx:FormItem>
+			<mx:FormItem label="Foto">
+				<sna:FileUpload	width="100%" height="100%"/>
 			</mx:FormItem>
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">

@@ -6,7 +6,7 @@ import snanalizer.domain.DatoMaestro;
 
 public interface AtributosRepository extends BaseRepository<Atributo> {
 
-	public Atributo getAtributo();
+	public Atributo getAtributo(int id);
 	public abstract List<Atributo> getAtributos(DatoMaestro dm);
 
 }
