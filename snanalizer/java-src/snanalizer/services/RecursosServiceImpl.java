@@ -30,7 +30,7 @@ public class RecursosServiceImpl implements RecursosService {
 		return recursos.getAll();
 	}
 	
-	public void crear(String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior) {
+	public void crear(String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior, boolean estado) {
 		
 		Usuario usuario = new Usuario(email,password,"RECURSO");
 		usuario.setApellido(apellido);
@@ -40,11 +40,12 @@ public class RecursosServiceImpl implements RecursosService {
 		recurso.setPuesto(atributos.getAtributo(puesto));
 		recurso.setSeniority(atributos.getAtributo(senior));
 		recurso.setFechaNac(fecha);
+		recurso.setEstado(estado);
 		usuarios.add(usuario);
 		recursos.add(recurso);
 	}
 	
-	public void modificar(int id,String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior) {
+	public void modificar(int id,String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior,boolean estado) {
 		Recurso recurso = recursos.getById(id);
 		Usuario usuario = recurso.getUsuario();
 		usuario.setApellido(apellido);
@@ -55,6 +56,7 @@ public class RecursosServiceImpl implements RecursosService {
 		recurso.setPuesto(atributos.getAtributo(puesto));
 		recurso.setSeniority(atributos.getAtributo(senior));
 		recurso.setFechaNac(fecha);
+		recurso.setEstado(estado);
 	}
 
 	
