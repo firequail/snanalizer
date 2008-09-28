@@ -1,6 +1,8 @@
 package snanalizer.services;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 
@@ -358,22 +360,32 @@ public class InitDBServiceImpl implements InitDBService {
 	}
 
 	private void crearDatosMaestros() {
+		
+
+		
+		
+		// Atributos para puesto, area y seniority
+		
 		DatoMaestro dm1 = new DatoMaestro();
 		DatoMaestro dm2 = new DatoMaestro();
 		DatoMaestro dm3 = new DatoMaestro();
-		datosMaestros.add(dm1);
-		datosMaestros.add(dm2);
-		datosMaestros.add(dm3);
-
+		
 		Atributo atr1_dm1 = new Atributo();
 		Atributo atr2_dm1 = new Atributo();
 		Atributo atr3_dm1 = new Atributo();
+		
+		
 		Atributo atr1_dm2 = new Atributo();
 		Atributo atr2_dm2 = new Atributo();
 		Atributo atr3_dm2 = new Atributo();
 		Atributo atr1_dm3 = new Atributo();
 		Atributo atr2_dm3 = new Atributo();
 		Atributo atr3_dm3 = new Atributo();
+		
+		datosMaestros.add(dm1);		
+		datosMaestros.add(dm2);
+		datosMaestros.add(dm3);
+		
 		atributosRepository.add(atr1_dm1);
 		atributosRepository.add(atr2_dm1);
 		atributosRepository.add(atr3_dm1);
@@ -417,6 +429,140 @@ public class InitDBServiceImpl implements InitDBService {
 		dm3.getAtributos().add(atr1_dm3);
 		dm3.getAtributos().add(atr2_dm3);
 		dm3.getAtributos().add(atr3_dm3);
+		
+		
+		//******  Atributos para IDIOMAS  ******//
+		
+		DatoMaestro dmIdiomas = new DatoMaestro();
+		dmIdiomas.setDescripcion("Idioma");
+		
+		Atributo idiomaI = new Atributo("Inglés","Idioma Inglés",true);
+		Atributo idiomaP = new Atributo("Portugués","Idioma Portugués",true);
+		Atributo idiomaA = new Atributo("Alemán","Idioma Alemán",true);
+		Atributo idiomaF = new Atributo("Francés","Idioma Francés",true);
+		
+		List<Atributo> listaIdiomas = new ArrayList<Atributo>();
+		listaIdiomas.add(idiomaI);
+		listaIdiomas.add(idiomaP);
+		listaIdiomas.add(idiomaA);
+		listaIdiomas.add(idiomaF);
+		
+		dmIdiomas.setAtributos(listaIdiomas);
+		
+		for (Iterator<Atributo> atr = listaIdiomas.iterator(); atr.hasNext();) {
+			Atributo a = atr.next();
+			a.setDatoMaestro(dmIdiomas);
+		}
+				
+		// Agrego al repositorio
+		
+		atributosRepository.add(idiomaI);
+		atributosRepository.add(idiomaP);
+		atributosRepository.add(idiomaA);
+		atributosRepository.add(idiomaF);
+		datosMaestros.add(dmIdiomas);
+		
+		
+		//******  Atributos para NIVELES  ******//
+		
+		
+		DatoMaestro dmNiveles = new DatoMaestro();
+		dmNiveles.setDescripcion("Nivel");
+		
+		Atributo nivel1 = new Atributo("Básico","Nivel Básico",true);
+		Atributo nivel2 = new Atributo("Intermedio","Nivel Intermedio",true);
+		Atributo nivel3 = new Atributo("Avanzado","Nivel Avanzado",true);
+		Atributo nivel4 = new Atributo("Nativo","Nivel Nativo",true);
+		
+		List<Atributo> listaNiveles = new ArrayList<Atributo>();
+		listaNiveles.add(nivel1);
+		listaNiveles.add(nivel2);
+		listaNiveles.add(nivel3);
+		listaNiveles.add(nivel4);
+		
+		dmNiveles.setAtributos(listaNiveles);
+		
+		for (Iterator<Atributo> atr = listaNiveles.iterator(); atr.hasNext();) {
+			Atributo a = atr.next();
+			a.setDatoMaestro(dmNiveles);
+		}
+				
+		// Agrego al repositorio
+		
+		atributosRepository.add(nivel1);
+		atributosRepository.add(nivel2);
+		atributosRepository.add(nivel3);
+		atributosRepository.add(nivel4);
+		datosMaestros.add(dmNiveles);
+		
+		//******  Atributos para INSTUCIONES  ******//
+		
+					
+		DatoMaestro dmInst = new DatoMaestro();
+		dmInst.setDescripcion("Institución");
+		
+		Atributo inst1 = new Atributo("UTN","Universidad Tecnológica Nacional",true);
+		Atributo inst2 = new Atributo("UBA","Universidad de Buenos Aires",true);
+		Atributo inst3 = new Atributo("ITBA","Instituto Técnico de Bs. As.",true);
+		Atributo inst4 = new Atributo("UADE","Universidad Argentina de la Empresa",true);
+		
+		List<Atributo> listaInst = new ArrayList<Atributo>();
+		listaInst.add(inst1);
+		listaInst.add(inst2);
+		listaInst.add(inst3);
+		listaInst.add(inst4);
+		
+		dmInst.setAtributos(listaInst);
+		
+		for (Iterator<Atributo> atr = listaInst.iterator(); atr.hasNext();) {
+			Atributo a = atr.next();
+			a.setDatoMaestro(dmInst);
+		}
+				
+		// Agrego al repositorio
+		
+		atributosRepository.add(inst1);
+		atributosRepository.add(inst2);
+		atributosRepository.add(inst3);
+		atributosRepository.add(inst4);
+		datosMaestros.add(dmInst);
+		  
+		
+		//******  Atributos para HOBBIES  ******//
+	
+		
+		DatoMaestro dmHobb = new DatoMaestro();
+		dmHobb.setDescripcion("Hobby");
+		
+		Atributo hob1 = new Atributo("Deporte","Deporte",true);
+		Atributo hob2 = new Atributo("Teatro","Teatro",true);
+		Atributo hob3 = new Atributo("Traveling","Viajes",true);
+		Atributo hob4 = new Atributo("Paintball","Paintball",true);
+		
+		List<Atributo> listaHob = new ArrayList<Atributo>();
+		listaHob.add(hob1);
+		listaHob.add(hob2);
+		listaHob.add(hob3);
+		listaHob.add(hob4);
+		
+		dmHobb.setAtributos(listaHob);
+		
+		for (Iterator<Atributo> atr = listaHob.iterator(); atr.hasNext();) {
+			Atributo a = atr.next();
+			a.setDatoMaestro(dmHobb);
+		}
+				
+		// Agrego al repositorio
+		
+		atributosRepository.add(hob1);
+		atributosRepository.add(hob2);
+		atributosRepository.add(hob3);
+		atributosRepository.add(hob4);
+		datosMaestros.add(dmHobb);
+		  
+		 
+		 
+		
 	}
 
 	public void setRedes(RedesRepository redes) {

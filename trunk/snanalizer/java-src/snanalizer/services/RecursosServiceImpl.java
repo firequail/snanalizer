@@ -38,7 +38,7 @@ public class RecursosServiceImpl implements RecursosService {
 		Recurso recurso = new Recurso(usuario);
 		recurso.setArea(atributos.getAtributo(area));
 		recurso.setPuesto(atributos.getAtributo(puesto));
-		recurso.setSeniority(atributos.getAtributo(area));
+		recurso.setSeniority(atributos.getAtributo(senior));
 		recurso.setFechaNac(fecha);
 		usuarios.add(usuario);
 		recursos.add(recurso);
