@@ -3,8 +3,14 @@ package snanalizer.domain;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.persistence.Basic;
+import javax.persistence.Lob;
+import static javax.persistence.FetchType.LAZY;
+import javax.persistence.Column;
+
 
 import java.util.Date;
+//import java.sql.Date;
 import snanalizer.domain.Atributo;
 
 @Entity
@@ -18,6 +24,11 @@ public class Recurso extends DomainEntity {
 	private Atributo puesto;
 	private Atributo seniority;
 	private Boolean estado;
+	
+	@Basic(fetch=LAZY)
+	@Lob @Column(name="PIC")
+	private byte[] picture;
+	
 
 	public Recurso() {
 
@@ -105,4 +116,34 @@ public class Recurso extends DomainEntity {
 	public void setSeniority(Atributo seniority) {
 		this.seniority = seniority;
 	}
+
+
+
+	public Date getFechaNac() {
+		return fechaNac;
+	}
+
+	public void setFechaNac(Date fechaNac) {
+		this.fechaNac = fechaNac;
+	}
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
+
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+	
+	
+	
+	
 }

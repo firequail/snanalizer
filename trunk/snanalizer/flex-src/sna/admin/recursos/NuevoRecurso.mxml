@@ -21,12 +21,23 @@
 			<mx:FormItem label="Repetir Contraseña" tabIndex="3">
 				<mx:TextInput id="password2" displayAsPassword="true" text=""/>
 			</mx:FormItem>
+			<mx:FormItem label="Fecha de Nacimiento" tabIndex="3">
+				<mx:DateField id="dtf" selectedDate="{recurso.fechaNac}"/>
+			</mx:FormItem>
 			<mx:FormItem label="Area" tabIndex="4">
-				<sna:DataComboBox id="rolCombo" dataProvider="{listaAreas}">
+				<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getAreas.lastResult}"  >
 				</sna:DataComboBox>
 			</mx:FormItem>
-			<mx:FormItem>
-				<sna:FileUpload	width="100%" height="100%"/>
+			<mx:FormItem label="Puesto" tabIndex="5">
+				<sna:DataComboBox id="puestoCombo" labelField="nombre" dataField="id"  dataProvider="{datosMaestrosService.getPuestos.lastResult}"  >
+				</sna:DataComboBox>
+			</mx:FormItem>
+			<mx:FormItem label="Seniority" tabIndex="6">
+				<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" >
+				</sna:DataComboBox>
+			</mx:FormItem>
+			<mx:FormItem label="Foto">
+				<sna:FileUpload id="photo" uploadUrl="http://localhost:8080/snanalizer/helloworld.jsp"  width="100%" height="100%"/>
 			</mx:FormItem>
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
@@ -38,6 +49,7 @@
 	
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
+	
 		
 	<mx:Script>
 		<![CDATA[
@@ -56,7 +68,8 @@
 			public var listaSeniorities:ArrayCollection;
 						
 			private function guardar():void {
-				//recursosService.modificar(recurso.id, email.text, password1.text, rolCombo.selectedData);
+				recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int);
+				//photo.startUploading();
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
@@ -65,10 +78,11 @@
 			}
 			
 			private function load():void {
-				listaAreas = datosMaestrosService.getAtributos("Area");
-				listaPuestos = datosMaestrosService.getAtributos("Puesto");
-				listaSeniorities = datosMaestrosService.getAtributos("Seniority");
+				datosMaestrosService.getAreas();
+				datosMaestrosService.getPuestos();
+				datosMaestrosService.getSeniorities();
 			}
+
 
 			
 		]]>
