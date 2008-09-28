@@ -1,8 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel title="Visualizar Recurso" xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300">
-	<mx:Label x="0" y="10" text="{recurso.usuario.nombre}"/>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="1048" height="900">
+	<mx:Panel x="57.25" y="10" width="876.5" height="691" layout="absolute" title="Datos del recurso">
+		<mx:Text x="97" y="12" text="Usuario" width="140"/>
+		<mx:Text x="97" y="40" text="Nombre" width="140"/>
+		<mx:Text x="97" y="68" text="Apellido" width="140"/>
+		<mx:Text x="226" y="12" text="{recurso.usuario}" width="157.5" fontWeight="bold"/>
+		<mx:Text x="226" y="40" text="{recurso.nombre}" width="157.5" fontWeight="bold"/>
+		<mx:Text x="226" y="68" text="{recurso.apellido}" width="157.5" fontWeight="bold"/>
+		<mx:Image y="10" width="85" height="78" x="417" scaleContent="true" source="{recurso.foto}"/>
+		<mx:Panel x="57" y="107" width="326.5" height="166" layout="absolute" title="Datos laborales">
+			<mx:Text x="28.75" y="40" text="Puesto" width="140"/>
+			<mx:Text x="28.75" y="66" text="Seniority" width="140"/>
+			<mx:Text x="28.75" y="12" text="Area" width="140"/> 
+			<mx:Text x="156.5" y="38" text="{recurso.puesto}" width="140" fontWeight="bold"/>
+			<mx:Text x="156.5" y="64" text="{recurso.seniority}" width="140" fontWeight="bold"/>
+			<mx:Text x="156.5" y="10" text="{recurso.area}" width="140" fontWeight="bold"/>
+		</mx:Panel>
+		<mx:Panel x="401" y="106.9" width="376.2879" height="166.06061" layout="absolute" title="Datos personales">
+			<mx:Text x="27.75" y="68" text="Localidad de residencia" width="140"/>
+			<mx:Text x="27.75" y="40" text="Estado Civil" width="140"/>
+			<mx:Text x="26.75" y="12" text="Fecha de nacimiento" width="140"/>
+			<mx:Text x="27.75" y="96" text="Provincia de residencia" width="140"/>
+			<mx:Text x="199.75" y="12" text="{recurso.fechaNacimiento}" width="140" fontWeight="bold"/>
+			<mx:Text x="199.75" y="40" text="{recurso.estadoCivil}" width="140" fontWeight="bold"/>
+			<mx:Text x="199.75" y="68" text="{recurso.localidad}" width="140" fontWeight="bold"/>
+			<mx:Text x="199.75" y="96" text="{recurso.provincia}" width="140" fontWeight="bold"/>
+		</mx:Panel>
+		<mx:Panel x="57" y="281" width="326.5" height="165" layout="absolute" title="Datos académicos">
+			<mx:Text x="28.75" y="10" text="Título" width="140"/>
+			<mx:Text x="28.75" y="36" text="Establecimiento" width="140"/>
+			<mx:Text x="28.75" y="62" text="Año de ingreso" width="140"/>
+			<mx:Text x="28.75" y="90" text="Año de egreso" width="140"/>
+			<mx:Text x="156.5" y="10" text="{recurso.titulo}" width="140" fontWeight="bold"/>
+			<mx:Text x="156.5" y="36" text="{recurso.institucion}" width="140" fontWeight="bold"/>
+			<mx:Text x="156.5" y="62" text="{recurso.anioIngreso}" width="140" fontWeight="bold"/>
+			<mx:Text x="156.5" y="90" text="{recurso.anioEgreso}" width="140" fontWeight="bold"/>
+		</mx:Panel>
+		<mx:Panel x="401" y="281" width="376.2879" height="165" layout="absolute" title="Idiomas">
+			<mx:Text x="29.75" y="10" text="Idioma" width="140"/>
+			<mx:Text x="202.75" y="10" text="Nivel" width="140"/>
+			<mx:Text x="29.75" y="38" text="{recurso.idioma1}" width="140" fontWeight="bold"/>
+			<mx:Text x="29.75" y="66" text="{recurso.idioma2}" width="140" fontWeight="bold"/>
+			<mx:Text x="29.75" y="94" text="{recurso.idioma3}" width="140" fontWeight="bold"/>
+			<mx:Text x="202.75" y="36" text="{recurso.nivelIdioma1}" width="140" fontWeight="bold"/>
+			<mx:Text x="202.75" y="64" text="{recurso.nivelIdioma2}" width="140" fontWeight="bold"/>
+			<mx:Text x="202.75" y="92" text="{recurso.nivelIdioma3}" width="150" fontWeight="bold"/>
+		</mx:Panel>
+		<mx:Panel x="57" y="454" width="326.5" height="140" layout="absolute" title="Hobbies">
+<!--
+			<mx:CheckBox x="26.1" y="12" label="Lectura" fontWeight="bold" selected="{recurso.lectura}"/>
+			<mx:CheckBox x="26.1" y="40" label="Musica" fontWeight="bold" selected="{recurso.musica}"/>
+			<mx:CheckBox x="26.1" y="68" label="Deporte" fontWeight="bold" selected="{recurso.deporte}"/>  
+			<mx:CheckBox x="166.5" y="12" label="Artesanias" fontWeight="bold" selected="{recurso.artesanias}"/>
+			<mx:CheckBox x="166.5" y="40" label="Coleccion de objetos" fontWeight="bold" selected="{recurso.objetos}"/> 
+			<mx:CheckBox x="166.5" y="68" label="Pintura" fontWeight="bold" selected="{recurso.pintura}" enabled="true" fontStyle="normal"/>  
+-->
+			<mx:Text x="26.1" y="12" text="{recurso.hobbie1}" width="140" fontWeight="bold"/>
+			<mx:Text x="26.1" y="40" text="{recurso.hobbie2}" width="140" fontWeight="bold"/>
+			<mx:Text x="26.1" y="68" text="{recurso.hobbie3}" width="140" fontWeight="bold"/>
+			<mx:Text x="166.5" y="12" text="{recurso.hobbie4}" width="140" fontWeight="bold"/>
+			<mx:Text x="166.5" y="40" text="{recurso.hobbie5}" width="140" fontWeight="bold"/>
+			<mx:Text x="166.5" y="68" text="{recurso.hobbie6}" width="140" fontWeight="bold"/>
+		</mx:Panel>
+		<mx:Panel x="401" y="453.95" width="376.2879" height="140" layout="absolute" title="Experiencia laboral">
+			<mx:TextArea x="10" y="10" width="337.12122" height="80" editable="false" enabled="true" fontWeight="bold">
+				<mx:text><![CDATA[{recurso.experiencia}
+]]></mx:text>
+			</mx:TextArea>
+		</mx:Panel>
+
+	</mx:Panel>
 	
-	<mx:RemoteObject id="redesService" destination="redesService">
-	</mx:RemoteObject>
+	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	
-</mx:Panel>
+</mx:Canvas>
+
+
