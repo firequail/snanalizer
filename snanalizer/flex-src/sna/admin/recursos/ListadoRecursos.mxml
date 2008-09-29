@@ -4,7 +4,9 @@
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 
-	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	<mx:RemoteObject id="recursosService" destination="recursosService">
+		<mx:method name="buscarRecursoByName" result="refreshRecursos(event)"/>
+	</mx:RemoteObject>
 	
 
 
@@ -75,9 +77,13 @@
 			
 			public function busqueda():void {
 				recursosService.buscarRecursoByName(nombre,apellido);
-				recursos.dataProvider = recursosService.buscarRecursoByName.lastResult;
+				//recursos.dataProvider = recursosService.buscarRecursoByName.lastResult;
 				//recursos.dataProvider = recursosService.getAll();
 				//recursos.
+			}
+
+			public function refreshRecursos(event:ResultEvent):void {
+				recursos.dataProvider = recursosService.buscarRecursoByName.lastResult;
 			}
 			
 			

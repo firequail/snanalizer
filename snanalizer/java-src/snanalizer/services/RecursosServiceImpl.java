@@ -31,8 +31,8 @@ public class RecursosServiceImpl implements RecursosService {
 	}
 	
 	public List<Recurso> buscarRecursoByName(String nombre,String apellido) {
-		Usuario user = usuarios.getUsuarioByName(nombre,apellido);
-		return recursos.buscarRecursoByName(user);
+		//List<Usuario> user = usuarios.getUsuarioByName(nombre,apellido);
+		return recursos.buscarRecursoByName(nombre, apellido);
 		//return recursos.getAll();
 	}
 	

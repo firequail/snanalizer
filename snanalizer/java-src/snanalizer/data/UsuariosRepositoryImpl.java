@@ -20,7 +20,7 @@ public class UsuariosRepositoryImpl extends BaseRepositoryImpl<Usuario> implemen
 		return findUnique(criteria);
 	}
 	
-	public Usuario getUsuarioByName(String name, String apellido) {
+	public List<Usuario> getUsuarioByName(String name, String apellido) {
 
 		Criteria criteria = createCriteria();
 		//if(name!=null)
@@ -28,7 +28,7 @@ public class UsuariosRepositoryImpl extends BaseRepositoryImpl<Usuario> implemen
 		//if(apellido!=null)
 			criteria.add(Restrictions.eq("apellido", apellido));
 
-		return findUnique(criteria);
+		return find(criteria);
 	}
 	
 	public void removeAllRecursos() {
