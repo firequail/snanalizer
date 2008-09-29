@@ -1,11 +1,15 @@
 package snanalizer.test;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import snanalizer.domain.Recurso;
 import snanalizer.services.DatosMaestrosService;
+import snanalizer.services.RecursosService;
 import snanalizer.services.RedesService;
 
 public class RedesServiceTest extends TestCase {
@@ -13,6 +17,7 @@ public class RedesServiceTest extends TestCase {
 	private ApplicationContext context;
 	private RedesService redesService;
 	private DatosMaestrosService datosMaestrosService;
+	private RecursosService recursosService;
 
 	/**
 	 * Esto se ejecuta antes de cada test
@@ -23,6 +28,7 @@ public class RedesServiceTest extends TestCase {
 		redesService = (RedesService) context.getBean("redesService");
 		datosMaestrosService = (DatosMaestrosService) context
 				.getBean("datosMaestrosService");
+		recursosService = (RecursosService) context.getBean("recursosService");
 	}
 
 	/**
@@ -49,5 +55,12 @@ public class RedesServiceTest extends TestCase {
 
 		System.out.println(grafo);
 		assertNotNull(grafo);
+	}
+
+	public void testBusqquedaRecursos() {
+		List<Recurso> recursos = recursosService.buscarRecursoByName("pepe",
+				"lopez");
+
+		System.out.println(recursos);
 	}
 }
