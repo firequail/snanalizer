@@ -36,7 +36,7 @@
 			<mx:Text x="28.75" y="62" text="Año de ingreso" width="140"/>
 			<mx:Text x="28.75" y="90" text="Año de egreso" width="140"/>
 			<mx:Text x="156.5" y="10" text="{recurso.titulo}" width="140" fontWeight="bold"/>
-			<mx:Text x="156.5" y="36" text="{recurso.institucion}" width="140" fontWeight="bold"/>
+			<mx:Text x="156.5" y="36" text="{recurso.institucion.nombre}" width="140" fontWeight="bold"/>
 			<mx:Text x="156.5" y="62" text="{recurso.anioIngreso}" width="140" fontWeight="bold"/>
 			<mx:Text x="156.5" y="90" text="{recurso.anioEgreso}" width="140" fontWeight="bold"/>
 		</mx:Panel>

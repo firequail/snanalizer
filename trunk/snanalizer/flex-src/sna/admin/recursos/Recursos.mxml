@@ -21,9 +21,14 @@
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
-	<mx:Panel title="Listado de Recursos" id="panel1" width="402" height="300">
+	<mx:Panel title="Buscar Recurso" id="panelBuscar" width="600">
 		<mx:HBox>
-			<recursos:ListadoRecursos id="listadoRecursos" result="verRecurso(event)" width="382" height="224"/>
+			<recursos:BuscarRecurso id="buscarRecursos" result="buscarRecurso(event)"/>
+		</mx:HBox>
+	</mx:Panel>
+	<mx:Panel title="Listado de Recursos" id="panel1" width="600" height="300">
+		<mx:HBox width="100%" height="100%">
+			<recursos:ListadoRecursos id="listadoRecursos" result="verRecurso(event)" width="100%" height="100%"/>
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Nuevo Recurso" click="nuevoRecurso()"/>
@@ -70,10 +75,14 @@
 				}
 				
 			}
+			
+			private function buscarRecurso(event:Event):void {
+				listadoRecursos.nombre = buscarRecursos.nombre.text;
+				listadoRecursos.apellido = buscarRecursos.apellido.text;
+				listadoRecursos.busqueda();
+			}
 
-			//private function visualizarRecurso():void {
-				//this.currentState="VisualizarRecurso";
-			//}
+
 				]]>
 		</mx:Script>
 </mx:VBox>
