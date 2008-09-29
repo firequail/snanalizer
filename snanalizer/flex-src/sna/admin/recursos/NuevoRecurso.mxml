@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="load()">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="load()" >
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -7,10 +7,10 @@
 	<mx:Panel title="Modificar Recurso">
 		<mx:Form id="form1" defaultButton="{okButton}">
 			<mx:FormItem label="Nombre" tabIndex="1">
-				<mx:TextInput id="nombre" text=""/>
+				<mx:TextInput id="nombre" text="" />
 			</mx:FormItem>
 			<mx:FormItem label="Apellido" tabIndex="1">
-				<mx:TextInput id="apellido" text=""/>
+				<mx:TextInput id="apellido" text="" />
 			</mx:FormItem>
 			<mx:FormItem label="E-Mail" tabIndex="1">
 				<mx:TextInput id="email" text=""/>

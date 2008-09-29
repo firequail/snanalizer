@@ -30,6 +30,12 @@ public class RecursosServiceImpl implements RecursosService {
 		return recursos.getAll();
 	}
 	
+	public List<Recurso> buscarRecursoByName(String nombre,String apellido) {
+		Usuario user = usuarios.getUsuarioByName(nombre,apellido);
+		return recursos.buscarRecursoByName(user);
+		//return recursos.getAll();
+	}
+	
 	public void crear(String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior, boolean estado) {
 		
 		Usuario usuario = new Usuario(email,password,"RECURSO");

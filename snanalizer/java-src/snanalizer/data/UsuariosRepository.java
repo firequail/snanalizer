@@ -11,4 +11,6 @@ public interface UsuariosRepository extends BaseRepository<Usuario> {
 	public void removeAllRecursos();
 
 	public List<Usuario> getNoRecursos();
+	
+	public Usuario getUsuarioByName(String name, String apellido);
 }
