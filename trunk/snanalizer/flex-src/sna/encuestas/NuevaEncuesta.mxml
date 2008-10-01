@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:Binding source="nombre.text" destination="encuesta.nombre"/>
+	
+	<mx:Panel title="Nueva encuesta" width="100%" height="100%">
+		<mx:Form id="form1" defaultButton="{okButton}" width="100%" height="100%">
+			<mx:FormItem label="Nombre" tabIndex="1" width="100%">
+				<mx:TextInput id="nombre" width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Preguntas" tabIndex="1" width="100%" height="100%">
+				<mx:DataGrid id="preguntas" editable="true" dataProvider="{encuesta.preguntas}" width="100%" height="100%">
+					<mx:columns>
+						<mx:DataGridColumn headerText="Descripción" dataField="descripcion" wordWrap="false"/>
+						<mx:DataGridColumn headerText="Intensidad máxima" textAlign="center" dataField="maximaIntensidad" headerWordWrap="true" width="100"/>
+					</mx:columns>
+				</mx:DataGrid>
+				<mx:Button label="Nueva Pregunta" click="nuevaPregunta()"/>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="2" />
+			<mx:Button label="Cancelar" click="cancelar()" tabIndex="3" />
+		</mx:ControlBar>
+	</mx:Panel>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			
+			[Bindable]
+			private var encuesta:Encuesta;
+			
+			public function init():void {
+				encuesta = new Encuesta();
+			}
+			
+			public function nuevaPregunta():void {
+				encuesta.preguntas.addItem(new Pregunta());
+			}
+			
+			public function guardar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			public function cancelar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+		]]>
+	</mx:Script>
+	
+</mx:Canvas>
