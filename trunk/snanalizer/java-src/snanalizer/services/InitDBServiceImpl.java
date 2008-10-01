@@ -16,6 +16,7 @@ import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.data.RelacionesRepository;
 import snanalizer.data.UsuariosRepository;
+import snanalizer.data.GruposRecursosRepository;
 import snanalizer.domain.Atributo;
 import snanalizer.domain.DatoMaestro;
 import snanalizer.domain.Nodo;
@@ -24,6 +25,7 @@ import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.domain.Usuario;
+import snanalizer.domain.GrupoRecursos;
 import snanalizer.install.Installer;
 
 @Transactional
@@ -55,6 +57,9 @@ public class InitDBServiceImpl implements InitDBService {
 	
 	@Resource
 	private AtributosRepository atributos;
+	
+	@Resource
+	private GruposRecursosRepository gruposRecursos;
 
 	public static void main(String[] args) {
 		new Installer().install();
@@ -314,7 +319,7 @@ public class InitDBServiceImpl implements InitDBService {
 		usuarios.add(usuario2);
 		usuarios.add(usuario3);
 		usuarios.add(usuario4);
-
+		
 		Recurso recurso1 = new Recurso(usuario1);
 		Recurso recurso2 = new Recurso(usuario2);
 		Recurso recurso3 = new Recurso(usuario3);
@@ -384,6 +389,16 @@ public class InitDBServiceImpl implements InitDBService {
 		recursos.add(recurso2);
 		recursos.add(recurso3);
 		recursos.add(recurso4);
+		
+		// Grupos de Recursos
+		GrupoRecursos grupo = new GrupoRecursos();
+		grupo.setDescripcion("Grupo de Recursos de DEV");
+		grupo.getRecursos().add(recurso1);
+		grupo.getRecursos().add(recurso2);
+		grupo.getRecursos().add(recurso3);
+		grupo.getRecursos().add(recurso4);
+		
+		gruposRecursos.add(grupo);
 		
 		List<Atributo> atributos = datosMaestros.getAll().get(1).getAtributos();
 		recurso1.setAtributo(atributos.get(0));

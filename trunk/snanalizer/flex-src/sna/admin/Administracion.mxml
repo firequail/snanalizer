@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:usuarios="sna.admin.usuarios.*" width="100%" height="100%" xmlns:maestros="sna.admin.maestros.*" xmlns:recursos="sna.admin.recursos.*" xmlns:encuestas="sna.encuestas.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:grupos="sna.admin.grupos.*" xmlns:sna="sna.*" xmlns:usuarios="sna.admin.usuarios.*" width="100%" height="100%" xmlns:maestros="sna.admin.maestros.*" xmlns:recursos="sna.admin.recursos.*" xmlns:encuestas="sna.encuestas.*" >
 	<sna:ControlBar/>
 	<mx:Panel title="Administración" width="100%" height="100%">
 		<mx:TabNavigator width="100%" height="100%">
@@ -11,6 +11,9 @@
 			</mx:Canvas>
 			<mx:Canvas label="Datos Maestros" width="100%" height="100%">
 				<maestros:DatosMaestros/>
+			</mx:Canvas>
+			<mx:Canvas label="Grupos de Recursos" width="100%" height="100%">
+				<grupos:Grupos/>
 			</mx:Canvas>
 			<mx:Canvas label="Encuestas" width="100%" height="100%">
 				<encuestas:Encuestas/>
