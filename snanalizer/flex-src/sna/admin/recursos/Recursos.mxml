@@ -4,18 +4,21 @@
 	<mx:states>
 		<mx:State name="NuevoRecurso">
 			<mx:RemoveChild target="{panel1}"/>
+			<mx:RemoveChild target="{panelBuscar}"/>
 			<mx:AddChild position="lastChild">
 				<recursos:NuevoRecurso id="newRecurso" result="editarRecursoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="EditarRecurso">
 			<mx:RemoveChild target="{panel1}"/>
+			<mx:RemoveChild target="{panelBuscar}"/>
 			<mx:AddChild position="lastChild">
 				<recursos:EditarRecurso id="editarRecurso" result="editarRecursoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="VisualizarRecurso">
 			<mx:RemoveChild target="{panel1}"/>
+			<mx:RemoveChild target="{panelBuscar}"/>
 			<mx:AddChild position="lastChild">
 				<recursos:VisualizarRecurso id="mostrarRecurso" result="verRecursosOK(event)"/>
 			</mx:AddChild>

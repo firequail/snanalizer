@@ -37,6 +37,9 @@
 	<bean id="atributosRepository"
 		class="snanalizer.data.AtributosRepositoryImpl" />
 		
+	<bean id="gruposRecursosRepository"
+		class="snanalizer.data.GruposRecursosRepositoryImpl" />
+		
 
 
 </beans>

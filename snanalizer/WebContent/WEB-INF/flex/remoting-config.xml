@@ -63,4 +63,10 @@
         		<source>recursosService</source>
         	</properties>
     </destination>
+    	<destination id="gruposRecursosService">
+        	<properties>
+        		<factory>spring</factory>
+        		<source>gruposRecursosService</source>
+        	</properties>
+    </destination>
 </service>

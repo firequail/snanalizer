@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="load()" >
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:Panel title="Editar Grupo" id="panel1" width="402" height="300">
+		<mx:HBox backgroundAlpha="0.0" width="381" height="224" verticalAlign="bottom">
+			<mx:VBox width="50%" height="100%" verticalAlign="bottom">
+				<mx:Label text="Recursos Disponibles"/>
+				<mx:List id="listaRecursos" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{recursosService.getAll.lastResult}"   height="90%" width="100%">
+					<mx:itemRenderer>
+						<mx:Component>
+							<mx:Label text="{data.usuario.nombre}"/>
+						</mx:Component>
+					</mx:itemRenderer>
+				</mx:List>
+			</mx:VBox>
+			<mx:VBox width="50%" height="100%" verticalAlign="bottom">
+				<mx:Label text="Label"/>
+				<mx:List id="listaGrupo" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{gruposRecursosService.getRecursos.lastResult}"  height="90%" width="100%">
+					<mx:itemRenderer>
+						<mx:Component>
+							<mx:Label text="{data.usuario.nombre}"/>
+						</mx:Component>
+					</mx:itemRenderer>
+				</mx:List>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
+			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
+		</mx:ControlBar>
+		   
+	</mx:Panel>
+	
+	<mx:RemoteObject id="gruposRecursosService" destination="gruposRecursosService"/>
+	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	
+		
+	<mx:Script>
+		<![CDATA[
+
+			import mx.rpc.events.ResultEvent;
+
+			
+			[Bindable]
+			public var grupo:Object;
+
+						
+			private function guardar():void {
+					//recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,activo.selected);
+					//dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			private function cancelar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			private function load():void {
+				gruposRecursosService.getRecursos(grupo.id as int);
+				recursosService.getAll();
+				
+			}
+
+
+			
+		]]>
+	</mx:Script>
+	
+	
+</mx:VBox>
