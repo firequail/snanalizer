@@ -4,11 +4,13 @@
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 	
+
+	
 	<mx:Panel title="Editar Grupo" id="panel1" width="402" height="300">
 		<mx:HBox backgroundAlpha="0.0" width="381" height="224" verticalAlign="bottom">
 			<mx:VBox width="50%" height="100%" verticalAlign="bottom">
 				<mx:Label text="Recursos Disponibles"/>
-				<mx:List id="listaRecursos" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{recursosService.getAll.lastResult}"   height="90%" width="100%">
+				<mx:List id="listaRecursos" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{recursosService.getAllExcept.lastResult}"   height="90%" width="100%">
 					<mx:itemRenderer>
 						<mx:Component>
 							<mx:Label text="{data.usuario.nombre}"/>
@@ -42,16 +44,17 @@
 		<![CDATA[
 
 			import mx.rpc.events.ResultEvent;
-
+			import mx.controls.Alert;
 			
 			[Bindable]
 			public var grupo:Object;
 
 						
 			private function guardar():void {
-					//recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,activo.selected);
-					//dispatchEvent(ResultEvent.createEvent());
+				
+				// Acá iría el código para plasmar lo elegido en la base
 			}
+			
 			
 			private function cancelar():void {
 				dispatchEvent(ResultEvent.createEvent());
@@ -59,8 +62,7 @@
 			
 			private function load():void {
 				gruposRecursosService.getRecursos(grupo.id as int);
-				recursosService.getAll();
-				
+				recursosService.getAllExcept(grupo.id as int);
 			}
 
 

@@ -9,5 +9,7 @@ public interface GruposRecursosService {
 
 	public List<GrupoRecursos> getAll();
 	
+	public void updateGrupo(int grupoId,List<Recurso> listaRec);
+	
 	public List<Recurso> getRecursos(int grupoId);
 }

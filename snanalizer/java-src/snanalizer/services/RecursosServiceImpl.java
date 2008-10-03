@@ -1,6 +1,7 @@
 package snanalizer.services;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.annotation.Resource;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.UsuariosRepository;
 import snanalizer.data.AtributosRepository;
+import snanalizer.data.GruposRecursosRepository;
 import snanalizer.domain.Atributo;
 import snanalizer.domain.DatoMaestro;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Usuario;
+import snanalizer.domain.GrupoRecursos;
 
 
 
@@ -24,16 +27,24 @@ public class RecursosServiceImpl implements RecursosService {
 	private UsuariosRepository usuarios;
 	@Resource 
 	private AtributosRepository atributos;
+	@Resource 
+	private GruposRecursosRepository grupos;
 	
 	
 	public List<Recurso> getAll() {
 		return recursos.getAll();
 	}
 	
+	public List<Recurso> getAllExcept(int grupoId) {
+		GrupoRecursos grupo = grupos.getById(grupoId);
+		List<Recurso> listaCompleta = new ArrayList<Recurso>();
+		listaCompleta.addAll(recursos.getAll());
+		listaCompleta.removeAll(grupo.getRecursos());
+		return listaCompleta;		
+	}
+	
 	public List<Recurso> buscarRecursoByName(String nombre,String apellido) {
-		//List<Usuario> user = usuarios.getUsuarioByName(nombre,apellido);
 		return recursos.buscarRecursoByName(nombre, apellido);
-		//return recursos.getAll();
 	}
 	
 	public void crear(String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior, boolean estado) {
