@@ -19,7 +19,7 @@
 				</mx:List>
 			</mx:VBox>
 			<mx:VBox width="50%" height="100%" verticalAlign="bottom">
-				<mx:Label text="Label"/>
+				<mx:Label text="Label" id="lblGrupo"/>
 				<mx:List id="listaGrupo" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{gruposRecursosService.getRecursos.lastResult}"  height="90%" width="100%">
 					<mx:itemRenderer>
 						<mx:Component>
@@ -63,6 +63,7 @@
 			private function load():void {
 				gruposRecursosService.getRecursos(grupo.id as int);
 				recursosService.getAllExcept(grupo.id as int);
+				lblGrupo.text = grupo.descripcion;
 			}
 
 
