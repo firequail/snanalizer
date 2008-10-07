@@ -39,7 +39,11 @@
 		
 	<bean id="gruposRecursosRepository"
 		class="snanalizer.data.GruposRecursosRepositoryImpl" />
+
+	<bean id="encuestasRepository"
+		class="snanalizer.data.EncuestasRepositoryImpl" />
+
+	<bean id="preguntasRepository"
+		class="snanalizer.data.PreguntasRepositoryImpl" />
 		
-
-
 </beans>

@@ -29,4 +29,6 @@
 	
 	<bean id="gruposRecursosService" class="snanalizer.services.GruposRecursosServiceImpl"/>
 
+	<bean id="encuestasService" class="snanalizer.services.EncuestasServiceImpl"/>
+
 </beans>
