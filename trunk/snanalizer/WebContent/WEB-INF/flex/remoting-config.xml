@@ -63,10 +63,16 @@
         		<source>recursosService</source>
         	</properties>
     </destination>
-    	<destination id="gruposRecursosService">
+    <destination id="gruposRecursosService">
         	<properties>
         		<factory>spring</factory>
         		<source>gruposRecursosService</source>
+        	</properties>
+    </destination>
+    <destination id="encuestasService">
+        	<properties>
+        		<factory>spring</factory>
+        		<source>encuestasService</source>
         	</properties>
     </destination>
 </service>

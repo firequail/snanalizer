@@ -2,6 +2,7 @@ package snanalizer.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -28,7 +29,7 @@ public class Encuesta extends DomainEntity {
 		this.preguntas = preguntas;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SUBSELECT)
 	public List<Pregunta> getPreguntas() {
 		return preguntas;
