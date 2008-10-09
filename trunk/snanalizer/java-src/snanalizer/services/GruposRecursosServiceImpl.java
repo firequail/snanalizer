@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import org.springframework.transaction.annotation.Transactional;
 
 import snanalizer.domain.Atributo;
+import snanalizer.domain.Encuesta;
 import snanalizer.domain.GrupoRecursos;
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.GruposRecursosRepository;
@@ -37,6 +38,17 @@ public class GruposRecursosServiceImpl implements GruposRecursosService {
 		gruposRecursos.getById(grupoId).getRecursos().clear();
 		gruposRecursos.getById(grupoId).getRecursos().addAll(listaRec);
 	}
+	
+	public GrupoRecursos getById(int grupoId) {
+		return gruposRecursos.getById(grupoId);
+	}
+	
+	
+	public void crear(GrupoRecursos grupo) {
+		gruposRecursos.add(grupo);
+	}
+	  
+	 
 	
 	
 }
