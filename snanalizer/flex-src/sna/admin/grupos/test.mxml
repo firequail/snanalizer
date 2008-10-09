@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" >
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+
+	<mx:Binding source="grupoNom.text" destination="grupo.descripcion"/>
+
+	<mx:List id="firstList" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" width="200">
+		<mx:itemRenderer> 
+			<mx:Component>
+				<mx:Label text="{data.usuario.nombre}"/>
+			</mx:Component>
+		</mx:itemRenderer>
+		
+	</mx:List>
+	<mx:TextInput id="grupoNom" width="200"/>
+    <mx:List id="secondList" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" >
+    		<mx:itemRenderer>
+			<mx:Component>
+				<mx:Label text="{data.usuario.nombre}"/>
+			</mx:Component>
+		</mx:itemRenderer>
+    </mx:List>
+    <mx:Button id="b1" label="Reset" click="initApp()" />
+    <mx:Button id="b2" label="Guardar" click="guardar()" />
+
+	<mx:RemoteObject id="gruposRecursosService" destination="gruposRecursosService"/>
+	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+
+    <mx:Script>
+        <![CDATA[
+        	import sna.admin.usuarios.Usuario;
+            import mx.events.DragEvent;
+            import mx.managers.DragManager;
+            import mx.core.DragSource;
+            import mx.collections.IList;
+            import mx.collections.ArrayCollection;
+            import sna.admin.grupos.GrupoRecursos;
+            import sna.admin.recursos.Recurso;
+            import mx.rpc.events.ResultEvent;
+    
+   			[Bindable]
+			private var grupo:GrupoRecursos;
+			[Bindable]
+			private var g:GrupoRecursos;
+    
+    
+            public function initApp():void {
+            	grupo = new GrupoRecursos();
+				recursosService.getAll();
+            	
+                g = new GrupoRecursos();
+                g.recursos = recursosService.getAll.lastResult as ArrayCollection;
+                firstList.dataProvider = g.recursos;
+                secondList.dataProvider = grupo.recursos;
+                
+            }
+
+			private function guardar():void {
+				
+				//grupo.descripcion = grupoNom.text;
+				//grupo.recursos = secondList.dataProvider as ArrayCollection;
+				gruposRecursosService.crear(grupo);
+				dispatchEvent(ResultEvent.createEvent());
+
+				
+				
+			}  
+            
+            
+        ]]>
+    </mx:Script>
+	
+	
+</mx:VBox>

@@ -12,4 +12,6 @@ public interface GruposRecursosService {
 	public void updateGrupo(int grupoId,List<Recurso> listaRec);
 	
 	public List<Recurso> getRecursos(int grupoId);
+	
+	public void crear(GrupoRecursos grupo);
 }

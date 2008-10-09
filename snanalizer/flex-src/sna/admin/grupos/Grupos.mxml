@@ -13,6 +13,12 @@
 				<grupos:EditarGrupo id="editarGrupo" result="editarGrupoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="test">
+			<mx:RemoveChild target="{panel1}"/>
+			<mx:AddChild position="lastChild">
+				<grupos:test id="testx" result="editarGrupoOK(event)"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	<mx:Panel title="Listado de Grupos de Recursos" id="panel1" width="402" height="300">
 		<mx:HBox backgroundAlpha="0.0">
@@ -20,6 +26,7 @@
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Nuevo Grupo" click="nuevoGrupo()"/>
+			<mx:Button label="Test" click="testGrupo()"/>
 		</mx:ControlBar>
 		   
 	</mx:Panel>
@@ -43,12 +50,19 @@
 				this.currentState = "EditarGrupo";
 				editarGrupo.grupo = event.result;
 			}
+			
+			private function testGrupo():void {
+				this.currentState = "test";
+				testx.initApp();
+			//	editarGrupo.grupo = event.result;
+			}
 						
 			
 			private function editarGrupoOK(event:ResultEvent):void {
 				this.currentState = "";
 				listadoGrupos.load();
 			}
+			
 			
 						
 		]]>
