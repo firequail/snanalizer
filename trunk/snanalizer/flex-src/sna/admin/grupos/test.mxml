@@ -16,7 +16,7 @@
 		
 	</mx:List>
 	<mx:TextInput id="grupoNom" width="200"/>
-    <mx:List id="secondList" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" >
+    <mx:List id="secondList" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dragDrop="dragDropHandler(event);" >
     		<mx:itemRenderer>
 			<mx:Component>
 				<mx:Label text="{data.usuario.nombre}"/>
@@ -40,6 +40,7 @@
             import sna.admin.grupos.GrupoRecursos;
             import sna.admin.recursos.Recurso;
             import mx.rpc.events.ResultEvent;
+            import mx.controls.Alert;
     
    			[Bindable]
 			private var grupo:GrupoRecursos;
@@ -57,11 +58,29 @@
                 secondList.dataProvider = grupo.recursos;
                 
             }
+            
+            public function dragDropHandler(event:DragEvent):void {    
+                // dataForFormat() always returns an Array 
+                // for the list-based controls 
+                // in case multiple items were selected.
+                event.preventDefault();
+
+               
+                var dragObj:Array = event.dragSource.dataForFormat("items") as Array; 
+               
+
+                for (var i:Number = 0; i < dragObj.length; i++) {
+                    grupo.recursos.addItem(dragObj[i]);
+                }
+                
+               
+                
+                                
+            }          
 
 			private function guardar():void {
 				
-				//grupo.descripcion = grupoNom.text;
-				//grupo.recursos = secondList.dataProvider as ArrayCollection;
+
 				gruposRecursosService.crear(grupo);
 				dispatchEvent(ResultEvent.createEvent());
 
