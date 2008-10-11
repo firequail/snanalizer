@@ -77,7 +77,6 @@ public class InitDBServiceImpl implements InitDBService {
 	public void recrearTestDB() {
 		cleanDB();
 		crearUsuarios();
-		// crearDatosMaestros();
 		crearRedDePrueba1();
 		crearRedDePrueba2();
 		crearRedDePrueba3();
@@ -642,10 +641,6 @@ public class InitDBServiceImpl implements InitDBService {
 		relaciones.add(relacion2);
 		relaciones.add(relacion3);
 		relaciones.add(relacion4);
-	}
-
-	private void crearDatosMaestros() {
-		// ACA ESTABA todo LO DE DATOS MAESTROS
 	}
 
 	public void setRedes(RedesRepository redes) {

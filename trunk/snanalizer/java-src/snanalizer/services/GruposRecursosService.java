@@ -8,10 +8,12 @@ import snanalizer.domain.Recurso;
 public interface GruposRecursosService {
 
 	public List<GrupoRecursos> getAll();
-	
-	public void updateGrupo(int grupoId,List<Recurso> listaRec);
-	
+
+	public void updateGrupo(int grupoId, List<Recurso> listaRec);
+
 	public List<Recurso> getRecursos(int grupoId);
-	
+
 	public void crear(GrupoRecursos grupo);
+
+	public void nuevoGrupo(String descripcion, List<Integer> idsRecursos);
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="load()" >
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:Panel title="Nuevo Grupo" id="panel1" width="402" height="300">
+		<mx:HBox width="100%" verticalAlign="bottom">
+			<mx:Label text="Nombre"/><mx:TextInput id="nombre"/>
+		</mx:HBox>
+		<mx:HBox width="100%" height="100%" verticalAlign="bottom">
+			<mx:VBox width="100%" height="100%" verticalAlign="bottom">
+				<mx:Label text="Recursos Disponibles"/>
+				<mx:List id="listaRecursos" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{recursosService.getAll.lastResult}" height="90%" width="100%">
+					<mx:itemRenderer>
+						<mx:Component>
+							<mx:Label text="{data.usuario.email}"/>
+						</mx:Component>
+					</mx:itemRenderer>
+				</mx:List>
+			</mx:VBox>
+			<mx:VBox width="100%" height="100%" verticalAlign="bottom">
+				<mx:Label text="Recursos seleccionados" id="lblGrupo"/>
+				<mx:List id="listaGrupo" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" height="90%" width="100%">
+					<mx:itemRenderer>
+						<mx:Component>
+							<mx:Label text="{data.usuario.email}"/>
+						</mx:Component>
+					</mx:itemRenderer>
+				</mx:List>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
+			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
+		</mx:ControlBar>
+		   
+	</mx:Panel>
+	
+	<mx:RemoteObject id="gruposRecursosService" destination="gruposRecursosService"/>
+	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	
+		
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			import mx.rpc.events.ResultEvent;
+			import mx.controls.Alert;
+			
+			[Bindable]
+			public var grupo:Object;
+
+						
+			private function guardar():void {
+				var idRecursos:ArrayCollection = new ArrayCollection();
+				for each(var recurso:Object in listaGrupo.dataProvider) {
+					idRecursos.addItem(recurso.id);
+				}
+				
+				gruposRecursosService.nuevoGrupo(nombre.text, idRecursos);
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			
+			private function cancelar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			private function load():void {
+				recursosService.getAll();
+			}
+			
+		]]>
+	</mx:Script>
+	
+	
+</mx:VBox>

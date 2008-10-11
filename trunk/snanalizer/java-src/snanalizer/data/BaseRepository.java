@@ -9,6 +9,8 @@ public interface BaseRepository<E extends DomainEntity> {
 	public List<E> getAll();
 
 	public E getById(Integer id);
+	
+	public List<E> getById(List<Integer> ids);
 
 	public void add(E newEntity);
 

@@ -7,7 +7,6 @@ import org.hibernate.criterion.Restrictions;
 
 import snanalizer.domain.Atributo;
 import snanalizer.domain.DatoMaestro;
-import snanalizer.domain.Usuario;
 
 
 public class AtributosRepositoryImpl extends BaseRepositoryImpl<Atributo> implements
