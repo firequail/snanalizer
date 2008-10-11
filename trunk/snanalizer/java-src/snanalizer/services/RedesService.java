@@ -19,4 +19,6 @@ public interface RedesService {
 	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro, Filtro filtro);
 
 	public List<DatoMaestro> getDatosMaestros();
+
+	public void crearRed(String nombre, String descripcion, int idGrupo, int idEncuesta);
 }

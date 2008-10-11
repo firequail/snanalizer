@@ -6,6 +6,7 @@ package sna.admin.grupos
 	[RemoteClass(alias="snanalizer.domain.GrupoRecursos")]
 	public class GrupoRecursos
 	{
+		public var id:int;
 		public var descripcion:String;
 		public var recursos:ArrayCollection = new ArrayCollection();
 		public var estado:Boolean;

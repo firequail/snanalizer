@@ -26,6 +26,7 @@ public class Atributo extends DomainEntity {
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.datoMaestro = dm;
+		dm.getAtributos().add(this);
 	}
 
 	public void setNombre(String nombre) {
