@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import snanalizer.domain.Recurso;
-import snanalizer.domain.Usuario;
 
 public interface RecursosService {
 	

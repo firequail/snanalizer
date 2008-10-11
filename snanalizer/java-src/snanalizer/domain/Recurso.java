@@ -1,24 +1,15 @@
 package snanalizer.domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import javax.persistence.Basic;
-import javax.persistence.Lob;
-import static javax.persistence.FetchType.LAZY;
-import javax.persistence.Column;
-
-
-import java.util.Date;
-//import java.sql.Date;
-import snanalizer.domain.Atributo;
 
 @Entity
 public class Recurso extends DomainEntity {
 
 	private Usuario usuario;
-	private String nombre;
-	private String apellido;
 	private Date fechaNac;
 	private Atributo area;
 	private Atributo puesto;
@@ -45,11 +36,10 @@ public class Recurso extends DomainEntity {
 	private String experiencia;
 	private Boolean estado;
 	private String picture;
-	
-/*	@Basic(fetch=LAZY)
-	@Lob @Column(name="PIC")
-	private byte[] picture;*/
-	
+
+	/*
+	 * @Basic(fetch=LAZY) @Lob @Column(name="PIC") private byte[] picture;
+	 */
 
 	public Recurso() {
 
@@ -73,7 +63,6 @@ public class Recurso extends DomainEntity {
 		return getNombre() + " " + getApellido();
 	}
 
-
 	@Transient
 	public String getNombre() {
 		return getUsuario().getNombre();
@@ -84,29 +73,30 @@ public class Recurso extends DomainEntity {
 		return getUsuario().getApellido();
 	}
 
-
 	public Object getAtributo(DatoMaestro datoMaestro) {
-		//TODO: devolver el atributo correspondiente al dato maestro
-		if ("area".equalsIgnoreCase(datoMaestro.getDescripcion())){
+		// TODO: devolver el atributo correspondiente al dato maestro
+		if ("area".equalsIgnoreCase(datoMaestro.getDescripcion())) {
 			return area;
 		}
-		if ("puesto".equalsIgnoreCase(datoMaestro.getDescripcion())){
+		if ("puesto".equalsIgnoreCase(datoMaestro.getDescripcion())) {
 			return puesto;
 		}
-		if ("seniority".equalsIgnoreCase(datoMaestro.getDescripcion())){
+		if ("seniority".equalsIgnoreCase(datoMaestro.getDescripcion())) {
 			return seniority;
 		}
 		return null;
 	}
-	
+
 	public void setAtributo(Atributo atributo) {
-		if ("area".equalsIgnoreCase(atributo.getDatoMaestro().getDescripcion())){
+		if ("area".equalsIgnoreCase(atributo.getDatoMaestro().getDescripcion())) {
 			this.area = atributo;
 		}
-		if ("puesto".equalsIgnoreCase(atributo.getDatoMaestro().getDescripcion())){
+		if ("puesto".equalsIgnoreCase(atributo.getDatoMaestro()
+				.getDescripcion())) {
 			this.puesto = atributo;
 		}
-		if ("seniority".equalsIgnoreCase(atributo.getDatoMaestro().getDescripcion())){
+		if ("seniority".equalsIgnoreCase(atributo.getDatoMaestro()
+				.getDescripcion())) {
 			this.seniority = atributo;
 		}
 	}
@@ -119,26 +109,24 @@ public class Recurso extends DomainEntity {
 	public Atributo getPuesto() {
 		return puesto;
 	}
-	
+
 	@ManyToOne
 	public Atributo getArea() {
 		return area;
 	}
-	
+
 	public void setArea(Atributo area) {
 		this.area = area;
 	}
-	
+
 	@ManyToOne
 	public Atributo getSeniority() {
 		return seniority;
 	}
-	
+
 	public void setSeniority(Atributo seniority) {
 		this.seniority = seniority;
 	}
-
-
 
 	public Date getFechaNac() {
 		return fechaNac;
@@ -156,7 +144,6 @@ public class Recurso extends DomainEntity {
 		this.estado = estado;
 	}
 
-
 	public String getPicture() {
 		return picture;
 	}
@@ -173,7 +160,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getIdioma1() {
 		return idioma1;
 	}
-	
+
 	public void setIdioma2(Atributo idioma) {
 		this.idioma2 = idioma;
 	}
@@ -182,7 +169,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getIdioma2() {
 		return idioma2;
 	}
-	
+
 	public void setIdioma3(Atributo idioma) {
 		this.idioma3 = idioma;
 	}
@@ -191,7 +178,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getIdioma3() {
 		return idioma3;
 	}
-	
+
 	public void setNivelIdioma1(Atributo nivelIdioma) {
 		this.nivelIdioma1 = nivelIdioma;
 	}
@@ -200,7 +187,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getNivelIdioma1() {
 		return nivelIdioma1;
 	}
-	
+
 	public void setNivelIdioma2(Atributo nivelIdioma) {
 		this.nivelIdioma2 = nivelIdioma;
 	}
@@ -209,7 +196,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getNivelIdioma2() {
 		return nivelIdioma2;
 	}
-	
+
 	public void setNivelIdioma3(Atributo nivelIdioma) {
 		this.nivelIdioma3 = nivelIdioma;
 	}
@@ -218,7 +205,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getNivelIdioma3() {
 		return nivelIdioma3;
 	}
-	
+
 	public void setHobbie1(Atributo hobbie) {
 		this.hobbie1 = hobbie;
 	}
@@ -227,7 +214,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getHobbie1() {
 		return hobbie1;
 	}
-	
+
 	public void setHobbie2(Atributo hobbie) {
 		this.hobbie2 = hobbie;
 	}
@@ -236,7 +223,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getHobbie2() {
 		return hobbie2;
 	}
-	
+
 	public void setHobbie3(Atributo hobbie) {
 		this.hobbie3 = hobbie;
 	}
@@ -245,7 +232,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getHobbie3() {
 		return hobbie3;
 	}
-	
+
 	public void setHobbie4(Atributo hobbie) {
 		this.hobbie4 = hobbie;
 	}
@@ -254,7 +241,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getHobbie4() {
 		return hobbie4;
 	}
-	
+
 	public void setHobbie5(Atributo hobbie) {
 		this.hobbie5 = hobbie;
 	}
@@ -263,7 +250,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getHobbie5() {
 		return hobbie5;
 	}
-	
+
 	public void setHobbie6(Atributo hobbie) {
 		this.hobbie6 = hobbie;
 	}
@@ -272,7 +259,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getHobbie6() {
 		return hobbie6;
 	}
-	
+
 	public void setProvincia(Atributo provincia) {
 		this.provincia = provincia;
 	}
@@ -281,7 +268,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getProvincia() {
 		return provincia;
 	}
-	
+
 	public void setInstitucion(Atributo institucion) {
 		this.institucion = institucion;
 	}
@@ -290,8 +277,7 @@ public class Recurso extends DomainEntity {
 	public Atributo getInstitucion() {
 		return institucion;
 	}
-	
-	
+
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
@@ -299,7 +285,7 @@ public class Recurso extends DomainEntity {
 	public String getEstadoCivil() {
 		return estadoCivil;
 	}
-	
+
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
 	}
@@ -307,7 +293,7 @@ public class Recurso extends DomainEntity {
 	public String getLocalidad() {
 		return localidad;
 	}
-	
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
@@ -315,7 +301,7 @@ public class Recurso extends DomainEntity {
 	public String getTitulo() {
 		return titulo;
 	}
-	
+
 	public void setAnioIngreso(Integer anioIngreso) {
 		this.anioIngreso = anioIngreso;
 	}
@@ -323,7 +309,7 @@ public class Recurso extends DomainEntity {
 	public Integer getAnioIngreso() {
 		return anioIngreso;
 	}
-	
+
 	public void setAnioEgreso(Integer anioEgreso) {
 		this.anioEgreso = anioEgreso;
 	}
@@ -331,7 +317,7 @@ public class Recurso extends DomainEntity {
 	public Integer getAnioEgreso() {
 		return anioEgreso;
 	}
-	
+
 	public void setExperiencia(String experiencia) {
 		this.experiencia = experiencia;
 	}
@@ -339,8 +325,5 @@ public class Recurso extends DomainEntity {
 	public String getExperiencia() {
 		return experiencia;
 	}
-	
-	
-	
-	
+
 }

@@ -5,8 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -15,8 +14,6 @@ import org.hibernate.annotations.FetchMode;
 public class GrupoRecursos extends DomainEntity {
 	private String descripcion;
 	private List<Recurso> recursos = new LinkedList<Recurso>();
-	private boolean estado;
-	
 	
 	public GrupoRecursos() {}
 
@@ -32,7 +29,7 @@ public class GrupoRecursos extends DomainEntity {
 		this.recursos = recursos;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)
 	public List<Recurso> getRecursos() {
 		return recursos;

@@ -12,7 +12,8 @@ import org.hibernate.criterion.Restrictions;
 
 import snanalizer.domain.DomainEntity;
 
-public class BaseRepositoryImpl<E extends DomainEntity> implements BaseRepository<E> {
+public class BaseRepositoryImpl<E extends DomainEntity> implements
+		BaseRepository<E> {
 
 	@Resource
 	private SessionFactory sessionFactory;
@@ -36,6 +37,11 @@ public class BaseRepositoryImpl<E extends DomainEntity> implements BaseRepositor
 				.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<E> getById(List<Integer> ids) {
+		return createCriteria().add(Restrictions.in("id", ids)).list();
+	}
+
 	public void add(E newEntity) {
 		this.sessionFactory.getCurrentSession().save(newEntity);
 	}
@@ -44,11 +50,11 @@ public class BaseRepositoryImpl<E extends DomainEntity> implements BaseRepositor
 		E e = getById(id);
 		this.sessionFactory.getCurrentSession().delete(e);
 	}
-	
+
 	public void remove(E entity) {
 		this.sessionFactory.getCurrentSession().delete(entity);
 	}
-	
+
 	public void removeAll() {
 		for (E entity : getAll()) {
 			remove(entity);

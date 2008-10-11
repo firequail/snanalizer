@@ -1,20 +1,20 @@
 package snanalizer.services;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.transaction.annotation.Transactional;
 
-import snanalizer.data.RecursosRepository;
-import snanalizer.data.UsuariosRepository;
 import snanalizer.data.AtributosRepository;
 import snanalizer.data.GruposRecursosRepository;
-import snanalizer.domain.Atributo;
-import snanalizer.domain.DatoMaestro;
+import snanalizer.data.RecursosRepository;
+import snanalizer.data.UsuariosRepository;
+import snanalizer.domain.GrupoRecursos;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Usuario;
-import snanalizer.domain.GrupoRecursos;
 
 
 
@@ -76,7 +76,4 @@ public class RecursosServiceImpl implements RecursosService {
 		recurso.setEstado(estado);
 	}
 
-	
-
-	
 }
