@@ -1,8 +1,8 @@
 package snanalizer.services;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -10,22 +10,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import snanalizer.data.AtributosRepository;
 import snanalizer.data.DatosMaestrosRepository;
+import snanalizer.data.GruposRecursosRepository;
 import snanalizer.data.NodosRepository;
+import snanalizer.data.PreguntasRepository;
 import snanalizer.data.PuntosDeVistaRepository;
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.data.RelacionesRepository;
 import snanalizer.data.UsuariosRepository;
-import snanalizer.data.GruposRecursosRepository;
 import snanalizer.domain.Atributo;
 import snanalizer.domain.DatoMaestro;
+import snanalizer.domain.GrupoRecursos;
 import snanalizer.domain.Nodo;
+import snanalizer.domain.Pregunta;
 import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.domain.Usuario;
-import snanalizer.domain.GrupoRecursos;
 import snanalizer.install.Installer;
 
 @Transactional
@@ -54,17 +56,20 @@ public class InitDBServiceImpl implements InitDBService {
 
 	@Resource
 	private DatosMaestrosRepository datosMaestros;
-	
+
 	@Resource
 	private AtributosRepository atributos;
-	
+
 	@Resource
 	private GruposRecursosRepository gruposRecursos;
+
+	@Resource
+	private PreguntasRepository preguntasRepository;
 
 	public static void main(String[] args) {
 		new Installer().install();
 	}
-	
+
 	public void initDB() {
 		// Inicializar la DB para produccion
 	}
@@ -72,7 +77,7 @@ public class InitDBServiceImpl implements InitDBService {
 	public void recrearTestDB() {
 		cleanDB();
 		crearUsuarios();
-		//crearDatosMaestros();
+		// crearDatosMaestros();
 		crearRedDePrueba1();
 		crearRedDePrueba2();
 		crearRedDePrueba3();
@@ -100,34 +105,31 @@ public class InitDBServiceImpl implements InitDBService {
 	}
 
 	private void crearRedDePrueba1() {
-		
-		/*******************************************************
+
+		/***********************************************************************
 		 * Acá empieza la parte de creación de los datos maestros
-		 * *******************************************************/
-		 
+		 **********************************************************************/
+
 		// Atributos para puesto, area y seniority
-		
-		
 		DatoMaestro dm1 = new DatoMaestro();
 		DatoMaestro dm2 = new DatoMaestro();
 		DatoMaestro dm3 = new DatoMaestro();
-		
+
 		Atributo atr1_dm1 = new Atributo();
 		Atributo atr2_dm1 = new Atributo();
 		Atributo atr3_dm1 = new Atributo();
-		
-		
+
 		Atributo atr1_dm2 = new Atributo();
 		Atributo atr2_dm2 = new Atributo();
 		Atributo atr3_dm2 = new Atributo();
 		Atributo atr1_dm3 = new Atributo();
 		Atributo atr2_dm3 = new Atributo();
 		Atributo atr3_dm3 = new Atributo();
-		
-		datosMaestros.add(dm1);		
+
+		datosMaestros.add(dm1);
 		datosMaestros.add(dm2);
 		datosMaestros.add(dm3);
-		
+
 		atributosRepository.add(atr1_dm1);
 		atributosRepository.add(atr2_dm1);
 		atributosRepository.add(atr3_dm1);
@@ -137,7 +139,7 @@ public class InitDBServiceImpl implements InitDBService {
 		atributosRepository.add(atr1_dm3);
 		atributosRepository.add(atr2_dm3);
 		atributosRepository.add(atr3_dm3);
-		
+
 		atr1_dm1.setNombre("DEV");
 		atr2_dm1.setNombre("RRHH");
 		atr3_dm1.setNombre("Finances");
@@ -171,142 +173,139 @@ public class InitDBServiceImpl implements InitDBService {
 		dm3.getAtributos().add(atr1_dm3);
 		dm3.getAtributos().add(atr2_dm3);
 		dm3.getAtributos().add(atr3_dm3);
-		
-		
-		//******  Atributos para IDIOMAS  ******//
-		
+
+		// ****** Atributos para IDIOMAS ******//
+
 		DatoMaestro dmIdiomas = new DatoMaestro();
 		dmIdiomas.setDescripcion("Idioma");
-		
-		Atributo idiomaI = new Atributo("Inglés","Idioma Inglés",true);
-		Atributo idiomaP = new Atributo("Portugués","Idioma Portugués",true);
-		Atributo idiomaA = new Atributo("Alemán","Idioma Alemán",true);
-		Atributo idiomaF = new Atributo("Francés","Idioma Francés",true);
-		
+
+		Atributo idiomaI = new Atributo("Inglés", "Idioma Inglés", true);
+		Atributo idiomaP = new Atributo("Portugués", "Idioma Portugués", true);
+		Atributo idiomaA = new Atributo("Alemán", "Idioma Alemán", true);
+		Atributo idiomaF = new Atributo("Francés", "Idioma Francés", true);
+
 		List<Atributo> listaIdiomas = new ArrayList<Atributo>();
 		listaIdiomas.add(idiomaI);
 		listaIdiomas.add(idiomaP);
 		listaIdiomas.add(idiomaA);
 		listaIdiomas.add(idiomaF);
-		
+
 		dmIdiomas.setAtributos(listaIdiomas);
-		
+
 		for (Iterator<Atributo> atr = listaIdiomas.iterator(); atr.hasNext();) {
 			Atributo a = atr.next();
 			a.setDatoMaestro(dmIdiomas);
 		}
-				
+
 		// Agrego al repositorio
-		
+
 		atributosRepository.add(idiomaI);
 		atributosRepository.add(idiomaP);
 		atributosRepository.add(idiomaA);
 		atributosRepository.add(idiomaF);
 		datosMaestros.add(dmIdiomas);
-		
-		
-		//******  Atributos para NIVELES  ******//
-		
-		
+
+		// ****** Atributos para NIVELES ******//
+
 		DatoMaestro dmNiveles = new DatoMaestro();
 		dmNiveles.setDescripcion("Nivel");
-		
-		Atributo nivel1 = new Atributo("Básico","Nivel Básico",true);
-		Atributo nivel2 = new Atributo("Intermedio","Nivel Intermedio",true);
-		Atributo nivel3 = new Atributo("Avanzado","Nivel Avanzado",true);
-		Atributo nivel4 = new Atributo("Nativo","Nivel Nativo",true);
-		
+
+		Atributo nivel1 = new Atributo("Básico", "Nivel Básico", true);
+		Atributo nivel2 = new Atributo("Intermedio", "Nivel Intermedio", true);
+		Atributo nivel3 = new Atributo("Avanzado", "Nivel Avanzado", true);
+		Atributo nivel4 = new Atributo("Nativo", "Nivel Nativo", true);
+
 		List<Atributo> listaNiveles = new ArrayList<Atributo>();
 		listaNiveles.add(nivel1);
 		listaNiveles.add(nivel2);
 		listaNiveles.add(nivel3);
 		listaNiveles.add(nivel4);
-		
+
 		dmNiveles.setAtributos(listaNiveles);
-		
+
 		for (Iterator<Atributo> atr = listaNiveles.iterator(); atr.hasNext();) {
 			Atributo a = atr.next();
 			a.setDatoMaestro(dmNiveles);
 		}
-				
+
 		// Agrego al repositorio
-		
+
 		atributosRepository.add(nivel1);
 		atributosRepository.add(nivel2);
 		atributosRepository.add(nivel3);
 		atributosRepository.add(nivel4);
 		datosMaestros.add(dmNiveles);
-		
-		//******  Atributos para INSTUCIONES  ******//
-		
-					
+
+		// ****** Atributos para INSTUCIONES ******//
+
 		DatoMaestro dmInst = new DatoMaestro();
 		dmInst.setDescripcion("Institución");
-		
-		Atributo inst1 = new Atributo("UTN","Universidad Tecnológica Nacional",true);
-		Atributo inst2 = new Atributo("UBA","Universidad de Buenos Aires",true);
-		Atributo inst3 = new Atributo("ITBA","Instituto Técnico de Bs. As.",true);
-		Atributo inst4 = new Atributo("UADE","Universidad Argentina de la Empresa",true);
-		
+
+		Atributo inst1 = new Atributo("UTN",
+				"Universidad Tecnológica Nacional", true);
+		Atributo inst2 = new Atributo("UBA", "Universidad de Buenos Aires",
+				true);
+		Atributo inst3 = new Atributo("ITBA", "Instituto Técnico de Bs. As.",
+				true);
+		Atributo inst4 = new Atributo("UADE",
+				"Universidad Argentina de la Empresa", true);
+
 		List<Atributo> listaInst = new ArrayList<Atributo>();
 		listaInst.add(inst1);
 		listaInst.add(inst2);
 		listaInst.add(inst3);
 		listaInst.add(inst4);
-		
+
 		dmInst.setAtributos(listaInst);
-		
+
 		for (Iterator<Atributo> atr = listaInst.iterator(); atr.hasNext();) {
 			Atributo a = atr.next();
 			a.setDatoMaestro(dmInst);
 		}
-				
+
 		// Agrego al repositorio
-		
+
 		atributosRepository.add(inst1);
 		atributosRepository.add(inst2);
 		atributosRepository.add(inst3);
 		atributosRepository.add(inst4);
 		datosMaestros.add(dmInst);
-		  
-		
-		//******  Atributos para HOBBIES  ******//
-	
-		
+
+		// ****** Atributos para HOBBIES ******//
+
 		DatoMaestro dmHobb = new DatoMaestro();
 		dmHobb.setDescripcion("Hobby");
-		
-		Atributo hob1 = new Atributo("Deporte","Deporte",true);
-		Atributo hob2 = new Atributo("Teatro","Teatro",true);
-		Atributo hob3 = new Atributo("Traveling","Viajes",true);
-		Atributo hob4 = new Atributo("Paintball","Paintball",true);
-		
+
+		Atributo hob1 = new Atributo("Deporte", "Deporte", true);
+		Atributo hob2 = new Atributo("Teatro", "Teatro", true);
+		Atributo hob3 = new Atributo("Traveling", "Viajes", true);
+		Atributo hob4 = new Atributo("Paintball", "Paintball", true);
+
 		List<Atributo> listaHob = new ArrayList<Atributo>();
 		listaHob.add(hob1);
 		listaHob.add(hob2);
 		listaHob.add(hob3);
 		listaHob.add(hob4);
-		
+
 		dmHobb.setAtributos(listaHob);
-		
+
 		for (Iterator<Atributo> atr = listaHob.iterator(); atr.hasNext();) {
 			Atributo a = atr.next();
 			a.setDatoMaestro(dmHobb);
 		}
-				
+
 		// Agrego al repositorio
-		
+
 		atributosRepository.add(hob1);
 		atributosRepository.add(hob2);
 		atributosRepository.add(hob3);
 		atributosRepository.add(hob4);
 		datosMaestros.add(dmHobb);
-		
-		/*********************************************
+
+		/***********************************************************************
 		 * Acá termina la creación de datos maestros
-		 *********************************************/
-		
-		
+		 **********************************************************************/
+
 		Usuario usuario1 = new Usuario("r1@hotmail.com", "", "RECURSO", "Pepe",
 				"Lopez");
 		Usuario usuario2 = new Usuario("r2@hotmail.com", "", "RECURSO",
@@ -319,12 +318,12 @@ public class InitDBServiceImpl implements InitDBService {
 		usuarios.add(usuario2);
 		usuarios.add(usuario3);
 		usuarios.add(usuario4);
-		
+
 		Recurso recurso1 = new Recurso(usuario1);
 		Recurso recurso2 = new Recurso(usuario2);
 		Recurso recurso3 = new Recurso(usuario3);
 		Recurso recurso4 = new Recurso(usuario4);
-		
+
 		recurso1.setArea(atributos.getAll().get(0));
 		recurso1.setPuesto(atributos.getAll().get(4));
 		recurso1.setSeniority(atributos.getAll().get(6));
@@ -339,7 +338,7 @@ public class InitDBServiceImpl implements InitDBService {
 		recurso1.setNivelIdioma2(nivel2);
 		recurso1.setNivelIdioma3(nivel1);
 		recurso1.setInstitucion(inst1);
-		
+
 		recurso2.setArea(atributos.getAll().get(0));
 		recurso2.setPuesto(atributos.getAll().get(4));
 		recurso2.setSeniority(atributos.getAll().get(7));
@@ -354,7 +353,7 @@ public class InitDBServiceImpl implements InitDBService {
 		recurso2.setNivelIdioma2(nivel2);
 		recurso2.setNivelIdioma3(nivel1);
 		recurso2.setInstitucion(inst1);
-		
+
 		recurso3.setArea(atributos.getAll().get(0));
 		recurso3.setPuesto(atributos.getAll().get(5));
 		recurso3.setSeniority(atributos.getAll().get(8));
@@ -369,7 +368,7 @@ public class InitDBServiceImpl implements InitDBService {
 		recurso3.setNivelIdioma2(nivel2);
 		recurso3.setNivelIdioma3(nivel1);
 		recurso3.setInstitucion(inst1);
-		
+
 		recurso4.setArea(atributos.getAll().get(0));
 		recurso4.setPuesto(atributos.getAll().get(4));
 		recurso4.setSeniority(atributos.getAll().get(7));
@@ -384,12 +383,12 @@ public class InitDBServiceImpl implements InitDBService {
 		recurso4.setNivelIdioma2(nivel2);
 		recurso4.setNivelIdioma3(nivel1);
 		recurso4.setInstitucion(inst1);
-		
+
 		recursos.add(recurso1);
 		recursos.add(recurso2);
 		recursos.add(recurso3);
 		recursos.add(recurso4);
-		
+
 		// Grupos de Recursos
 		GrupoRecursos grupo = new GrupoRecursos();
 		grupo.setDescripcion("Grupo de Recursos de DEV");
@@ -397,9 +396,9 @@ public class InitDBServiceImpl implements InitDBService {
 		grupo.getRecursos().add(recurso2);
 		grupo.getRecursos().add(recurso3);
 		grupo.getRecursos().add(recurso4);
-		
+
 		gruposRecursos.add(grupo);
-		
+
 		List<Atributo> atributos = datosMaestros.getAll().get(1).getAtributos();
 		recurso1.setAtributo(atributos.get(0));
 		recurso2.setAtributo(atributos.get(0));
@@ -415,9 +414,15 @@ public class InitDBServiceImpl implements InitDBService {
 		nodos.add(nodo3);
 		nodos.add(nodo4);
 
-		PuntoDeVista puntoDeVista1 = new PuntoDeVista(
-				"Quien la tiene clara con usabilidad?");
+		Pregunta pregunta1 = new Pregunta();
+		preguntasRepository.add(pregunta1);
+		pregunta1
+				.setDescripcion("Quien tiene mas conocimientos en usabilidad?");
+
+		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
 		puntosDeVista.add(puntoDeVista1);
+		puntoDeVista1.setPregunta(pregunta1);
+		puntoDeVista1.setDescripcion(pregunta1.getDescripcion());
 		puntoDeVista1.getNodos().add(nodo1);
 		puntoDeVista1.getNodos().add(nodo2);
 		puntoDeVista1.getNodos().add(nodo3);
@@ -478,9 +483,14 @@ public class InitDBServiceImpl implements InitDBService {
 		nodos.add(nodo4);
 		nodos.add(nodo5);
 
-		PuntoDeVista puntoDeVista1 = new PuntoDeVista("pto de vista 2");
-		puntosDeVista.add(puntoDeVista1);
+		Pregunta pregunta1 = new Pregunta();
+		preguntasRepository.add(pregunta1);
+		pregunta1.setDescripcion("pto de vista 2");
 
+		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
+		puntosDeVista.add(puntoDeVista1);
+		puntoDeVista1.setPregunta(pregunta1);
+		puntoDeVista1.setDescripcion(pregunta1.getDescripcion());
 		puntoDeVista1.getNodos().add(nodo1);
 		puntoDeVista1.getNodos().add(nodo2);
 		puntoDeVista1.getNodos().add(nodo3);
@@ -535,9 +545,14 @@ public class InitDBServiceImpl implements InitDBService {
 		nodos.add(nodo3);
 		nodos.add(nodo4);
 
-		PuntoDeVista puntoDeVista1 = new PuntoDeVista("pto de vista 1");
-		puntosDeVista.add(puntoDeVista1);
+		Pregunta pregunta1 = new Pregunta();
+		preguntasRepository.add(pregunta1);
+		pregunta1.setDescripcion("pto de vista 1");
 
+		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
+		puntosDeVista.add(puntoDeVista1);
+		puntoDeVista1.setPregunta(pregunta1);
+		puntoDeVista1.setDescripcion(pregunta1.getDescripcion());
 		puntoDeVista1.getNodos().add(nodo1);
 		puntoDeVista1.getNodos().add(nodo2);
 		puntoDeVista1.getNodos().add(nodo3);
@@ -599,10 +614,14 @@ public class InitDBServiceImpl implements InitDBService {
 		nodos.add(nodo4);
 		nodos.add(nodo5);
 
-		PuntoDeVista puntoDeVista1 = new PuntoDeVista(
-				"Quien la tiene clara con testing?");
-		puntosDeVista.add(puntoDeVista1);
+		Pregunta pregunta1 = new Pregunta();
+		preguntasRepository.add(pregunta1);
+		pregunta1.setDescripcion("Quien tiene mas conocimientos en testing?");
 
+		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
+		puntosDeVista.add(puntoDeVista1);
+		puntoDeVista1.setPregunta(pregunta1);
+		puntoDeVista1.setDescripcion(pregunta1.getDescripcion());
 		puntoDeVista1.getNodos().add(nodo1);
 		puntoDeVista1.getNodos().add(nodo2);
 		puntoDeVista1.getNodos().add(nodo3);
@@ -675,5 +694,13 @@ public class InitDBServiceImpl implements InitDBService {
 
 	public NodosRepository getNodos() {
 		return nodos;
+	}
+
+	public void setPreguntasRepository(PreguntasRepository preguntasRepository) {
+		this.preguntasRepository = preguntasRepository;
+	}
+
+	public PreguntasRepository getPreguntasRepository() {
+		return preguntasRepository;
 	}
 }

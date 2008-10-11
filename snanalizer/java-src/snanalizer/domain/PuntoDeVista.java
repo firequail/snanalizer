@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -19,25 +20,11 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 public class PuntoDeVista extends DomainEntity {
 
+	private Pregunta pregunta;
+
 	private String descripcion;
 
 	private List<Nodo> nodos = new LinkedList<Nodo>();
-
-	public PuntoDeVista() {
-
-	}
-
-	public PuntoDeVista(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
 
 	public void setNodos(List<Nodo> nodos) {
 		this.nodos = nodos;
@@ -47,6 +34,23 @@ public class PuntoDeVista extends DomainEntity {
 	@Fetch(FetchMode.SUBSELECT)
 	public List<Nodo> getNodos() {
 		return nodos;
+	}
+
+	@ManyToOne
+	public Pregunta getPregunta() {
+		return pregunta;
+	}
+
+	public void setPregunta(Pregunta pregunta) {
+		this.pregunta = pregunta;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String toXml() {

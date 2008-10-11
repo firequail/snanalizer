@@ -13,9 +13,19 @@ import org.hibernate.annotations.FetchMode;
 @Entity
 public class Red extends DomainEntity {
 
+	private String nombre;
+	
 	private String descripcion;
 
 	private List<PuntoDeVista> puntosDeVista = new LinkedList<PuntoDeVista>();
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;

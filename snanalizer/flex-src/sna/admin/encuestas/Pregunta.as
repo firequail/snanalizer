@@ -1,4 +1,4 @@
-package sna.encuestas
+package sna.admin.encuestas
 {
 	[Bindable]
 	[RemoteClass(alias="snanalizer.domain.Pregunta")]
