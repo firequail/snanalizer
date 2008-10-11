@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:ns1="sna.admin.redes.*" horizontalAlign="center" verticalAlign="middle" creationComplete="load()">
+	<mx:states>
+		<mx:State name="crear">
+			<mx:RemoveChild target="{panel1}"/>
+			<mx:AddChild position="lastChild">
+				<ns1:NuevaRed id="newForm" result="currentState='';load()"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+	<mx:Panel title="Redes" id="panel1" width="402" height="300">
+		<mx:HBox width="100%" height="100%">
+			<mx:DataGrid id="redes" dataProvider="{redesService.getRedes.lastResult}" width="100%" height="100%">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Descripcion" dataField="descripcion" wordWrap="true"/>
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:HBox>
+		<mx:ControlBar horizontalAlign="middle">
+			<mx:Button label="Nueva Red" click="crear()"/>
+		</mx:ControlBar>
+	</mx:Panel>
+	
+	<mx:RemoteObject id="redesService" destination="redesService" />
+	
+	
+	<mx:Script>
+		<![CDATA[
+			
+			public function load():void {
+				redesService.getRedes();
+			}
+			
+			public function crear():void {
+				this.currentState = "crear";
+				newForm.init();
+			}
+			
+		]]>
+	</mx:Script>	
+	
+</mx:VBox>

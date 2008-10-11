@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" width="100%" height="100%">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:RemoteObject id="redesService" destination="redesService" />
+	<mx:RemoteObject id="gruposRecursosService" destination="gruposRecursosService" />
+	<mx:RemoteObject id="encuestasService" destination="encuestasService" />
+	
+	<mx:Panel title="Nueva Red" width="100%" height="100%">
+		<mx:Form id="form1" defaultButton="{okButton}" width="100%" height="100%">
+			<mx:FormItem label="Nombre" tabIndex="1" width="100%">
+				<mx:TextInput id="nombre" width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Descripcion" tabIndex="1" width="100%">
+				<mx:TextInput id="descripcion" width="100%"/>
+			</mx:FormItem>
+			<mx:FormItem label="Grupo de Recursos" tabIndex="1" width="100%" height="100%">
+				<sna:DataComboBox id="gruposCombo" labelField="descripcion" dataField="id" dataProvider="{gruposRecursosService.getAll.lastResult}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Encuesta" tabIndex="1" width="100%" height="100%">
+				<sna:DataComboBox id="encuestasCombo" labelField="nombre" dataField="id" dataProvider="{encuestasService.getEncuestas.lastResult}"/>
+			</mx:FormItem>
+		</mx:Form>
+		<mx:ControlBar horizontalAlign="right">
+			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="2" />
+			<mx:Button label="Cancelar" click="cancelar()" tabIndex="3" />
+		</mx:ControlBar>
+	</mx:Panel>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			
+			public function init():void {
+				gruposRecursosService.getAll();
+				encuestasService.getEncuestas();
+			}
+			
+			public function guardar():void {
+				redesService.crearRed(nombre.text, descripcion.text, gruposCombo.selectedData, encuestasCombo.selectedData);
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			public function cancelar():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+		]]>
+	</mx:Script>
+	
+</mx:Canvas>
