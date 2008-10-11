@@ -44,10 +44,11 @@ public class Recurso extends DomainEntity {
 	private Atributo hobbie6;
 	private String experiencia;
 	private Boolean estado;
+	private String picture;
 	
-	@Basic(fetch=LAZY)
+/*	@Basic(fetch=LAZY)
 	@Lob @Column(name="PIC")
-	private byte[] picture;
+	private byte[] picture;*/
 	
 
 	public Recurso() {
@@ -155,14 +156,15 @@ public class Recurso extends DomainEntity {
 		this.estado = estado;
 	}
 
-	public byte[] getPicture() {
+
+	public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(byte[] picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	
+
 	public void setIdioma1(Atributo idioma) {
 		this.idioma1 = idioma;
 	}

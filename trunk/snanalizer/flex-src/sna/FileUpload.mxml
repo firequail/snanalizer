@@ -51,15 +51,20 @@
 
 				var request:URLRequest = new URLRequest();
 				request.data = sendVars;
-				request.url = _strUploadUrl;
+				//request.url = _strUploadUrl;
+				request.url = "http://localhost:8080/snanalizer/upload.jsp";
 				request.method = URLRequestMethod.POST;
 				request.contentType = "multipart/form-data";
+				
 
 				
 				_refUploadFile = new FileReference();
 				//_refUploadFile = listFiles.selectedItem.file;
 				_refUploadFile = _refAddFiles.fileList[0];
 				_refUploadFile.upload(request, "file", false);
+				//_refUploadFile.upload(request);
+				
+				
 				
 				
 			}
