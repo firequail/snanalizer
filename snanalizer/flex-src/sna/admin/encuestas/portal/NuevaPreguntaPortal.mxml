@@ -4,23 +4,20 @@
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 	
-	<mx:Binding source="nombre.text" destination="encuesta.nombre"/>
+	<mx:Binding source="descripcion.text" destination="pregunta.descripcion"/>
 	
-	<mx:RemoteObject id="encuestasService" destination="encuestasService" />
-	
-	<mx:Panel title="Nueva encuesta" width="100%" height="100%">
+	<mx:Panel title="Nueva pregunta" width="100%" height="100%">
 		<mx:Form id="form1" defaultButton="{okButton}" width="100%" height="100%">
-			<mx:FormItem label="Nombre" tabIndex="1" width="100%">
-				<mx:TextInput id="nombre" width="100%"/>
+			<mx:FormItem label="Descripcion" tabIndex="1" width="100%">
+				<mx:TextInput id="descripcion" width="100%"/>
 			</mx:FormItem>
-			<mx:FormItem label="Preguntas" tabIndex="1" width="100%" height="100%">
-				<mx:DataGrid id="preguntas" editable="true" dataProvider="{encuesta.preguntas}" width="100%" height="100%">
+			<mx:FormItem label="Respuestas" tabIndex="1" width="100%" height="100%">
+				<mx:DataGrid id="respuestas" editable="true" dataProvider="{pregunta.respuestas}" width="100%" height="100%">
 					<mx:columns>
 						<mx:DataGridColumn headerText="Descripción" dataField="descripcion" wordWrap="true"/>
-						<mx:DataGridColumn headerText="Intensidad máxima" textAlign="center" dataField="maximaIntensidad" headerWordWrap="true" width="100"/>
 					</mx:columns>
 				</mx:DataGrid>
-				<mx:Button label="Nueva Pregunta" click="nuevaPregunta()"/>
+				<mx:Button label="Nueva Respuesta" click="nuevaRespuesta()"/>
 			</mx:FormItem>
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
@@ -34,22 +31,22 @@
 			import mx.rpc.events.ResultEvent;
 			
 			[Bindable]
-			private var encuesta:Encuesta;
+			public var pregunta:PreguntaDePortal;
 			
 			public function init():void {
-				encuesta = new Encuesta();
+				pregunta = new PreguntaDePortal();
 			}
 			
-			public function nuevaPregunta():void {
-				encuesta.preguntas.addItem(new Pregunta());
+			public function nuevaRespuesta():void {
+				pregunta.respuestas.addItem(new RespuestaDePortal());
 			}
 			
 			public function guardar():void {
-				encuestasService.crear(encuesta);
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
 			public function cancelar():void {
+				pregunta = null;
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
