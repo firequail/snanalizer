@@ -47,10 +47,6 @@
 
 			import mx.rpc.events.ResultEvent;
 			import mx.controls.Alert;
-			
-			[Bindable]
-			public var grupo:Object;
-
 						
 			private function guardar():void {
 				var idRecursos:ArrayCollection = new ArrayCollection();

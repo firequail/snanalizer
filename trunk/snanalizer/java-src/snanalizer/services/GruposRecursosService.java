@@ -16,4 +16,6 @@ public interface GruposRecursosService {
 	public void crear(GrupoRecursos grupo);
 
 	public void nuevoGrupo(String descripcion, List<Integer> idsRecursos);
+	
+	public void modificarGrupo(int grupoId, String descripcion, List<Integer> idsRecursos);
 }

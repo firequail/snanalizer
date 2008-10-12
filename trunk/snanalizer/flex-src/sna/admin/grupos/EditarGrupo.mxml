@@ -7,23 +7,26 @@
 
 	
 	<mx:Panel title="Editar Grupo" id="panel1" width="402" height="300">
-		<mx:HBox backgroundAlpha="0.0" width="381" height="224" verticalAlign="bottom">
-			<mx:VBox width="50%" height="100%" verticalAlign="bottom">
+		<mx:HBox width="100%" verticalAlign="bottom">
+			<mx:Label text="Nombre"/><mx:TextInput text="{grupo.descripcion}" id="nombre"/>
+		</mx:HBox>
+		<mx:HBox width="100%" height="100%" verticalAlign="bottom">
+			<mx:VBox width="100%" height="100%" verticalAlign="bottom">
 				<mx:Label text="Recursos Disponibles"/>
 				<mx:List id="listaRecursos" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{recursosService.getAllExcept.lastResult}"   height="90%" width="100%">
 					<mx:itemRenderer>
 						<mx:Component>
-							<mx:Label text="{data.usuario.nombre}"/>
+							<mx:Label text="{data.usuario.email}"/>
 						</mx:Component>
 					</mx:itemRenderer>
 				</mx:List>
 			</mx:VBox>
-			<mx:VBox width="50%" height="100%" verticalAlign="bottom">
-				<mx:Label text="Label" id="lblGrupo"/>
+			<mx:VBox width="100%" height="100%" verticalAlign="bottom">
+				<mx:Label text="Recursos seleccionados" id="lblGrupo"/>
 				<mx:List id="listaGrupo" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{gruposRecursosService.getRecursos.lastResult}"  height="90%" width="100%">
 					<mx:itemRenderer>
 						<mx:Component>
-							<mx:Label text="{data.usuario.nombre}"/>
+							<mx:Label text="{data.usuario.email}"/>
 						</mx:Component>
 					</mx:itemRenderer>
 				</mx:List>
@@ -42,6 +45,7 @@
 		
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 
 			import mx.rpc.events.ResultEvent;
 			import mx.controls.Alert;
@@ -51,8 +55,13 @@
 
 						
 			private function guardar():void {
+				var idRecursos:ArrayCollection = new ArrayCollection();
+				for each(var recurso:Object in listaGrupo.dataProvider) {
+					idRecursos.addItem(recurso.id);
+				}
 				
-				// Acá iría el código para plasmar lo elegido en la base
+				gruposRecursosService.modificarGrupo(grupo.id, nombre.text, idRecursos);
+				dispatchEvent(ResultEvent.createEvent());
 			}
 			
 			
@@ -63,10 +72,7 @@
 			private function load():void {
 				gruposRecursosService.getRecursos(grupo.id as int);
 				recursosService.getAllExcept(grupo.id as int);
-				lblGrupo.text = grupo.descripcion;
 			}
-
-
 			
 		]]>
 	</mx:Script>
