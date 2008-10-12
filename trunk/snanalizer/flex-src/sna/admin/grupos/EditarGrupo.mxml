@@ -23,7 +23,7 @@
 			</mx:VBox>
 			<mx:VBox width="100%" height="100%" verticalAlign="bottom">
 				<mx:Label text="Recursos seleccionados" id="lblGrupo"/>
-				<mx:List id="listaGrupo" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{gruposRecursosService.getRecursos.lastResult}"  height="90%" width="100%">
+				<mx:List id="listaGrupo" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{grupo.recursos}"  height="90%" width="100%">
 					<mx:itemRenderer>
 						<mx:Component>
 							<mx:Label text="{data.usuario.email}"/>
@@ -33,7 +33,9 @@
 			</mx:VBox>
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="right">
-			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
+			<mx:Button label="Eliminar" click="eliminar()" tabIndex="5" />
+			<mx:Spacer width="100%"/>
+			<mx:Button label="Guardar" click="guardar()" tabIndex="5" />
 			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
 		</mx:ControlBar>
 		   
@@ -64,13 +66,16 @@
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
+			private function eliminar():void {
+				gruposRecursosService.eliminar(grupo.id);
+				dispatchEvent(ResultEvent.createEvent());
+			}
 			
 			private function cancelar():void {
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
 			private function load():void {
-				gruposRecursosService.getRecursos(grupo.id as int);
 				recursosService.getAllExcept(grupo.id as int);
 			}
 			

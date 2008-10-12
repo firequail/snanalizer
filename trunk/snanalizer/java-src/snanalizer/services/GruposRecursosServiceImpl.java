@@ -23,22 +23,8 @@ public class GruposRecursosServiceImpl implements GruposRecursosService {
 		return gruposRecursosRepo.getAll();
 	}
 
-	public List<Recurso> getRecursos(int grupoId) {
-		GrupoRecursos grupo = gruposRecursosRepo.getById(grupoId);
-		return grupo.getRecursos();
-	}
-
-	public void updateGrupo(int grupoId, List<Recurso> listaRec) {
-		gruposRecursosRepo.getById(grupoId).getRecursos().clear();
-		gruposRecursosRepo.getById(grupoId).getRecursos().addAll(listaRec);
-	}
-
 	public GrupoRecursos getById(int grupoId) {
 		return gruposRecursosRepo.getById(grupoId);
-	}
-
-	public void crear(GrupoRecursos grupo) {
-		gruposRecursosRepo.add(grupo);
 	}
 
 	public void nuevoGrupo(String descripcion, List<Integer> idsRecursos) {
@@ -49,12 +35,17 @@ public class GruposRecursosServiceImpl implements GruposRecursosService {
 		List<Recurso> recursos = recursosRepo.getById(idsRecursos);
 		grupo.setRecursos(recursos);
 	}
-	
-	public void modificarGrupo(int grupoId, String descripcion, List<Integer> idsRecursos) {
+
+	public void modificarGrupo(int grupoId, String descripcion,
+			List<Integer> idsRecursos) {
 		GrupoRecursos grupo = gruposRecursosRepo.getById(grupoId);
 
 		grupo.setDescripcion(descripcion);
 		List<Recurso> recursos = recursosRepo.getById(idsRecursos);
 		grupo.setRecursos(recursos);
+	}
+
+	public void eliminar(int grupoId) {
+		gruposRecursosRepo.remove(grupoId);
 	}
 }
