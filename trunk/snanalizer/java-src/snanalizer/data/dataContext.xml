@@ -43,6 +43,15 @@
 	<bean id="encuestasRepository"
 		class="snanalizer.data.EncuestasRepositoryImpl" />
 
+	<bean id="encuestasDePortalRepository"
+		class="snanalizer.data.EncuestasDePortalRepositoryImpl" />
+
+	<bean id="preguntasDePortalRepository"
+		class="snanalizer.data.PreguntasDePortalRepositoryImpl" />
+
+	<bean id="respuestasDePortalRepository"
+		class="snanalizer.data.RespuestasDePortalRepositoryImpl" />
+
 	<bean id="preguntasRepository"
 		class="snanalizer.data.PreguntasRepositoryImpl" />
 		
