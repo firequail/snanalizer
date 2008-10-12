@@ -8,9 +8,10 @@ package sna.admin.encuestas
 		
 		public var maximaIntensidad:int = 5;
 		
-		public function Pregunta()
-		{
+		public var encuesta:Encuesta;
+		
+		public function Pregunta() {
+			
 		}
-
 	}
 }
