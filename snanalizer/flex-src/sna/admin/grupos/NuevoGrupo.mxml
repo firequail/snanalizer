@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="load()" >
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" >
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -63,8 +63,10 @@
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
-			private function load():void {
+			public function init():void {
+				listaGrupo.dataProvider = new ArrayCollection();
 				recursosService.getAll();
+				nombre.text = "";
 			}
 			
 		]]>

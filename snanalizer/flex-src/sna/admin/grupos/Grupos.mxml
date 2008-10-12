@@ -4,19 +4,13 @@
 		<mx:State name="NuevoGrupo">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
-				<grupos:NuevoGrupo result="load(event)"/>
+				<grupos:NuevoGrupo id="nuevoForm" result="load(event)"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="EditarGrupo">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
 				<grupos:EditarGrupo id="editarGrupo" result="load(event)"/>
-			</mx:AddChild>
-		</mx:State>
-		<mx:State name="test">
-			<mx:RemoveChild target="{panel1}"/>
-			<mx:AddChild position="lastChild">
-				<grupos:test id="testx" result="load(event)"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -26,9 +20,7 @@
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Nuevo Grupo" click="nuevoGrupo()"/>
-			<mx:Button label="Test" click="testGrupo()"/>
 		</mx:ControlBar>
-		   
 	</mx:Panel>
 	
 	<mx:Script>
@@ -41,6 +33,7 @@
 		
 			private function nuevoGrupo():void {
 				this.currentState = "NuevoGrupo";
+				nuevoForm.init();
 			}
 			
 			private function modificarGrupo(event:ResultEvent):void {
@@ -48,19 +41,10 @@
 				editarGrupo.grupo = event.result;
 			}
 			
-			private function testGrupo():void {
-				this.currentState = "test";
-				testx.initApp();
-			//	editarGrupo.grupo = event.result;
-			}
-						
-			
 			private function load(event:ResultEvent):void {
-				this.currentState = "";
 				listadoGrupos.load();
+				this.currentState = "";
 			}
-			
-			
 						
 		]]>
 	</mx:Script>

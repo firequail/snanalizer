@@ -34,5 +34,4 @@ public class GrupoRecursos extends DomainEntity {
 	public List<Recurso> getRecursos() {
 		return recursos;
 	}
-	
 }
