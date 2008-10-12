@@ -44,8 +44,16 @@ public class GruposRecursosServiceImpl implements GruposRecursosService {
 	public void nuevoGrupo(String descripcion, List<Integer> idsRecursos) {
 		GrupoRecursos grupo = new GrupoRecursos();
 		gruposRecursosRepo.add(grupo);
-		grupo.setDescripcion(descripcion);
 
+		grupo.setDescripcion(descripcion);
+		List<Recurso> recursos = recursosRepo.getById(idsRecursos);
+		grupo.setRecursos(recursos);
+	}
+	
+	public void modificarGrupo(int grupoId, String descripcion, List<Integer> idsRecursos) {
+		GrupoRecursos grupo = gruposRecursosRepo.getById(grupoId);
+
+		grupo.setDescripcion(descripcion);
 		List<Recurso> recursos = recursosRepo.getById(idsRecursos);
 		grupo.setRecursos(recursos);
 	}
