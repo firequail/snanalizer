@@ -1,13 +1,16 @@
 package snanalizer.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Pregunta extends DomainEntity {
 
 	private String descripcion;
-	
+
 	private int maximaIntensidad;
+
+	private Encuesta encuesta;
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -23,5 +26,14 @@ public class Pregunta extends DomainEntity {
 
 	public int getMaximaIntensidad() {
 		return maximaIntensidad;
+	}
+
+	@ManyToOne
+	public Encuesta getEncuesta() {
+		return encuesta;
+	}
+
+	public void setEncuesta(Encuesta encuesta) {
+		this.encuesta = encuesta;
 	}
 }

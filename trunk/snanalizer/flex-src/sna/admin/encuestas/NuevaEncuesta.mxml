@@ -41,7 +41,9 @@
 			}
 			
 			public function nuevaPregunta():void {
-				encuesta.preguntas.addItem(new Pregunta());
+				var pregunta:Pregunta = new Pregunta();
+				pregunta.encuesta = encuesta;
+				encuesta.preguntas.addItem(pregunta);
 			}
 			
 			public function guardar():void {

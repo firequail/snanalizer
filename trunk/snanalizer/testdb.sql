@@ -164,7 +164,7 @@ CREATE TABLE `encuesta` (
 
 /*!40000 ALTER TABLE `encuesta` DISABLE KEYS */;
 INSERT INTO `encuesta` (`id`,`nombre`) VALUES 
- (1,'encuesta1');
+ (1,'encuesta 1');
 /*!40000 ALTER TABLE `encuesta` ENABLE KEYS */;
 
 
@@ -179,8 +179,8 @@ CREATE TABLE `encuesta_pregunta` (
   UNIQUE KEY `preguntas_id` (`preguntas_id`),
   KEY `FKF726801317148A27` (`Encuesta_id`),
   KEY `FKF7268013E8A18D68` (`preguntas_id`),
-  CONSTRAINT `FKF726801317148A27` FOREIGN KEY (`Encuesta_id`) REFERENCES `encuesta` (`id`),
-  CONSTRAINT `FKF7268013E8A18D68` FOREIGN KEY (`preguntas_id`) REFERENCES `pregunta` (`id`)
+  CONSTRAINT `FKF7268013E8A18D68` FOREIGN KEY (`preguntas_id`) REFERENCES `pregunta` (`id`),
+  CONSTRAINT `FKF726801317148A27` FOREIGN KEY (`Encuesta_id`) REFERENCES `encuesta` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -190,8 +190,7 @@ CREATE TABLE `encuesta_pregunta` (
 /*!40000 ALTER TABLE `encuesta_pregunta` DISABLE KEYS */;
 INSERT INTO `encuesta_pregunta` (`Encuesta_id`,`preguntas_id`) VALUES 
  (1,5),
- (1,6),
- (1,7);
+ (1,6);
 /*!40000 ALTER TABLE `encuesta_pregunta` ENABLE KEYS */;
 
 
@@ -204,7 +203,7 @@ CREATE TABLE `gruporecursos` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gruporecursos`
@@ -212,9 +211,7 @@ CREATE TABLE `gruporecursos` (
 
 /*!40000 ALTER TABLE `gruporecursos` DISABLE KEYS */;
 INSERT INTO `gruporecursos` (`id`,`descripcion`) VALUES 
- (1,'Grupo de Recursos de DEV'),
- (2,'grupo12-13'),
- (5,'qwe');
+ (1,'Grupo de Recursos de DEV');
 /*!40000 ALTER TABLE `gruporecursos` ENABLE KEYS */;
 
 
@@ -228,8 +225,8 @@ CREATE TABLE `gruporecursos_recurso` (
   `recursos_id` int(11) NOT NULL,
   KEY `FKB2874C9DD7A6C4ED` (`GrupoRecursos_id`),
   KEY `FKB2874C9DEB6DA2AC` (`recursos_id`),
-  CONSTRAINT `FKB2874C9DD7A6C4ED` FOREIGN KEY (`GrupoRecursos_id`) REFERENCES `gruporecursos` (`id`),
-  CONSTRAINT `FKB2874C9DEB6DA2AC` FOREIGN KEY (`recursos_id`) REFERENCES `recurso` (`id`)
+  CONSTRAINT `FKB2874C9DEB6DA2AC` FOREIGN KEY (`recursos_id`) REFERENCES `recurso` (`id`),
+  CONSTRAINT `FKB2874C9DD7A6C4ED` FOREIGN KEY (`GrupoRecursos_id`) REFERENCES `gruporecursos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -241,13 +238,7 @@ INSERT INTO `gruporecursos_recurso` (`GrupoRecursos_id`,`recursos_id`) VALUES
  (1,1),
  (1,2),
  (1,3),
- (1,4),
- (2,1),
- (2,2),
- (2,5),
- (5,1),
- (5,5),
- (5,7);
+ (1,4);
 /*!40000 ALTER TABLE `gruporecursos_recurso` ENABLE KEYS */;
 
 
@@ -262,7 +253,7 @@ CREATE TABLE `nodo` (
   PRIMARY KEY  (`id`),
   KEY `FK25222C7D38E34D` (`recurso_id`),
   CONSTRAINT `FK25222C7D38E34D` FOREIGN KEY (`recurso_id`) REFERENCES `recurso` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `nodo`
@@ -271,31 +262,10 @@ CREATE TABLE `nodo` (
 /*!40000 ALTER TABLE `nodo` DISABLE KEYS */;
 INSERT INTO `nodo` (`id`,`recurso_id`) VALUES 
  (1,1),
- (19,1),
- (23,1),
- (27,1),
- (31,1),
- (34,1),
- (37,1),
  (2,2),
- (20,2),
- (24,2),
- (28,2),
- (32,2),
- (35,2),
- (38,2),
  (3,3),
- (21,3),
- (25,3),
- (29,3),
  (4,4),
  (5,5),
- (22,5),
- (26,5),
- (30,5),
- (33,5),
- (36,5),
- (39,5),
  (6,6),
  (7,7),
  (8,8),
@@ -322,8 +292,8 @@ CREATE TABLE `nodo_relacion` (
   `relaciones_id` int(11) NOT NULL,
   KEY `FKFF4C6480A2BE8699` (`relaciones_id`),
   KEY `FKFF4C6480BEF08E7` (`Nodo_id`),
-  CONSTRAINT `FKFF4C6480A2BE8699` FOREIGN KEY (`relaciones_id`) REFERENCES `relacion` (`id`),
-  CONSTRAINT `FKFF4C6480BEF08E7` FOREIGN KEY (`Nodo_id`) REFERENCES `nodo` (`id`)
+  CONSTRAINT `FKFF4C6480BEF08E7` FOREIGN KEY (`Nodo_id`) REFERENCES `nodo` (`id`),
+  CONSTRAINT `FKFF4C6480A2BE8699` FOREIGN KEY (`relaciones_id`) REFERENCES `relacion` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -372,22 +342,24 @@ CREATE TABLE `pregunta` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) default NULL,
   `maximaIntensidad` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `encuesta_id` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `FKB7202F0A17148A27` (`encuesta_id`),
+  CONSTRAINT `FKB7202F0A17148A27` FOREIGN KEY (`encuesta_id`) REFERENCES `encuesta` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pregunta`
 --
 
 /*!40000 ALTER TABLE `pregunta` DISABLE KEYS */;
-INSERT INTO `pregunta` (`id`,`descripcion`,`maximaIntensidad`) VALUES 
- (1,'Quien tiene mas conocimientos en usabilidad?',0),
- (2,'pto de vista 2',0),
- (3,'pto de vista 1',0),
- (4,'Quien tiene mas conocimientos en testing?',0),
- (5,'pregunta1',5),
- (6,'pregunta2',5),
- (7,'pregunta3',5);
+INSERT INTO `pregunta` (`id`,`descripcion`,`maximaIntensidad`,`encuesta_id`) VALUES 
+ (1,'Quien tiene mas conocimientos en usabilidad?',0,NULL),
+ (2,'pto de vista 2',0,NULL),
+ (3,'pto de vista 1',0,NULL),
+ (4,'Quien tiene mas conocimientos en testing?',0,NULL),
+ (5,'pregunta 1',5,1),
+ (6,'pregunta 2',6,1);
 /*!40000 ALTER TABLE `pregunta` ENABLE KEYS */;
 
 
@@ -403,7 +375,7 @@ CREATE TABLE `puntodevista` (
   PRIMARY KEY  (`id`),
   KEY `FK63AB4EC85B1355A7` (`pregunta_id`),
   CONSTRAINT `FK63AB4EC85B1355A7` FOREIGN KEY (`pregunta_id`) REFERENCES `pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `puntodevista`
@@ -414,13 +386,7 @@ INSERT INTO `puntodevista` (`id`,`descripcion`,`pregunta_id`) VALUES
  (1,'Quien tiene mas conocimientos en usabilidad?',1),
  (2,'pto de vista 2',2),
  (3,'pto de vista 1',3),
- (4,'Quien tiene mas conocimientos en testing?',4),
- (5,'pregunta1',5),
- (6,'pregunta2',6),
- (7,'pregunta3',7),
- (8,'pregunta1',5),
- (9,'pregunta2',6),
- (10,'pregunta3',7);
+ (4,'Quien tiene mas conocimientos en testing?',4);
 /*!40000 ALTER TABLE `puntodevista` ENABLE KEYS */;
 
 
@@ -435,8 +401,8 @@ CREATE TABLE `puntodevista_nodo` (
   UNIQUE KEY `nodos_id` (`nodos_id`),
   KEY `FKA3DE894352D33627` (`PuntoDeVista_id`),
   KEY `FKA3DE8943D16E112C` (`nodos_id`),
-  CONSTRAINT `FKA3DE894352D33627` FOREIGN KEY (`PuntoDeVista_id`) REFERENCES `puntodevista` (`id`),
-  CONSTRAINT `FKA3DE8943D16E112C` FOREIGN KEY (`nodos_id`) REFERENCES `nodo` (`id`)
+  CONSTRAINT `FKA3DE8943D16E112C` FOREIGN KEY (`nodos_id`) REFERENCES `nodo` (`id`),
+  CONSTRAINT `FKA3DE894352D33627` FOREIGN KEY (`PuntoDeVista_id`) REFERENCES `puntodevista` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -462,28 +428,7 @@ INSERT INTO `puntodevista_nodo` (`PuntoDeVista_id`,`nodos_id`) VALUES
  (4,15),
  (4,16),
  (4,17),
- (4,18),
- (5,19),
- (5,20),
- (5,21),
- (5,22),
- (6,23),
- (6,24),
- (6,25),
- (6,26),
- (7,27),
- (7,28),
- (7,29),
- (7,30),
- (8,31),
- (8,32),
- (8,33),
- (9,34),
- (9,35),
- (9,36),
- (10,37),
- (10,38),
- (10,39);
+ (4,18);
 /*!40000 ALTER TABLE `puntodevista_nodo` ENABLE KEYS */;
 
 
@@ -540,8 +485,8 @@ CREATE TABLE `recurso` (
   KEY `FKA3C27229E2C3BCEF` (`hobbie3_id`),
   KEY `FKA3C27229E2C4A5AD` (`hobbie5_id`),
   KEY `FKA3C2722958FC123` (`idioma1_id`),
-  CONSTRAINT `FKA3C2722958A9FD2D` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
   CONSTRAINT `FKA3C2722958FC123` FOREIGN KEY (`idioma1_id`) REFERENCES `atributo` (`id`),
+  CONSTRAINT `FKA3C2722958A9FD2D` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
   CONSTRAINT `FKA3C272295903582` FOREIGN KEY (`idioma2_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C27229590A9E1` FOREIGN KEY (`idioma3_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C272297198C4F2` FOREIGN KEY (`area_id`) REFERENCES `atributo` (`id`),
@@ -597,7 +542,7 @@ CREATE TABLE `red` (
   `descripcion` varchar(255) default NULL,
   `nombre` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `red`
@@ -606,9 +551,7 @@ CREATE TABLE `red` (
 /*!40000 ALTER TABLE `red` DISABLE KEYS */;
 INSERT INTO `red` (`id`,`descripcion`,`nombre`) VALUES 
  (1,'Red de Prueba',NULL),
- (2,'Red de Prueba2',NULL),
- (3,'desc red1','red1'),
- (4,'desc red2','red2');
+ (2,'Red de Prueba2',NULL);
 /*!40000 ALTER TABLE `red` ENABLE KEYS */;
 
 
@@ -623,8 +566,8 @@ CREATE TABLE `red_puntodevista` (
   UNIQUE KEY `puntosDeVista_id` (`puntosDeVista_id`),
   KEY `FKD53777D65B098ED2` (`puntosDeVista_id`),
   KEY `FKD53777D6930BEFCD` (`Red_id`),
-  CONSTRAINT `FKD53777D65B098ED2` FOREIGN KEY (`puntosDeVista_id`) REFERENCES `puntodevista` (`id`),
-  CONSTRAINT `FKD53777D6930BEFCD` FOREIGN KEY (`Red_id`) REFERENCES `red` (`id`)
+  CONSTRAINT `FKD53777D6930BEFCD` FOREIGN KEY (`Red_id`) REFERENCES `red` (`id`),
+  CONSTRAINT `FKD53777D65B098ED2` FOREIGN KEY (`puntosDeVista_id`) REFERENCES `puntodevista` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -636,13 +579,7 @@ INSERT INTO `red_puntodevista` (`Red_id`,`puntosDeVista_id`) VALUES
  (1,1),
  (1,2),
  (2,3),
- (2,4),
- (3,5),
- (3,6),
- (3,7),
- (4,8),
- (4,9),
- (4,10);
+ (2,4);
 /*!40000 ALTER TABLE `red_puntodevista` ENABLE KEYS */;
 
 
@@ -659,8 +596,8 @@ CREATE TABLE `relacion` (
   PRIMARY KEY  (`id`),
   KEY `FKE2C6A3CD81C8DB89` (`origen_id`),
   KEY `FKE2C6A3CDD57B676B` (`destino_id`),
-  CONSTRAINT `FKE2C6A3CD81C8DB89` FOREIGN KEY (`origen_id`) REFERENCES `nodo` (`id`),
-  CONSTRAINT `FKE2C6A3CDD57B676B` FOREIGN KEY (`destino_id`) REFERENCES `nodo` (`id`)
+  CONSTRAINT `FKE2C6A3CDD57B676B` FOREIGN KEY (`destino_id`) REFERENCES `nodo` (`id`),
+  CONSTRAINT `FKE2C6A3CD81C8DB89` FOREIGN KEY (`origen_id`) REFERENCES `nodo` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
