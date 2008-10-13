@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:portal="sna.portal.*" >
+	<mx:HDividedBox width="100%" height="100%">
+		<mx:VBox width="25%" height="100%">
+			<mx:Panel width="100%" height="100%"  title=":: Novedades">
+			</mx:Panel>
+		</mx:VBox>
+		<mx:VBox width="75%" height="100%">
+			<mx:VDividedBox width="100%" height="100%">
+				<mx:HBox width="100%" height="70%">
+					<mx:Panel width="100%" height="100%" title=":: Browser corporativo">
+					</mx:Panel>
+				</mx:HBox>
+				<mx:HBox width="100%" height="30%" >
+					<mx:Panel width="100%" height="100%" title=":: Inbox">
+						<mx:Canvas label="hola" width="100%" height="100%">
+							<portal:EncuestasPendientes width="98%" height="95%" result="openSurvey(event)" />
+						</mx:Canvas>
+					</mx:Panel>
+				</mx:HBox>
+			</mx:VDividedBox>
+		</mx:VBox>
+	</mx:HDividedBox>
+	
+	<mx:Script>
+		<![CDATA[
+			import sna.snanalizer;
+			import mx.events.CloseEvent;
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+			import mx.managers.PopUpManager;
+            import mx.containers.TitleWindow;
+			
+			private function openSurvey(event:ResultEvent):void {
+				var answerSurvey:Encuesta =	Encuesta(PopUpManager.createPopUp(this,Encuesta,true)); 
+				answerSurvey.setEnc(event.result);
+				PopUpManager.centerPopUp(answerSurvey); 
+
+			}
+			
+			
+		]]>
+	</mx:Script>
+	
+</mx:Canvas>
