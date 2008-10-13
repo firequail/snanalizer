@@ -3,6 +3,8 @@ package snanalizer.domain;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
+
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +16,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import snanalizer.util.XmlTagBuilder;
+import snanalizer.domain.Recurso;
 
 @Entity
 public class Nodo extends DomainEntity {
@@ -48,6 +51,13 @@ public class Nodo extends DomainEntity {
 	@Fetch(FetchMode.SUBSELECT)
 	public List<Relacion> getRelaciones() {
 		return relaciones;
+	}
+	
+	public boolean tieneRelacionesSalientes() {
+		for(Relacion r : this.getRelaciones())
+			if(r.getOrigen().getRecurso().equals(this.getRecurso()))
+				return true;
+		return false;
 	}
 
 	public void addRelacion(Relacion relacion) {

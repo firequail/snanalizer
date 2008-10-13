@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:admin="sna.admin.*" xmlns:test="sna.test.*" xmlns:analisis="sna.analisis.*" horizontalAlign="center" verticalAlign="middle">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:admin="sna.admin.*" xmlns:test="sna.test.*" xmlns:analisis="sna.analisis.*" xmlns:portal="sna.portal.*" horizontalAlign="center" verticalAlign="middle">
 	<mx:states>
 		<mx:State name="Administracion">
 			<mx:RemoveChild target="{main}"/>
@@ -13,6 +13,12 @@
 				<analisis:Analisis/>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="Portal">
+			<mx:RemoveChild target="{main}"/>
+			<mx:AddChild position="lastChild">
+				<portal:Portal/>
+			</mx:AddChild>
+		</mx:State>
 		<mx:State name="Test">
 			<mx:RemoveChild target="{main}"/>
 			<mx:AddChild position="lastChild">
@@ -24,6 +30,7 @@
 	<mx:VBox id="main" height="100%" horizontalAlign="center" verticalAlign="middle">
 		<mx:Button label="Admin" click="currentState='Administracion'"/>
 		<mx:Button label="Analisis" click="currentState='Analisis'"/>
+		<mx:Button label="Portal" click="currentState='Portal'"/>		
 		<mx:Button label="Test" click="currentState='Test'"/>
 	</mx:VBox>
 
