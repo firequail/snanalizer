@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -16,6 +17,8 @@ public class Red extends DomainEntity {
 	private String nombre;
 	
 	private String descripcion;
+	
+	private Encuesta encuesta;
 
 	private List<PuntoDeVista> puntosDeVista = new LinkedList<PuntoDeVista>();
 
@@ -44,4 +47,15 @@ public class Red extends DomainEntity {
 	public List<PuntoDeVista> getPuntosDeVista() {
 		return puntosDeVista;
 	}
+
+	@ManyToOne
+	public Encuesta getEncuesta() {
+		return encuesta;
+	}
+
+	public void setEncuesta(Encuesta encuesta) {
+		this.encuesta = encuesta;
+	}
+	
+	
 }

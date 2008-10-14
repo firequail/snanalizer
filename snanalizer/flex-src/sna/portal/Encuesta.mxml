@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" creationComplete="init();">
-	
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300"  creationComplete="init();">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
 	
 	<mx:RemoteObject id="encuestasService" destination="encuestasService"/>
-	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	<mx:RemoteObject id="redesService" destination="redesService"/>
+
+	<mx:Form x="45" y="70" width="231">
+		<mx:Repeater id="rptPreguntas" dataProvider="{encuestasService.getPreguntasOf.lastResult}">
+			<mx:FormItem label="Descripción:">
+				<mx:Text text="{rptPreguntas.currentItem.descripcion}" width="84"/>
+			</mx:FormItem>
+			<mx:FormItem label="Respuesta:">
+				<mx:ComboBox dataProvider="{encuestasService.getRecursosOf.lastResult}" />
+			</mx:FormItem>
+		</mx:Repeater>
+	</mx:Form>
+   
 	
-	<mx:Repeater id="rptPreguntas" dataProvider="{encuestasService.getPreguntasOf.lastResult}">
-			<mx:Label text="descripcion:"/>
-		<mx:Label text="{rptPreguntas.currentItem.descripcion}"/>
-    </mx:Repeater>   
-	
-	<mx:Button x="192" y="119" label="Button" click="close()"/>
+	<mx:Button  label="Button" click="close()"/>
 	
 	<mx:Script>
 		<![CDATA[
 
 			import mx.rpc.events.ResultEvent;
 			import mx.managers.PopUpManager;
+			import mx.controls.Alert;
 			
 			[Bindable]
 			public var enc:Object;
+
 			
 			public function setEnc(value:Object):void {
 				enc = value;
+				// aca buscar la red que corresponde
 			}
+			
+
 			
 			private function close():void {
 				PopUpManager.removePopUp(this);
@@ -31,12 +45,14 @@
 			
 			private function init():void {
 				encuestasService.getPreguntasOf(enc.id as int);
-				// agregar en red el atributo encuesta y que en el alta de red se asigne
-				// agregar en  encuestasService algo que devuelva la red relacionada con esa encuesta
-				// luego con redService, traer los recursos involuc. en la red para ponerlos como rta.
+				encuestasService.getRecursosOf(enc.id as int);
+				
 			}
+
 						
 		]]>
 	</mx:Script>
+
+
 
 </mx:Canvas>

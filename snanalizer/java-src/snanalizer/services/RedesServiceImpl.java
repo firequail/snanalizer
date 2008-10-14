@@ -1,6 +1,7 @@
 package snanalizer.services;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
@@ -137,6 +138,7 @@ public class RedesServiceImpl implements RedesService {
 		redesRepository.add(red);
 		red.setNombre(nombre);
 		red.setDescripcion(descripcion);
+		red.setEncuesta(encuesta);
 
 		for (Pregunta pregunta : encuesta.getPreguntas()) {
 			PuntoDeVista puntoDeVista = new PuntoDeVista();
@@ -159,5 +161,15 @@ public class RedesServiceImpl implements RedesService {
 	private void enviarEncuesta() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public List<Recurso> getRecursosOf(int redId) {
+		List<Recurso> recursos = new ArrayList<Recurso>();
+		
+		for(PuntoDeVista ptoVista : redesRepository.getById(redId).getPuntosDeVista()) {
+			 for(Nodo nodo : ptoVista.getNodos())
+				 recursos.add(nodo.getRecurso());
+		}
+		return recursos;
 	}
 }

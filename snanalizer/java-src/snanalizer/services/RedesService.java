@@ -6,6 +6,7 @@ import snanalizer.domain.DatoMaestro;
 import snanalizer.domain.Filtro;
 import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
+import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 
 public interface RedesService {
@@ -21,4 +22,6 @@ public interface RedesService {
 	public List<DatoMaestro> getDatosMaestros();
 
 	public void crearRed(String nombre, String descripcion, int idGrupo, int idEncuesta);
+	
+	public List<Recurso> getRecursosOf(int redId);
 }
