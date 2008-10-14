@@ -21,6 +21,7 @@ import snanalizer.domain.Recurso;
 import snanalizer.domain.Pregunta;
 
 
+
 @Transactional
 public class EncuestasServiceImpl implements EncuestasService {
 
@@ -88,6 +89,27 @@ public class EncuestasServiceImpl implements EncuestasService {
 	
 	public List<Pregunta> getPreguntasOf(int encId) {
 		return encuestasRepository.getById(encId).getPreguntas();
+		
+	}
+	
+	public Red getRedOf(int encId) {
+		List<Red> redes = redesRepository.getAll();
+		Red r = new Red();
+		for(Red red : redes) {
+			if(red.getEncuesta().equals(encuestasRepository.getById(encId)))
+				r = red;
+		}
+		return r;
+	}
+	
+	public List<Recurso> getRecursosOf(int encId) {
+		List<Recurso> recursos = new ArrayList<Recurso>();
+		
+		for(PuntoDeVista ptoVista : this.getRedOf(encId).getPuntosDeVista()) {
+			 for(Nodo nodo : ptoVista.getNodos())
+				 recursos.add(nodo.getRecurso());
+		}
+		return recursos;
 		
 	}
 

@@ -5,6 +5,8 @@ import java.util.List;
 import snanalizer.domain.Encuesta;
 import snanalizer.domain.EncuestaDePortal;
 import snanalizer.domain.Pregunta;
+import snanalizer.domain.Recurso;
+import snanalizer.domain.Red;
 
 public interface EncuestasService {
 
@@ -19,4 +21,7 @@ public interface EncuestasService {
 	public List<Encuesta> getSurveysOf(int recId);
 	
 	public List<Pregunta> getPreguntasOf(int encId);
+	
+	public Red getRedOf(int encId);
+	public List<Recurso> getRecursosOf(int encId);
 }

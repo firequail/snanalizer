@@ -179,8 +179,8 @@ CREATE TABLE `encuesta_pregunta` (
   UNIQUE KEY `preguntas_id` (`preguntas_id`),
   KEY `FKF726801317148A27` (`Encuesta_id`),
   KEY `FKF7268013E8A18D68` (`preguntas_id`),
-  CONSTRAINT `FKF7268013E8A18D68` FOREIGN KEY (`preguntas_id`) REFERENCES `pregunta` (`id`),
-  CONSTRAINT `FKF726801317148A27` FOREIGN KEY (`Encuesta_id`) REFERENCES `encuesta` (`id`)
+  CONSTRAINT `FKF726801317148A27` FOREIGN KEY (`Encuesta_id`) REFERENCES `encuesta` (`id`),
+  CONSTRAINT `FKF7268013E8A18D68` FOREIGN KEY (`preguntas_id`) REFERENCES `pregunta` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -189,9 +189,53 @@ CREATE TABLE `encuesta_pregunta` (
 
 /*!40000 ALTER TABLE `encuesta_pregunta` DISABLE KEYS */;
 INSERT INTO `encuesta_pregunta` (`Encuesta_id`,`preguntas_id`) VALUES 
+ (1,1),
+ (1,2),
  (1,5),
  (1,6);
 /*!40000 ALTER TABLE `encuesta_pregunta` ENABLE KEYS */;
+
+
+--
+-- Definition of table `encuestadeportal`
+--
+
+DROP TABLE IF EXISTS `encuestadeportal`;
+CREATE TABLE `encuestadeportal` (
+  `id` int(11) NOT NULL auto_increment,
+  `nombre` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `encuestadeportal`
+--
+
+/*!40000 ALTER TABLE `encuestadeportal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `encuestadeportal` ENABLE KEYS */;
+
+
+--
+-- Definition of table `encuestadeportal_preguntadeportal`
+--
+
+DROP TABLE IF EXISTS `encuestadeportal_preguntadeportal`;
+CREATE TABLE `encuestadeportal_preguntadeportal` (
+  `EncuestaDePortal_id` int(11) NOT NULL,
+  `preguntas_id` int(11) NOT NULL,
+  UNIQUE KEY `preguntas_id` (`preguntas_id`),
+  KEY `FK5B7CBAB3B1FD9247` (`EncuestaDePortal_id`),
+  KEY `FK5B7CBAB3314346D5` (`preguntas_id`),
+  CONSTRAINT `FK5B7CBAB3314346D5` FOREIGN KEY (`preguntas_id`) REFERENCES `preguntadeportal` (`id`),
+  CONSTRAINT `FK5B7CBAB3B1FD9247` FOREIGN KEY (`EncuestaDePortal_id`) REFERENCES `encuestadeportal` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `encuestadeportal_preguntadeportal`
+--
+
+/*!40000 ALTER TABLE `encuestadeportal_preguntadeportal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `encuestadeportal_preguntadeportal` ENABLE KEYS */;
 
 
 --
@@ -225,8 +269,8 @@ CREATE TABLE `gruporecursos_recurso` (
   `recursos_id` int(11) NOT NULL,
   KEY `FKB2874C9DD7A6C4ED` (`GrupoRecursos_id`),
   KEY `FKB2874C9DEB6DA2AC` (`recursos_id`),
-  CONSTRAINT `FKB2874C9DEB6DA2AC` FOREIGN KEY (`recursos_id`) REFERENCES `recurso` (`id`),
-  CONSTRAINT `FKB2874C9DD7A6C4ED` FOREIGN KEY (`GrupoRecursos_id`) REFERENCES `gruporecursos` (`id`)
+  CONSTRAINT `FKB2874C9DD7A6C4ED` FOREIGN KEY (`GrupoRecursos_id`) REFERENCES `gruporecursos` (`id`),
+  CONSTRAINT `FKB2874C9DEB6DA2AC` FOREIGN KEY (`recursos_id`) REFERENCES `recurso` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -292,8 +336,8 @@ CREATE TABLE `nodo_relacion` (
   `relaciones_id` int(11) NOT NULL,
   KEY `FKFF4C6480A2BE8699` (`relaciones_id`),
   KEY `FKFF4C6480BEF08E7` (`Nodo_id`),
-  CONSTRAINT `FKFF4C6480BEF08E7` FOREIGN KEY (`Nodo_id`) REFERENCES `nodo` (`id`),
-  CONSTRAINT `FKFF4C6480A2BE8699` FOREIGN KEY (`relaciones_id`) REFERENCES `relacion` (`id`)
+  CONSTRAINT `FKFF4C6480A2BE8699` FOREIGN KEY (`relaciones_id`) REFERENCES `relacion` (`id`),
+  CONSTRAINT `FKFF4C6480BEF08E7` FOREIGN KEY (`Nodo_id`) REFERENCES `nodo` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -354,13 +398,55 @@ CREATE TABLE `pregunta` (
 
 /*!40000 ALTER TABLE `pregunta` DISABLE KEYS */;
 INSERT INTO `pregunta` (`id`,`descripcion`,`maximaIntensidad`,`encuesta_id`) VALUES 
- (1,'Quien tiene mas conocimientos en usabilidad?',0,NULL),
- (2,'pto de vista 2',0,NULL),
+ (1,'Quien tiene mas conocimientos en usabilidad?',0,1),
+ (2,'pto de vista 2',0,1),
  (3,'pto de vista 1',0,NULL),
  (4,'Quien tiene mas conocimientos en testing?',0,NULL),
  (5,'pregunta 1',5,1),
  (6,'pregunta 2',6,1);
 /*!40000 ALTER TABLE `pregunta` ENABLE KEYS */;
+
+
+--
+-- Definition of table `preguntadeportal`
+--
+
+DROP TABLE IF EXISTS `preguntadeportal`;
+CREATE TABLE `preguntadeportal` (
+  `id` int(11) NOT NULL auto_increment,
+  `descripcion` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `preguntadeportal`
+--
+
+/*!40000 ALTER TABLE `preguntadeportal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `preguntadeportal` ENABLE KEYS */;
+
+
+--
+-- Definition of table `preguntadeportal_respuestadeportal`
+--
+
+DROP TABLE IF EXISTS `preguntadeportal_respuestadeportal`;
+CREATE TABLE `preguntadeportal_respuestadeportal` (
+  `PreguntaDePortal_id` int(11) NOT NULL,
+  `respuestas_id` int(11) NOT NULL,
+  UNIQUE KEY `respuestas_id` (`respuestas_id`),
+  KEY `FKAC4A8B457E38DDC7` (`PreguntaDePortal_id`),
+  KEY `FKAC4A8B4547764EC7` (`respuestas_id`),
+  CONSTRAINT `FKAC4A8B4547764EC7` FOREIGN KEY (`respuestas_id`) REFERENCES `respuestadeportal` (`id`),
+  CONSTRAINT `FKAC4A8B457E38DDC7` FOREIGN KEY (`PreguntaDePortal_id`) REFERENCES `preguntadeportal` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `preguntadeportal_respuestadeportal`
+--
+
+/*!40000 ALTER TABLE `preguntadeportal_respuestadeportal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `preguntadeportal_respuestadeportal` ENABLE KEYS */;
 
 
 --
@@ -401,8 +487,8 @@ CREATE TABLE `puntodevista_nodo` (
   UNIQUE KEY `nodos_id` (`nodos_id`),
   KEY `FKA3DE894352D33627` (`PuntoDeVista_id`),
   KEY `FKA3DE8943D16E112C` (`nodos_id`),
-  CONSTRAINT `FKA3DE8943D16E112C` FOREIGN KEY (`nodos_id`) REFERENCES `nodo` (`id`),
-  CONSTRAINT `FKA3DE894352D33627` FOREIGN KEY (`PuntoDeVista_id`) REFERENCES `puntodevista` (`id`)
+  CONSTRAINT `FKA3DE894352D33627` FOREIGN KEY (`PuntoDeVista_id`) REFERENCES `puntodevista` (`id`),
+  CONSTRAINT `FKA3DE8943D16E112C` FOREIGN KEY (`nodos_id`) REFERENCES `nodo` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -485,8 +571,8 @@ CREATE TABLE `recurso` (
   KEY `FKA3C27229E2C3BCEF` (`hobbie3_id`),
   KEY `FKA3C27229E2C4A5AD` (`hobbie5_id`),
   KEY `FKA3C2722958FC123` (`idioma1_id`),
-  CONSTRAINT `FKA3C2722958FC123` FOREIGN KEY (`idioma1_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C2722958A9FD2D` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
+  CONSTRAINT `FKA3C2722958FC123` FOREIGN KEY (`idioma1_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C272295903582` FOREIGN KEY (`idioma2_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C27229590A9E1` FOREIGN KEY (`idioma3_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C272297198C4F2` FOREIGN KEY (`area_id`) REFERENCES `atributo` (`id`),
@@ -541,7 +627,10 @@ CREATE TABLE `red` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) default NULL,
   `nombre` varchar(255) default NULL,
-  PRIMARY KEY  (`id`)
+  `encuesta_id` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `FK1407117148A27` (`encuesta_id`),
+  CONSTRAINT `FK1407117148A27` FOREIGN KEY (`encuesta_id`) REFERENCES `encuesta` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
@@ -549,9 +638,9 @@ CREATE TABLE `red` (
 --
 
 /*!40000 ALTER TABLE `red` DISABLE KEYS */;
-INSERT INTO `red` (`id`,`descripcion`,`nombre`) VALUES 
- (1,'Red de Prueba',NULL),
- (2,'Red de Prueba2',NULL);
+INSERT INTO `red` (`id`,`descripcion`,`nombre`,`encuesta_id`) VALUES 
+ (1,'Red de Prueba',NULL,1),
+ (2,'Red de Prueba2',NULL,NULL);
 /*!40000 ALTER TABLE `red` ENABLE KEYS */;
 
 
@@ -566,8 +655,8 @@ CREATE TABLE `red_puntodevista` (
   UNIQUE KEY `puntosDeVista_id` (`puntosDeVista_id`),
   KEY `FKD53777D65B098ED2` (`puntosDeVista_id`),
   KEY `FKD53777D6930BEFCD` (`Red_id`),
-  CONSTRAINT `FKD53777D6930BEFCD` FOREIGN KEY (`Red_id`) REFERENCES `red` (`id`),
-  CONSTRAINT `FKD53777D65B098ED2` FOREIGN KEY (`puntosDeVista_id`) REFERENCES `puntodevista` (`id`)
+  CONSTRAINT `FKD53777D65B098ED2` FOREIGN KEY (`puntosDeVista_id`) REFERENCES `puntodevista` (`id`),
+  CONSTRAINT `FKD53777D6930BEFCD` FOREIGN KEY (`Red_id`) REFERENCES `red` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -596,8 +685,8 @@ CREATE TABLE `relacion` (
   PRIMARY KEY  (`id`),
   KEY `FKE2C6A3CD81C8DB89` (`origen_id`),
   KEY `FKE2C6A3CDD57B676B` (`destino_id`),
-  CONSTRAINT `FKE2C6A3CDD57B676B` FOREIGN KEY (`destino_id`) REFERENCES `nodo` (`id`),
-  CONSTRAINT `FKE2C6A3CD81C8DB89` FOREIGN KEY (`origen_id`) REFERENCES `nodo` (`id`)
+  CONSTRAINT `FKE2C6A3CD81C8DB89` FOREIGN KEY (`origen_id`) REFERENCES `nodo` (`id`),
+  CONSTRAINT `FKE2C6A3CDD57B676B` FOREIGN KEY (`destino_id`) REFERENCES `nodo` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
@@ -621,6 +710,25 @@ INSERT INTO `relacion` (`id`,`intensidad`,`destino_id`,`origen_id`) VALUES
  (13,3,17,15),
  (14,3,18,16);
 /*!40000 ALTER TABLE `relacion` ENABLE KEYS */;
+
+
+--
+-- Definition of table `respuestadeportal`
+--
+
+DROP TABLE IF EXISTS `respuestadeportal`;
+CREATE TABLE `respuestadeportal` (
+  `id` int(11) NOT NULL auto_increment,
+  `descripcion` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `respuestadeportal`
+--
+
+/*!40000 ALTER TABLE `respuestadeportal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `respuestadeportal` ENABLE KEYS */;
 
 
 --

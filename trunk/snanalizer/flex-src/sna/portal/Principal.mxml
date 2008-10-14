@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:portal="sna.portal.*" >
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
 	<mx:HDividedBox width="100%" height="100%">
 		<mx:VBox width="25%" height="100%">
 			<mx:Panel width="100%" height="100%"  title=":: Novedades">
@@ -22,6 +25,8 @@
 		</mx:VBox>
 	</mx:HDividedBox>
 	
+	<mx:RemoteObject id="encuestasService" destination="encuestasService"/>
+	
 	<mx:Script>
 		<![CDATA[
 			import sna.snanalizer;
@@ -30,13 +35,23 @@
 			import mx.rpc.events.ResultEvent;
 			import mx.managers.PopUpManager;
             import mx.containers.TitleWindow;
+            import mx.rpc.events.ResultEvent;
+            
+            [Bindable]
+			public var enc:Object;
+			[Bindable]
+			public var red:Object;
+			
+			public var answerSurvey:Encuesta;
 			
 			private function openSurvey(event:ResultEvent):void {
-				var answerSurvey:Encuesta =	Encuesta(PopUpManager.createPopUp(this,Encuesta,true)); 
+
+				answerSurvey =	Encuesta(PopUpManager.createPopUp(this,Encuesta,true));
 				answerSurvey.setEnc(event.result);
 				PopUpManager.centerPopUp(answerSurvey); 
-
 			}
+			
+
 			
 			
 		]]>
