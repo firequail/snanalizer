@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:portal="sna.portal.*"  width="100%" height="100%">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:portal="sna.portal.*"  width="100%" height="100%" creationComplete="load()">
 	<sna:ControlBar/>
 	<mx:Panel layout="absolute" title="Portal" width="100%" height="100%">
 	<mx:TabNavigator width="100%" height="100%">
@@ -7,9 +7,21 @@
 				<portal:Principal/>
 			</mx:Canvas>
 			<mx:Canvas label="Personal" width="100%" height="100%">
-				<portal:Personal/>
+				<portal:Personal id="personal" recurso="{recursosService.getRecursoById.lastResult}"/>
 			</mx:Canvas>
 		</mx:TabNavigator>
 	</mx:Panel>
+	
+	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	
+	<mx:Script>
+		<![CDATA[
+		
+			public function load():void {
+				recursosService.getRecursoById(1);
+			}
+		
+		]]>
+	</mx:Script>
 	
 </mx:VBox>

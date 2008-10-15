@@ -38,16 +38,12 @@
             import mx.rpc.events.ResultEvent;
             
             [Bindable]
-			public var enc:Object;
-			[Bindable]
-			public var red:Object;
-			
-			public var answerSurvey:Encuesta;
+            public var answerSurvey:Encuesta;
+
 			
 			private function openSurvey(event:ResultEvent):void {
-
 				answerSurvey =	Encuesta(PopUpManager.createPopUp(this,Encuesta,true));
-				answerSurvey.setEnc(event.result);
+				answerSurvey.setRed(event.result);
 				PopUpManager.centerPopUp(answerSurvey); 
 			}
 			

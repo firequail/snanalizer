@@ -67,24 +67,27 @@ public class EncuestasServiceImpl implements EncuestasService {
 		return encuestasDePortalRepository.getAll();
 	}
 	
-	public List<Encuesta> getSurveysOf(int recId) {
+	public List<Red> getSurveysOf(int recId) {
 		
 		Recurso recurso = recursosRepository.getById(recId);
 		List<Encuesta> encuestasPendientes = new ArrayList<Encuesta>();
-		List<Red> redes = redesRepository.getAll();
+		List<Red> redes = new ArrayList<Red>();
 		
-		for(Red red : redes) {
+		
+		for(Red red : redesRepository.getAll()) {
 			for(PuntoDeVista ptoVista : red.getPuntosDeVista()) {
 				for(Nodo node : ptoVista.getNodos()) {
 					if(node.getRecurso().equals(recurso)) {
 						if(!node.tieneRelacionesSalientes())
-							if(!(encuestasPendientes.contains(ptoVista.getPregunta().getEncuesta())))
-									encuestasPendientes.add(ptoVista.getPregunta().getEncuesta());
+							//if(!(encuestasPendientes.contains(ptoVista.getPregunta().getEncuesta())))
+								//	encuestasPendientes.add(ptoVista.getPregunta().getEncuesta());
+							if(!redes.contains(red))
+								redes.add(red);
 					}
 				}
 			}
 		}
-		return encuestasPendientes;
+		return redes;
 	}
 	
 	public List<Pregunta> getPreguntasOf(int encId) {
@@ -92,25 +95,6 @@ public class EncuestasServiceImpl implements EncuestasService {
 		
 	}
 	
-	public Red getRedOf(int encId) {
-		List<Red> redes = redesRepository.getAll();
-		Red r = new Red();
-		for(Red red : redes) {
-			if(red.getEncuesta().equals(encuestasRepository.getById(encId)))
-				r = red;
-		}
-		return r;
-	}
-	
-	public List<Recurso> getRecursosOf(int encId) {
-		List<Recurso> recursos = new ArrayList<Recurso>();
-		
-		for(PuntoDeVista ptoVista : this.getRedOf(encId).getPuntosDeVista()) {
-			 for(Nodo nodo : ptoVista.getNodos())
-				 recursos.add(nodo.getRecurso());
-		}
-		return recursos;
-		
-	}
+
 
 }
