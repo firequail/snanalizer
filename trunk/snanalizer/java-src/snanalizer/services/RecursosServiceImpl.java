@@ -75,5 +75,9 @@ public class RecursosServiceImpl implements RecursosService {
 		recurso.setFechaNac(fecha);
 		recurso.setEstado(estado);
 	}
+	
+	public Recurso getRecursoById(int recId) {
+		return recursos.getById(recId);
+	}
 
 }

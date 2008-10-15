@@ -9,7 +9,13 @@
 	
 	<mx:DataGrid id="encuestas"  dataProvider="{encuestasService.getSurveysOf.lastResult}" doubleClickEnabled="true" doubleClick="openSurvey()"  width="100%" height="100%">
 		<mx:columns>
-			<mx:DataGridColumn headerText="Encuestas Pendientes" dataField="nombre"/>
+			<mx:DataGridColumn headerText="Encuestas Pendientes">
+				<mx:itemRenderer>
+					<mx:Component>
+						<mx:Label text="{data.encuesta.nombre}"/>
+					</mx:Component>
+				</mx:itemRenderer>
+			</mx:DataGridColumn>
 		</mx:columns>
 	</mx:DataGrid>
 
@@ -21,7 +27,6 @@
 			
 			public function load():void {
 				encuestasService.getSurveysOf(1);
-				//recursosService.
 				
 			}
 			

@@ -18,10 +18,10 @@ public interface EncuestasService {
 	
 	public List<EncuestaDePortal> getEncuestasPortal();
 	
-	public List<Encuesta> getSurveysOf(int recId);
+	public List<Red> getSurveysOf(int recId);
 	
 	public List<Pregunta> getPreguntasOf(int encId);
 	
-	public Red getRedOf(int encId);
-	public List<Recurso> getRecursosOf(int encId);
+
+
 }
