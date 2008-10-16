@@ -45,7 +45,9 @@
     	            		<mx:Box borderStyle="solid" width="50%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" cornerRadius="10" borderThickness="2">
     	            			<mx:Label text="Estado Civil: {recurso.estadoCivil}"/>
     	            			<mx:Label text="Localidad: {recurso.localidad} "/>
-    	            			<mx:Label text="Provincia: {recurso.provincia.nombre}"/>
+    	            			<mx:FormItem label="Provincia: ">
+    	            				<sna:DataComboBox id="provinciaCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getProvincias.lastResult}" selectedData="{recurso.provincia.id}" unselectedLabel="Ninguno"/>
+    	            			</mx:FormItem>
     	            		</mx:Box>
     	            	</mx:HBox>
             		</mx:VBox>
@@ -55,9 +57,14 @@
             			<mx:VBox width="100%" height="100%" verticalAlign="top">
             				<mx:Label text="Datos Académicos"/>
                 			<mx:Box borderStyle="solid" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" cornerRadius="10" borderThickness="2" height="90%">
-    	            			<mx:Label text="Nombre: {recurso.usuario.nombre}"/>
-    	            			<mx:Label text="Apellido: {recurso.usuario.nombre}"/>
-    	            			<mx:Label text="Fecha de Nacimiento: {recurso.fechaNac as DateBase}"/>
+                			<mx:VBox width="100%" height="100%">
+    	            			<mx:Label text="Título: {recurso.titulo}"/>
+    	            			<mx:FormItem label="Establecimiento: ">
+    	            				<sna:DataComboBox id="establecimCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getInstituciones.lastResult}" selectedData="{recurso.institucion.id}" unselectedLabel="Ninguno"/>
+    	            			</mx:FormItem>
+    	            			<mx:Label text="Año de ingreso: {recurso.fechaNac}"/>
+    	            			<mx:Label text="Año de egreso: {recurso.fechaNac}"/>
+    	            		</mx:VBox>
     	            		</mx:Box>
             			</mx:VBox>
             			<mx:VBox width="100%" height="100%" verticalAlign="top">
@@ -154,6 +161,7 @@
 				datosMaestrosService.getInstituciones();
 				datosMaestrosService.getNiveles();
 				datosMaestrosService.getIdiomas();
+				datosMaestrosService.getProvincias();
 			}
 		
 		]]>
