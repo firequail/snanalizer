@@ -20,5 +20,6 @@ public interface DatosMaestrosService {
 	public List<Atributo> getInstituciones();
 	public List<Atributo> getNiveles();
 	public List<Atributo> getIdiomas();
+	public List<Atributo> getProvincias();
 	
 }

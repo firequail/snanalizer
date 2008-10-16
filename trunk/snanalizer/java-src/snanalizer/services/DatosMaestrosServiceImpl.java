@@ -42,8 +42,9 @@ public class DatosMaestrosServiceImpl implements DatosMaestrosService {
 	public List<Atributo> getPuestos() { return this.getAtributosByDesc("Puesto"); }
 	public List<Atributo> getSeniorities() { return this.getAtributosByDesc("Seniority"); }
 	public List<Atributo> getHobbies() {  return this.getAtributosByDesc("Hobby"); }
-	public List<Atributo> getInstituciones() {return this.getAtributosByDesc("Insitución"); }
+	public List<Atributo> getInstituciones() {return this.getAtributosByDesc("Institución"); }
 	public List<Atributo> getNiveles() {return this.getAtributosByDesc("Nivel"); }
 	public List<Atributo> getIdiomas() {return this.getAtributosByDesc("Idioma"); }
+	public List<Atributo> getProvincias() {return this.getAtributosByDesc("Provincia"); }
 
 }
