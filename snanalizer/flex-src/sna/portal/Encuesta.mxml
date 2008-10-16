@@ -14,16 +14,13 @@
 				<mx:Text text="{rptPreguntas.currentItem.descripcion}" width="100%"/>
 			</mx:FormItem>
 			<mx:FormItem label="Respuesta:" width="100%">
-				<sna:DataComboBox dataProvider="{redesService.getRecursosOf.lastResult}" labelField="{data.usuario.nombre}" unselectedLabel="Seleccione una respuesta"/>
-
-				<mx:ComboBox dataProvider="{redesService.getRecursosOf.lastResult}" >
-					<mx:itemRenderer>
+				<sna:DataComboBox dataProvider="{redesService.getRecursosOf.lastResult}" unselectedLabel="Seleccione una respuesta">
+					<sna:itemRenderer>
 						<mx:Component>
-							<mx:Label name="nombre" text="{data.usuario.nombre}"/>
+							<mx:Label text="{data.usuario.nombre}"/>
 						</mx:Component>
-					</mx:itemRenderer>
-				</mx:ComboBox>
-
+					</sna:itemRenderer>
+				</sna:DataComboBox>
 			</mx:FormItem>
 		</mx:Repeater>
 	</mx:Form>
