@@ -35,7 +35,7 @@ CREATE TABLE `atributo` (
   PRIMARY KEY  (`id`),
   KEY `FK20FDAAD8398792ED` (`datoMaestro_id`),
   CONSTRAINT `FK20FDAAD8398792ED` FOREIGN KEY (`datoMaestro_id`) REFERENCES `datomaestro` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `atributo`
@@ -67,7 +67,20 @@ INSERT INTO `atributo` (`id`,`descripcion`,`estado`,`nombre`,`datoMaestro_id`) V
  (22,'Deporte',0x01,'Deporte',7),
  (23,'Teatro',0x01,'Teatro',7),
  (24,'Viajes',0x01,'Traveling',7),
- (25,'Paintball',0x01,'Paintball',7);
+ (25,'Paintball',0x01,'Paintball',7),
+ (26,'',0x01,'Buenos Aires',8),
+ (27,'',0x01,'Córdoba',8),
+ (28,'',0x01,'Entre Ríos',8),
+ (29,'',0x01,'Corrientes',8),
+ (30,'',0x01,'Santa Cruz',8),
+ (31,'',0x01,'Mendoza',8),
+ (32,'',0x01,'Chubut',8),
+ (33,'',0x01,'Jujuy',8),
+ (34,'',0x01,'Salta',8),
+ (35,'',0x01,'Tucumán',8),
+ (36,'',0x01,'Catamarca',8),
+ (37,'',0x01,'Tierra del Fuego',8),
+ (38,'',0x01,'Chaco',8);
 /*!40000 ALTER TABLE `atributo` ENABLE KEYS */;
 
 
@@ -80,7 +93,7 @@ CREATE TABLE `datomaestro` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `datomaestro`
@@ -94,7 +107,8 @@ INSERT INTO `datomaestro` (`id`,`descripcion`) VALUES
  (4,'Idioma'),
  (5,'Nivel'),
  (6,'Institución'),
- (7,'Hobby');
+ (7,'Hobby'),
+ (8,'Provincia');
 /*!40000 ALTER TABLE `datomaestro` ENABLE KEYS */;
 
 
@@ -143,7 +157,20 @@ INSERT INTO `datomaestro_atributo` (`DatoMaestro_id`,`atributos_id`) VALUES
  (7,22),
  (7,23),
  (7,24),
- (7,25);
+ (7,25),
+ (8,26),
+ (8,27),
+ (8,28),
+ (8,29),
+ (8,30),
+ (8,31),
+ (8,32),
+ (8,33),
+ (8,34),
+ (8,35),
+ (8,36),
+ (8,37),
+ (8,38);
 /*!40000 ALTER TABLE `datomaestro_atributo` ENABLE KEYS */;
 
 
@@ -597,7 +624,7 @@ CREATE TABLE `recurso` (
 
 /*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
 INSERT INTO `recurso` (`id`,`anioEgreso`,`anioIngreso`,`estado`,`estadoCivil`,`experiencia`,`fechaNac`,`localidad`,`picture`,`titulo`,`area_id`,`hobbie1_id`,`hobbie2_id`,`hobbie3_id`,`hobbie4_id`,`hobbie5_id`,`hobbie6_id`,`idioma1_id`,`idioma2_id`,`idioma3_id`,`institucion_id`,`nivelIdioma1_id`,`nivelIdioma2_id`,`nivelIdioma3_id`,`provincia_id`,`puesto_id`,`seniority_id`,`usuario_id`) VALUES 
- (1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,4,7,4),
+ (1,NULL,NULL,0x00,NULL,NULL,'1984-08-10 00:00:00',NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,4,7,4),
  (2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,4,8,5),
  (3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,9,6),
  (4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,8,7),
