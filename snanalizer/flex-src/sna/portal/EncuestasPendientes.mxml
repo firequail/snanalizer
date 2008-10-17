@@ -7,20 +7,16 @@
 	<mx:RemoteObject id="encuestasService" destination="encuestasService"/>
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	
-	<mx:DataGrid id="encuestas"  dataProvider="{encuestasService.getSurveysOf.lastResult}" doubleClickEnabled="true" doubleClick="openSurvey()"  width="100%" height="100%">
+	<mx:DataGrid id="encuestas" dataProvider="{encuestasService.getSurveysOf.lastResult}" labelFunction="getEncuestaNombre" doubleClickEnabled="true" doubleClick="openSurvey()" width="100%" height="100%">
 		<mx:columns>
 			<mx:DataGridColumn headerText="Encuestas Pendientes">
-				<mx:itemRenderer>
-					<mx:Component>
-						<mx:Label text="{data.encuesta.nombre}"/>
-					</mx:Component>
-				</mx:itemRenderer>
 			</mx:DataGridColumn>
 		</mx:columns>
 	</mx:DataGrid>
 
 <mx:Script>
 		<![CDATA[
+			import mx.controls.dataGridClasses.DataGridColumn;
 			
 
             import mx.rpc.events.ResultEvent;
@@ -34,7 +30,9 @@
 				dispatchEvent(ResultEvent.createEvent(encuestas.selectedItem));
 			}
 
-			
+			public function getEncuestaNombre(data:Object, column:DataGridColumn):String {
+				return data.encuesta.nombre;
+			}
 
 		]]>
 	</mx:Script>
