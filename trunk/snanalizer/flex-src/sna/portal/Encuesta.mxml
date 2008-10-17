@@ -14,12 +14,7 @@
 				<mx:Text text="{rptPreguntas.currentItem.descripcion}" width="100%"/>
 			</mx:FormItem>
 			<mx:FormItem label="Respuesta:" width="100%">
-				<sna:DataComboBox dataProvider="{redesService.getRecursosOf.lastResult}" unselectedLabel="Seleccione una respuesta">
-					<sna:itemRenderer>
-						<mx:Component>
-							<mx:Label text="{data.usuario.nombre}"/>
-						</mx:Component>
-					</sna:itemRenderer>
+				<sna:DataComboBox dataProvider="{redesService.getRecursosOf.lastResult}" dataField="id" labelFunction="getUsuarioNombre" unselectedLabel="Seleccione una respuesta">
 				</sna:DataComboBox>
 			</mx:FormItem>
 		</mx:Repeater>
@@ -44,7 +39,13 @@
 				red = value;
 			}
 			
-
+			public function getUsuarioNombre(data:Object):String {
+				//Checkeo si es un usuario o el unselected label
+				if(data.id != null) {
+					return data.usuario.nombre;
+				}
+				return data.label;
+			}
 			
 			private function close():void {
 				PopUpManager.removePopUp(this);
