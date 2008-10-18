@@ -7,7 +7,7 @@
 	<mx:RemoteObject id="encuestasService" destination="encuestasService"/>
 	<mx:RemoteObject id="redesService" destination="redesService"/>
 	
-<mx:Panel width="100%" height="100%"  title="{red.encuesta.nombre}">
+<mx:Panel width="100%" height="80%"  title="{red.encuesta.nombre}">
 	<mx:Form height="100%" width="100%">
 		<mx:Repeater id="rptPreguntas" dataProvider="{encuestasService.getPreguntasOf.lastResult}">
 			<mx:FormItem label="Pregunta:" width="100%">
@@ -19,7 +19,7 @@
 			</mx:FormItem>
 		</mx:Repeater>
 	</mx:Form>
-	<mx:Button  label="Button" click="close()"/>
+	<mx:Button  label="Button" click="close()" labelPlacement="left"/>
 </mx:Panel>
 	
 	
