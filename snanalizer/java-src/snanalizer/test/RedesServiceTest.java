@@ -63,4 +63,10 @@ public class RedesServiceTest extends TestCase {
 
 		System.out.println(recursos);
 	}
+
+	public void testMail() {
+		List<Recurso> recursos = recursosService.buscarRecursoByName("pepe",
+		"lopez");
+		redesService.enviarEncuesta(recursos);
+	}
 }

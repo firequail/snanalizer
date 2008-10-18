@@ -1,10 +1,15 @@
 package snanalizer.services;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
+import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.transaction.annotation.Transactional;
 
 import snanalizer.data.DatosMaestrosRepository;
@@ -43,6 +48,9 @@ public class RedesServiceImpl implements RedesService {
 
 	@Resource
 	private GruposRecursosRepository gruposRecursosRepository;
+
+	@Resource
+	private JavaMailSender mailSender;
 
 	public void setPuntosDeVista(PuntosDeVistaRepository puntosDeVista) {
 		this.puntosDeVistaRepository = puntosDeVista;
@@ -92,6 +100,14 @@ public class RedesServiceImpl implements RedesService {
 	public void setGruposRecursosRepository(
 			GruposRecursosRepository gruposRecursosRepository) {
 		this.gruposRecursosRepository = gruposRecursosRepository;
+	}
+
+	public JavaMailSender getMailSender() {
+		return mailSender;
+	}
+
+	public void setMailSender(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
 	}
 
 	public List<PuntoDeVista> getPuntosDeVista(int redId) {
@@ -155,21 +171,47 @@ public class RedesServiceImpl implements RedesService {
 			}
 		}
 
-		enviarEncuesta();
+		enviarEncuesta(grupo.getRecursos());
 	}
 
-	private void enviarEncuesta() {
-		// TODO Auto-generated method stub
+	public void enviarEncuesta(List<Recurso> recursos) {
+
+		try {
+			List<MimeMessage> mails = new ArrayList<MimeMessage>(recursos
+					.size());
+
+			for (Recurso recurso : recursos) {
+				MimeMessage msg = mailSender.createMimeMessage();
+				MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+				helper.setTo(recurso.getUsuario().getEmail());
+				helper.setFrom("snanalizer@gmail.com");
+				helper.setSubject("SNA");
+				helper
+						.setText(
+								"<html><body><b>msg</b> de prueba de sna</body></html>",
+								true);
+				mails.add(msg);
+			}
+
+			MimeMessage[] msgs = mails.toArray(new MimeMessage[0]);
+			mailSender.send(msgs);
+
+		} catch (MailException e) {
+			throw new RuntimeException(e);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 
 	}
-	
+
 	public List<Recurso> getRecursosOf(int redId) {
 		List<Recurso> recursos = new ArrayList<Recurso>();
-		
-		for(PuntoDeVista ptoVista : redesRepository.getById(redId).getPuntosDeVista()) {
-			 for(Nodo nodo : ptoVista.getNodos())
-				 if(!recursos.contains(nodo.getRecurso()))
-					 recursos.add(nodo.getRecurso());
+
+		for (PuntoDeVista ptoVista : redesRepository.getById(redId)
+				.getPuntosDeVista()) {
+			for (Nodo nodo : ptoVista.getNodos())
+				if (!recursos.contains(nodo.getRecurso()))
+					recursos.add(nodo.getRecurso());
 		}
 		return recursos;
 	}

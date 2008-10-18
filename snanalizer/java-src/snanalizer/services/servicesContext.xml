@@ -30,5 +30,20 @@
 	<bean id="gruposRecursosService" class="snanalizer.services.GruposRecursosServiceImpl"/>
 
 	<bean id="encuestasService" class="snanalizer.services.EncuestasServiceImpl"/>
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="465" />
+		<property name="protocol" value="smtps" />
+		<property name="username" value="snanalyzer@gmail.com"/>
+		<property name="password" value="juancandado"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtps.auth">true</prop>
+				<prop key="mail.smtps.starttls.enable">true</prop>
+				<prop key="mail.smtps.debug">true</prop>
+			</props>
+		</property>
+	</bean>
 
 </beans>
