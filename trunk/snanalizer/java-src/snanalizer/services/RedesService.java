@@ -24,4 +24,6 @@ public interface RedesService {
 	public void crearRed(String nombre, String descripcion, int idGrupo, int idEncuesta);
 	
 	public List<Recurso> getRecursosOf(int redId);
+	
+	public void enviarEncuesta(List<Recurso> recursos);
 }
