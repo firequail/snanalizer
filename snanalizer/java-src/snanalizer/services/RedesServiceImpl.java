@@ -168,7 +168,8 @@ public class RedesServiceImpl implements RedesService {
 		
 		for(PuntoDeVista ptoVista : redesRepository.getById(redId).getPuntosDeVista()) {
 			 for(Nodo nodo : ptoVista.getNodos())
-				 recursos.add(nodo.getRecurso());
+				 if(!recursos.contains(nodo.getRecurso()))
+					 recursos.add(nodo.getRecurso());
 		}
 		return recursos;
 	}

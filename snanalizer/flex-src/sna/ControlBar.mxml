@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%">
 	<mx:ApplicationControlBar width="100%">
-		<mx:Image/>
+		<mx:Image source="@Embed('assets/logoSNA.png')" autoLoad="true"/>
 		<mx:Label text="Social Networks Analyzer" color="#43445A" fontWeight="bold" fontStyle="italic" textDecoration="normal" fontSize="20"/>
 		<mx:Spacer width="100%"/>
 		<mx:Button label="Salir" click="logout()"/>
