@@ -70,7 +70,7 @@ public class EncuestasServiceImpl implements EncuestasService {
 	public List<Red> getSurveysOf(int recId) {
 		
 		Recurso recurso = recursosRepository.getById(recId);
-		List<Encuesta> encuestasPendientes = new ArrayList<Encuesta>();
+
 		List<Red> redes = new ArrayList<Red>();
 		
 		
@@ -79,8 +79,6 @@ public class EncuestasServiceImpl implements EncuestasService {
 				for(Nodo node : ptoVista.getNodos()) {
 					if(node.getRecurso().equals(recurso)) {
 						if(!node.tieneRelacionesSalientes())
-							//if(!(encuestasPendientes.contains(ptoVista.getPregunta().getEncuesta())))
-								//	encuestasPendientes.add(ptoVista.getPregunta().getEncuesta());
 							if(!redes.contains(red))
 								redes.add(red);
 					}

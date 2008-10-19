@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:admin="sna.admin.*" xmlns:test="sna.test.*" xmlns:analisis="sna.analisis.*" xmlns:portal="sna.portal.*" horizontalAlign="center" verticalAlign="middle">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:admin="sna.admin.*" xmlns:test="sna.test.*" xmlns:analisis="sna.analisis.*" xmlns:portal="sna.portal.*" horizontalAlign="center" verticalAlign="middle" creationComplete="init()">
 	<mx:states>
 		<mx:State name="Administracion">
 			<mx:RemoveChild target="{main}"/>
@@ -16,7 +16,7 @@
 		<mx:State name="Portal">
 			<mx:RemoveChild target="{main}"/>
 			<mx:AddChild position="lastChild">
-				<portal:Portal/>
+				<portal:Portal id="portalDeUsuario"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Test">
@@ -30,8 +30,45 @@
 	<mx:VBox id="main" height="100%" horizontalAlign="center" verticalAlign="middle">
 		<mx:Button label="Admin" click="currentState='Administracion'"/>
 		<mx:Button label="Analisis" click="currentState='Analisis'"/>
-		<mx:Button label="Portal" click="currentState='Portal'"/>		
+		<mx:HBox>
+			<sna:DataComboBox id="comboRecursos" dataProvider="{recursosService.getAll.lastResult}" dataField="id" labelFunction="getUsuarioNombre" unselectedLabel="Select"/>
+			<mx:Button label="Portal" click="entrarAlPortal();"/>	
+		</mx:HBox>
 		<mx:Button label="Test" click="currentState='Test'"/>
 	</mx:VBox>
+	
+	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	
+	<mx:Script>
+		<![CDATA[
+		
+		import mx.controls.Alert;
+		
+		private function init():void {
+			recursosService.getAll();
+		}
+		
+		public function getUsuarioNombre(data:Object):String {
+			//Checkeo si es un usuario o el unselected label
+			if(data.id != null) {
+				return data.usuario.nombre + " " + data.usuario.apellido;
+			}
+				return data.label;
+		}
+		
+		private function entrarAlPortal():void {
+			if(comboRecursos.selectedData!=null) {
+				this.currentState = "Portal";
+				portalDeUsuario.setRecurso(comboRecursos.selectedItem);
+			} 
+			else
+				Alert.show("Elegí un Recurso");
+			
+		}
+
+	
+	
+		]]>
+	</mx:Script>
 
 </mx:Application>

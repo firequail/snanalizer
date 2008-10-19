@@ -22,12 +22,18 @@
 <mx:Script>
 		<![CDATA[
 			import mx.controls.dataGridClasses.DataGridColumn;
-			
-
             import mx.rpc.events.ResultEvent;
+            
+            [Bindable]
+			public var recurso:Object;
+            
+           /* public function setRecurso(value:Object):void {
+            	recurso = value;
+            	//encuestasService.getSurveysOf(recurso.id);
+            }*/
 			
 			public function load():void {
-				encuestasService.getSurveysOf(1);
+				encuestasService.getSurveysOf(recurso.id);
 			}
 			
 			public function openSurvey():void {
