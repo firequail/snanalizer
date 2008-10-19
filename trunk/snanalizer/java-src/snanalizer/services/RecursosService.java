@@ -18,5 +18,12 @@ public interface RecursosService {
 	public void modificar(int id,String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior,boolean estado);
 	
 	public Recurso getRecursoById(int recId);
-
+	
+	public void modificarDatosPersonales(int idRec,int idEstadoCivil,int idProvincia,String localidad);
+	
+	public void modificarOtrosDatos(int idRec, String titulo, int idEstab, int anioIng, int anioEg, String exp);
+	
+	public void modificarIdiomas(int idRec,int idId1, int idNi1,  int idId2, int idNi2, int idId3, int idNi3);
+	
+	public void modificarHobbies(int idRec,int idH1, int idH2,  int idH3, int idH4, int idH5, int idH6);
 }

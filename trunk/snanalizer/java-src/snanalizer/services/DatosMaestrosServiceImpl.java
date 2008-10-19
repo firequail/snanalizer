@@ -46,5 +46,5 @@ public class DatosMaestrosServiceImpl implements DatosMaestrosService {
 	public List<Atributo> getNiveles() {return this.getAtributosByDesc("Nivel"); }
 	public List<Atributo> getIdiomas() {return this.getAtributosByDesc("Idioma"); }
 	public List<Atributo> getProvincias() {return this.getAtributosByDesc("Provincia"); }
-
+	public List<Atributo> getEstadosCiviles() {return this.getAtributosByDesc("Estado Civil"); }
 }
