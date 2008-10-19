@@ -23,18 +23,18 @@ public class Grafo {
 		return nodos;
 	}
 
-	private Set<Relacion> getRelaciones() {
+	private Set<Relacion> getRelaciones(Filtro filtro) {
 		Set<Relacion> conjuntoRelaciones = new HashSet<Relacion>();
 		for (Nodo nodo : nodos) {
-			nodo.addRelacionesTo(conjuntoRelaciones);
+			nodo.addRelacionesTo(conjuntoRelaciones, filtro);
 		}
 		return conjuntoRelaciones;
 	}
 	
-	private List<Relacion> getEdges() {
+	private List<Relacion> getEdges(Filtro filtro) {
 		HashMap<Nodo, HashMap<Nodo, Relacion>> edgesMap = new HashMap<Nodo, HashMap<Nodo, Relacion>>();
 		
-		for (Relacion edge : getRelaciones()) {
+		for (Relacion edge : getRelaciones(filtro)) {
 			HashMap<Nodo, Relacion> edgesDestino = edgesMap.get(edge.getDestino());
 			if (edgesDestino != null) {
 				Relacion edgeHermano = edgesDestino.get(edge.getOrigen());
@@ -73,14 +73,14 @@ public class Grafo {
 		}
 	}
 
-	public String toXml() {
+	public String toXml(Filtro filtro) {
 		StringBuilder builder = new StringBuilder("<Graph>\n");
 
 		for (Nodo nodo : getNodos()) {
 			builder.append(nodo.toXml());
 		}
 
-		for (Relacion relacion : getEdges()) {
+		for (Relacion relacion : getEdges(filtro)) {
 			builder.append(relacion.toXml());
 		}
 

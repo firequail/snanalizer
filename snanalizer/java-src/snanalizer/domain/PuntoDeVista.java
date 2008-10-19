@@ -53,32 +53,36 @@ public class PuntoDeVista extends DomainEntity {
 		this.descripcion = descripcion;
 	}
 
-	public String toXml() {
-		return toXml(getSubgrafos(getNodos()));
+	public String toXml(Filtro filtro) {
+		return toXml(getSubgrafos(getNodos(filtro), filtro), filtro);
 	}
 
-	public String toXml(DatoMaestro datoMaestro) {
-		return toXml(getSubgrafosAgrupados(datoMaestro));
+	private Collection<Nodo> getNodos(Filtro filtro) {
+		return filtro.filtrarNodos(getNodos());
 	}
 
-	private String toXml(List<Grafo> subgrafos) {
+	public String toXml(DatoMaestro datoMaestro, Filtro filtro) {
+		return toXml(getSubgrafosAgrupados(datoMaestro, filtro), filtro);
+	}
+
+	private String toXml(List<Grafo> subgrafos, Filtro filtro) {
 		StringBuilder builder = new StringBuilder();
 
 		for (Grafo subgrafo : subgrafos) {
-			builder.append(subgrafo.toXml());
+			builder.append(subgrafo.toXml(filtro));
 		}
 
 		return builder.toString();
 	}
 
 	@Transient
-	private List<Grafo> getSubgrafos(Collection<Nodo> nodos) {
+	private List<Grafo> getSubgrafos(Collection<Nodo> nodos, Filtro filtro) {
 		List<Nodo> nodosRestantes = new LinkedList<Nodo>(nodos);
 		List<Grafo> subgrafos = new LinkedList<Grafo>();
 
 		while (!nodosRestantes.isEmpty()) {
 			Nodo root = nodosRestantes.get(0);
-			Grafo subgrafo = root.getGrafo();
+			Grafo subgrafo = root.getGrafo(filtro);
 			subgrafos.add(subgrafo);
 			nodosRestantes.removeAll(subgrafo.getNodos());
 		}
@@ -87,14 +91,14 @@ public class PuntoDeVista extends DomainEntity {
 	}
 
 	@Transient
-	private List<Grafo> getSubgrafosAgrupados(DatoMaestro datoMaestro) {
+	private List<Grafo> getSubgrafosAgrupados(DatoMaestro datoMaestro, Filtro filtro) {
 		Map<Atributo, Nodo> mapaAtributosGrupos = crearMapaGrupos(datoMaestro);
 
-		asignarRelaciones(mapaAtributosGrupos, getRelaciones(), datoMaestro);
+		asignarRelaciones(mapaAtributosGrupos, getRelaciones(filtro), datoMaestro);
 
 		Collection<Nodo> grupos = mapaAtributosGrupos.values();
 
-		return getSubgrafos(grupos);
+		return getSubgrafos(grupos, filtro);
 	}
 
 	private void asignarRelaciones(Map<Atributo, Nodo> mapaAtributosGrupos,
@@ -115,11 +119,11 @@ public class PuntoDeVista extends DomainEntity {
 	}
 
 	@Transient
-	private Set<Relacion> getRelaciones() {
+	private Set<Relacion> getRelaciones(Filtro filtro) {
 		Set<Relacion> relaciones = new HashSet<Relacion>();
 
-		for (Nodo nodo : getNodos()) {
-			nodo.addRelacionesTo(relaciones);
+		for (Nodo nodo : getNodos(filtro)) {
+			nodo.addRelacionesTo(relaciones, filtro);
 		}
 
 		return relaciones;

@@ -145,17 +145,21 @@ public class RedesServiceImpl implements RedesService {
 	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro,
 			Filtro filtro) {
 		PuntoDeVista puntoDeVista = puntosDeVistaRepository.getById(idPtoVista);
+		
+		if (filtro == null) {
+			filtro = new Filtro();
+		}
 
 		if (idDatoMaestro == null) {
 
-			return puntoDeVista.toXml();
+			return puntoDeVista.toXml(filtro);
 
 		} else {
 
 			DatoMaestro datoMaestro = datosMaestrosRepository
 					.getById(idDatoMaestro);
 
-			return puntoDeVista.toXml(datoMaestro);
+			return puntoDeVista.toXml(datoMaestro, filtro);
 		}
 	}
 
