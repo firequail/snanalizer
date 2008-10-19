@@ -17,6 +17,8 @@ public interface RedesService {
 	
 	public Nodo getNodo(int id);
 	
+	public Nodo getNodoByRec(int redId,Recurso rec);
+	
 	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro, Filtro filtro);
 
 	public List<DatoMaestro> getDatosMaestros();
