@@ -43,11 +43,16 @@
     	            			<mx:Label text="Fecha de Nacimiento: {recurso.fechaNac}"/>
     	            		</mx:Box>
     	            		<mx:Box borderStyle="solid" width="50%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" cornerRadius="10" borderThickness="2">
-    	            			<mx:Label text="Estado Civil: {recurso.estadoCivil}"/>
-    	            			<mx:Label text="Localidad: {recurso.localidad} "/>
+    	            			<mx:FormItem label="Estado Civil: ">
+    	            				<sna:DataComboBox id="estadoCivilCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getEstadosCiviles.lastResult}" selectedData="{recurso.estadoCivil.id}" unselectedLabel="Ninguno"/>
+    	            			</mx:FormItem>
     	            			<mx:FormItem label="Provincia: ">
     	            				<sna:DataComboBox id="provinciaCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getProvincias.lastResult}" selectedData="{recurso.provincia.id}" unselectedLabel="Ninguno"/>
     	            			</mx:FormItem>
+    	            			<mx:FormItem label="Localidad: ">
+    	            				<mx:TextInput id="txtlocalidad" text="{recurso.localidad}"  width="150"/>
+    	            			</mx:FormItem>
+
     	            		</mx:Box>
     	            	</mx:HBox>
             		</mx:VBox>
@@ -58,12 +63,18 @@
             				<mx:Label text="Datos Académicos"/>
                 			<mx:Box borderStyle="solid" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" cornerRadius="10" borderThickness="2" height="90%">
                 			<mx:VBox width="100%" height="100%">
-    	            			<mx:Label text="Título: {recurso.titulo}"/>
+    	            			<mx:FormItem label="Título: ">
+    	            				<mx:TextInput id="txttitulo" text="{recurso.titulo}"  width="250"/>
+    	            			</mx:FormItem>
     	            			<mx:FormItem label="Establecimiento: ">
     	            				<sna:DataComboBox id="establecimCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getInstituciones.lastResult}" selectedData="{recurso.institucion.id}" unselectedLabel="Ninguno"/>
     	            			</mx:FormItem>
-    	            			<mx:Label text="Año de ingreso: {recurso.fechaNac}"/>
-    	            			<mx:Label text="Año de egreso: {recurso.fechaNac}"/>
+    	            			<mx:FormItem label="Año de ingreso: ">
+    	            				<mx:TextInput id="txtanioing" text="{recurso.anioIngreso as String}"  width="60"/>
+    	            			</mx:FormItem>
+    	            			<mx:FormItem label="Año de egreso: ">
+    	            				<mx:TextInput id="txtanioeg" text="{recurso.anioEgreso as String}"  width="60"/>
+    	            			</mx:FormItem>
     	            		</mx:VBox>
     	            		</mx:Box>
             			</mx:VBox>
@@ -76,7 +87,7 @@
     	            				<sna:DataComboBox id="idioma1Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getIdiomas.lastResult}" selectedData="{recurso.idioma1.id}" unselectedLabel="Ninguno"/>
     	            			</mx:FormItem>
 	   	            			<mx:FormItem label="Nivel: ">
-    	            				<sna:DataComboBox id="nivel1Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getNiveles.lastResult}" selectedData="{recurso.nivel1.id}" unselectedLabel="Ninguno"/>
+    	            				<sna:DataComboBox id="nivel1Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getNiveles.lastResult}" selectedData="{recurso.nivelIdioma1.id}" unselectedLabel="Ninguno"/>
     	            			</mx:FormItem>
     	            		</mx:HBox>
     	            		<mx:HBox width="100%">
@@ -84,7 +95,7 @@
     	            				<sna:DataComboBox id="idioma2Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getIdiomas.lastResult}" selectedData="{recurso.idioma2.id}" unselectedLabel="Ninguno"/>
     	            			</mx:FormItem>
 	   	            			<mx:FormItem label="Nivel: ">
-    	            				<sna:DataComboBox id="nivel2Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getNiveles.lastResult}" selectedData="{recurso.nivel2.id}" unselectedLabel="Ninguno"/>
+    	            				<sna:DataComboBox id="nivel2Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getNiveles.lastResult}" selectedData="{recurso.nivelIdioma2.id}" unselectedLabel="Ninguno"/>
     	            			</mx:FormItem>
     	            		</mx:HBox>
     	            		<mx:HBox width="100%">
@@ -92,7 +103,7 @@
     	            				<sna:DataComboBox id="idioma3Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getIdiomas.lastResult}" selectedData="{recurso.idioma3.id}" unselectedLabel="Ninguno"/>
     	            			</mx:FormItem>
 	   	            			<mx:FormItem label="Nivel: ">
-    	            				<sna:DataComboBox id="nivel3Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getNiveles.lastResult}" selectedData="{recurso.nivel3.id}" unselectedLabel="Ninguno"/>
+    	            				<sna:DataComboBox id="nivel3Combo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getNiveles.lastResult}" selectedData="{recurso.nivelIdioma3.id}" unselectedLabel="Ninguno"/>
     	            			</mx:FormItem>
     	            		</mx:HBox>
     	            		</mx:VBox>
@@ -133,14 +144,14 @@
     	            		<mx:VBox width="100%" height="100%" verticalAlign="top">
             				<mx:Label text="Experiencia Laboral (Tu CV en formato texto)"/>
                 			<mx:Box borderStyle="solid" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" cornerRadius="10" borderThickness="2" height="90%">
-    	            			<mx:TextArea width="100%" height="100%"/>
+    	            			<mx:TextArea id="txtexp" text="{recurso.experiencia}" width="100%" height="100%"/>
     	            		</mx:Box>
             			</mx:VBox>
     	            	</mx:HBox>
             		</mx:VBox>
         		</mx:Accordion>
         		<mx:ControlBar width="100%" paddingBottom="5">
-        			<mx:Button id="butSave" label="Grabar"/>
+        			<mx:Button id="butSave" label="Grabar" click="saveData()"/>
         		</mx:ControlBar>
 			</mx:Panel>
 		</mx:VBox>
@@ -152,9 +163,12 @@
 	<mx:Script>
 		<![CDATA[
 			import mx.formatters.DateBase;
+			import mx.controls.Alert;
 		
 			[Bindable]
 			public var recurso:Object;
+			private var fechaNac:Date;
+			private var formattedDate:String;
 			
 			public function load():void {
 				datosMaestrosService.getHobbies();
@@ -162,8 +176,16 @@
 				datosMaestrosService.getNiveles();
 				datosMaestrosService.getIdiomas();
 				datosMaestrosService.getProvincias();
+				datosMaestrosService.getEstadosCiviles();
 			}
-		
+			
+			public function saveData():void {
+				recursosService.modificarOtrosDatos(recurso.id as int,txttitulo.text,establecimCombo.selectedData as int,txtanioing.text,txtanioeg.text as int,txtexp.text);
+				recursosService.modificarDatosPersonales(recurso.id as int,estadoCivilCombo.selectedData,provinciaCombo.selectedData as int,txtlocalidad.text);
+				recursosService.modificarIdiomas(recurso.id as int,idioma1Combo.selectedData as int,nivel1Combo.selectedData as int, idioma2Combo.selectedData as int,nivel2Combo.selectedData as int,idioma3Combo.selectedData as int,nivel3Combo.selectedData as int);
+				recursosService.modificarHobbies(recurso.id as int,hobbie1Combo.selectedData as int, hobbie2Combo.selectedData as int, hobbie3Combo.selectedData as int, hobbie4Combo.selectedData as int, hobbie5Combo.selectedData as int, hobbie6Combo.selectedData as int);
+				Alert.show("Su información ha sido actualizada exitosamente");
+			}
 		]]>
 	</mx:Script>
 </mx:Canvas>

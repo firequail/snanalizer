@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 
 import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
+import snanalizer.domain.Recurso;
 
 public class NodosRepositoryImpl extends BaseRepositoryImpl<Nodo>
 		implements NodosRepository {
@@ -18,4 +19,14 @@ public class NodosRepositoryImpl extends BaseRepositoryImpl<Nodo>
 
 		return find(criteria);
 	}
+	
+	public Nodo getByRec(Recurso rec) {
+		Criteria criteria = createCriteria();
+
+		criteria.add(Restrictions.eq("recurso", rec));
+
+		return findUnique(criteria);
+	}
+	
+
 }

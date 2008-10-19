@@ -14,13 +14,13 @@ public class Recurso extends DomainEntity {
 	private Atributo area;
 	private Atributo puesto;
 	private Atributo seniority;
-	private String estadoCivil;
+	private Atributo estadoCivil;
 	private String localidad;
 	private Atributo provincia;
 	private String titulo;
 	private Atributo institucion;
-	private Integer anioIngreso;
-	private Integer anioEgreso;
+	private int anioIngreso;
+	private int anioEgreso;
 	private Atributo idioma1;
 	private Atributo idioma2;
 	private Atributo idioma3;
@@ -278,12 +278,13 @@ public class Recurso extends DomainEntity {
 		return institucion;
 	}
 
-	public void setEstadoCivil(String estadoCivil) {
-		this.estadoCivil = estadoCivil;
+	@ManyToOne
+	public Atributo getEstadoCivil() {
+		return estadoCivil;
 	}
 
-	public String getEstadoCivil() {
-		return estadoCivil;
+	public void setEstadoCivil(Atributo estadoCivil) {
+		this.estadoCivil = estadoCivil;
 	}
 
 	public void setLocalidad(String localidad) {
@@ -302,19 +303,19 @@ public class Recurso extends DomainEntity {
 		return titulo;
 	}
 
-	public void setAnioIngreso(Integer anioIngreso) {
+	public void setAnioIngreso(int anioIngreso) {
 		this.anioIngreso = anioIngreso;
 	}
 
-	public Integer getAnioIngreso() {
+	public int getAnioIngreso() {
 		return anioIngreso;
 	}
 
-	public void setAnioEgreso(Integer anioEgreso) {
+	public void setAnioEgreso(int anioEgreso) {
 		this.anioEgreso = anioEgreso;
 	}
 
-	public Integer getAnioEgreso() {
+	public int getAnioEgreso() {
 		return anioEgreso;
 	}
 

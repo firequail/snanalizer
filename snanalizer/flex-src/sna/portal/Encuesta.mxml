@@ -9,31 +9,44 @@
 	
 <mx:Panel width="100%" height="80%"  title="{red.encuesta.nombre}">
 	<mx:Form height="100%" width="100%">
-		<mx:Repeater id="rptPreguntas" dataProvider="{encuestasService.getPreguntasOf.lastResult}">
+		<mx:Repeater id="rptPreguntas" dataProvider="{encuestasService.getPreguntasOf.lastResult}" >
+			
 			<mx:FormItem label="Pregunta:" width="100%">
-				<mx:Text text="{rptPreguntas.currentItem.descripcion}" width="100%"/>
+				<mx:Text id="arrayPreguntas" text="{rptPreguntas.currentItem.descripcion}" width="100%"/>
 			</mx:FormItem>
-			<mx:FormItem label="Respuesta:" width="100%">
-				<sna:DataComboBox dataProvider="{redesService.getRecursosOf.lastResult}" dataField="id" labelFunction="getUsuarioNombre" unselectedLabel="Seleccione una respuesta">
-				</sna:DataComboBox>
-			</mx:FormItem>
+			<mx:HBox width="100%">
+				<mx:FormItem label="Respuesta:" width="100%">
+					<sna:DataComboBox id="arrayRespuestas" dataProvider="{redesService.getRecursosOf.lastResult}" dataField="id" labelFunction="getUsuarioNombre" unselectedLabel="Seleccione una respuesta"/>
+				</mx:FormItem>
+				<mx:FormItem label="Intensidad:" width="100%">
+					<sna:DataComboBox id="arrayIntensidad" dataProvider="{obtenerIntMax()}"  />
+				</mx:FormItem>
+				<mx:TextInput width="0" height="0" id="arrayId" text="{rptPreguntas.currentItem.id}" visible="false" />
+			</mx:HBox>
 		</mx:Repeater>
 	</mx:Form>
-	<mx:Button  label="Button" click="close()" labelPlacement="left"/>
+	<mx:Button  label="Cerrar" click="close()" labelPlacement="left"/>
+	<mx:Button  label="Grabar" click="save()" labelPlacement="left"/>
 </mx:Panel>
 	
 	
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.TextInput;
+			import sna.admin.encuestas.Pregunta;
 
 			import mx.rpc.events.ResultEvent;
 			import mx.managers.PopUpManager;
 			import mx.controls.Alert;
+			import mx.collections.ArrayCollection;
+			import sna.DataComboBox;
 			
 			[Bindable]
 			public var red:Object;
-
+			[Bindable]
+			public var arrayPreg:ArrayCollection = new ArrayCollection();
+			
 			
 			public function setRed(value:Object):void {
 				red = value;
@@ -55,7 +68,52 @@
 				encuestasService.getPreguntasOf(red.encuesta.id as int);
 				redesService.getRecursosOf(red.id as int);
 				
+				
 			}
+
+			private function obtenerIntMax():ArrayCollection {
+				var ints:ArrayCollection = new ArrayCollection();
+				var cant:uint = rptPreguntas.currentItem.maximaIntensidad as int;
+				
+				for (var i:uint = 1; i <= cant; i++)
+					ints.addItem(i);
+					
+				return ints;
+			}
+			
+			private function save():void {
+
+				var arrayRes:ArrayCollection = new ArrayCollection();
+				var arrayInt:ArrayCollection = new ArrayCollection();
+				
+				var hola:String;
+				hola = "";
+				var cant:uint = arrayRespuestas.length;
+				
+				for (var i:uint = 0; i < cant; i++) {
+					var currentRta:DataComboBox = arrayRespuestas[i];
+					var currentInt:DataComboBox = arrayIntensidad[i];
+					var currentId:TextInput = arrayId[i];
+                    
+                    arrayPreg.addItem(currentId.text);
+                    arrayRes.addItem(currentRta.selectedData);
+                    arrayInt.addItem(currentInt.selectedLabel);
+				}
+				
+				redesService.generarRelaciones(red.id as int,1, arrayPreg,arrayInt,arrayRes);
+				
+				// Esto no va, es de prueba
+				/*
+				for (var j:uint = 0; j < cant; j++) {
+					
+					hola += " " + arrayPreg.getItemAt(j) as String;
+					hola += " " + arrayRes.getItemAt(j) as String;
+					hola += " " + arrayInt.getItemAt(j) as String;
+				}
+				Alert.show(hola);*/
+	
+			}
+			
 
 						
 		]]>
