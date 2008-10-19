@@ -151,4 +151,14 @@ public class PuntoDeVista extends DomainEntity {
 		Nodo nodo = new NodoGrupo(new Recurso(usuario), id);
 		return nodo;
 	}
+	
+	public Nodo getNodoByRec(Recurso rec) {
+		Nodo target = null;
+		
+		for(Nodo n : this.getNodos())
+			if(n.getRecurso().equals(rec))
+				target = n;
+		
+		return target;
+	}
 }
