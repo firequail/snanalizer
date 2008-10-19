@@ -230,20 +230,39 @@ public class RedesServiceImpl implements RedesService {
 		return recursos;
 	}
 	
+	public Nodo getNodoByRec(int redId,Recurso rec) {
+		Nodo target = new Nodo();
+		target = null;
+		for(PuntoDeVista ptoVista : redesRepository.getById(redId).getPuntosDeVista()) {
+			for(Nodo nodo : ptoVista.getNodos()) {
+				if(nodo.getRecurso().equals(rec))
+					target = nodo;
+			}
+		}
+		return target;
+	}
+	
 	public void generarRelaciones(int idRed,int idRec,List<Integer> preguntas,List<Integer> intensidades,List<Integer> recursos) {
 		
 		Red red = redesRepository.getById(idRed);
-		int i = 0;
+		int i = -1;
 		//red.getPuntosDeVista()
-		for(Integer idPreg : preguntas) {
+		for(int idPreg : preguntas) {
 			i++;
 			PuntoDeVista ptoVista = puntosDeVistaRepository.getByPregunta(preguntasRepository.getById(idPreg));
-			Nodo nodoOrigen = nodosRepository.getByRec(recursosRepository.getById(idRec));
-			Nodo nodoDestino = nodosRepository.getById(recursos.get(i));
+			//Nodo nodoOrigen = nodosRepository.getByRec(recursosRepository.getById(idRec));
+			//Nodo nodoDestino = nodosRepository.getById(recursos.get(i));
+			Nodo nodoOrigen = this.getNodoByRec(idRed, recursosRepository.getById(idRec));
+			Nodo nodoDestino = this.getNodoByRec(idRed, recursosRepository.getById(recursos.get(i)));
 			ptoVista.getNodos().add(nodoOrigen);
 			ptoVista.getNodos().add(nodoDestino);
-			Relacion rel = nodoOrigen.linkTo(nodoDestino, intensidades.get(i));
-			relacionesRepository.add(rel);	
+			Relacion rel = new Relacion(nodoOrigen,nodoDestino,intensidades.get(i));
+			nodoOrigen.addRelacion(rel);
+			nodoDestino.addRelacion(rel);
+			relacionesRepository.add(rel);
+			
+			//Relacion rel = nodoOrigen.linkTo(nodoDestino, intensidades.get(i));
+//			relacionesRepository.add(rel);	
  			
 		}
 		

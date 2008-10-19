@@ -95,9 +95,9 @@
 					var currentInt:DataComboBox = arrayIntensidad[i];
 					var currentId:TextInput = arrayId[i];
                     
-                    arrayPreg.addItem(currentId.text);
+                    arrayPreg.addItem(parseInt(currentId.text));
                     arrayRes.addItem(currentRta.selectedData);
-                    arrayInt.addItem(currentInt.selectedLabel);
+                    arrayInt.addItem(parseInt(currentInt.selectedLabel));
 				}
 				
 				redesService.generarRelaciones(red.id as int,1, arrayPreg,arrayInt,arrayRes);
