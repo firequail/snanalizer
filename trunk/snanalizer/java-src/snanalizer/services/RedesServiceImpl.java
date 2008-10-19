@@ -234,79 +234,23 @@ public class RedesServiceImpl implements RedesService {
 		return recursos;
 	}
 	
-	public Nodo getNodoByRec(int redId,Recurso rec) {
-		Nodo target = new Nodo();
-		target = null;
-		for(PuntoDeVista ptoVista : redesRepository.getById(redId).getPuntosDeVista()) {
-			for(Nodo nodo : ptoVista.getNodos()) {
-				if(nodo.getRecurso().equals(rec))
-					target = nodo;
-			}
-		}
-		return target;
-	}
 	
 	public void generarRelaciones(int idRed,int idRec,List<Integer> preguntas,List<Integer> intensidades,List<Integer> recursos) {
 		
-		Red red = redesRepository.getById(idRed);
 		int i = -1;
-		//red.getPuntosDeVista()
+
 		for(int idPreg : preguntas) {
 			i++;
 			PuntoDeVista ptoVista = puntosDeVistaRepository.getByPregunta(preguntasRepository.getById(idPreg));
-			//Nodo nodoOrigen = nodosRepository.getByRec(recursosRepository.getById(idRec));
-			//Nodo nodoDestino = nodosRepository.getById(recursos.get(i));
-			Nodo nodoOrigen = this.getNodoByRec(idRed, recursosRepository.getById(idRec));
-			Nodo nodoDestino = this.getNodoByRec(idRed, recursosRepository.getById(recursos.get(i)));
-			ptoVista.getNodos().add(nodoOrigen);
-			ptoVista.getNodos().add(nodoDestino);
-			Relacion rel = new Relacion(nodoOrigen,nodoDestino,intensidades.get(i));
-			nodoOrigen.addRelacion(rel);
-			nodoDestino.addRelacion(rel);
+
+			Nodo nodoOrigen = ptoVista.getNodoByRec(recursosRepository.getById(idRec));
+			Nodo nodoDestino = ptoVista.getNodoByRec(recursosRepository.getById(recursos.get(i)));
+
+			Relacion rel = nodoOrigen.linkTo(nodoDestino, intensidades.get(i));
 			relacionesRepository.add(rel);
-			
-			//Relacion rel = nodoOrigen.linkTo(nodoDestino, intensidades.get(i));
-//			relacionesRepository.add(rel);	
  			
 		}
 		
-		/*
-		 Nodo nodo1 = new Nodo(recurso1);
-		Nodo nodo2 = new Nodo(recurso2);
-		Nodo nodo3 = new Nodo(recurso3);
-		Nodo nodo4 = new Nodo(recurso4);
-		nodos.add(nodo1);
-		nodos.add(nodo2);
-		nodos.add(nodo3);
-		nodos.add(nodo4);
 
-		Pregunta pregunta1 = new Pregunta();
-		preguntasRepository.add(pregunta1);
-		pregunta1.setDescripcion("Quien tiene mas conocimientos en usabilidad?");
-
-		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
-		puntosDeVista.add(puntoDeVista1);
-		puntoDeVista1.setPregunta(pregunta1);
-		puntoDeVista1.setDescripcion(pregunta1.getDescripcion());
-		puntoDeVista1.getNodos().add(nodo1);
-		puntoDeVista1.getNodos().add(nodo2);
-		puntoDeVista1.getNodos().add(nodo3);
-		puntoDeVista1.getNodos().add(nodo4);
-
-		Red red1 = new Red();
-		redes.add(red1);
-		red1.setDescripcion("Red de Prueba");
-		red1.getPuntosDeVista().add(puntoDeVista1);
-
-		// creo un grafo en forma de estrella
-		Relacion relacion1 = nodo2.linkTo(nodo1, 3);
-		Relacion relacion2 = nodo2.linkTo(nodo3, 3);
-		Relacion relacion3 = nodo2.linkTo(nodo4, 3);
-		Relacion relacion4 = nodo3.linkTo(nodo2, 3);
-		relaciones.add(relacion1);
-		relaciones.add(relacion2);
-		relaciones.add(relacion3);
-		relaciones.add(relacion4);
-		 */
 	}
 }
