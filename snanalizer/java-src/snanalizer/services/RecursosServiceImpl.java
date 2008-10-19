@@ -79,5 +79,42 @@ public class RecursosServiceImpl implements RecursosService {
 	public Recurso getRecursoById(int recId) {
 		return recursos.getById(recId);
 	}
+	
+	public void modificarDatosPersonales(int idRec,int idEstadoCivil,int idProvincia,String localidad) {
+		Recurso rec = recursos.getById(idRec);
+		rec.setEstadoCivil(atributos.getById(idEstadoCivil));
+		rec.setProvincia(atributos.getById(idProvincia));
+		rec.setLocalidad(localidad);
+	}
+	
+	public void modificarOtrosDatos(int idRec, String titulo, int idEstab, int anioIng, int anioEg, String exp) {
+		Recurso rec = recursos.getById(idRec);
+		rec.setTitulo(titulo);
+		rec.setInstitucion(atributos.getById(idEstab));
+		rec.setAnioIngreso(anioIng);
+		rec.setAnioEgreso(anioEg);
+		rec.setExperiencia(exp);
+	}
+	
+	public void modificarIdiomas(int idRec, int idId1, int idNi1,  int idId2, int idNi2, int idId3, int idNi3) {
+		Recurso rec = recursos.getById(idRec);
+		rec.setIdioma1(atributos.getById(idId1));
+		rec.setIdioma2(atributos.getById(idId2));
+		rec.setIdioma3(atributos.getById(idId3));
+		rec.setNivelIdioma1(atributos.getById(idNi1));
+		rec.setNivelIdioma2(atributos.getById(idNi2));
+		rec.setNivelIdioma3(atributos.getById(idNi3));
+		
+	}
+	
+	public void modificarHobbies(int idRec, int idH1, int idH2,  int idH3, int idH4, int idH5, int idH6) {
+		Recurso rec = recursos.getById(idRec);
+		rec.setHobbie1(atributos.getById(idH1));
+		rec.setHobbie2(atributos.getById(idH2));
+		rec.setHobbie3(atributos.getById(idH3));
+		rec.setHobbie4(atributos.getById(idH4));
+		rec.setHobbie5(atributos.getById(idH5));
+		rec.setHobbie6(atributos.getById(idH6));
+	}
 
 }

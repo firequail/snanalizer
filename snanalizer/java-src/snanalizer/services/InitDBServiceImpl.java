@@ -415,8 +415,7 @@ public class InitDBServiceImpl implements InitDBService {
 
 		Pregunta pregunta1 = new Pregunta();
 		preguntasRepository.add(pregunta1);
-		pregunta1
-				.setDescripcion("Quien tiene mas conocimientos en usabilidad?");
+		pregunta1.setDescripcion("Quien tiene mas conocimientos en usabilidad?");
 
 		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
 		puntosDeVista.add(puntoDeVista1);

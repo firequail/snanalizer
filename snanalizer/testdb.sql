@@ -35,7 +35,7 @@ CREATE TABLE `atributo` (
   PRIMARY KEY  (`id`),
   KEY `FK20FDAAD8398792ED` (`datoMaestro_id`),
   CONSTRAINT `FK20FDAAD8398792ED` FOREIGN KEY (`datoMaestro_id`) REFERENCES `datomaestro` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `atributo`
@@ -70,17 +70,10 @@ INSERT INTO `atributo` (`id`,`descripcion`,`estado`,`nombre`,`datoMaestro_id`) V
  (25,'Paintball',0x01,'Paintball',7),
  (26,'',0x01,'Buenos Aires',8),
  (27,'',0x01,'Córdoba',8),
- (28,'',0x01,'Entre Ríos',8),
- (29,'',0x01,'Corrientes',8),
- (30,'',0x01,'Santa Cruz',8),
- (31,'',0x01,'Mendoza',8),
- (32,'',0x01,'Chubut',8),
- (33,'',0x01,'Jujuy',8),
- (34,'',0x01,'Salta',8),
- (35,'',0x01,'Tucumán',8),
- (36,'',0x01,'Catamarca',8),
- (37,'',0x01,'Tierra del Fuego',8),
- (38,'',0x01,'Chaco',8);
+ (28,'',0x01,'Soltero/a',9),
+ (29,'',0x01,'Casado/a',9),
+ (30,'',0x01,'Viudo/a',9),
+ (31,'',0x01,'Divorciado/a',9);
 /*!40000 ALTER TABLE `atributo` ENABLE KEYS */;
 
 
@@ -93,7 +86,7 @@ CREATE TABLE `datomaestro` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `datomaestro`
@@ -108,7 +101,8 @@ INSERT INTO `datomaestro` (`id`,`descripcion`) VALUES
  (5,'Nivel'),
  (6,'Institución'),
  (7,'Hobby'),
- (8,'Provincia');
+ (8,'Provincia'),
+ (9,'Estado Civil');
 /*!40000 ALTER TABLE `datomaestro` ENABLE KEYS */;
 
 
@@ -160,17 +154,10 @@ INSERT INTO `datomaestro_atributo` (`DatoMaestro_id`,`atributos_id`) VALUES
  (7,25),
  (8,26),
  (8,27),
- (8,28),
- (8,29),
- (8,30),
- (8,31),
- (8,32),
- (8,33),
- (8,34),
- (8,35),
- (8,36),
- (8,37),
- (8,38);
+ (9,28),
+ (9,29),
+ (9,30),
+ (9,31);
 /*!40000 ALTER TABLE `datomaestro_atributo` ENABLE KEYS */;
 
 
@@ -191,7 +178,7 @@ CREATE TABLE `encuesta` (
 
 /*!40000 ALTER TABLE `encuesta` DISABLE KEYS */;
 INSERT INTO `encuesta` (`id`,`nombre`) VALUES 
- (1,'encuesta 1');
+ (1,'Encuesta Area Desarrollo');
 /*!40000 ALTER TABLE `encuesta` ENABLE KEYS */;
 
 
@@ -216,10 +203,10 @@ CREATE TABLE `encuesta_pregunta` (
 
 /*!40000 ALTER TABLE `encuesta_pregunta` DISABLE KEYS */;
 INSERT INTO `encuesta_pregunta` (`Encuesta_id`,`preguntas_id`) VALUES 
- (1,1),
- (1,2),
  (1,5),
- (1,6);
+ (1,6),
+ (1,7),
+ (1,8);
 /*!40000 ALTER TABLE `encuesta_pregunta` ENABLE KEYS */;
 
 
@@ -417,7 +404,7 @@ CREATE TABLE `pregunta` (
   PRIMARY KEY  (`id`),
   KEY `FKB7202F0A17148A27` (`encuesta_id`),
   CONSTRAINT `FKB7202F0A17148A27` FOREIGN KEY (`encuesta_id`) REFERENCES `encuesta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pregunta`
@@ -425,12 +412,14 @@ CREATE TABLE `pregunta` (
 
 /*!40000 ALTER TABLE `pregunta` DISABLE KEYS */;
 INSERT INTO `pregunta` (`id`,`descripcion`,`maximaIntensidad`,`encuesta_id`) VALUES 
- (1,'Quien tiene mas conocimientos en usabilidad?',0,1),
- (2,'pto de vista 2',0,1),
+ (1,'Quien tiene mas conocimientos en usabilidad?',0,NULL),
+ (2,'pto de vista 2',0,NULL),
  (3,'pto de vista 1',0,NULL),
  (4,'Quien tiene mas conocimientos en testing?',0,NULL),
- (5,'pregunta 1',5,1),
- (6,'pregunta 2',6,1);
+ (5,'A quién consulta cuando tiene una duda de .NET?',5,1),
+ (6,'A quién consulta cuando tiene una duda no técnica?',5,1),
+ (7,'Quién fue su mentor cuando ingresó a la empresa?',5,1),
+ (8,'Quién lo ayuda más diariamente?',5,1);
 /*!40000 ALTER TABLE `pregunta` ENABLE KEYS */;
 
 
@@ -488,7 +477,7 @@ CREATE TABLE `puntodevista` (
   PRIMARY KEY  (`id`),
   KEY `FK63AB4EC85B1355A7` (`pregunta_id`),
   CONSTRAINT `FK63AB4EC85B1355A7` FOREIGN KEY (`pregunta_id`) REFERENCES `pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `puntodevista`
@@ -499,7 +488,11 @@ INSERT INTO `puntodevista` (`id`,`descripcion`,`pregunta_id`) VALUES
  (1,'Quien tiene mas conocimientos en usabilidad?',1),
  (2,'pto de vista 2',2),
  (3,'pto de vista 1',3),
- (4,'Quien tiene mas conocimientos en testing?',4);
+ (4,'Quien tiene mas conocimientos en testing?',4),
+ (5,'A quién consulta cuando tiene una duda de .NET?',5),
+ (6,'A quién consulta cuando tiene una duda no técnica?',6),
+ (7,'Quién fue su mentor cuando ingresó a la empresa?',7),
+ (8,'Quién lo ayuda más diariamente?',8);
 /*!40000 ALTER TABLE `puntodevista` ENABLE KEYS */;
 
 
@@ -552,16 +545,16 @@ INSERT INTO `puntodevista_nodo` (`PuntoDeVista_id`,`nodos_id`) VALUES
 DROP TABLE IF EXISTS `recurso`;
 CREATE TABLE `recurso` (
   `id` int(11) NOT NULL auto_increment,
-  `anioEgreso` int(11) default NULL,
-  `anioIngreso` int(11) default NULL,
+  `anioEgreso` int(11) NOT NULL,
+  `anioIngreso` int(11) NOT NULL,
   `estado` bit(1) default NULL,
-  `estadoCivil` varchar(255) default NULL,
   `experiencia` varchar(255) default NULL,
   `fechaNac` datetime default NULL,
   `localidad` varchar(255) default NULL,
   `picture` varchar(255) default NULL,
   `titulo` varchar(255) default NULL,
   `area_id` int(11) default NULL,
+  `estadoCivil_id` int(11) default NULL,
   `hobbie1_id` int(11) default NULL,
   `hobbie2_id` int(11) default NULL,
   `hobbie3_id` int(11) default NULL,
@@ -592,12 +585,14 @@ CREATE TABLE `recurso` (
   KEY `FKA3C27229B45A6C96` (`institucion_id`),
   KEY `FKA3C27229923805D2` (`provincia_id`),
   KEY `FKA3C27229EBAFC761` (`seniority_id`),
-  KEY `FKA3C27229FC5C2A5` (`nivelIdioma1_id`),
+  KEY `FKA3C272292ACF2D32` (`estadoCivil_id`),
   KEY `FKA3C27229FC63704` (`nivelIdioma2_id`),
+  KEY `FKA3C27229FC5C2A5` (`nivelIdioma1_id`),
   KEY `FKA3C272297198C4F2` (`area_id`),
   KEY `FKA3C27229E2C3BCEF` (`hobbie3_id`),
   KEY `FKA3C27229E2C4A5AD` (`hobbie5_id`),
   KEY `FKA3C2722958FC123` (`idioma1_id`),
+  CONSTRAINT `FKA3C272292ACF2D32` FOREIGN KEY (`estadoCivil_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C2722958A9FD2D` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
   CONSTRAINT `FKA3C2722958FC123` FOREIGN KEY (`idioma1_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C272295903582` FOREIGN KEY (`idioma2_id`) REFERENCES `atributo` (`id`),
@@ -623,25 +618,25 @@ CREATE TABLE `recurso` (
 --
 
 /*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
-INSERT INTO `recurso` (`id`,`anioEgreso`,`anioIngreso`,`estado`,`estadoCivil`,`experiencia`,`fechaNac`,`localidad`,`picture`,`titulo`,`area_id`,`hobbie1_id`,`hobbie2_id`,`hobbie3_id`,`hobbie4_id`,`hobbie5_id`,`hobbie6_id`,`idioma1_id`,`idioma2_id`,`idioma3_id`,`institucion_id`,`nivelIdioma1_id`,`nivelIdioma2_id`,`nivelIdioma3_id`,`provincia_id`,`puesto_id`,`seniority_id`,`usuario_id`) VALUES 
- (1,NULL,NULL,0x00,NULL,NULL,'1984-08-10 00:00:00',NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,4,7,4),
- (2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,4,8,5),
- (3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,9,6),
- (4,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,8,7),
- (5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,8),
- (6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9),
- (7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,10),
- (8,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,11),
- (9,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12),
- (10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,13),
- (11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,14),
- (12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,15),
- (13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16),
- (14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,17),
- (15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18),
- (16,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,19),
- (17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20),
- (18,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,21);
+INSERT INTO `recurso` (`id`,`anioEgreso`,`anioIngreso`,`estado`,`experiencia`,`fechaNac`,`localidad`,`picture`,`titulo`,`area_id`,`estadoCivil_id`,`hobbie1_id`,`hobbie2_id`,`hobbie3_id`,`hobbie4_id`,`hobbie5_id`,`hobbie6_id`,`idioma1_id`,`idioma2_id`,`idioma3_id`,`institucion_id`,`nivelIdioma1_id`,`nivelIdioma2_id`,`nivelIdioma3_id`,`provincia_id`,`puesto_id`,`seniority_id`,`usuario_id`) VALUES 
+ (1,0,0,NULL,NULL,NULL,'Capital Federal',NULL,NULL,1,28,22,23,24,25,NULL,NULL,10,11,13,18,16,15,14,26,4,7,4),
+ (2,0,0,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,4,8,5),
+ (3,0,0,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,9,6),
+ (4,0,0,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,8,7),
+ (5,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,8),
+ (6,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9),
+ (7,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,10),
+ (8,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,11),
+ (9,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,12),
+ (10,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,13),
+ (11,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,14),
+ (12,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,15),
+ (13,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16),
+ (14,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,17),
+ (15,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18),
+ (16,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,19),
+ (17,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20),
+ (18,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,21);
 /*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
 
 
@@ -694,6 +689,10 @@ CREATE TABLE `red_puntodevista` (
 INSERT INTO `red_puntodevista` (`Red_id`,`puntosDeVista_id`) VALUES 
  (1,1),
  (1,2),
+ (1,5),
+ (1,6),
+ (1,7),
+ (1,8),
  (2,3),
  (2,4);
 /*!40000 ALTER TABLE `red_puntodevista` ENABLE KEYS */;
