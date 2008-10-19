@@ -16,7 +16,7 @@ public interface RedesService {
 	public List<Red> getRedes();
 	
 	public Nodo getNodo(int id);
-
+	
 	public String getGrafo(Integer idPtoVista, Integer idDatoMaestro, Filtro filtro);
 
 	public List<DatoMaestro> getDatosMaestros();
@@ -24,6 +24,8 @@ public interface RedesService {
 	public void crearRed(String nombre, String descripcion, int idGrupo, int idEncuesta);
 	
 	public List<Recurso> getRecursosOf(int redId);
+	
+	public void generarRelaciones(int idRed,int idRec,List<Integer> preguntas,List<Integer> intensidades,List<Integer> recursos);
 	
 	public void enviarEncuesta(List<Recurso> recursos);
 }
