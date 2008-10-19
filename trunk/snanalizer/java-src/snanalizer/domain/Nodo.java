@@ -3,8 +3,6 @@ package snanalizer.domain;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.ArrayList;
-
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,14 +14,10 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import snanalizer.util.XmlTagBuilder;
-import snanalizer.domain.Recurso;
 
 @Entity
 public class Nodo extends DomainEntity {
 
-	/**
-	 * Relaciones salientes
-	 */
 	private List<Relacion> relaciones = new LinkedList<Relacion>();
 
 	private Recurso recurso;
@@ -52,10 +46,10 @@ public class Nodo extends DomainEntity {
 	public List<Relacion> getRelaciones() {
 		return relaciones;
 	}
-	
+
 	public boolean tieneRelacionesSalientes() {
-		for(Relacion r : this.getRelaciones())
-			if(r.getOrigen().getRecurso().equals(this.getRecurso()))
+		for (Relacion r : this.getRelaciones())
+			if (r.getOrigen().getRecurso().equals(this.getRecurso()))
 				return true;
 		return false;
 	}
@@ -74,18 +68,18 @@ public class Nodo extends DomainEntity {
 	}
 
 	@Transient
-	public Grafo getGrafo() {
+	public Grafo getGrafo(Filtro filtro) {
 		Grafo grafo = new Grafo();
-		recorrerGrafo(grafo);
+		recorrerGrafo(grafo, filtro);
 		return grafo;
 	}
 
-	private void recorrerGrafo(Grafo grafo) {
+	private void recorrerGrafo(Grafo grafo, Filtro filtro) {
 		if (!grafo.contains(this)) {
 			grafo.add(this);
-			for (Relacion relacion : getRelaciones()) {
-				relacion.getOrigen().recorrerGrafo(grafo);
-				relacion.getDestino().recorrerGrafo(grafo);
+			for (Relacion relacion : filtro.filtrarRelaciones(getRelaciones())) {
+				relacion.getOrigen().recorrerGrafo(grafo, filtro);
+				relacion.getDestino().recorrerGrafo(grafo, filtro);
 			}
 		}
 	}
@@ -99,8 +93,8 @@ public class Nodo extends DomainEntity {
 		return "  " + builder.toString() + "\n";
 	}
 
-	public void addRelacionesTo(Set<Relacion> conjuntoRelaciones) {
-		for (Relacion relacion : getRelaciones()) {
+	public void addRelacionesTo(Set<Relacion> conjuntoRelaciones, Filtro filtro) {
+		for (Relacion relacion : filtro.filtrarRelaciones(getRelaciones())) {
 			conjuntoRelaciones.add(relacion);
 		}
 	}
