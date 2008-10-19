@@ -170,7 +170,7 @@ CREATE TABLE `encuesta` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `encuesta`
@@ -178,7 +178,8 @@ CREATE TABLE `encuesta` (
 
 /*!40000 ALTER TABLE `encuesta` DISABLE KEYS */;
 INSERT INTO `encuesta` (`id`,`nombre`) VALUES 
- (1,'Encuesta Area Desarrollo');
+ (1,'Encuesta Area Desarrollo'),
+ (2,'Encuesta Marian');
 /*!40000 ALTER TABLE `encuesta` ENABLE KEYS */;
 
 
@@ -206,7 +207,9 @@ INSERT INTO `encuesta_pregunta` (`Encuesta_id`,`preguntas_id`) VALUES
  (1,5),
  (1,6),
  (1,7),
- (1,8);
+ (1,8),
+ (2,9),
+ (2,10);
 /*!40000 ALTER TABLE `encuesta_pregunta` ENABLE KEYS */;
 
 
@@ -261,7 +264,7 @@ CREATE TABLE `gruporecursos` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gruporecursos`
@@ -269,7 +272,8 @@ CREATE TABLE `gruporecursos` (
 
 /*!40000 ALTER TABLE `gruporecursos` DISABLE KEYS */;
 INSERT INTO `gruporecursos` (`id`,`descripcion`) VALUES 
- (1,'Grupo de Recursos de DEV');
+ (1,'Grupo de Recursos de DEV'),
+ (2,'Grupo Marian');
 /*!40000 ALTER TABLE `gruporecursos` ENABLE KEYS */;
 
 
@@ -296,7 +300,12 @@ INSERT INTO `gruporecursos_recurso` (`GrupoRecursos_id`,`recursos_id`) VALUES
  (1,1),
  (1,2),
  (1,3),
- (1,4);
+ (1,4),
+ (2,1),
+ (2,2),
+ (2,3),
+ (2,4),
+ (2,9);
 /*!40000 ALTER TABLE `gruporecursos_recurso` ENABLE KEYS */;
 
 
@@ -311,7 +320,7 @@ CREATE TABLE `nodo` (
   PRIMARY KEY  (`id`),
   KEY `FK25222C7D38E34D` (`recurso_id`),
   CONSTRAINT `FK25222C7D38E34D` FOREIGN KEY (`recurso_id`) REFERENCES `recurso` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `nodo`
@@ -320,14 +329,24 @@ CREATE TABLE `nodo` (
 /*!40000 ALTER TABLE `nodo` DISABLE KEYS */;
 INSERT INTO `nodo` (`id`,`recurso_id`) VALUES 
  (1,1),
+ (19,1),
+ (24,1),
  (2,2),
+ (20,2),
+ (25,2),
  (3,3),
+ (21,3),
+ (26,3),
  (4,4),
+ (22,4),
+ (27,4),
  (5,5),
  (6,6),
  (7,7),
  (8,8),
  (9,9),
+ (23,9),
+ (28,9),
  (10,10),
  (11,11),
  (12,12),
@@ -387,7 +406,27 @@ INSERT INTO `nodo_relacion` (`Nodo_id`,`relaciones_id`) VALUES
  (16,12),
  (16,14),
  (17,13),
- (18,14);
+ (18,14),
+ (19,15),
+ (19,17),
+ (25,16),
+ (25,18),
+ (21,15),
+ (21,19),
+ (24,16),
+ (24,20),
+ (22,19),
+ (22,21),
+ (27,22),
+ (20,17),
+ (20,23),
+ (23,21),
+ (23,23),
+ (26,20),
+ (26,22),
+ (26,24),
+ (28,18),
+ (28,24);
 /*!40000 ALTER TABLE `nodo_relacion` ENABLE KEYS */;
 
 
@@ -404,7 +443,7 @@ CREATE TABLE `pregunta` (
   PRIMARY KEY  (`id`),
   KEY `FKB7202F0A17148A27` (`encuesta_id`),
   CONSTRAINT `FKB7202F0A17148A27` FOREIGN KEY (`encuesta_id`) REFERENCES `encuesta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pregunta`
@@ -419,7 +458,9 @@ INSERT INTO `pregunta` (`id`,`descripcion`,`maximaIntensidad`,`encuesta_id`) VAL
  (5,'A quién consulta cuando tiene una duda de .NET?',5,1),
  (6,'A quién consulta cuando tiene una duda no técnica?',5,1),
  (7,'Quién fue su mentor cuando ingresó a la empresa?',5,1),
- (8,'Quién lo ayuda más diariamente?',5,1);
+ (8,'Quién lo ayuda más diariamente?',5,1),
+ (9,'A quién consulta sobre tal cosa?',5,2),
+ (10,'A quién consulta sobre tal otra?',5,2);
 /*!40000 ALTER TABLE `pregunta` ENABLE KEYS */;
 
 
@@ -477,7 +518,7 @@ CREATE TABLE `puntodevista` (
   PRIMARY KEY  (`id`),
   KEY `FK63AB4EC85B1355A7` (`pregunta_id`),
   CONSTRAINT `FK63AB4EC85B1355A7` FOREIGN KEY (`pregunta_id`) REFERENCES `pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `puntodevista`
@@ -492,7 +533,9 @@ INSERT INTO `puntodevista` (`id`,`descripcion`,`pregunta_id`) VALUES
  (5,'A quién consulta cuando tiene una duda de .NET?',5),
  (6,'A quién consulta cuando tiene una duda no técnica?',6),
  (7,'Quién fue su mentor cuando ingresó a la empresa?',7),
- (8,'Quién lo ayuda más diariamente?',8);
+ (8,'Quién lo ayuda más diariamente?',8),
+ (9,'A quién consulta sobre tal cosa?',9),
+ (10,'A quién consulta sobre tal otra?',10);
 /*!40000 ALTER TABLE `puntodevista` ENABLE KEYS */;
 
 
@@ -534,7 +577,17 @@ INSERT INTO `puntodevista_nodo` (`PuntoDeVista_id`,`nodos_id`) VALUES
  (4,15),
  (4,16),
  (4,17),
- (4,18);
+ (4,18),
+ (9,19),
+ (9,20),
+ (9,21),
+ (9,22),
+ (9,23),
+ (10,24),
+ (10,25),
+ (10,26),
+ (10,27),
+ (10,28);
 /*!40000 ALTER TABLE `puntodevista_nodo` ENABLE KEYS */;
 
 
@@ -653,7 +706,7 @@ CREATE TABLE `red` (
   PRIMARY KEY  (`id`),
   KEY `FK1407117148A27` (`encuesta_id`),
   CONSTRAINT `FK1407117148A27` FOREIGN KEY (`encuesta_id`) REFERENCES `encuesta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `red`
@@ -662,7 +715,8 @@ CREATE TABLE `red` (
 /*!40000 ALTER TABLE `red` DISABLE KEYS */;
 INSERT INTO `red` (`id`,`descripcion`,`nombre`,`encuesta_id`) VALUES 
  (1,'Red de Prueba',NULL,1),
- (2,'Red de Prueba2',NULL,NULL);
+ (2,'Red de Prueba2',NULL,NULL),
+ (3,'Red de Marian','Red de Marian',2);
 /*!40000 ALTER TABLE `red` ENABLE KEYS */;
 
 
@@ -694,7 +748,9 @@ INSERT INTO `red_puntodevista` (`Red_id`,`puntosDeVista_id`) VALUES
  (1,7),
  (1,8),
  (2,3),
- (2,4);
+ (2,4),
+ (3,9),
+ (3,10);
 /*!40000 ALTER TABLE `red_puntodevista` ENABLE KEYS */;
 
 
@@ -713,7 +769,7 @@ CREATE TABLE `relacion` (
   KEY `FKE2C6A3CDD57B676B` (`destino_id`),
   CONSTRAINT `FKE2C6A3CD81C8DB89` FOREIGN KEY (`origen_id`) REFERENCES `nodo` (`id`),
   CONSTRAINT `FKE2C6A3CDD57B676B` FOREIGN KEY (`destino_id`) REFERENCES `nodo` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `relacion`
@@ -734,7 +790,17 @@ INSERT INTO `relacion` (`id`,`intensidad`,`destino_id`,`origen_id`) VALUES
  (11,3,14,15),
  (12,3,16,15),
  (13,3,17,15),
- (14,3,18,16);
+ (14,3,18,16),
+ (15,3,21,19),
+ (16,4,25,24),
+ (17,5,19,20),
+ (18,5,28,25),
+ (19,5,22,21),
+ (20,3,24,26),
+ (21,4,23,22),
+ (22,4,26,27),
+ (23,5,20,23),
+ (24,4,26,28);
 /*!40000 ALTER TABLE `relacion` ENABLE KEYS */;
 
 

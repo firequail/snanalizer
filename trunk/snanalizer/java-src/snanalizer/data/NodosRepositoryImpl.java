@@ -20,13 +20,7 @@ public class NodosRepositoryImpl extends BaseRepositoryImpl<Nodo>
 		return find(criteria);
 	}
 	
-	public Nodo getByRec(Recurso rec) {
-		Criteria criteria = createCriteria();
 
-		criteria.add(Restrictions.eq("recurso", rec));
-
-		return findUnique(criteria);
-	}
 	
 
 }

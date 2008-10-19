@@ -43,13 +43,19 @@
 			import sna.DataComboBox;
 			
 			[Bindable]
-			public var red:Object;
+			private var red:Object;
+			[Bindable]
+			private var rec:Object;
 			[Bindable]
 			public var arrayPreg:ArrayCollection = new ArrayCollection();
 			
 			
 			public function setRed(value:Object):void {
 				red = value;
+			}
+			
+			public function setRecurso(value:Object):void {
+				rec = value;
 			}
 			
 			public function getUsuarioNombre(data:Object):String {
@@ -100,17 +106,8 @@
                     arrayInt.addItem(parseInt(currentInt.selectedLabel));
 				}
 				
-				redesService.generarRelaciones(red.id as int,1, arrayPreg,arrayInt,arrayRes);
+				redesService.generarRelaciones(red.id as int,rec.id as int, arrayPreg,arrayInt,arrayRes);
 				
-				// Esto no va, es de prueba
-				/*
-				for (var j:uint = 0; j < cant; j++) {
-					
-					hola += " " + arrayPreg.getItemAt(j) as String;
-					hola += " " + arrayRes.getItemAt(j) as String;
-					hola += " " + arrayInt.getItemAt(j) as String;
-				}
-				Alert.show(hola);*/
 	
 			}
 			

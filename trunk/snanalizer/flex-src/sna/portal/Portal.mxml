@@ -4,10 +4,10 @@
 	<mx:Panel layout="absolute" title="Portal" width="100%" height="100%">
 	<mx:TabNavigator width="100%" height="100%">
 			<mx:Canvas label="Inicio" width="100%" height="100%">
-				<portal:Principal/>
+				<portal:Principal id="principal" recurso="{recurso}" />
 			</mx:Canvas>
 			<mx:Canvas label="Personal" width="100%" height="100%">
-				<portal:Personal id="personal" recurso="{recursosService.getRecursoById.lastResult}"/>
+				<portal:Personal id="personal" recurso="{recurso}"/>
 			</mx:Canvas>
 		</mx:TabNavigator>
 	</mx:Panel>
@@ -17,8 +17,17 @@
 	<mx:Script>
 		<![CDATA[
 		
+			[Bindable]
+			private var recurso:Object;
+			
+			public function setRecurso(value:Object):void {
+				recurso = value;
+				
+			}
+		
 			public function load():void {
-				recursosService.getRecursoById(1);
+				//principal.setRecurso(recurso);
+				recursosService.getRecursoById(recurso.id);
 			}
 		
 		]]>

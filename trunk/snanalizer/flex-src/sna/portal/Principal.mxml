@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:portal="sna.portal.*" >
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:portal="sna.portal.*"  >
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -17,7 +17,7 @@
 				<mx:HBox width="100%" height="30%" >
 					<mx:Panel width="100%" height="100%" title=":: Inbox">
 						<mx:Canvas label="hola" width="100%" height="100%">
-							<portal:EncuestasPendientes width="98%" height="95%" result="openSurvey(event)" />
+							<portal:EncuestasPendientes recurso="{recurso}" id="encPend" width="98%" height="95%" result="openSurvey(event)" />
 						</mx:Canvas>
 					</mx:Panel>
 				</mx:HBox>
@@ -39,11 +39,15 @@
             
             [Bindable]
             public var answerSurvey:Encuesta;
+            [Bindable]
+			public var recurso:Object;
+
 
 			
 			private function openSurvey(event:ResultEvent):void {
 				answerSurvey =	Encuesta(PopUpManager.createPopUp(this,Encuesta,true));
 				answerSurvey.setRed(event.result);
+				answerSurvey.setRecurso(recurso);
 				PopUpManager.centerPopUp(answerSurvey); 
 			}
 			

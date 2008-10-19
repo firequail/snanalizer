@@ -9,6 +9,5 @@ import snanalizer.domain.PuntoDeVista;
 public interface NodosRepository extends BaseRepository<Nodo> {
 
 	public List<Nodo> getNodos( PuntoDeVista puntoDeVista );
-	
-	public Nodo getByRec(Recurso rec);
+
 }
