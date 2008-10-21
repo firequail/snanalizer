@@ -82,7 +82,8 @@
 				
 				/* set the visibility limit options, default 2 
 				 * a.k.a degrees of separation */
-				vgraph.maxVisibleDistance = 1000;
+				//vgraph.maxVisibleDistance = 2;
+				vgraph.visibilityLimitActive = false;
 				
 				/* select a root node, most layouters requires a root node
 				 * Note: Id 1 is referring to node id in the XML file */
