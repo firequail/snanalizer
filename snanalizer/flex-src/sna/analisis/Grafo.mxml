@@ -8,7 +8,7 @@
 		[Event(name="nodeSelected", type="sna.analisis.ravis.NodeSelectedEvent")]
 	</mx:Metadata>
 	
-	<mx:RemoteObject id="redesService" destination="redesService">
+	<mx:RemoteObject id="redesService" destination="redesService" showBusyCursor="true">
 		<mx:method name="getGrafo" result="crearGrafos(event)"/>
 	</mx:RemoteObject>
 	
