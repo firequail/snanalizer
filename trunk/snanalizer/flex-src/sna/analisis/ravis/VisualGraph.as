@@ -53,6 +53,8 @@ package sna.analisis.ravis {
 	import org.un.cava.birdeye.ravis.graphLayout.visual.VisualNode;
 	import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.BaseEdgeRenderer;
 	import org.un.cava.birdeye.ravis.utils.events.VGraphEvent;
+	
+	import sna.analisis.renderers.nodes.SNANodeRenderer;
 
 
 	/**
@@ -1898,6 +1900,12 @@ package sna.analisis.ravis {
 			
 			/* get the associated VNode */
 			vnode = lookupNode(comp);
+			
+			if(e.ctrlKey) {
+				(comp as SNANodeRenderer).select();
+			}
+						
+			//(vnode.view as SNANodeRenderer).select();
 
 			dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,vnode.data.@id));
 		}
