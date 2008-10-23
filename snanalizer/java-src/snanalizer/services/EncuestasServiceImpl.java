@@ -11,6 +11,7 @@ import snanalizer.data.EncuestasDePortalRepository;
 import snanalizer.data.EncuestasRepository;
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
+import snanalizer.data.RespuestasDeRecursosRepository;
 import snanalizer.domain.Encuesta;
 import snanalizer.domain.EncuestaDePortal;
 import snanalizer.domain.PuntoDeVista;
@@ -19,6 +20,9 @@ import snanalizer.domain.Nodo;
 import snanalizer.domain.Relacion;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Pregunta;
+import snanalizer.domain.RespuestaDeRecurso;
+import snanalizer.domain.RespuestaValor;
+import snanalizer.domain.RespuestaDePortal;
 
 
 
@@ -33,6 +37,8 @@ public class EncuestasServiceImpl implements EncuestasService {
 	private RecursosRepository recursosRepository;
 	@Resource
 	private RedesRepository redesRepository;
+	@Resource
+	private RespuestasDeRecursosRepository rtasRepository;
 
 	public EncuestasDePortalRepository getEncuestasDePortalRepository() {
 		return encuestasDePortalRepository;
@@ -90,6 +96,45 @@ public class EncuestasServiceImpl implements EncuestasService {
 	
 	public List<Pregunta> getPreguntasOf(int encId) {
 		return encuestasRepository.getById(encId).getPreguntas();
+		
+	}
+	
+	public List<EncuestaDePortal> getEncuestasDePortalPendientes(int recId) {
+		List<EncuestaDePortal> encuestas = new ArrayList<EncuestaDePortal>();
+		encuestas = encuestasDePortalRepository.getAll();
+		encuestas.removeAll(this.getEncuestasDePortalHechas(recId));
+		
+		return encuestas;  
+
+	}
+	
+	public List<EncuestaDePortal> getEncuestasDePortalHechas(int recId) {
+		List<EncuestaDePortal> encuestas = new ArrayList<EncuestaDePortal>();
+		List<RespuestaDeRecurso> listaRtas = new ArrayList<RespuestaDeRecurso>();
+		
+		listaRtas = rtasRepository.getRespuestasDeRecurso(recursosRepository.getById(recId));
+
+		for(RespuestaDeRecurso rta : listaRtas)
+			encuestas.add(rta.getEncuesta());
+			
+		
+		return encuestas;
+	}
+	
+	public List<RespuestaValor> getTotalRespuestas(int encId) {
+		
+		EncuestaDePortal encuesta = encuestasDePortalRepository.getById(encId);
+		List<RespuestaDePortal> rtas = encuesta.getPreguntas().get(0).getRespuestas();
+		List<RespuestaValor> resultados = new ArrayList<RespuestaValor>();
+		
+		for(RespuestaDePortal r : rtas) {
+			RespuestaValor rv = new RespuestaValor();
+			rv.setRespuesta(r.getDescripcion());
+			rv.setValor(rtasRepository.getRespuestas(r).size());
+			resultados.add(rv);
+		}
+		
+		return resultados;	
 		
 	}
 	

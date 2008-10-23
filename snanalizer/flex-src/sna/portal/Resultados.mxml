@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="600" height="600" xmlns:sna="sna.*"  creationComplete="init()">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<!-- Define custom colors for use as pie wedge fills. -->
+    <mx:SolidColor id="sc1" color="blue" alpha=".6"/>
+    <mx:SolidColor id="sc2" color="red" alpha=".6"/>
+    <mx:SolidColor id="sc3" color="0x663300" alpha=".6"/>
+
+    <!-- This Stroke is used for the callout lines. -->
+    <mx:Stroke id="callouts" weight="2" color="0x999999" alpha=".8" caps="square"/>
+    
+    <!-- This Stroke is used to separate the wedges in the pie. -->
+    <mx:Stroke id="radial" weight="1" color="0xFFFFCC" alpha=".3"/>
+
+    <!-- This Stroke is used for the outer border of the pie. -->
+    <mx:Stroke id="pieborder" color="0x000000" weight="2" alpha=".5"/>
+	
+	<mx:Panel title="{enc.preguntas.getItemAt(0).descripcion}" height="100%" width="100%">
+        <mx:PieChart id="chart" 
+            height="100%" 
+            width="100%"
+            paddingRight="5" 
+            paddingLeft="5" 
+            showDataTips="true" 
+            dataProvider="{encuestasService.getTotalRespuestas.lastResult}"
+        >          
+            <!--
+            -->
+            <mx:series>
+                <mx:PieSeries 
+                    nameField="respuesta"
+                    labelPosition="callout" 
+                    field="valor" 
+                    labelFunction="displayInfo" 
+                    calloutStroke="{callouts}" 
+                    radialStroke="{radial}" 
+                    stroke="{pieborder}"
+                    fills="{[sc1, sc2, sc3]}"
+                >
+                    <!-- Clear the drop shadow filters from the chart. -->
+                    <mx:filters>
+                        <mx:Array/>
+                    </mx:filters>
+                </mx:PieSeries>
+            </mx:series>
+        </mx:PieChart>  
+        <mx:Legend dataProvider="{chart}"/>
+        <mx:Button  label="Cerrar" click="close()" labelPlacement="left"/>
+    </mx:Panel>
+    
+    <mx:RemoteObject id="encuestasService" destination="encuestasService"/>
+    
+    <mx:Script>
+        <![CDATA[          
+        import mx.collections.ArrayCollection;
+        import mx.managers.PopUpManager;
+        
+        [Bindable]
+        private var enc:Object;
+        
+        public function setEnc(value:Object):void {
+			enc = value;
+		}
+		
+		public function init():void {
+			encuestasService.getTotalRespuestas(enc.id as int);
+		}
+        
+    
+      	private function displayInfo(data:Object, field:String, index:Number, percentValue:Number):String {
+            var temp:String= (" " + percentValue).substr(0,6);
+            return data.respuesta + ": " + '\n' + "Total: " + data.valor + '\n' + temp + "%";
+        }
+        
+        private function close():void {
+			PopUpManager.removePopUp(this);
+		}
+        
+        ]]>
+    </mx:Script>
+	
+	
+</mx:Canvas>
