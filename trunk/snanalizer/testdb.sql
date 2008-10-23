@@ -35,7 +35,7 @@ CREATE TABLE `atributo` (
   PRIMARY KEY  (`id`),
   KEY `FK20FDAAD8398792ED` (`datoMaestro_id`),
   CONSTRAINT `FK20FDAAD8398792ED` FOREIGN KEY (`datoMaestro_id`) REFERENCES `datomaestro` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `atributo`
@@ -68,12 +68,33 @@ INSERT INTO `atributo` (`id`,`descripcion`,`estado`,`nombre`,`datoMaestro_id`) V
  (23,'Teatro',0x01,'Teatro',7),
  (24,'Viajes',0x01,'Traveling',7),
  (25,'Paintball',0x01,'Paintball',7),
- (26,'',0x01,'Buenos Aires',8),
- (27,'',0x01,'Córdoba',8),
+ (26,'Buenos Aires',0x01,'Buenos Aires',8),
+ (27,'Córdoba',0x01,'Córdoba',8),
  (28,'',0x01,'Soltero/a',9),
  (29,'',0x01,'Casado/a',9),
  (30,'',0x01,'Viudo/a',9),
- (31,'',0x01,'Divorciado/a',9);
+ (31,'',0x01,'Divorciado/a',9),
+ (33,'Tucuman',0x01,'Tucuman',8),
+ (34,'Chubut',0x01,'Chubut',8),
+ (35,'Catamarca',0x01,'Catamarca',8),
+ (36,'Chaco',0x01,'Chaco',8),
+ (37,'Corrientes',0x01,'Corrientes',8),
+ (38,'Entre Rios',0x01,'Entre Rios',8),
+ (39,'Formosa',0x01,'Formosa',8),
+ (40,'Jujuy',0x01,'Jujuy',8),
+ (41,'La Pampa',0x01,'La Pampa',8),
+ (42,'La Rioja',0x01,'La Rioja',8),
+ (43,'Mendoza',0x01,'Mendoza',8),
+ (44,'Misiones',0x01,'Misiones',8),
+ (45,'Neuquen',0x01,'Neuquen',8),
+ (46,'Rio Negro',0x01,'Rio Negro',8),
+ (47,'Salta',0x01,'Salta',8),
+ (48,'San Juan',0x01,'San Juan',8),
+ (49,'San Luis',0x01,'San Luis',8),
+ (50,'Santa Cruz',0x01,'Santa Cruz',8),
+ (51,'Santa Fe',0x01,'Santa Fe',8),
+ (52,'Santiago del Estero',0x01,'Santiago del Estero',8),
+ (53,'Tierra del Fuego',0x01,'Tierra del Fuego',8);
 /*!40000 ALTER TABLE `atributo` ENABLE KEYS */;
 
 
@@ -222,13 +243,16 @@ CREATE TABLE `encuestadeportal` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `encuestadeportal`
 --
 
 /*!40000 ALTER TABLE `encuestadeportal` DISABLE KEYS */;
+INSERT INTO `encuestadeportal` (`id`,`nombre`) VALUES 
+ (1,'Encuesta portal de prueba'),
+ (2,'Encuesta de prueba 2');
 /*!40000 ALTER TABLE `encuestadeportal` ENABLE KEYS */;
 
 
@@ -252,6 +276,9 @@ CREATE TABLE `encuestadeportal_preguntadeportal` (
 --
 
 /*!40000 ALTER TABLE `encuestadeportal_preguntadeportal` DISABLE KEYS */;
+INSERT INTO `encuestadeportal_preguntadeportal` (`EncuestaDePortal_id`,`preguntas_id`) VALUES 
+ (1,1),
+ (2,2);
 /*!40000 ALTER TABLE `encuestadeportal_preguntadeportal` ENABLE KEYS */;
 
 
@@ -473,13 +500,16 @@ CREATE TABLE `preguntadeportal` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `preguntadeportal`
 --
 
 /*!40000 ALTER TABLE `preguntadeportal` DISABLE KEYS */;
+INSERT INTO `preguntadeportal` (`id`,`descripcion`) VALUES 
+ (1,'De qué cuadro sos?'),
+ (2,'Jugas al fútbol?');
 /*!40000 ALTER TABLE `preguntadeportal` ENABLE KEYS */;
 
 
@@ -503,6 +533,12 @@ CREATE TABLE `preguntadeportal_respuestadeportal` (
 --
 
 /*!40000 ALTER TABLE `preguntadeportal_respuestadeportal` DISABLE KEYS */;
+INSERT INTO `preguntadeportal_respuestadeportal` (`PreguntaDePortal_id`,`respuestas_id`) VALUES 
+ (1,1),
+ (1,2),
+ (1,3),
+ (2,4),
+ (2,5);
 /*!40000 ALTER TABLE `preguntadeportal_respuestadeportal` ENABLE KEYS */;
 
 
@@ -813,14 +849,52 @@ CREATE TABLE `respuestadeportal` (
   `id` int(11) NOT NULL auto_increment,
   `descripcion` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `respuestadeportal`
 --
 
 /*!40000 ALTER TABLE `respuestadeportal` DISABLE KEYS */;
+INSERT INTO `respuestadeportal` (`id`,`descripcion`) VALUES 
+ (1,'Boca Juniors'),
+ (2,'River Plate'),
+ (3,'Godoy Cruz'),
+ (4,'SI'),
+ (5,'NO');
 /*!40000 ALTER TABLE `respuestadeportal` ENABLE KEYS */;
+
+
+--
+-- Definition of table `respuestaderecurso`
+--
+
+DROP TABLE IF EXISTS `respuestaderecurso`;
+CREATE TABLE `respuestaderecurso` (
+  `id` int(11) NOT NULL auto_increment,
+  `encuesta_id` int(11) default NULL,
+  `recurso_id` int(11) default NULL,
+  `respuesta_id` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `FK405BAAC87D38E34D` (`recurso_id`),
+  KEY `FK405BAAC848C17794` (`encuesta_id`),
+  KEY `FK405BAAC8E0F1789A` (`respuesta_id`),
+  CONSTRAINT `FK405BAAC848C17794` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestadeportal` (`id`),
+  CONSTRAINT `FK405BAAC87D38E34D` FOREIGN KEY (`recurso_id`) REFERENCES `recurso` (`id`),
+  CONSTRAINT `FK405BAAC8E0F1789A` FOREIGN KEY (`respuesta_id`) REFERENCES `respuestadeportal` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `respuestaderecurso`
+--
+
+/*!40000 ALTER TABLE `respuestaderecurso` DISABLE KEYS */;
+INSERT INTO `respuestaderecurso` (`id`,`encuesta_id`,`recurso_id`,`respuesta_id`) VALUES 
+ (1,1,1,2),
+ (2,1,2,1),
+ (3,1,3,3),
+ (4,1,4,2);
+/*!40000 ALTER TABLE `respuestaderecurso` ENABLE KEYS */;
 
 
 --

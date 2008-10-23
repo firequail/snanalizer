@@ -31,6 +31,8 @@
 
 	<bean id="encuestasService" class="snanalizer.services.EncuestasServiceImpl"/>
 	
+	<bean id="respuestasDeRecursosService" class="snanalizer.services.RespuestasDeRecursosServiceImpl"/>
+	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="465" />

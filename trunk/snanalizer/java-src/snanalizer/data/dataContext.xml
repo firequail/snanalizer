@@ -55,4 +55,7 @@
 	<bean id="preguntasRepository"
 		class="snanalizer.data.PreguntasRepositoryImpl" />
 		
+	<bean id="respuestasDeRecursosRepository"
+		class="snanalizer.data.RespuestasDeRecursosRepositoryImpl" />
+		
 </beans>

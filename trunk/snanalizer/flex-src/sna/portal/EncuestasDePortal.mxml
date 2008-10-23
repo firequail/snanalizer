@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="load()">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+
+	<mx:RemoteObject id="encuestasService" destination="encuestasService">
+		<mx:method name="responderEncuesta" result="refreshEncuestasPortal(event)"/>
+	</mx:RemoteObject>
+	<mx:RemoteObject id="respuestasDeRecursosService" destination="respuestasDeRecursosService"/>
+	
+	
+
+		<mx:Accordion width="100%" height="100%">
+			<mx:Repeater id="rptEncuestas" dataProvider="{encuestasService.getEncuestasDePortalPendientes.lastResult}" >
+			<mx:VBox width="100%" label="{rptEncuestas.currentItem.preguntas.getItemAt(0).descripcion}" paddingTop="10" paddingLeft="10">
+
+					<mx:Repeater id="rptRtas" dataProvider="{rptEncuestas.currentItem.preguntas.getItemAt(0).respuestas}" >
+						<mx:RadioButton id="arrayRadios" click="setRta(event)" value="{rptRtas.currentItem.id}" label="{rptRtas.currentItem.descripcion}" paddingLeft="5"/>
+					</mx:Repeater>
+
+					<mx:Button id="arrayResponder" click="responder(event)" label="Responder" top="10" />
+			</mx:VBox>
+			</mx:Repeater>
+			
+			<mx:Repeater id="rptEncuestasHechas" dataProvider="{encuestasService.getEncuestasDePortalHechas.lastResult}" >
+			<mx:VBox width="100%" textAlign="center" label="{rptEncuestasHechas.currentItem.preguntas.getItemAt(0).descripcion}" paddingTop="10" paddingLeft="10" horizontalAlign="center">
+					<mx:Text text="Usted ya ha contestado esta encuesta. Haga click en 'Ver Resultados' para ver cómo votaron los demás" width="100%"  />
+					<mx:Button id="arrayVerResult" click="openResults(event)" label="Ver Resultados" top="10" />
+			</mx:VBox>
+			</mx:Repeater>
+			
+		</mx:Accordion>
+
+
+	
+
+<mx:Script>
+		<![CDATA[
+			import mx.controls.dataGridClasses.DataGridColumn;
+            import mx.rpc.events.ResultEvent;
+            import mx.collections.ArrayCollection;
+            import sna.admin.encuestas.portal.RespuestaDePortal;
+            import mx.controls.RadioButton;
+            import mx.controls.Button;
+            import mx.controls.Alert;
+            
+            
+            [Bindable]
+			public var recurso:Object;
+			[Bindable]
+			public var rta:int;
+
+
+
+			public function load():void {
+
+				encuestasService.getEncuestasDePortalPendientes(recurso.id as int);
+				encuestasService.getEncuestasDePortalHechas(recurso.id as int);
+			}
+			
+			public function setRta(evt:Event):void {
+
+                var radio:RadioButton = RadioButton(evt.currentTarget);
+		
+				rta = radio.value as int;
+				
+			}
+			
+			public function openSurvey():void {
+
+			}
+			
+			private function verificarExist(id:int,col:ArrayCollection):Boolean {
+				for (var i:uint = 0; i < col.length; i++)
+					if(id == col.getItemAt(i).id as int)
+						return true;
+						
+				return false;
+			}
+			
+			public function responder(evt:Event):void {
+				
+				var but:Button = Button(evt.currentTarget);
+				var obj:Object = but.getRepeaterItem(); 
+				var id:int = obj.id as int;
+				var col:ArrayCollection = new ArrayCollection();
+				var cantRtas:int = arrayRadios.length;
+				var t:Boolean = false;
+				
+				
+				for (var i:uint = 0; i < cantRtas; i++)
+					for(var j:int = 0; j < arrayRadios[i].length; j++)
+						if(verificarExist(arrayRadios[i][j].value,obj.preguntas[0].respuestas))
+							col.addItem(arrayRadios[i][j]);
+				
+				for (var k:uint = 0; k < col.length; k++) {
+
+					var r:RadioButton = col.getItemAt(k) as RadioButton;
+					 
+					if(r.selected == true) {
+						t = true;
+						rta = r.value as int; 
+					}
+				}	
+				
+				if(!t)
+					Alert.show("Seleccione una respuesta");
+				else {
+					respuestasDeRecursosService.responderEncuesta(recurso.id as int,id,rta);
+					encuestasService.getEncuestasDePortalPendientes(recurso.id as int);
+					encuestasService.getEncuestasDePortalHechas(recurso.id as int);
+				}	
+					
+					
+				 
+			}
+			
+			public function refreshEncuestasPortal(event:ResultEvent):void {
+				rptEncuestas.dataProvider = encuestasService.getEncuestasDePortalPendientes.lastResult;
+				rptEncuestasHechas.dataProvider = encuestasService.getEncuestasDePortalHechas.lastResult;
+			}
+			
+			public function openResults(evt:Event):void {
+				var but:Button = Button(evt.currentTarget);
+				var obj:Object = but.getRepeaterItem(); 
+				dispatchEvent(ResultEvent.createEvent(obj));
+			}
+			
+
+
+		]]>
+	</mx:Script>
+	
+</mx:Canvas>
+
+
+

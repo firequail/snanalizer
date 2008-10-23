@@ -75,4 +75,10 @@
         		<source>encuestasService</source>
         	</properties>
     </destination>
+    <destination id="respuestasDeRecursosService">
+        	<properties>
+        		<factory>spring</factory>
+        		<source>respuestasDeRecursosService</source>
+        	</properties>
+    </destination>    
 </service>

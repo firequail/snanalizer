@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
+
 import snanalizer.domain.Atributo;
 import snanalizer.domain.DatoMaestro;
 
