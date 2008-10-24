@@ -12,7 +12,8 @@
 		</mx:VBox>
 		<mx:VBox>
 			<mx:Label text="Punto de vista"/>
-			<sna:DataComboBox id="puntosDeVistaCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getPuntosDeVista.lastResult}" change="fireChange()"/>
+			<sna:DataComboBox id="puntosDeVistaCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getPuntosDeVista.lastResult}" change="fireChange()" itemRenderer="mx.controls.Label"
+            width="200"/>
 		</mx:VBox>
 		<mx:VBox>
 			<mx:Label text="Agrupar por"/>
