@@ -2,5 +2,17 @@
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
 	verticalAlign="middle" horizontalAlign="center"
 	 >
-	<mx:Label width="50" height="8" text="{this.data.data.@edgeLabel}" color="#CCCCCC" />
+	<mx:Label toolTip="{edgeLabel()}" color="#CCCCCC" />
+	<mx:Spacer height="10"/>
+
+	<mx:Script>
+		<![CDATA[
+			
+			public function edgeLabel():String {
+				return this.data.data.@fromIntensity + " - " + this.data.data.@toIntensity;
+			}
+			
+		]]>
+	</mx:Script>
+
 </mx:VBox>
