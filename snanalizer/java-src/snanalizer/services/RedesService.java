@@ -8,6 +8,7 @@ import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
+import snanalizer.domain.Relacion;
 
 public interface RedesService {
 
@@ -30,4 +31,6 @@ public interface RedesService {
 	public void generarRelaciones(int idRed,int idRec,List<Integer> preguntas,List<Integer> intensidades,List<Integer> recursos);
 	
 	public void enviarEncuesta(List<Recurso> recursos);
+
+	public List<Relacion> getCaminoMasCorto(int idOrigen, int idDestino);
 }

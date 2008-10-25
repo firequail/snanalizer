@@ -270,4 +270,11 @@ public class RedesServiceImpl implements RedesService {
 		
 		return null;
 	}
+
+	public List<Relacion> getCaminoMasCorto(int idOrigen, int idDestino) {
+		Nodo origen = nodosRepository.getById(idOrigen);
+		Nodo destino = nodosRepository.getById(idDestino);
+		
+		return origen.caminoMasCorto(destino);
+	}
 }
