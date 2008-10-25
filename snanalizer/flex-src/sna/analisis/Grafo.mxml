@@ -83,6 +83,8 @@
 			private var grafos:ArrayCollection = new ArrayCollection();
 			
 			private function crearGrafos(event:ResultEvent):void {
+				selectedNode1 = null;
+				selectedNode2 = null;
 				grafos = new ArrayCollection();
 				var xmlData:XMLList = new XMLList(redesService.getGrafo.lastResult)
 				
@@ -127,22 +129,22 @@
 			
 			private function nodeSelected(e:NodeSelectedEvent):void {
 				
-				if (selectedNode1 == null) {
-					selectedNode1 = e.node;
-					(e.node.view as SNANodeRenderer).select();
-					_seletedNodeId = e.nodeId;
-				} else if(selectedNode1 == e.node) {
+				if(selectedNode1 == e.node) {
 					selectedNode1 = null;
 					(e.node.view as SNANodeRenderer).select();
 					_seletedNodeId = 0;
-				} else if (selectedNode2 == null) {
-					selectedNode2 = e.node;
-					(e.node.view as SNANodeRenderer).select();
-					_seletedNodeId = e.nodeId;
 				} else if (selectedNode2 == e.node) {
 					selectedNode2 = null;
 					(e.node.view as SNANodeRenderer).select();
 					_seletedNodeId = 0;
+				} else if (selectedNode1 == null) {
+					selectedNode1 = e.node;
+					(e.node.view as SNANodeRenderer).select();
+					_seletedNodeId = e.nodeId;
+				} else if (selectedNode2 == null) {
+					selectedNode2 = e.node;
+					(e.node.view as SNANodeRenderer).select();
+					_seletedNodeId = e.nodeId;
 				}
 				
 				for each(var grafo:GrafoRavis in grafos) {
