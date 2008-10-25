@@ -1905,8 +1905,6 @@ package sna.analisis.ravis {
 				(comp as SNANodeRenderer).select();
 			}
 						
-			//(vnode.view as SNANodeRenderer).select();
-
 			dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,vnode.data.@id));
 		}
 

@@ -32,18 +32,16 @@ package sna
 		
 		public function set selectedData(value:Object):void {
 			this.initialSelectedData = value;
-			if (value != null ) {
-				if (collection && collection.length) {
-					var cursor:IViewCursor = collection.createCursor();
-					while (!cursor.afterLast) {
-						var obj:Object = cursor.current;
-						
-						if ( obj[dataField] == value ) {
-							super.selectedItem = obj;
-							return;
-						}
-						cursor.moveNext();
+			if (collection && collection.length) {
+				var cursor:IViewCursor = collection.createCursor();
+				while (!cursor.afterLast) {
+					var obj:Object = cursor.current;
+					
+					if ( obj[dataField] == value ) {
+						super.selectedItem = obj;
+						return;
 					}
+					cursor.moveNext();
 				}
 			}
 		}

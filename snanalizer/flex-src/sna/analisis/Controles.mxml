@@ -17,19 +17,19 @@
 		</mx:VBox>
 		<mx:VBox>
 			<mx:Label text="Agrupar por"/>
-			<sna:DataComboBox id="datosMaestrosCombo" labelField="descripcion" dataField="id" unselectedLabel="Ninguno" dataProvider="{redesService.getDatosMaestros.lastResult}" change="fireChange()"/>
+			<sna:DataComboBox id="datosMaestrosCombo" labelField="descripcion" dataField="id" unselectedLabel="Ninguno" dataProvider="{redesService.getDatosMaestros.lastResult}" change="agrupar()"/>
 		</mx:VBox>
 		<mx:VBox>
 			<mx:Label text="Area"/>
-			<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="id" unselectedLabel="Todas" dataProvider="{datosMaestrosService.getAreas.lastResult}" change="fireChange()"/>
+			<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="id" unselectedLabel="Todas" dataProvider="{datosMaestrosService.getAreas.lastResult}" change="filtrar()"/>
 		</mx:VBox>
 		<mx:VBox>
 			<mx:Label text="Puesto"/>
-			<sna:DataComboBox id="puestoCombo" labelField="nombre" dataField="id" unselectedLabel="Todos" dataProvider="{datosMaestrosService.getPuestos.lastResult}" change="fireChange()"/>
+			<sna:DataComboBox id="puestoCombo" labelField="nombre" dataField="id" unselectedLabel="Todos" dataProvider="{datosMaestrosService.getPuestos.lastResult}" change="filtrar()"/>
 		</mx:VBox>
 		<mx:VBox>
 			<mx:Label text="Seniority"/>
-			<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" unselectedLabel="Todos" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" change="fireChange()"/>
+			<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" unselectedLabel="Todos" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" change="filtrar()"/>
 		</mx:VBox>
 	</mx:HBox>
 	<mx:HBox width="100%" height="100%">
@@ -60,6 +60,22 @@
 			
 			private function loadPuntosDeVista():void {
 				redesService.getPuntosDeVista(redesCombo.selectedData as int);
+			}
+			
+			private function agrupar():void {
+				if(datosMaestrosCombo.selectedData != null) {
+					areaCombo.selectedData = null;
+					puestoCombo.selectedData = null;
+					seniorityCombo.selectedData = null;
+				}
+				fireChange();
+			}
+			
+			private function filtrar():void {
+				if(areaCombo.selectedData != null || puestoCombo.selectedData != null || seniorityCombo.selectedData != null) {
+					datosMaestrosCombo.selectedData = null;
+				}
+				fireChange();
 			}
 			
 			private function fireChange():void {
