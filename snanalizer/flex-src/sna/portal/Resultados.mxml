@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="init()">
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="init()" showCloseButton="true" verticalAlign="middle" horizontalAlign="center" close="closeMe()">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -22,36 +22,36 @@
     <!-- This Stroke is used for the outer border of the pie. -->
     <mx:Stroke id="pieborder" color="0x000000" weight="2" alpha=".5"/>
 	
-	<mx:Panel title="{enc.preguntas.getItemAt(0).descripcion}" verticalAlign="middle" horizontalAlign="center" >
-        <mx:PieChart id="chart" 
-            height="80%" 
-            width="80%"
-            paddingRight="5" 
-            paddingLeft="5" 
-            showDataTips="true" 
-            dataProvider="{encuestasService.getTotalRespuestas.lastResult}">          
-            <!--
-            -->
-            <mx:series>
-                <mx:PieSeries 
-                    nameField="respuesta"
-                    labelPosition="callout" 
-                    field="valor" 
-                    labelFunction="displayInfo" 
-                    calloutStroke="{callouts}" 
-                    radialStroke="{radial}" 
-                    stroke="{pieborder}"
-                    fills="{[sc1, sc2, sc3, sc4, sc5]}">
-                    <!-- Clear the drop shadow filters from the chart. -->
-                    <mx:filters>
-                        <mx:Array/>
-                    </mx:filters>
-                </mx:PieSeries>
-            </mx:series>
-        </mx:PieChart>  
-        <mx:Legend dataProvider="{chart}" direction="horizontal" />
-        <mx:Button  label="Cerrar" click="close()" labelPlacement="left"/>
-    </mx:Panel>
+	
+    <mx:PieChart id="chart" 
+        height="80%" 
+        width="80%"
+        paddingRight="5" 
+        paddingLeft="5" 
+        showDataTips="true" 
+        dataProvider="{encuestasService.getTotalRespuestas.lastResult}">          
+        <!--
+        -->
+        <mx:series>
+            <mx:PieSeries 
+                nameField="respuesta"
+                labelPosition="callout" 
+                field="valor" 
+                labelFunction="displayInfo" 
+                calloutStroke="{callouts}" 
+                radialStroke="{radial}" 
+                stroke="{pieborder}"
+                fills="{[sc1, sc2, sc3, sc4, sc5]}">
+                <!-- Clear the drop shadow filters from the chart. -->
+                <mx:filters>
+                    <mx:Array/>
+                </mx:filters>
+            </mx:PieSeries>
+        </mx:series>
+    </mx:PieChart>  
+    <mx:Legend dataProvider="{chart}" direction="horizontal" />
+        
+    
     
     <mx:RemoteObject id="encuestasService" destination="encuestasService"/>
     
@@ -59,6 +59,7 @@
         <![CDATA[          
         import mx.collections.ArrayCollection;
         import mx.managers.PopUpManager;
+ 
         
         [Bindable]
         private var enc:Object;
@@ -68,6 +69,7 @@
 		}
 		
 		public function init():void {
+			this.title = enc.preguntas.getItemAt(0).descripcion;
 			encuestasService.getTotalRespuestas(enc.id as int);
 		}
         
@@ -77,7 +79,7 @@
             return data.respuesta + ": " + '\n' + "Total: " + data.valor + '\n' + temp + "%";
         }
         
-        private function close():void {
+        private function closeMe():void {
 			PopUpManager.removePopUp(this);
 		}
         
@@ -85,4 +87,4 @@
     </mx:Script>
 	
 	
-</mx:Canvas>
+</mx:TitleWindow>

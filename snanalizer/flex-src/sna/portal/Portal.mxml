@@ -4,7 +4,7 @@
 	<mx:Panel layout="absolute" title="Portal" width="100%" height="100%">
 	<mx:TabNavigator width="100%" height="100%">
 			<mx:Canvas label="Inicio" width="100%" height="100%">
-				<portal:Principal id="principal" recurso="{recurso}" />
+				<portal:Principal id="principal" recurso="{recurso}" result="openPopUp(event)" />
 			</mx:Canvas>
 			<mx:Canvas label="Personal" width="100%" height="100%">
 				<portal:Personal id="personal" recurso="{recurso}"/>
@@ -17,8 +17,16 @@
 	<mx:Script>
 		<![CDATA[
 		
+			import mx.managers.PopUpManager;
+            import mx.containers.TitleWindow;
+            import mx.rpc.events.ResultEvent;
+		
 			[Bindable]
-			private var recurso:Object;
+			public var recurso:Object;
+			[Bindable]
+            public var answerSurvey:Encuesta;
+            [Bindable]
+            public var results:Resultados;
 			
 			public function setRecurso(value:Object):void {
 				recurso = value;
@@ -26,9 +34,37 @@
 			}
 		
 			public function load():void {
-				//principal.setRecurso(recurso);
 				recursosService.getRecursoById(recurso.id);
 			}
+			
+			private function openPopUp(event:ResultEvent): void {
+				if(event.message.messageId == "red")
+					openSurvey(event);
+				else
+					openResults(event);
+
+			}
+			
+			public function actualizarEncPend():void {
+				principal.encPend.load();
+			}
+			
+			
+			private function openSurvey(event:ResultEvent):void {
+				answerSurvey =	Encuesta(PopUpManager.createPopUp(this,Encuesta,true));
+				answerSurvey.setRed(event.result);
+				answerSurvey.setPortal(this);
+				answerSurvey.setRecurso(recurso);
+				PopUpManager.centerPopUp(answerSurvey); 
+
+			}
+			
+			private function openResults(event:ResultEvent):void {
+				results = Resultados(PopUpManager.createPopUp(this,Resultados,true));
+				results.setEnc(event.result);
+				PopUpManager.centerPopUp(results);
+			}
+			
 		
 		]]>
 	</mx:Script>
