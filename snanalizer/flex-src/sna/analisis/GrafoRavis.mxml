@@ -107,7 +107,6 @@
 		paddingBottom="5" left="0" right="0" top="0" bottom="0"
 		backgroundColor="#FFFFFF" alpha="1"
 		itemRenderer="sna.analisis.renderers.nodes.SNANodeRenderer"
-		edgeLabelRenderer="sna.analisis.renderers.edgelabels.mxml.basicEdgeLabelRenderer"
-		visibilityLimitActive="true">
+		edgeLabelRenderer="sna.analisis.renderers.edgelabels.mxml.basicEdgeLabelRenderer">
 	</ravis:VisualGraph>	
 </mx:Panel>
