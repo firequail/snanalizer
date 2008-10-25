@@ -32,24 +32,34 @@
 			import sna.snanalizer;
 			import mx.events.CloseEvent;
 			import mx.controls.Alert;
-
+			import mx.managers.PopUpManager;
             import mx.rpc.events.ResultEvent;
             
 
             [Bindable]
 			public var recurso:Object;
-
+			[Bindable]
+            public var answerSurvey:Encuesta;
 			
 			
 			private function openSurvey(event:ResultEvent):void {
 				dispatchEvent(event);
 			}
 			
+			/*private function openSurvey(event:ResultEvent):void {
+				answerSurvey = Encuesta(PopUpManager.createPopUp(this,Encuesta,true));
+				answerSurvey.setRed(event.result);
+				//answerSurvey.setPortal(this);
+				answerSurvey.setRecurso(recurso);
+				PopUpManager.centerPopUp(answerSurvey); 
+
+			}*/
 
 			
 			private function openResults(event:ResultEvent):void {
 				dispatchEvent(event);
 			}
+			
 
 			
 			

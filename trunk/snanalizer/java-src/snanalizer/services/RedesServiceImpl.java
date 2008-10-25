@@ -234,6 +234,13 @@ public class RedesServiceImpl implements RedesService {
 		return recursos;
 	}
 	
+	public List<Recurso> getRecursosOfExcept(int redId,int recursoId) {
+
+		List<Recurso> recursos = new ArrayList<Recurso>();
+		recursos = this.getRecursosOf(redId);
+		recursos.remove(recursosRepository.getById(recursoId));
+		return recursos;
+	}
 	
 	public void generarRelaciones(int idRed,int idRec,List<Integer> preguntas,List<Integer> intensidades,List<Integer> recursos) {
 		
