@@ -17,6 +17,8 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import sna.analisis.renderers.nodes.SNANodeRenderer;
+			import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualNode;
 			import sna.analisis.ravis.NodeSelectedEvent;
 			import mx.containers.GridRow;
 			import mx.containers.GridItem;
@@ -59,7 +61,13 @@
 			
 			private var _seletedNodeId:int;
 			
+			public var selectedNode1:IVisualNode = null;
+			public var selectedNode2:IVisualNode = null;
+			
+			private var grafos:ArrayCollection = new ArrayCollection();
+			
 			private function crearGrafos(event:ResultEvent):void {
+				grafos = new ArrayCollection();
 				var xmlData:XMLList = new XMLList(redesService.getGrafo.lastResult)
 				
 				grid.removeAllChildren();
@@ -67,6 +75,7 @@
 				
 				for each(var xmlGraph:XML in xmlData) {
 					var grafo:GrafoRavis = new GrafoRavis();
+					grafo.selectEnabled = selectEnabled();
 					grafo.xmlData = xmlGraph;
 					grafo.addEventListener(FlexEvent.CREATION_COMPLETE, initGrafo);
 					grafo.addEventListener(NodeSelectedEvent.NODE_SELECTED, nodeSelected);
@@ -92,6 +101,8 @@
 				if (columnaActual > 1){
 					columnaActual = 0;
 				}
+				
+				grafos.addItem(grafo);
 			}
 			
 			private function initGrafo(event:FlexEvent):void {
@@ -99,8 +110,35 @@
 			}
 			
 			private function nodeSelected(e:NodeSelectedEvent):void {
-				_seletedNodeId = e.nodeId;
+				
+				if (selectedNode1 == null) {
+					selectedNode1 = e.node;
+					(e.node.view as SNANodeRenderer).select();
+					_seletedNodeId = e.nodeId;
+				} else if(selectedNode1 == e.node) {
+					selectedNode1 = null;
+					(e.node.view as SNANodeRenderer).select();
+					_seletedNodeId = 0;
+				} else if (selectedNode2 == null) {
+					selectedNode2 = e.node;
+					(e.node.view as SNANodeRenderer).select();
+					_seletedNodeId = e.nodeId;
+				} else if (selectedNode2 == e.node) {
+					selectedNode2 = null;
+					(e.node.view as SNANodeRenderer).select();
+					_seletedNodeId = 0;
+				}
+				
+				for each(var grafo:GrafoRavis in grafos) {
+					grafo.vgraph.selectedNode1 = selectedNode1;
+					grafo.vgraph.selectedNode2 = selectedNode2;
+				}
+				
 				dispatchEvent(e);
+			}
+			
+			private function selectEnabled():Boolean {
+				return datoMaestroId == null && !filtro.isEnabled();
 			}
 			
 		]]>

@@ -386,6 +386,8 @@ package sna.analisis.ravis {
 		
 		public var selectedNode1:IVisualNode = null;
 		public var selectedNode2:IVisualNode = null;
+		
+		public var selectEnabled:Boolean = true;
 
 		/**
 		 * The constructor just initialises most data structures, but not all
@@ -1880,26 +1882,8 @@ package sna.analisis.ravis {
 			/* get the associated VNode */
 			vnode = lookupNode(comp);
 			
-			
-			if(e.ctrlKey) {
-				
-				if (selectedNode1 == null) {
-					selectedNode1 = vnode;
-					(comp as SNANodeRenderer).select();
-					dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,vnode.data.@id));
-				} else if(selectedNode1 == vnode) {
-					selectedNode1 = null;
-					(comp as SNANodeRenderer).select();
-					dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,null));
-				} else if (selectedNode2 == null) {
-					selectedNode2 = vnode;
-					(comp as SNANodeRenderer).select();
-					dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,vnode.data.@id));
-				} else if (selectedNode2 == vnode) {
-					selectedNode2 = null;
-					(comp as SNANodeRenderer).select();
-					dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,null));
-				}
+			if(selectEnabled && e.ctrlKey) {
+				dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,vnode));
 			}
 						
 		}
