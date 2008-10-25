@@ -51,7 +51,7 @@
 			
 			
 			private function openSurvey(event:ResultEvent):void {
-				answerSurvey =	Encuesta(PopUpManager.createPopUp(this,Encuesta,true));
+				answerSurvey = Encuesta(PopUpManager.createPopUp(this,Encuesta,true));
 				answerSurvey.setRed(event.result);
 				answerSurvey.setPortal(this);
 				answerSurvey.setRecurso(recurso);

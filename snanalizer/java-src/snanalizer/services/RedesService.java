@@ -25,6 +25,8 @@ public interface RedesService {
 	
 	public List<Recurso> getRecursosOf(int redId);
 	
+	public List<Recurso> getRecursosOfExcept(int redId,int recursoId);
+	
 	public void generarRelaciones(int idRed,int idRec,List<Integer> preguntas,List<Integer> intensidades,List<Integer> recursos);
 	
 	public void enviarEncuesta(List<Recurso> recursos);
