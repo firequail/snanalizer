@@ -37,6 +37,22 @@
 				return _seletedNodeId;
 			}
 			
+			[Bindable("nodeSelected")]
+			public function get selectedNode1Id():int {
+				if (selectedNode1 == null) {
+					return 0;
+				}
+				return selectedNode1.data.@id;
+			}
+			
+			[Bindable("nodeSelected")]
+			public function get selectedNode2Id():int {
+				if (selectedNode2 == null) {
+					return 0;
+				}
+				return selectedNode2.data.@id;
+			}
+			
 			public var puntoDeVistaId:Object;
 
 			public var datoMaestroId:Object;
