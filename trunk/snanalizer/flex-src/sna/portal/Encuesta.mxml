@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="600" height="600" xmlns:sna="sna.*"  creationComplete="init();">
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*"  creationComplete="init();" showCloseButton="true" close="closeMe()" verticalAlign="middle" horizontalAlign="center" >
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -7,7 +7,7 @@
 	<mx:RemoteObject id="encuestasService" destination="encuestasService"/>
 	<mx:RemoteObject id="redesService" destination="redesService"/>
 	
-<mx:Panel width="100%" height="80%"  title="{red.encuesta.nombre}">
+
 	<mx:Form height="100%" width="100%">
 		<mx:Repeater id="rptPreguntas" dataProvider="{encuestasService.getPreguntasOf.lastResult}" >
 			
@@ -25,9 +25,9 @@
 			</mx:HBox>
 		</mx:Repeater>
 	</mx:Form>
-	<mx:Button  label="Cerrar" click="close()" labelPlacement="left"/>
+
 	<mx:Button  label="Grabar" click="save()" labelPlacement="left"/>
-</mx:Panel>
+
 	
 	
 	
@@ -35,12 +35,12 @@
 		<![CDATA[
 			import mx.controls.TextInput;
 			import sna.admin.encuestas.Pregunta;
-
 			import mx.rpc.events.ResultEvent;
 			import mx.managers.PopUpManager;
 			import mx.controls.Alert;
 			import mx.collections.ArrayCollection;
 			import sna.DataComboBox;
+			import sna.portal.Portal;
 			
 			[Bindable]
 			private var red:Object;
@@ -48,10 +48,16 @@
 			private var rec:Object;
 			[Bindable]
 			public var arrayPreg:ArrayCollection = new ArrayCollection();
+			[Bindable]
+			private var p:Portal;
 			
 			
 			public function setRed(value:Object):void {
 				red = value;
+			}
+			
+			public function setPortal(value:Portal):void {
+				p = value;
 			}
 			
 			public function setRecurso(value:Object):void {
@@ -66,11 +72,12 @@
 				return data.label;
 			}
 			
-			private function close():void {
+			private function closeMe():void {
 				PopUpManager.removePopUp(this);
 			}
 			
 			private function init():void {
+				this.title = red.encuesta.nombre;
 				encuestasService.getPreguntasOf(red.encuesta.id as int);
 				redesService.getRecursosOf(red.id as int);
 				
@@ -107,7 +114,8 @@
 				}
 				
 				redesService.generarRelaciones(red.id as int,rec.id as int, arrayPreg,arrayInt,arrayRes);
-				
+				p.actualizarEncPend();
+				closeMe();
 	
 			}
 			
@@ -116,6 +124,6 @@
 		]]>
 	</mx:Script>
 
+</mx:TitleWindow>
 
 
-</mx:Canvas>

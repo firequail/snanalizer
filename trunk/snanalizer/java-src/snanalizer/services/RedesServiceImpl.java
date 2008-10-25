@@ -241,8 +241,8 @@ public class RedesServiceImpl implements RedesService {
 
 		for(int idPreg : preguntas) {
 			i++;
-			PuntoDeVista ptoVista = puntosDeVistaRepository.getByPregunta(preguntasRepository.getById(idPreg));
 
+			PuntoDeVista ptoVista = this.getPtoVistaByPreguntaFromRed(idRed,preguntasRepository.getById(idPreg));
 			Nodo nodoOrigen = ptoVista.getNodoByRec(recursosRepository.getById(idRec));
 			Nodo nodoDestino = ptoVista.getNodoByRec(recursosRepository.getById(recursos.get(i)));
 
@@ -252,5 +252,15 @@ public class RedesServiceImpl implements RedesService {
 		}
 		
 
+	}
+	
+	public PuntoDeVista getPtoVistaByPreguntaFromRed(int idRed, Pregunta pregunta) {
+
+		Red red = redesRepository.getById(idRed);
+		for(PuntoDeVista ptoVista : red.getPuntosDeVista())
+			if(ptoVista.getPregunta().equals(pregunta))
+				return ptoVista;
+		
+		return null;
 	}
 }

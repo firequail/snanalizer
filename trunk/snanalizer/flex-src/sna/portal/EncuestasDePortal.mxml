@@ -44,6 +44,7 @@
             import mx.controls.RadioButton;
             import mx.controls.Button;
             import mx.controls.Alert;
+            import mx.messaging.messages.AbstractMessage;
             
             
             [Bindable]
@@ -122,9 +123,11 @@
 			}
 			
 			public function openResults(evt:Event):void {
+				var msg:AbstractMessage = new AbstractMessage();
+				msg.messageId = "portal";
 				var but:Button = Button(evt.currentTarget);
 				var obj:Object = but.getRepeaterItem(); 
-				dispatchEvent(ResultEvent.createEvent(obj));
+				dispatchEvent(ResultEvent.createEvent(obj,null,msg));
 			}
 			
 
