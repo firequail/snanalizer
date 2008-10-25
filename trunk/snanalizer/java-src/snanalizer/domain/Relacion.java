@@ -78,5 +78,11 @@ public class Relacion extends DomainEntity {
 				+ getDestino().getRecurso().getNombreYApellido();
 	}
 
+	public Nodo other(Nodo nodo) {
+		if (origen.equals(nodo)) {
+			return destino;
+		}
+		return origen;
+	}
 
 }

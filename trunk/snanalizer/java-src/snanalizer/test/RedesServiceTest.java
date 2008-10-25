@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import snanalizer.domain.Recurso;
+import snanalizer.domain.Relacion;
 import snanalizer.services.DatosMaestrosService;
 import snanalizer.services.RecursosService;
 import snanalizer.services.RedesService;
@@ -38,7 +39,7 @@ public class RedesServiceTest extends TestCase {
 
 	}
 
-	public void testGetGrafo() {
+	public void xtestGetGrafo() {
 		Integer idPtoVista = redesService.getRedes().get(1).getPuntosDeVista()
 				.get(1).getId();
 		String grafo = redesService.getGrafo(idPtoVista, null, null);
@@ -47,7 +48,7 @@ public class RedesServiceTest extends TestCase {
 		assertNotNull(grafo);
 	}
 
-	public void testGetGrafo_agrupado() {
+	public void xtestGetGrafo_agrupado() {
 		Integer idPtoVista = redesService.getRedes().get(0).getPuntosDeVista()
 				.get(0).getId();
 		Integer idDatoMaestro = datosMaestrosService.getAll().get(1).getId();
@@ -57,16 +58,23 @@ public class RedesServiceTest extends TestCase {
 		assertNotNull(grafo);
 	}
 
-	public void testBusqquedaRecursos() {
+	public void xtestBusquedaRecursos() {
 		List<Recurso> recursos = recursosService.buscarRecursoByName("pepe",
 				"lopez");
 
 		System.out.println(recursos);
 	}
 
-	public void testMail() {
+	public void xtestMail() {
 		List<Recurso> recursos = recursosService.buscarRecursoByName("pepe",
 		"lopez");
 		redesService.enviarEncuesta(recursos);
+	}
+	
+	public void testCaminoMasCorto() {
+		int idDestino = 4;
+		int idOrigen = 3;
+		List<Relacion> caminoMasCorto = redesService.getCaminoMasCorto(idOrigen, idDestino);
+		System.out.println(caminoMasCorto);
 	}
 }

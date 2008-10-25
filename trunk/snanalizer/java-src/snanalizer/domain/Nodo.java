@@ -1,5 +1,6 @@
 package snanalizer.domain;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -97,5 +98,39 @@ public class Nodo extends DomainEntity {
 		for (Relacion relacion : filtro.filtrarRelaciones(getRelaciones())) {
 			conjuntoRelaciones.add(relacion);
 		}
+	}
+
+	public List<Relacion> caminoMasCorto(Nodo destino) {
+		return caminoMasCorto(destino, new ArrayList<Nodo>(0));
+	}
+	
+	private List<Relacion> caminoMasCorto(Nodo destino,
+			List<Nodo> nodosRecorridosPreviamente) {
+		if (this.equals(destino)) {
+			return new ArrayList<Relacion>(0);
+		}
+
+		ArrayList<Nodo> nodosRecorridos = new ArrayList<Nodo>(
+				nodosRecorridosPreviamente);
+		nodosRecorridos.add(this);
+
+		List<Relacion> caminoMasCorto = null;
+
+		for (Relacion relacion : getRelaciones()) {
+			Nodo otro = relacion.other(this);
+
+			if (!nodosRecorridosPreviamente.contains(otro)) {
+				List<Relacion> camino = otro.caminoMasCorto(destino,
+						nodosRecorridos);
+
+				if (camino != null
+						&& (caminoMasCorto == null || camino.size() < caminoMasCorto
+								.size())) {
+					caminoMasCorto = camino;
+					caminoMasCorto.add(relacion);
+				}
+			}
+		}
+		return caminoMasCorto;
 	}
 }
