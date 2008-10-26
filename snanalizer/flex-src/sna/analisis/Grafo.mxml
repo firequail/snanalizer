@@ -2,6 +2,7 @@
 <mx:Panel title="Red" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center" borderColor="#CCCCCC" paddingBottom="5" horizontalGap="5" xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ravis="org.un.cava.birdeye.ravis.graphLayout.visual.*"
 	xmlns:lc="org.un.cava.birdeye.ravis.components.ui.controls.layouterControls.*"
 	xmlns:dp="org.un.cava.birdeye.ravis.components.ui.dataPresentation.*"
+	xmlns:sna="sna.*"
 	xmlns:grafo="sna.analisis.*">
 
 	<mx:Metadata>
@@ -16,7 +17,7 @@
 		<mx:method name="getCaminoMasCorto" result="mostrarCaminoMasCorto(event)"/>
 	</mx:RemoteObject>
 	
-	<mx:VBox id="listaGrafos" width="100%" height="100%" verticalScrollPolicy="auto"/>
+	<sna:ScrollableVBox id="listaGrafos" width="100%" height="100%" verticalScrollPolicy="auto"/>
 	
 	<mx:Script>
 		<![CDATA[
