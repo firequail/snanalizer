@@ -272,6 +272,11 @@ public class RedesServiceImpl implements RedesService {
 	}
 
 	public List<Relacion> getCaminoMasCorto(int idOrigen, int idDestino) {
+		
+		if( idOrigen == 0 || idDestino == 0) {
+			return new ArrayList<Relacion>(0);
+		}
+		
 		Nodo origen = nodosRepository.getById(idOrigen);
 		Nodo destino = nodosRepository.getById(idDestino);
 		

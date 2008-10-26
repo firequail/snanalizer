@@ -73,12 +73,8 @@ package sna.analisis.renderers.nodes {
 		}
 		
 		public function select():void {
-			if(!selected) {
-				(cc as Circle).color = 0xFF0000;
-				selected = true;
-			} else {
-				unselect();
-			}
+			(cc as Circle).color = 0xFF0000;
+			selected = true;
 		}
 	}
 }
