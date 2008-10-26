@@ -7,6 +7,7 @@ package sna.analisis.ravis {
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
+	import mx.collections.ArrayCollection;
 	import mx.containers.Canvas;
 	import mx.controls.Label;
 	import mx.core.IDataRenderer;
@@ -30,6 +31,7 @@ package sna.analisis.ravis {
 	import org.un.cava.birdeye.ravis.graphLayout.visual.edgeRenderers.BaseEdgeRenderer;
 	import org.un.cava.birdeye.ravis.utils.events.VGraphEvent;
 	
+	import sna.analisis.renderers.edges.SNAEdgeRenderer;
 	import sna.analisis.renderers.nodes.SNANodeRenderer;
 
 
@@ -2606,6 +2608,30 @@ package sna.analisis.ravis {
 					setEdgeVisibility(e.vedge,false);
 				}
 			}
+		}
+		
+		public function select(relaciones:ArrayCollection):void {
+			var nodos:ArrayCollection = new ArrayCollection();
+			
+			
+			
+			for each(var relacion:Object in relaciones) {
+				var origen:INode = _graph.nodeByStringId(relacion.origen.id);
+				var destino:INode = _graph.nodeByStringId(relacion.destino.id);
+				var edge:IEdge = _graph.getEdge(origen,destino);				
+			
+				if(!nodos.contains(origen)) {
+					nodos.addItem(origen.vnode.view);
+					(origen.vnode.view as SNANodeRenderer).select();
+				}
+				if(!nodos.contains(destino)) {
+					nodos.addItem(destino.vnode.view);
+					(destino.vnode.view as SNANodeRenderer).select();
+				}
+				
+				(_edgeRenderer as SNAEdgeRenderer).drawColored(edge.vedge,0xFFFFFF);
+			}
+			
 		}
 	}
 }
