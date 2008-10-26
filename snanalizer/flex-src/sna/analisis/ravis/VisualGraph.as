@@ -389,8 +389,6 @@ package sna.analisis.ravis {
 		public var selectedNode1:IVisualNode = null;
 		public var selectedNode2:IVisualNode = null;
 		
-		public var selectEnabled:Boolean = true;
-
 		/**
 		 * The constructor just initialises most data structures, but not all
 		 * required. Currently it does neither set a Graph object, nor a 
@@ -1869,9 +1867,7 @@ package sna.analisis.ravis {
 		}
 
 		private function onNodeSelect(e:NodeSelectedEvent):void {
-			if(selectEnabled) {
-				dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,e.node));
-			}
+			dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,e.node));
 		}
 
 		/**
