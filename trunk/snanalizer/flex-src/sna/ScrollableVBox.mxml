@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+
+<mx:Metadata>
+	[DefaultProperty("children")]
+</mx:Metadata>
+
+<mx:Script>
+	<![CDATA[
+		private var _children:Array = [];
+        private var _childrenChanged:Boolean = false;	
+	
+		//-------------------------------------------------------------------------------
+		// These methods allow us to add children to the VBox programmatically using
+		// Actionscript.
+		//-------------------------------------------------------------------------------
+		public override function addChild ( child : DisplayObject ) : DisplayObject {
+			return (child == vBox) ? super.addChild(child) : vBox.addChild(child);
+		}
+		
+		public override function removeChild ( child : DisplayObject ) : DisplayObject {
+			return (child == vBox) ? super.removeChild(child) : vBox.removeChild(child);
+		}
+		
+		public override function removeAllChildren () : void {
+			vBox.removeAllChildren();
+		}
+		
+		public override function addChildAt( child : DisplayObject, index : int ) : DisplayObject {
+			return (child == vBox) ? super.addChildAt(child, index) : vBox.addChildAt(child, index);
+		}
+		
+		public override function removeChildAt ( index : int ) : DisplayObject {
+			return vBox.removeChildAt(index);
+		}
+		
+		
+		//-------------------------------------------------------------------------------
+		// These methods make it possible to add children to the VBox using MXML.
+		//-------------------------------------------------------------------------------
+		protected override function commitProperties() : void {
+            super.commitProperties();
+            
+            if( _childrenChanged ) {
+                for each( var child:DisplayObject in _children ) {
+                    vBox.addChild( child );
+                }
+            }    
+        }
+  
+		public function set children( value : * ) : void {
+		    if(value is DisplayObject)
+		        _children = [value];
+		    else
+		        _children = value;
+		    
+		    _childrenChanged = true;
+		    invalidateProperties();
+		}
+            
+        public function get children():Array {
+            return _children;
+        }
+
+	]]>
+</mx:Script>
+
+	<mx:VBox id="vBox" height="100%" width="100%"/>	
+	
+</mx:Canvas>
