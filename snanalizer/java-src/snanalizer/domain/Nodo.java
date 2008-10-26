@@ -116,7 +116,7 @@ public class Nodo extends DomainEntity {
 
 		List<Relacion> caminoMasCorto = null;
 
-		for (Relacion relacion : getRelaciones()) {
+		for (Relacion relacion : getRelacionesSalientes()) {
 			Nodo otro = relacion.other(this);
 
 			if (!nodosRecorridosPreviamente.contains(otro)) {
@@ -132,5 +132,18 @@ public class Nodo extends DomainEntity {
 			}
 		}
 		return caminoMasCorto;
+	}
+	
+	@Transient
+	private List<Relacion> getRelacionesSalientes() {
+		List<Relacion> relacionesSalientes = new LinkedList<Relacion>();
+		
+		for (Relacion relacion : getRelaciones()) {
+			if(this.equals(relacion.getOrigen())) {
+				relacionesSalientes.add(relacion);
+			}
+		}
+		
+		return relacionesSalientes;
 	}
 }
