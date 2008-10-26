@@ -3,7 +3,7 @@
 
 	
 	<mx:HBox width="100%" height="100%">
-		<mx:VBox width="85%" height="100%">
+		<mx:VBox width="70%" height="100%">
 			<analisis:Controles id="controles" change="grafo.refresh()"/>
 			<analisis:Grafo id="grafo"
 				puntoDeVistaId="{controles.puntoDeVista.id}"
@@ -13,6 +13,7 @@
 				seniorityId="{controles.seniority.id}"/>
 		</mx:VBox>
 		<analisis:InfoNodo width="15%" id="infoNodo" nodeId="{grafo.selectedNodeId}" result="open(event)"  />
+		<analisis:InfoNodo width="15%" id="infoNodo2" nodeId="{grafo.selectedNode2Id}" result="open(event)"/>
 	</mx:HBox>
 	
 	<mx:Script>
