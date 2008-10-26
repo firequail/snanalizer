@@ -2611,25 +2611,29 @@ package sna.analisis.ravis {
 		}
 		
 		public function select(relaciones:ArrayCollection):void {
-			var nodos:ArrayCollection = new ArrayCollection();
-			
-			
-			
+			for each(var vedge:IVisualEdge in _vedges) {
+				(_edgeRenderer as SNAEdgeRenderer).unselect(vedge);
+				(_edgeRenderer as SNAEdgeRenderer).draw(vedge);
+			}
+						
+			for each(var vnode:IVisualNode in _vnodes) {
+				if(vnode != selectedNode1 && vnode != selectedNode2) {
+					(vnode.view as SNANodeRenderer).unselect();
+				}
+			}
+						
 			for each(var relacion:Object in relaciones) {
 				var origen:INode = _graph.nodeByStringId(relacion.origen.id);
 				var destino:INode = _graph.nodeByStringId(relacion.destino.id);
-				var edge:IEdge = _graph.getEdge(origen,destino);				
 			
-				if(!nodos.contains(origen)) {
-					nodos.addItem(origen.vnode.view);
+				if(origen != null && destino != null) {
 					(origen.vnode.view as SNANodeRenderer).select();
-				}
-				if(!nodos.contains(destino)) {
-					nodos.addItem(destino.vnode.view);
 					(destino.vnode.view as SNANodeRenderer).select();
+					
+					var edge:IEdge = _graph.getEdge(origen,destino);				
+					(_edgeRenderer as SNAEdgeRenderer).select(edge.vedge);
+					(_edgeRenderer as SNAEdgeRenderer).draw(edge.vedge);
 				}
-				
-				(_edgeRenderer as SNAEdgeRenderer).drawColored(edge.vedge,0xFFFFFF);
 			}
 			
 		}
