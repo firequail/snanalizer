@@ -972,6 +972,9 @@ package sna.analisis.ravis {
 			/* Then create the VNode with associated with the graph node */
 			vnode = createVNode(gnode);
 			
+			(vnode.view as SNANodeRenderer).vnode = vnode;
+			(vnode.view as SNANodeRenderer).addEventListener("nodeSelected",onNodeSelect);
+			
 			/* since it is a requirement from most layouters
 			 * to always have a current root node
 			 * we assign the current root node to the newly
@@ -1648,9 +1651,10 @@ package sna.analisis.ravis {
 			/* add event handlers for dragging and double click */			
 			mycomponent.doubleClickEnabled = true;
 			mycomponent.addEventListener(MouseEvent.DOUBLE_CLICK, nodeDoubleClick);
-			mycomponent.addEventListener(MouseEvent.CLICK, nodeClick);
 			mycomponent.addEventListener(MouseEvent.MOUSE_DOWN,nodeMouseDown);
 			mycomponent.addEventListener(MouseEvent.MOUSE_UP, dragEnd);
+			(mycomponent as SNANodeRenderer).vnode = vn;
+			(mycomponent as SNANodeRenderer).addEventListener("nodeSelected",onNodeSelect);
 
 			/* enable bitmap cachine if required */
 			mycomponent.cacheAsBitmap = cacheRendererObjects;
@@ -1713,7 +1717,6 @@ package sna.analisis.ravis {
 				
 				/* remove event mouse listeners */
 				component.removeEventListener(MouseEvent.DOUBLE_CLICK,nodeDoubleClick);
-				component.removeEventListener(MouseEvent.CLICK,nodeClick);
 				component.removeEventListener(MouseEvent.MOUSE_DOWN,nodeMouseDown);
 				component.removeEventListener(MouseEvent.MOUSE_UP, dragEnd);
 				
@@ -1865,29 +1868,10 @@ package sna.analisis.ravis {
 			draw();
 		}
 
-		/**
-		 * Event handler to work on double-click events.
-		 * Any double click also counts as a drop event to
-		 * the layouter. But primarily the double click
-		 * sets a new root node.
-		 * @param e The corresponding event.
-		 * */
-		protected function nodeClick(e:MouseEvent):void {
-			var comp:UIComponent;
-			var vnode:IVisualNode;
-			
-			/* get the view object that was klicked on (actually
-			 * the one that has the event handler registered, which
-			 * is the VNode's view */
-			comp = (e.currentTarget as UIComponent);
-			
-			/* get the associated VNode */
-			vnode = lookupNode(comp);
-			
-			if(selectEnabled && e.ctrlKey) {
-				dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,vnode));
+		private function onNodeSelect(e:NodeSelectedEvent):void {
+			if(selectEnabled) {
+				dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,e.node));
 			}
-						
 		}
 
 		/**

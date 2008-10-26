@@ -33,7 +33,12 @@ package sna.analisis.renderers.nodes {
 	import org.un.cava.birdeye.ravis.assets.icons.primitives.Circle;
 	import org.un.cava.birdeye.ravis.components.renderers.RendererIconFactory;
 	import org.un.cava.birdeye.ravis.components.renderers.nodes.BaseNodeRenderer;
+	import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualNode;
 	
+	import sna.analisis.ravis.NodeSelectedEvent;
+	
+	
+	[Event(name="nodeSelected", type="sna.analisis.ravis.NodeSelectedEvent")]
 	
 	/**
 	 * This is a very very simple Renderer that just
@@ -43,6 +48,7 @@ package sna.analisis.renderers.nodes {
 		
 		private var cc:UIComponent;
 		private var selected:Boolean = false;
+		public var vnode:IVisualNode;
 		
 		/* default constructor */
 		public function SNANodeRenderer() {
@@ -75,6 +81,10 @@ package sna.analisis.renderers.nodes {
 		public function select():void {
 			(cc as Circle).color = 0xFF0000;
 			selected = true;
+		}
+		
+		override protected function getDetails(e:Event):void {
+			dispatchEvent(new NodeSelectedEvent("nodeSelected",vnode));
 		}
 	}
 }
