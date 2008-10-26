@@ -85,6 +85,9 @@
 			private function crearGrafos(event:ResultEvent):void {
 				selectedNode1 = null;
 				selectedNode2 = null;
+				
+				dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,null));
+				
 				grafos = new ArrayCollection();
 				var xmlData:XMLList = new XMLList(redesService.getGrafo.lastResult)
 				
