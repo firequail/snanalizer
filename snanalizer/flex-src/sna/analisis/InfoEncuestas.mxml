@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" showCloseButton="true" verticalAlign="top" horizontalAlign="center" close="closeMe()" creationComplete="init()" backgroundColor="#FFFFFF" width="638" height="477">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+
+	            		
+            		
+     <mx:RemoteObject id="respuestasDeRecursosService" destination="respuestasDeRecursosService"/>
+            		
+
+     <mx:VBox width="100%" height="100%">
+     	<mx:Repeater id="rptRtas" dataProvider="{respuestasDeRecursosService.getAllAnswersOf.lastResult}">
+          <mx:HBox width="100%" cornerRadius="5" borderStyle="solid" borderThickness="1" verticalAlign="middle" horizontalAlign="center">
+               <mx:VBox width="50%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+           			<mx:Label text="{rptRtas.currentItem.encuesta.preguntas.getItemAt(0).descripcion}" fontWeight="normal"/>
+               </mx:VBox>
+               <mx:VBox  width="50%" cornerRadius="10" backgroundColor="#F5F3F3" verticalAlign="top"  borderStyle="solid" borderColor="#F5F3F3">
+             		<mx:Label text="{rptRtas.currentItem.respuesta.descripcion}" fontWeight="normal"/>
+               </mx:VBox>
+          </mx:HBox>
+		</mx:Repeater>          
+     </mx:VBox>
+     
+     <mx:Script>
+		<![CDATA[
+		
+			import mx.managers.PopUpManager;
+		
+			[Bindable]
+			public var recurso:Object;
+			
+			public function setRec(value:Object):void {
+				this.recurso = value;
+				this.title = recurso.usuario.nombre + " " + recurso.usuario.apellido;
+			}
+			
+		    private function closeMe():void {
+				PopUpManager.removePopUp(this);
+			}
+			
+			private function init():void {
+				respuestasDeRecursosService.getAllAnswersOf(recurso.id as int);
+			}
+
+		
+		]]>
+	</mx:Script>
+	
+</mx:TitleWindow>
