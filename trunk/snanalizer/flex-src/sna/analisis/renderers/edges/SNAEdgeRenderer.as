@@ -45,6 +45,10 @@ package sna.analisis.renderers.edges {
 		 * @inheritDoc
 		 * */
 		override public function draw(vedge:IVisualEdge):void {
+			drawColored(vedge,0xcccccc);
+		}
+		
+		public function drawColored(vedge:IVisualEdge, color:int):void {
 			
 			/* first get the corresponding visual object */
 			var fromNode:IVisualNode = vedge.edge.node1.vnode;
@@ -57,7 +61,7 @@ package sna.analisis.renderers.edges {
 			applyLineStyle(vedge);
 			
 			/* now we actually draw */
-			_g.beginFill(uint(vedge.lineStyle.color));
+			_g.beginFill(uint(color));
 			
 			_g.moveTo(fP.x, fP.y);
 			_g.lineTo(tP.x, tP.y);

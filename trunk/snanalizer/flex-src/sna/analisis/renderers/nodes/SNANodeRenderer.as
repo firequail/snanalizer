@@ -67,13 +67,17 @@ package sna.analisis.renderers.nodes {
 			initLinkButton();
 		}
 		
+		public function unselect():void {
+			(cc as Circle).color = 0x333333;
+			selected = false;
+		}
+		
 		public function select():void {
 			if(!selected) {
 				(cc as Circle).color = 0xFF0000;
 				selected = true;
 			} else {
-				(cc as Circle).color = 0x333333;
-				selected = false;
+				unselect();
 			}
 		}
 	}

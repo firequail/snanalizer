@@ -12,7 +12,7 @@
 				puestoId="{controles.puesto.id}"
 				seniorityId="{controles.seniority.id}"/>
 		</mx:VBox>
-		<analisis:InfoNodo width="15%" id="infoNodo" nodeId="{grafo.selectedNodeId}" result="open(event)"  />
+		<analisis:InfoNodo width="15%" id="infoNodo" nodeId="{grafo.selectedNode1Id}" result="open(event)"  />
 		<analisis:InfoNodo width="15%" id="infoNodo2" nodeId="{grafo.selectedNode2Id}" result="open(event)"/>
 	</mx:HBox>
 	

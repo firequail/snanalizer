@@ -12,6 +12,10 @@
 		<mx:method name="getGrafo" result="crearGrafos(event)"/>
 	</mx:RemoteObject>
 	
+	<mx:RemoteObject id="caminoService" destination="redesService">
+		<mx:method name="getCaminoMasCorto" result="mostrarCaminoMasCorto(event)"/>
+	</mx:RemoteObject>
+	
 	<mx:Grid id="grid" width="100%" height="100%">
 	</mx:Grid>
 	
@@ -150,6 +154,10 @@
 					_seletedNodeId = e.nodeId;
 				}
 				
+				if(selectedNode1 != null && selectedNode2 != null) {
+					//caminoService.getCaminoMasCorto(selectedNode1.id, selectedNode2.id);
+				}
+				
 				for each(var grafo:GrafoRavis in grafos) {
 					grafo.vgraph.selectedNode1 = selectedNode1;
 					grafo.vgraph.selectedNode2 = selectedNode2;
@@ -160,6 +168,14 @@
 			
 			private function selectEnabled():Boolean {
 				return datoMaestroId == null && !filtro.isEnabled();
+			}
+			
+			private function mostrarCaminoMasCorto(e:ResultEvent):void {
+				var relaciones:ArrayCollection = e.result as ArrayCollection;
+				
+				for each(var grafo:GrafoRavis in grafos) {
+					grafo.vgraph.select(relaciones);
+				}
 			}
 			
 		]]>
