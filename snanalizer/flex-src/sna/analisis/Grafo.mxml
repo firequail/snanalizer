@@ -37,11 +37,6 @@
 			}
 			
 			[Bindable("nodeSelected")]
-			public function get selectedNodeId():int {
-				return _seletedNodeId;
-			}
-			
-			[Bindable("nodeSelected")]
 			public function get selectedNode1Id():int {
 				if (selectedNode1 == null) {
 					return 0;
