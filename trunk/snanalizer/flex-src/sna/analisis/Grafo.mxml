@@ -16,8 +16,7 @@
 		<mx:method name="getCaminoMasCorto" result="mostrarCaminoMasCorto(event)"/>
 	</mx:RemoteObject>
 	
-	<mx:Grid id="grid" width="100%" height="100%">
-	</mx:Grid>
+	<mx:VBox id="listaGrafos" width="100%" height="100%" verticalScrollPolicy="auto"/>
 	
 	<mx:Script>
 		<![CDATA[
@@ -85,14 +84,20 @@
 				
 				dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,null));
 				
+				for each(var grafoViejo:GrafoRavis in grafos) {
+					listaGrafos.removeChild(grafoViejo);
+				}
+				
 				grafos = new ArrayCollection();
 				var xmlData:XMLList = new XMLList(redesService.getGrafo.lastResult)
 				
-				grid.removeAllChildren();
-				columnaActual = 0;
+				//grid.removeAllChildren();
+				//columnaActual = 0;
 				
 				for each(var xmlGraph:XML in xmlData) {
 					var grafo:GrafoRavis = new GrafoRavis();
+					grafo.percentHeight = 100;
+					grafo.percentWidth = 100;
 					grafo.xmlData = xmlGraph;
 					grafo.addEventListener(FlexEvent.CREATION_COMPLETE, initGrafo);
 					grafo.addEventListener(NodeSelectedEvent.NODE_SELECTED, nodeSelected);
@@ -101,25 +106,8 @@
 			}
 			
 			private function addGrafo(grafo:GrafoRavis):void {
-				if (columnaActual == 0) {
-					rowActual = new GridRow();
-					rowActual.percentHeight = 100;
-					rowActual.percentWidth = 100;
-					grid.addChild(rowActual);
-				}
-				
-				var item:GridItem = new GridItem();
-				item.addChild(grafo);
-				item.percentHeight = 100;
-				item.percentWidth = 100;
-				rowActual.addChild(item);
-				
-				columnaActual++;
-				if (columnaActual > 1){
-					columnaActual = 0;
-				}
-				
-				grafos.addItem(grafo);
+				listaGrafos.addChild(grafo);
+				grafos.addItem(grafo);	
 			}
 			
 			private function initGrafo(event:FlexEvent):void {
