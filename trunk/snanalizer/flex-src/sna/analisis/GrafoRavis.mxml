@@ -53,8 +53,6 @@
 			
 			public var xmlData:XML;
 			
-			public var selectEnabled:Boolean = true;
-			
 			private function nodeSelected(e:NodeSelectedEvent):void {
 				dispatchEvent(e);
 			}
@@ -97,8 +95,6 @@
 				/* the following kicks it off .... */
 				//vgraph.currentRootVNode = startRoot;
 				vgraph.currentRootVNode = graph.nodes[0].vnode;
-				
-				vgraph.selectEnabled = selectEnabled;
 				
 				initDone = true;
 				vgraph.draw();

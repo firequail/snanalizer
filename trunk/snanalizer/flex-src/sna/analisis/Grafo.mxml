@@ -93,7 +93,6 @@
 				
 				for each(var xmlGraph:XML in xmlData) {
 					var grafo:GrafoRavis = new GrafoRavis();
-					grafo.selectEnabled = selectEnabled();
 					grafo.xmlData = xmlGraph;
 					grafo.addEventListener(FlexEvent.CREATION_COMPLETE, initGrafo);
 					grafo.addEventListener(NodeSelectedEvent.NODE_SELECTED, nodeSelected);
@@ -143,7 +142,9 @@
 					(e.node.view as SNANodeRenderer).select();
 				}
 				
-				caminoService.getCaminoMasCorto(selectedNode1Id, selectedNode2Id);
+				if(selectEnabled()) {
+					caminoService.getCaminoMasCorto(selectedNode1Id, selectedNode2Id);
+				}
 				
 				for each(var grafo:GrafoRavis in grafos) {
 					grafo.vgraph.selectedNode1 = selectedNode1;
