@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" showCloseButton="true" verticalAlign="top" horizontalAlign="center" close="closeMe()" backgroundColor="#FFFFFF" width="638" height="477">
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+
+	            		
+            		
+     <mx:RemoteObject id="recursosService" destination="recursosService"/>
+            		
+
+     <mx:VBox width="100%" height="100%">
+          <mx:HBox width="100%" height="33%" cornerRadius="5" borderStyle="solid" borderThickness="1" verticalAlign="middle" horizontalAlign="center">
+               <mx:VBox width="49%" height="95%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:Box paddingTop="10" paddingLeft="10">
+	               		<mx:FormItem label="Nombre:" fontWeight="bold"  >
+	               			<mx:Label text="{recurso.usuario.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Apellido:" fontWeight="bold">
+	               			<mx:Label text="{recurso.usuario.apellido}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Fecha de Nacimiento:" fontWeight="bold">
+	               			<mx:Label text="{recurso.fechaNac}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               	</mx:Box>
+               </mx:VBox>
+               <mx:VBox width="49%" height="95%" cornerRadius="10" backgroundColor="#F5F3F3" verticalAlign="top"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:Box paddingTop="10" paddingLeft="10">
+	               		<mx:FormItem label="Area:" fontWeight="bold">
+	               			<mx:Label text="{recurso.area.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Puesto:" fontWeight="bold">
+	               			<mx:Label text="{recurso.puesto.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Seniority:" fontWeight="bold">
+	               			<mx:Label text="{recurso.seniority.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               	</mx:Box>
+               </mx:VBox>
+          </mx:HBox>
+           <mx:HBox width="100%" height="33%" cornerRadius="5" borderStyle="solid" borderThickness="1" verticalAlign="middle" horizontalAlign="center">
+               <mx:VBox width="49%" height="95%" cornerRadius="10" backgroundColor="#F5F3F3" verticalAlign="top"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:Box paddingTop="10" paddingLeft="10">
+	               		<mx:FormItem label="Estado Civil:" fontWeight="bold">
+	               			<mx:Label text="{recurso.estadoCivil.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Provincia:" fontWeight="bold">
+	               			<mx:Label text="{recurso.provincia.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Localidad:" fontWeight="bold">
+	               			<mx:Label text="{recurso.localidad}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               	</mx:Box>
+               </mx:VBox>
+               <mx:VBox width="49%" height="95%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:Box paddingTop="10" paddingLeft="10">
+	               		<mx:FormItem label="Título:" fontWeight="bold"  >
+	               			<mx:Label text="{recurso.titulo}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Establecimiento:" fontWeight="bold">
+	               			<mx:Label text="{recurso.institucion.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:HBox>
+		               		<mx:FormItem label="Ingresó en:" fontWeight="bold">
+		               			<mx:Label text="{recurso.anioIngreso}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		             		<mx:FormItem label="Egresó en:" fontWeight="bold">
+		               			<mx:Label text="{recurso.anioEgreso}" fontWeight="normal"/>
+		               		</mx:FormItem>
+	               		</mx:HBox>	               		
+	               	</mx:Box>
+               </mx:VBox>
+          </mx:HBox>
+           <mx:HBox width="100%" height="33%" cornerRadius="5" borderStyle="solid" borderThickness="1" verticalAlign="middle" horizontalAlign="center">
+               <mx:VBox width="49%" height="95%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:HBox paddingTop="10" paddingLeft="10">
+						<mx:VBox width="50%" height="100%">
+		               		<mx:FormItem label="Idioma:" fontWeight="bold">
+		               			<mx:Label text="{recurso.idioma1.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Idioma:" fontWeight="bold">
+		               			<mx:Label text="{recurso.idioma2.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Idioma:" fontWeight="bold">
+		               			<mx:Label text="{recurso.idioma3.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               	</mx:VBox>
+						<mx:VBox width="50%" height="100%">
+		               		<mx:FormItem label="Nivel:" fontWeight="bold">
+		               			<mx:Label text="{recurso.nivelIdioma1.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		             		<mx:FormItem label="Nivel:" fontWeight="bold">
+		               			<mx:Label text="{recurso.nivelIdioma2.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Nivel:" fontWeight="bold">
+		               			<mx:Label text="{recurso.nivelIdioma3.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+	               		</mx:VBox>	               		
+	               	</mx:HBox>
+               </mx:VBox>
+               <mx:VBox width="49%" height="95%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:HBox paddingTop="10" paddingLeft="10">
+						<mx:VBox width="50%" height="100%">
+		               		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie1.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie2.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie3.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               	</mx:VBox>
+						<mx:VBox width="50%" height="100%">
+		             		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie4.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		             		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie5.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		             		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie6.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+	               		</mx:VBox>	               		
+	               	</mx:HBox>
+               </mx:VBox>
+          </mx:HBox>
+     </mx:VBox>
+     
+     <mx:Script>
+		<![CDATA[
+		
+			import mx.managers.PopUpManager;
+		
+			[Bindable]
+			public var recurso:Object;
+			
+			public function setRec(value:Object):void {
+				this.recurso = value;
+				this.title = recurso.usuario.nombre + " " + recurso.usuario.apellido;
+			}
+			
+		    private function closeMe():void {
+				PopUpManager.removePopUp(this);
+			}
+
+		
+		]]>
+	</mx:Script>
+	
+</mx:TitleWindow>

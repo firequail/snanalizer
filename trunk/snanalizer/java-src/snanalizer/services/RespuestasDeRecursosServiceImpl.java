@@ -3,6 +3,7 @@ package snanalizer.services;
 import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.RespuestasDePortalRepository;
@@ -37,6 +38,10 @@ public class RespuestasDeRecursosServiceImpl implements RespuestasDeRecursosServ
 		
 		respuestasRecurso.add(respuestaRec);
 		
+	}
+	
+	public List<RespuestaDeRecurso> getAllAnswersOf(int idRec) {
+		return respuestasRecurso.getRespuestasDeRecurso(recursos.getById(idRec));
 	}
 
 }
