@@ -4,7 +4,7 @@
 	
 	<mx:HBox width="100%" height="100%">
 		<mx:VBox width="70%" height="100%">
-			<analisis:Controles id="controles" change="grafo.refresh()"/>
+			<analisis:Controles id="controles" change="grafo.refresh()" print="grafo.print()"/>
 			<analisis:Grafo id="grafo" width="100%" height="100%"
 				puntoDeVistaId="{controles.puntoDeVista.id}"
 				datoMaestroId="{controles.datoMaestro.id}"

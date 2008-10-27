@@ -47,6 +47,8 @@
 			maximum="2"
 			liveDragging="true"
 			change="updateVScale()"
+			doubleClickEnabled="true"
+			doubleClick="defaultZoom()"
 			/>
 		<mx:Button
 			id="minusZoom"
@@ -98,6 +100,11 @@
 				} else {
 					bzoom.value = .25;
 				}
+				updateVScale();
+			}
+			
+			public function defaultZoom():void {
+				bzoom.value = 1;
 				updateVScale();
 			}
 			

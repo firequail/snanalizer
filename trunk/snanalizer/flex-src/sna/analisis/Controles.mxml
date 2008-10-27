@@ -5,6 +5,7 @@
 
 	<mx:Metadata>
 		[Event(name="change", type="mx.events.FlexEvent")]
+		[Event(name="print", type="mx.events.FlexEvent")]
 	</mx:Metadata>
 
 	<mx:HBox width="100%" height="100%">
@@ -36,7 +37,7 @@
 	</mx:HBox>
 	<mx:HBox width="100%" height="100%">
 		<mx:VBox  width="100%" height="100%" verticalAlign="bottom" horizontalAlign="right">
-			<mx:Button label="Actualizar" click="fireChange()"/>
+			<mx:Button label="Imprimir" click="firePrint()"/>
 		</mx:VBox>
 	</mx:HBox>
 	
@@ -82,6 +83,10 @@
 			
 			private function fireChange():void {
 				dispatchEvent(new FlexEvent("change"));
+			}
+			
+			private function firePrint():void {
+				dispatchEvent(new FlexEvent("print"));
 			}
 			
 			[Bindable("change")]

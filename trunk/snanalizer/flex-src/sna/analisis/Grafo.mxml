@@ -21,6 +21,8 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.printing.FlexPrintJobScaleType;
+			import mx.printing.FlexPrintJob;
 			import sna.analisis.renderers.nodes.SNANodeRenderer;
 			import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualNode;
 			import sna.analisis.ravis.NodeSelectedEvent;
@@ -148,6 +150,18 @@
 				for each(var grafo:GrafoRavis in grafos) {
 					grafo.vgraph.select(relaciones);
 				}
+			}
+			
+			public function print():void {
+				var job:FlexPrintJob = new FlexPrintJob();
+				
+				if (job.start() != true) {
+					return;				
+				}
+				
+				job.addObject(this,FlexPrintJobScaleType.SHOW_ALL);
+				
+				job.send();
 			}
 			
 		]]>
