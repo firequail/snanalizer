@@ -5,7 +5,8 @@
 	</mx:Metadata>
 
 	<mx:VBox width="100%" height="100%" horizontalAlign="center" paddingTop="15">
-		<mx:Image source="@Embed('../resourcespics/pity.jpg')" autoLoad="true" />
+		<mx:VBox id="imgBox">
+		</mx:VBox>
 		<mx:VBox width="100%" height="100%" horizontalAlign="left" paddingLeft="10" paddingTop="10" paddingBottom="10">
 			<mx:HBox borderStyle="solid" width="98%" paddingTop="2" paddingBottom="2" paddingLeft="2" paddingRight="2" cornerRadius="5" borderThickness="1" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 			<mx:Text text="Nombre:" fontWeight="bold"/>
@@ -42,10 +43,12 @@
 	
 
 	<mx:RemoteObject id="redesService" destination="redesService">
+		<mx:method name="getNodo" result="initImg()"/>
 	</mx:RemoteObject>
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Image;
 
 			import mx.rpc.events.ResultEvent;
 			import mx.messaging.messages.AbstractMessage;
@@ -72,7 +75,36 @@
 				dispatchEvent(ResultEvent.createEvent(obj,null,msg));
 			}
 			
-
+			private function onImageLoad(e:HTTPStatusEvent):void {
+				if(e.status != 200) {
+					loadImage("null");
+				}
+			}
+			
+			private function initImg():void {
+				var nodo:Object = redesService.getNodo.lastResult;
+				if(nodo != null) {				
+					loadImage(nodo.recurso.usuario.email);
+				} else {
+					loadImage("null");
+				}
+			}
+			
+			private var actualImg:Image = null;
+			
+			private function loadImage(name:String):void {
+				var img:Image = new Image();
+				img.source = "resourcespics/"+name+".jpg";
+				img.width = 140;
+				img.height = 172;
+				img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoad);
+				
+				imgBox.addChild(img);
+				if(actualImg != null) {
+					imgBox.removeChild(actualImg);
+				}
+				actualImg = img;
+			}
 			
 		]]>
 	</mx:Script>
