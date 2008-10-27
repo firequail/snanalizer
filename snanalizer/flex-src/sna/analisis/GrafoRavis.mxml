@@ -84,7 +84,8 @@
 				vgraph.layouter = layouter;
 				
 				/* set autofit */
-				layouter.autoFitEnabled = true;
+				layouter.autoFitEnabled = false;
+				//layouter.linkLength = 75;
 				
 				/* create and set an EdgeRenderer */
 				vgraph.edgeRenderer = new SNAEdgeRenderer(vgraph.edgeDrawGraphics);

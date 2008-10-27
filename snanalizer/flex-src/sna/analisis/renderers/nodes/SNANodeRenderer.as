@@ -27,12 +27,13 @@
 package sna.analisis.renderers.nodes {
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
+	import mx.controls.LinkButton;
 	import mx.core.UIComponent;
 	
 	import org.un.cava.birdeye.ravis.assets.icons.primitives.Circle;
 	import org.un.cava.birdeye.ravis.components.renderers.RendererIconFactory;
-	import org.un.cava.birdeye.ravis.components.renderers.nodes.BaseNodeRenderer;
 	import org.un.cava.birdeye.ravis.graphLayout.visual.IVisualNode;
 	
 	import sna.analisis.ravis.NodeSelectedEvent;
@@ -44,7 +45,7 @@ package sna.analisis.renderers.nodes {
 	 * This is a very very simple Renderer that just
 	 * uses a plain small circle for the icon 
 	 * */
-	public class SNANodeRenderer extends BaseNodeRenderer {
+	public class SNANodeRenderer extends SNABaseNodeRenderer {
 		
 		private var cc:UIComponent;
 		private var selected:Boolean = false;
