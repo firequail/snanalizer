@@ -25,7 +25,6 @@
         <listener-class>flex.messaging.HttpFlexSession</listener-class>
     </listener>
 
-    <!-- MessageBroker Servlet -->
     <servlet>
         <servlet-name>MessageBrokerServlet</servlet-name>
         <display-name>MessageBrokerServlet</display-name>
@@ -37,9 +36,21 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <display-name>FileUploadServlet</display-name>
+        <servlet-class>snanalizer.services.FileUploadServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>MessageBrokerServlet</servlet-name>
         <url-pattern>/messagebroker/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
