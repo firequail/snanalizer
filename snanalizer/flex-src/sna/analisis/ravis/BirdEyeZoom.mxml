@@ -37,7 +37,7 @@
 			cornerRadius="5"
 			width="25"
 			height="25"
-			click="bzoom.value=bzoom.value+.10;updateVScale();"
+			click="zoomIn()"
 			/>	
 		<mx:VSlider height="100%"
 			tickInterval=".25"
@@ -54,7 +54,7 @@
 			cornerRadius="5"
 			width="25"
 			height="25"
-			click="bzoom.value=bzoom.value-.10;updateVScale();"
+			click="zoomOut()"
 			/>		
 		<mx:Spacer height="2.5%"/>
 	</mx:VBox>
@@ -81,6 +81,24 @@
 			 * */
 			public function get vgraph():IVisualGraph {
 				return _vgraph;
+			}
+			
+			public function zoomIn():void {
+				if(bzoom.value + .10 < 2) {
+					bzoom.value = bzoom.value + .10;
+				} else {
+					bzoom.value = 2;
+				}
+				updateVScale();
+			}
+			
+			public function zoomOut():void {
+				if(bzoom.value - .10 > .25) {
+					bzoom.value = bzoom.value - .10;
+				} else {
+					bzoom.value = .25;
+				}
+				updateVScale();
 			}
 			
 			/* update the scale of the VGraph, thus creating a BirdEye zoom effect */		
