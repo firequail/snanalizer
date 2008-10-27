@@ -21,6 +21,7 @@ import snanalizer.data.PreguntasRepository;
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.data.RelacionesRepository;
+import snanalizer.domain.BloqueEstadistico;
 import snanalizer.domain.DatoMaestro;
 import snanalizer.domain.Encuesta;
 import snanalizer.domain.Filtro;
@@ -31,6 +32,7 @@ import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
+import snanalizer.domain.BloqueEstadistico;
 
 @Transactional
 public class RedesServiceImpl implements RedesService {
@@ -282,4 +284,73 @@ public class RedesServiceImpl implements RedesService {
 		
 		return origen.caminoMasCorto(destino);
 	}
+	
+	public List<Red> getRedesById(List<Integer> ids) {
+		return redesRepository.getById(ids);
+	}
+	
+	
+	public BloqueEstadistico getBloqueEstadistico(int idRed,int idPtoVista) {
+
+		PuntoDeVista ptoVista = puntosDeVistaRepository.getById(idPtoVista);
+		BloqueEstadistico bloque = new BloqueEstadistico();
+
+		
+		int cEnl = 0;
+		int sumaInt = 0;
+		// Nodo con + cantidad de enlaces entrantes
+		int maxEnlEnt = 0;
+		Nodo nodoMaxEnlEnt = null;
+		// Nodo con + cantidad de enlaces salientes
+		int maxEnlSal = 0;
+		Nodo nodoMaxEnlSal = null;
+		// Nodo con + cantidad de enlaces entrantes
+		int maxIntEnt = 0;
+		Nodo nodoMaxIntEnt = null;
+		// Nodo con + cantidad de enlaces salientes
+		int maxIntSal = 0;
+		Nodo nodoMaxIntSal = null;
+
+		
+		for(Nodo nodo: ptoVista.getNodos()) {
+			cEnl += nodo.getRelaciones().size();
+			sumaInt += nodo.getIntensidadTotalEntrante() + nodo.getIntensidadTotalSaliente();
+			if(nodo.getRelacionesEntrantes().size() > maxEnlEnt) {
+				maxEnlEnt = nodo.getRelacionesEntrantes().size();
+				nodoMaxEnlEnt = nodo;
+			}
+			if(nodo.getRelacionesSalientes().size() > maxEnlSal) {
+				maxEnlSal = nodo.getRelacionesSalientes().size();
+				nodoMaxEnlSal = nodo;
+			}
+			if(nodo.getIntensidadTotalEntrante() > maxIntEnt) {
+				maxIntEnt = nodo.getIntensidadTotalEntrante();
+				nodoMaxIntEnt = nodo;
+			}
+			if(nodo.getIntensidadTotalSaliente() > maxIntSal) {
+				maxIntSal = nodo.getIntensidadTotalSaliente();
+				nodoMaxIntSal = nodo;
+			}
+
+			
+		}
+
+		bloque.setCantNodos(ptoVista.getNodos().size());
+		bloque.setCantEnlaces(cEnl/2);
+		bloque.setPromEnl(cEnl/ptoVista.getNodos().size());
+		bloque.setPromInt(sumaInt/ptoVista.getNodos().size()/2);
+		bloque.setMaxEnlEnt(maxEnlEnt);
+		bloque.setMaxEnlSal(maxEnlSal);
+		bloque.setNodoMaxEnlEnt(nodoMaxEnlEnt);
+		bloque.setNodoMaxEnlSal(nodoMaxEnlSal);
+		bloque.setMaxSumEnlEnt(maxIntEnt);
+		bloque.setMaxSumEnlSal(maxIntSal);
+		bloque.setNodoMaxSumEnlEnt(nodoMaxIntEnt);
+		bloque.setNodoMaxSumEnlSal(nodoMaxIntSal);
+		
+		
+		return bloque;
+	}
+	
+	
 }
