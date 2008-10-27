@@ -36,7 +36,7 @@
 				</sna:DataComboBox>
 			</mx:FormItem>
 			<mx:FormItem label="Foto">
-				<sna:FileUpload	width="100%" height="100%"/>
+				<sna:FileUpload id="fileUpload" width="100%" height="100%"/>
 			</mx:FormItem>
 			<mx:FormItem label="Activo" tabIndex="3">
 				<mx:CheckBox id="activo" selected="{recurso.estado}"/> 
@@ -55,21 +55,18 @@
 	<mx:Script>
 		<![CDATA[
 
-
 			import mx.collections.ArrayCollection;
 			import mx.rpc.events.ResultEvent;
 			import mx.controls.Alert;
-
 			
 			[Bindable]
 			public var recurso:Object;
 			
-				
 			private function guardar():void {
-
-					recursosService.modificar(recurso.id,nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,activo.selected);
-					dispatchEvent(ResultEvent.createEvent());
-
+				fileUpload.fileName = email.text;
+				fileUpload.startUploading();
+				recursosService.modificar(recurso.id,nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,activo.selected);
+				dispatchEvent(ResultEvent.createEvent());
 			}
 			
 			private function cancelar():void {
@@ -80,12 +77,8 @@
 				datosMaestrosService.getAreas();
 				datosMaestrosService.getPuestos();
 				datosMaestrosService.getSeniorities();
-
 			}
 			
-	
-			
-		
 		]]>
 	</mx:Script>
 	

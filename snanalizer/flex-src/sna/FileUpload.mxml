@@ -13,8 +13,6 @@
 	<mx:Script>
 		<![CDATA[
 			
-
-			
 			import mx.controls.*;
 			import mx.managers.*;
             import mx.events.*;
@@ -27,6 +25,7 @@
 			private var _arrUploadFiles:Array;
 			private var _numCurrentUpload:Number = 0;	
 		
+			public var fileName:String;
 			
 			// Set uploadUrl
 			public function set uploadUrl(strUploadUrl:String):void {
@@ -46,37 +45,26 @@
 			}
 			
 			public function startUploading():void {
+				var param:String = "fileName=" + fileName;
 				var sendVars:URLVariables = new URLVariables();
 				sendVars.action = "upload";
+				sendVars.fileName = fileName;
 
 				var request:URLRequest = new URLRequest();
 				request.data = sendVars;
-				//request.url = _strUploadUrl;
-				request.url = "http://localhost:8080/snanalizer/upload.jsp";
+				request.url = "http://localhost:8080/snanalizer/upload?"+param;
 				request.method = URLRequestMethod.POST;
 				request.contentType = "multipart/form-data";
 				
-
-				
 				_refUploadFile = new FileReference();
-				//_refUploadFile = listFiles.selectedItem.file;
 				_refUploadFile = _refAddFiles.fileList[0];
 				_refUploadFile.upload(request, "file", false);
-				//_refUploadFile.upload(request);
-				
-				
-				
-				
 			}
-			
-
-
 			
 		]]>
 	</mx:Script>
-	
 
-		<mx:TextInput width="100%" id="txtruta" />
-		<mx:Button id="btnAdd" toolTip="Add file(s)" click="addFiles()" icon="@Embed('assets/application_get.png')" width="26" x="169"/>	
+	<mx:TextInput width="100%" id="txtruta" />
+	<mx:Button id="btnAdd" toolTip="Add file(s)" click="addFiles()" icon="@Embed('assets/application_get.png')" width="26" x="169"/>	
 
 </mx:Canvas>
