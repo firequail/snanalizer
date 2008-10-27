@@ -92,13 +92,8 @@
 				grafos = new ArrayCollection();
 				var xmlData:XMLList = new XMLList(redesService.getGrafo.lastResult)
 				
-				//grid.removeAllChildren();
-				//columnaActual = 0;
-				
 				for each(var xmlGraph:XML in xmlData) {
 					var grafo:GrafoRavis = new GrafoRavis();
-					grafo.percentHeight = 100;
-					grafo.percentWidth = 100;
 					grafo.xmlData = xmlGraph;
 					grafo.addEventListener(FlexEvent.CREATION_COMPLETE, initGrafo);
 					grafo.addEventListener(NodeSelectedEvent.NODE_SELECTED, nodeSelected);
