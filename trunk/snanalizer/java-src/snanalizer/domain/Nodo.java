@@ -135,7 +135,7 @@ public class Nodo extends DomainEntity {
 	}
 	
 	@Transient
-	private List<Relacion> getRelacionesSalientes() {
+	public List<Relacion> getRelacionesSalientes() {
 		List<Relacion> relacionesSalientes = new LinkedList<Relacion>();
 		
 		for (Relacion relacion : getRelaciones()) {
@@ -146,4 +146,37 @@ public class Nodo extends DomainEntity {
 		
 		return relacionesSalientes;
 	}
+	
+	@Transient
+	public List<Relacion> getRelacionesEntrantes() {
+		List<Relacion> relacionesEntrantes = new LinkedList<Relacion>();
+		
+		for(Relacion relacion : getRelaciones())
+			if(this.equals(relacion.getDestino()))
+				relacionesEntrantes.add(relacion);
+		
+		return relacionesEntrantes;
+	}
+	
+	
+	@Transient
+	public int getIntensidadTotalEntrante() {
+		int suma = 0;
+		for(Relacion rel : getRelacionesEntrantes())
+			suma += rel.getIntensidad();
+		
+		return suma;
+	}
+	
+	@Transient
+	public int getIntensidadTotalSaliente() {
+		int suma = 0;
+		for(Relacion rel : getRelacionesSalientes())
+			suma += rel.getIntensidad();
+		
+		return suma;
+	}
+	
+	
+	
 }

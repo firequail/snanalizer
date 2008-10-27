@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="init();" xmlns:sna="sna.*" >
+	<mx:Metadata>
+	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
+	</mx:Metadata>
+	
+	<mx:VBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" horizontalAlign="center">
+	<mx:HBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" verticalAlign="middle" borderThickness="2" borderColor="#C6CACD" borderStyle="solid" horizontalAlign="center" cornerRadius="10">
+		<mx:VBox height="100%" verticalAlign="middle">
+			<mx:Label text="" paddingTop="2"/>
+			<mx:Label text="" paddingTop="2"/>
+			<mx:Label text="Cantidad de Nodos" fontWeight="bold" paddingTop="2" />
+			<mx:Label text="Cantidad de Enlaces" fontWeight="bold" paddingTop="2"/>
+			<mx:Label text="Promedio de enlace por nodo" fontWeight="bold" paddingTop="2"/>
+			<mx:Label text="Nodo con + cantidad de enlaces entrantes" fontWeight="bold" paddingTop="2"/>
+			<mx:Label text="Nodo con + cantidad de enlaces salientes" fontWeight="bold" paddingTop="2"/>
+			<mx:Label text="Promedio de intensidades" fontWeight="bold" paddingTop="2"/>
+			<mx:Label text="Nodo con mayor sumatoria de intensidades entrantes" fontWeight="bold" paddingTop="2"/>
+			<mx:Label text="Nodo con menor sumatoria de intensidades salientes" fontWeight="bold" paddingTop="2"/> 
+		</mx:VBox>
+		<mx:Repeater id="rptRedes" dataProvider="{redesService.getRedesById.lastResult}" >
+			<mx:VBox height="100%" horizontalAlign="center" verticalAlign="middle" >
+				<mx:Label text="{rptRedes.currentItem.descripcion}" width="200" fontWeight="bold" paddingTop="2"/>
+				<sna:DataComboBox id="arrayCmb" dataProvider="{rptRedes.currentItem.puntosDeVista}" labelFunction="getPtoVista" unselectedLabel="Seleccione" itemRenderer="mx.controls.Label" width="200" change="traerInfo(event)" />
+				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+					<mx:Label id="cantNod" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>
+				</mx:Box>
+				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+					<mx:Label id="cantEnl" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>
+				</mx:Box>
+				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+					<mx:Label id="promEnl" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+				</mx:Box>
+				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+					<mx:Label id="nodoEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+				</mx:Box>
+				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+					<mx:Label id="nodoEnlSal" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+				</mx:Box>
+				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+					<mx:Label id="promInt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+				</mx:Box>
+				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+					<mx:Label id="nodoMaySumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+				</mx:Box>
+				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+					<mx:Label id="nodoMenSumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+				</mx:Box> 
+			</mx:VBox>
+		</mx:Repeater>
+	</mx:HBox>
+	<mx:Box width="100%" paddingTop="20">
+		<mx:Button id="butVolver" label="Volver" click="volver()"/>
+	</mx:Box>
+	</mx:VBox>
+	
+	<mx:RemoteObject id="redesService" destination="redesService">
+		<mx:method name="getBloqueEstadistico" result="refreshEstadistica(event)"/>
+	</mx:RemoteObject>
+	
+	<mx:Script>
+		<![CDATA[
+			import sna.DataComboBox;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.rpc.events.ResultEvent;
+		
+			[Bindable]
+			private var idredes:ArrayCollection;
+			private var ultimoID:int;
+		
+			public function setRedes(arr:ArrayCollection):void {
+				this.idredes = arr; 
+			}
+		
+			private function init():void {
+				redesService.getRedesById(idredes);
+			}
+			
+			public function getPtoVista(data:Object):String {
+				//Checkeo si es un usuario o el unselected label
+				if(data.id != null) {
+					return data.pregunta.descripcion;
+				}
+				return data.label;
+			}
+			
+
+			public function traerInfo(evt:Event):void {
+				var combo:DataComboBox = DataComboBox(evt.currentTarget);
+				var obj:Object = combo.getRepeaterItem();
+				ultimoID = combo.selectedItem.id;
+
+				redesService.getBloqueEstadistico(obj.id as int,combo.selectedItem.id as int);
+			}
+			
+			public function refreshEstadistica(event:ResultEvent):void {
+				var cantCmb:uint = arrayCmb.length;
+				var x:int = 0;
+				
+				for (var i:uint = 0; i < cantCmb; i++) {
+					var cmb:DataComboBox = arrayCmb[i] as DataComboBox;
+					if(cmb.selectedItem.id == ultimoID)
+						x = i; 
+				}
+				
+				cantNod[x].text = redesService.getBloqueEstadistico.lastResult.cantNodos;
+				cantEnl[x].text = redesService.getBloqueEstadistico.lastResult.cantEnlaces;
+				promEnl[x].text = redesService.getBloqueEstadistico.lastResult.promEnl;
+				nodoEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlEnt.recurso.usuario.nombre;
+				nodoEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlEnt + ")";
+				nodoEnlSal[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal.recurso.usuario.nombre;
+				nodoEnlSal[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlSal + ")";
+				promInt[x].text = redesService.getBloqueEstadistico.lastResult.promInt;
+				nodoMaySumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt.recurso.usuario.nombre;
+				nodoMaySumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlEnt + ")"; 
+				nodoMenSumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal.recurso.usuario.nombre;
+				nodoMenSumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlSal + ")";
+						
+			}
+			
+			public function volver():void {
+				dispatchEvent(ResultEvent.createEvent());
+			}
+		
+		
+		]]>
+	</mx:Script>
+	
+</mx:Canvas>

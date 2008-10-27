@@ -9,12 +9,15 @@ import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
+import snanalizer.domain.BloqueEstadistico;
 
 public interface RedesService {
 
 	public List<PuntoDeVista> getPuntosDeVista(int redId);
 	
 	public List<Red> getRedes();
+	
+	public List<Red> getRedesById(List<Integer> ids);
 	
 	public Nodo getNodo(int id);
 
@@ -33,4 +36,6 @@ public interface RedesService {
 	public void enviarEncuesta(List<Recurso> recursos);
 
 	public List<Relacion> getCaminoMasCorto(int idOrigen, int idDestino);
+	
+	public BloqueEstadistico getBloqueEstadistico(int idRed,int idPtoVista);
 }
