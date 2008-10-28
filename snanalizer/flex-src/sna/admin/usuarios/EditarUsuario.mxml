@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -14,6 +14,12 @@
 			</mx:FormItem>
 			<mx:FormItem label="Repetir Contraseña" tabIndex="3">
 				<mx:TextInput id="password2" displayAsPassword="true" text="{usuario.password}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Nombre" tabIndex="4">
+				<mx:TextInput id="nombre"/>
+			</mx:FormItem>
+			<mx:FormItem label="Apellido" tabIndex="5">
+				<mx:TextInput id="apellido"/>
 			</mx:FormItem>
 			<mx:FormItem label="Rol" tabIndex="4">
 				<sna:DataComboBox id="rolCombo" selectedData="{usuario.rol}">
@@ -31,19 +37,32 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
+	<valid:UserEmailValidator id="vemail" source="{email}"/>
+	<valid:RequiredText id="vpassword1" source="{password1}"/>
+	<valid:RequiredText id="vpassword2" source="{password2}" equalTo="{password1}"/>
+	<valid:RequiredText id="vnombre" source="{nombre}"/>
+	<valid:RequiredText id="vapellido" source="{apellido}"/>
+	
 	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
 			import mx.collections.ArrayCollection;
 			import mx.rpc.events.ResultEvent;
 			
 			[Bindable]
 			public var usuario:Object;
-						
+			
+			private function isValid():Boolean {
+				return Validator.validateAll([vemail,vpassword1,vpassword2,vnombre,vapellido]).length == 0;
+			}
+			
 			private function guardar():void {
-				usuariosService.modificar(usuario.id, email.text, password1.text, rolCombo.selectedData);
-				dispatchEvent(ResultEvent.createEvent());
+				if(isValid()) {
+					usuariosService.modificar(usuario.id, email.text, password1.text, nombre.text, apellido.text, rolCombo.selectedData);
+					dispatchEvent(ResultEvent.createEvent());
+				}
 			}
 			
 			private function cancelar():void {

@@ -10,9 +10,9 @@ public interface UsuariosService {
 	
 	public List<Usuario> getNoRecursos();
 	
-	public void modificar(Integer id, String email, String password, String rol);
+	public void modificar(Integer id, String email, String password, String nombre, String apellido, String rol);
 	
-	public void crear(String email, String password, String rol);
+	public void crear(String email, String password, String nombre, String apellido, String rol);
 	
 	public void eliminar(Integer id);
 	
