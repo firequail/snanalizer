@@ -48,6 +48,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import mx.controls.Image;
 
 			import mx.rpc.events.ResultEvent;
@@ -77,27 +78,38 @@
 			
 			private function onImageLoad(e:HTTPStatusEvent):void {
 				if(e.status != 200) {
-					loadImage("null");
+					loadImage("null",false);
+				}
+			}
+			
+			private function onImageLoadNoRetry(e:HTTPStatusEvent):void {
+				if(e.status != 200) {
+					Alert.show("HTTP Error: " + e);
 				}
 			}
 			
 			private function initImg():void {
 				var nodo:Object = redesService.getNodo.lastResult;
 				if(nodo != null) {				
-					loadImage(nodo.recurso.usuario.email);
+					loadImage(nodo.recurso.usuario.email,true);
 				} else {
-					loadImage("null");
+					loadImage("null",false);
 				}
 			}
 			
 			private var actualImg:Image = null;
 			
-			private function loadImage(name:String):void {
+			private function loadImage(name:String, retry:Boolean):void {
 				var img:Image = new Image();
+				if(retry) {
+					img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoad);
+				} else {
+					img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoadNoRetry);
+				}
+				
 				img.source = "resourcespics/"+name+".jpg";
 				img.width = 140;
 				img.height = 172;
-				img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoad);
 				
 				imgBox.addChild(img);
 				if(actualImg != null) {
