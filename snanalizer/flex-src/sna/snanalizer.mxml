@@ -4,19 +4,19 @@
 		<mx:State name="Portal">
 			<mx:RemoveChild target="{login}"/>
 			<mx:AddChild position="lastChild">
-				<portal:Portal/>
+				<portal:Portal logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Administracion">
 			<mx:RemoveChild target="{login}"/>
 			<mx:AddChild position="lastChild">
-				<admin:Administracion/>
+				<admin:Administracion logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Analisis">
 			<mx:RemoveChild target="{login}"/>
 			<mx:AddChild position="lastChild">
-				<analisis:Analisis/>
+				<analisis:Analisis logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -25,6 +25,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 			
 			private function handleLoginResult(event:ResultEvent):void
@@ -43,6 +44,7 @@
 			}
 			
 			private function logout():void {
+				login.reset();
 				this.currentState = "";
 			}
 		]]>
