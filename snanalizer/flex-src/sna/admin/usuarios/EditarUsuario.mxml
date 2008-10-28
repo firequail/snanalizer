@@ -16,10 +16,10 @@
 				<mx:TextInput id="password2" displayAsPassword="true" text="{usuario.password}"/>
 			</mx:FormItem>
 			<mx:FormItem label="Nombre" tabIndex="4">
-				<mx:TextInput id="nombre"/>
+				<mx:TextInput id="nombre" text="{usuario.nombre}"/>
 			</mx:FormItem>
 			<mx:FormItem label="Apellido" tabIndex="5">
-				<mx:TextInput id="apellido"/>
+				<mx:TextInput id="apellido" text="{usuario.apellido}"/>
 			</mx:FormItem>
 			<mx:FormItem label="Rol" tabIndex="4">
 				<sna:DataComboBox id="rolCombo" selectedData="{usuario.rol}">

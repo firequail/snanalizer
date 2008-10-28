@@ -12,12 +12,6 @@ package sna.validators
 			this.required = true;
 		}
 		
-		
-		public function isValid():Boolean {
-			var event:ValidationResultEvent = this.validate(null, false); 
-            return event.type == ValidationResultEvent.VALID;
-		}
-		
 		public function reset():void {
 			this.dispatchEvent(new ValidationResultEvent(ValidationResultEvent.VALID))
 		}
