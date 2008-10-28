@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="load()" >
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*" creationComplete="load()" >
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 	
-	<mx:Panel title="Modificar Recurso">
+	<mx:Panel title="Nuevo Recurso">
 		<mx:Form id="form1" defaultButton="{okButton}">
-			<mx:FormItem label="Nombre" tabIndex="1">
-				<mx:TextInput id="nombre" text="" />
-			</mx:FormItem>
-			<mx:FormItem label="Apellido" tabIndex="1">
-				<mx:TextInput id="apellido" text="" />
-			</mx:FormItem>
 			<mx:FormItem label="E-Mail" tabIndex="1">
 				<mx:TextInput id="email" text=""/>
 			</mx:FormItem>
@@ -21,25 +15,31 @@
 			<mx:FormItem label="Repetir Contraseña" tabIndex="3">
 				<mx:TextInput id="password2" displayAsPassword="true" text=""/>
 			</mx:FormItem>
-			<mx:FormItem label="Fecha de Nacimiento" tabIndex="3">
-				<mx:DateField id="dtf" selectedDate="{recurso.fechaNac}"/>
+			<mx:FormItem label="Nombre" tabIndex="4">
+				<mx:TextInput id="nombre" text="" />
 			</mx:FormItem>
-			<mx:FormItem label="Area" tabIndex="4">
+			<mx:FormItem label="Apellido" tabIndex="5">
+				<mx:TextInput id="apellido" text="" />
+			</mx:FormItem>
+			<mx:FormItem label="Fecha de Nacimiento" tabIndex="6">
+				<mx:DateField id="dtf" selectableRange="{{rangeEnd : new Date()}}"/>
+			</mx:FormItem>
+			<mx:FormItem label="Area" tabIndex="7">
 				<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getAreas.lastResult}"  >
 				</sna:DataComboBox>
 			</mx:FormItem>
-			<mx:FormItem label="Puesto" tabIndex="5">
+			<mx:FormItem label="Puesto" tabIndex="8">
 				<sna:DataComboBox id="puestoCombo" labelField="nombre" dataField="id"  dataProvider="{datosMaestrosService.getPuestos.lastResult}"  >
 				</sna:DataComboBox>
 			</mx:FormItem>
-			<mx:FormItem label="Seniority" tabIndex="6">
+			<mx:FormItem label="Seniority" tabIndex="9">
 				<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" >
 				</sna:DataComboBox>
 			</mx:FormItem>
-			<mx:FormItem label="Foto">
+			<mx:FormItem label="Foto" tabIndex="10">
 				<sna:FileUpload id="photo" uploadUrl="http://localhost:8080/snanalizer/upload.jsp"  width="100%" height="100%"/>
 			</mx:FormItem>
-			<mx:FormItem label="Activo" tabIndex="3">
+			<mx:FormItem label="Activo" tabIndex="11">
 				<mx:CheckBox id="activo" selected="true" />
 			</mx:FormItem>
 		</mx:Form>
@@ -49,7 +49,12 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
-	
+	<valid:UserEmailValidator id="vemail" source="{email}"/>
+	<valid:RequiredText id="vpassword1" source="{password1}"/>
+	<valid:RequiredText id="vpassword2" source="{password2}" equalTo="{password1}"/>
+	<valid:RequiredText id="vnombre" source="{nombre}"/>
+	<valid:RequiredText id="vapellido" source="{apellido}"/>
+	<valid:RequiredText id="vfecha" source="{dtf}"/>
 	
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
@@ -57,22 +62,22 @@
 		
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
 
 			import mx.collections.ArrayCollection;
 			import mx.rpc.events.ResultEvent;
 			import mx.collections.ArrayCollection;
 
-
-			
-			[Bindable]
-			public var recurso:Object;
-
+			private function isValid():Boolean {
+				return Validator.validateAll([vemail,vpassword1,vpassword2,vnombre,vapellido,vfecha]).length == 0;
+			}
 						
 			private function guardar():void {
+				if(isValid()) {
 					photo.startUploading();
 					recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,activo.selected);
-					
 					dispatchEvent(ResultEvent.createEvent());
+				}
 			}
 			
 			private function cancelar():void {

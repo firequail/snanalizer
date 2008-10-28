@@ -25,8 +25,6 @@
 			private var _arrUploadFiles:Array;
 			private var _numCurrentUpload:Number = 0;	
 		
-			public var fileName:String;
-			
 			// Set uploadUrl
 			public function set uploadUrl(strUploadUrl:String):void {
 				_strUploadUrl = strUploadUrl;
@@ -45,20 +43,22 @@
 			}
 			
 			public function startUploading():void {
-				var param:String = "fileName=" + fileName;
-				var sendVars:URLVariables = new URLVariables();
-				sendVars.action = "upload";
-				sendVars.fileName = fileName;
-
-				var request:URLRequest = new URLRequest();
-				request.data = sendVars;
-				request.url = "http://localhost:8080/snanalizer/upload?"+param;
-				request.method = URLRequestMethod.POST;
-				request.contentType = "multipart/form-data";
-				
-				_refUploadFile = new FileReference();
-				_refUploadFile = _refAddFiles.fileList[0];
-				_refUploadFile.upload(request, "file", false);
+				if(txtruta.text != "") {
+					var param:String = "fileName=" + _refAddFiles.fileList[0].name;
+					var sendVars:URLVariables = new URLVariables();
+					sendVars.action = "upload";
+					sendVars.fileName = _refAddFiles.fileList[0].name;
+	
+					var request:URLRequest = new URLRequest();
+					request.data = sendVars;
+					request.url = "http://localhost:8080/snanalizer/upload?"+param;
+					request.method = URLRequestMethod.POST;
+					request.contentType = "multipart/form-data";
+					
+					_refUploadFile = new FileReference();
+					_refUploadFile = _refAddFiles.fileList[0];
+					_refUploadFile.upload(request, "file", false);
+				}
 			}
 			
 		]]>
