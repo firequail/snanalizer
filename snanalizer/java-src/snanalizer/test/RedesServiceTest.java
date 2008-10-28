@@ -1,5 +1,6 @@
 package snanalizer.test;
 
+import java.io.FileOutputStream;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -11,7 +12,7 @@ import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.services.DatosMaestrosService;
-import snanalizer.services.ExcelExporter;
+import snanalizer.services.ExcelExporterImpl;
 import snanalizer.services.RecursosService;
 import snanalizer.services.RedesService;
 
@@ -69,20 +70,15 @@ public class RedesServiceTest extends TestCase {
 
 	public void xtestMail() {
 		List<Recurso> recursos = recursosService.buscarRecursoByName("pepe",
-		"lopez");
+				"lopez");
 		redesService.enviarEncuesta(recursos);
 	}
-	
+
 	public void xtestCaminoMasCorto() {
 		int idDestino = 4;
 		int idOrigen = 3;
-		List<Relacion> caminoMasCorto = redesService.getCaminoMasCorto(idOrigen, idDestino);
+		List<Relacion> caminoMasCorto = redesService.getCaminoMasCorto(
+				idOrigen, idDestino);
 		System.out.println(caminoMasCorto);
-	}
-	
-	public void testExcelExporter() {
-		Red red = redesService.getRedes().get(2);
-		
-		new ExcelExporter().export(red);
 	}
 }

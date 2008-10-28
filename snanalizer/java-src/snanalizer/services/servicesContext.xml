@@ -48,4 +48,6 @@
 		</property>
 	</bean>
 
+	<bean id="excelExporter" class="snanalizer.services.ExcelExporterImpl"/>
+	
 </beans>
