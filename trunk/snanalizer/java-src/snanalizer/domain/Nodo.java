@@ -176,6 +176,15 @@ public class Nodo extends DomainEntity {
 		
 		return suma;
 	}
+
+	public int intensidadCon(Nodo destino) {
+		for (Relacion relacion : getRelacionesSalientes()) {
+			if(relacion.getDestino().equals(destino)) {
+				return relacion.getIntensidad();
+			}
+		}
+		return 0;
+	}
 	
 	
 	
