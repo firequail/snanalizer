@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:portal="sna.portal.*"  width="100%" height="100%" creationComplete="load()">
-	<sna:ControlBar/>
+	<mx:Metadata>
+		[Event(name="logout", type="mx.events.FlexEvent")]
+	</mx:Metadata>
+	
+	<sna:ControlBar logout="dispatchEvent(event)"/>
 	<mx:Panel layout="absolute" title="Portal" width="100%" height="100%">
 	<mx:TabNavigator width="100%" height="100%">
 			<mx:Canvas label="Inicio" width="100%" height="100%">

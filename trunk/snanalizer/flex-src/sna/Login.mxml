@@ -42,6 +42,11 @@
 				Alert.show("Email o password incorrectos.");
 			}
 			
+			public function reset():void {
+				txtEmail.text = "";
+				txtPassword.text = "";
+			}
+			
 		]]>
 	</mx:Script>
 	

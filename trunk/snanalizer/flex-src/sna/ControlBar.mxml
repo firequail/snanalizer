@@ -15,8 +15,6 @@
 	<mx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
-			import mx.rpc.events.ResultEvent;
-			import mx.controls.Alert;
 			
 			private function logout():void {
 				dispatchEvent(new FlexEvent("logout"));

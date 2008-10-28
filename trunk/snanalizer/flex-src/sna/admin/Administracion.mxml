@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:grupos="sna.admin.grupos.*" xmlns:sna="sna.*" xmlns:usuarios="sna.admin.usuarios.*" width="100%" height="100%" xmlns:maestros="sna.admin.maestros.*" xmlns:recursos="sna.admin.recursos.*" xmlns:encuestas="sna.admin.encuestas.*" xmlns:redes="sna.admin.redes.*" >
-	<sna:ControlBar/>
+	<mx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			private function logout():void {
+				dispatchEvent(new FlexEvent("logout"));
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:Metadata>
+		[Event(name="logout", type="mx.events.FlexEvent")]
+	</mx:Metadata>
+	
+	<sna:ControlBar logout="logout()"/>
 	<mx:Panel title="Administración" width="100%" height="100%">
 		<mx:TabNavigator width="100%" height="100%">
 			<mx:Canvas label="Usuarios" width="100%" height="100%">
