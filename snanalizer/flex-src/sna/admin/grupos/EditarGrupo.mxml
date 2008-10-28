@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" creationComplete="load()" >
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*" creationComplete="load()" >
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
-	
-
 	
 	<mx:Panel title="Editar Grupo" id="panel1" width="402" height="300">
 		<mx:HBox width="100%" verticalAlign="bottom">
@@ -41,12 +39,14 @@
 		   
 	</mx:Panel>
 	
+	<valid:RequiredText id="vnombre" source="{nombre}"/>
+	
 	<mx:RemoteObject id="gruposRecursosService" destination="gruposRecursosService"/>
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	
-		
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
 			import mx.collections.ArrayCollection;
 
 			import mx.rpc.events.ResultEvent;
@@ -55,15 +55,20 @@
 			[Bindable]
 			public var grupo:Object;
 
-						
+			private function isValid():Boolean {
+				return Validator.validateAll([vnombre]).length == 0;
+			}
+			
 			private function guardar():void {
-				var idRecursos:ArrayCollection = new ArrayCollection();
-				for each(var recurso:Object in listaGrupo.dataProvider) {
-					idRecursos.addItem(recurso.id);
+				if(isValid()) {
+					var idRecursos:ArrayCollection = new ArrayCollection();
+					for each(var recurso:Object in listaGrupo.dataProvider) {
+						idRecursos.addItem(recurso.id);
+					}
+					
+					gruposRecursosService.modificarGrupo(grupo.id, nombre.text, idRecursos);
+					dispatchEvent(ResultEvent.createEvent());
 				}
-				
-				gruposRecursosService.modificarGrupo(grupo.id, nombre.text, idRecursos);
-				dispatchEvent(ResultEvent.createEvent());
 			}
 			
 			private function eliminar():void {

@@ -12,7 +12,7 @@
 	<mx:HBox width="100%" height="100%">
 		<mx:VBox>
 			<mx:Label text="Red"/>
-			<sna:DataComboBox id="redesCombo" labelField="descripcion" dataField="id" dataProvider="{redesService.getRedes.lastResult}" change="loadPuntosDeVista()"/>
+			<sna:DataComboBox id="redesCombo" labelField="nombre" dataField="id" dataProvider="{redesService.getRedes.lastResult}" change="loadPuntosDeVista()"/>
 		</mx:VBox>
 		<mx:VBox>
 			<mx:Label text="Punto de vista"/>

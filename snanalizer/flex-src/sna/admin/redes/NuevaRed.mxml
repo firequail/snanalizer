@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -29,8 +29,11 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
+	<valid:RequiredText id="vnombre" source="{nombre}"/>
+	
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
 			import mx.rpc.events.ResultEvent;
 			
 			public function init():void {
@@ -38,9 +41,15 @@
 				encuestasService.getEncuestas();
 			}
 			
+			private function isValid():Boolean {
+				return Validator.validateAll([vnombre]).length == 0;
+			}
+			
 			public function guardar():void {
-				redesService.crearRed(nombre.text, descripcion.text, gruposCombo.selectedData, encuestasCombo.selectedData);
-				dispatchEvent(ResultEvent.createEvent());
+				if(isValid()) {
+					redesService.crearRed(nombre.text, descripcion.text, gruposCombo.selectedData, encuestasCombo.selectedData);
+					dispatchEvent(ResultEvent.createEvent());
+				}
 			}
 			
 			public function cancelar():void {
