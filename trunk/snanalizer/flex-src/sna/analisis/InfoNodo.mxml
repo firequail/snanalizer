@@ -77,14 +77,14 @@
 			}
 			
 			private function onImageLoad(e:HTTPStatusEvent):void {
-				if(e.status != 200) {
+				if(e.status != 200 && e.status != 0) {
 					loadImage("null",false);
 				}
 			}
 			
 			private function onImageLoadNoRetry(e:HTTPStatusEvent):void {
-				if(e.status != 200) {
-					Alert.show("HTTP Error: " + e);
+				if(e.status != 200 && e.status != 0) {
+					//Alert.show("HTTP Error: " + e);
 				}
 			}
 			
