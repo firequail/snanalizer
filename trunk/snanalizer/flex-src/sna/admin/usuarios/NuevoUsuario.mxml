@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -15,7 +15,13 @@
 			<mx:FormItem label="Repetir Contraseña" tabIndex="3">
 				<mx:TextInput id="password2" displayAsPassword="true"/>
 			</mx:FormItem>
-			<mx:FormItem label="Rol" tabIndex="4">
+			<mx:FormItem label="Nombre" tabIndex="4">
+				<mx:TextInput id="nombre"/>
+			</mx:FormItem>
+			<mx:FormItem label="Apellido" tabIndex="5">
+				<mx:TextInput id="apellido"/>
+			</mx:FormItem>
+			<mx:FormItem label="Rol" tabIndex="6">
 				<sna:DataComboBox id="rolCombo">
 					<mx:ArrayCollection>
 	                 <mx:Object label="Administrador" data="ADMIN"/>
@@ -32,15 +38,29 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
+	<valid:UserEmailValidator id="vemail" source="{email}"/>
+	<valid:RequiredText id="vpassword1" source="{password1}"/>
+	<valid:RequiredText id="vpassword2" source="{password2}" equalTo="{password1}"/>
+	<valid:RequiredText id="vnombre" source="{nombre}"/>
+	<valid:RequiredText id="vapellido" source="{apellido}"/>
+
 	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
+	
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
 			import mx.rpc.events.ResultEvent;
 			
+			private function isValid():Boolean {
+				return Validator.validateAll([vemail,vpassword1,vpassword2,vnombre,vapellido]).length == 0;
+			}
+			
 			private function guardar():void {
-				usuariosService.crear(email.text, password1.text, rolCombo.selectedData);
-				dispatchEvent(ResultEvent.createEvent());
+				if(isValid()) {
+					usuariosService.crear(email.text, password1.text, nombre.text, apellido.text, rolCombo.selectedData);
+					dispatchEvent(ResultEvent.createEvent());
+				}
 			}
 			
 			private function cancelar():void {

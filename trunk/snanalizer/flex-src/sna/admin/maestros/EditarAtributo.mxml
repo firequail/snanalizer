@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -24,7 +24,7 @@
 	</mx:Panel>
 	
 	<!-- Validación de campos -->
-	<mx:StringValidator source="{nombre}" property="text" requiredFieldError="Campo requerido" trigger="{okButton}" triggerEvent="click" valid="guardar()" />
+	<valid:RequiredText id="vnombre" source="{nombre}"/>
 	
 	<mx:RemoteObject id="atributosService" destination="atributosService"/>
 	

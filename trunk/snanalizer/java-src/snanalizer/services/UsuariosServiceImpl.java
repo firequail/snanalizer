@@ -31,15 +31,17 @@ public class UsuariosServiceImpl implements UsuariosService {
 		return usuarios.getAll();
 	}
 
-	public void crear(String email, String password, String rol) {
-		Usuario usuario = new Usuario(email, password, rol);
+	public void crear(String email, String password, String nombre, String apellido, String rol) {
+		Usuario usuario = new Usuario(email, password, rol, nombre, apellido);
 		usuarios.add(usuario);
 	}
 
-	public void modificar(Integer id, String email, String password, String rol) {
+	public void modificar(Integer id, String email, String password, String nombre, String apellido, String rol) {
 		Usuario usuario = usuarios.getById(id);
 		usuario.setEmail(email);
 		usuario.setPassword(password);
+		usuario.setNombre(nombre);
+		usuario.setApellido(apellido);
 		usuario.setRol(rol);
 	}
 	
