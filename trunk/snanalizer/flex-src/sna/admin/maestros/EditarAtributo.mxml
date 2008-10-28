@@ -23,22 +23,28 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
-	<!-- Validación de campos -->
 	<valid:RequiredText id="vnombre" source="{nombre}"/>
 	
 	<mx:RemoteObject id="atributosService" destination="atributosService"/>
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
 			import mx.collections.ArrayCollection;
 			import mx.rpc.events.ResultEvent;
 			
 			[Bindable]
 			public var atributo:Object;
-						
+			
+			private function isValid():Boolean {
+				return Validator.validateAll([vnombre]).length == 0;
+			}
+			
 			private function guardar():void {
-				atributosService.modificar(atributo.id, nombre.text, descripcion.text, activo.selected);
-				dispatchEvent(ResultEvent.createEvent());
+				if(isValid()) {
+					atributosService.modificar(atributo.id, nombre.text, descripcion.text, activo.selected);
+					dispatchEvent(ResultEvent.createEvent());
+				}
 			}
 			
 			private function cancelar():void {

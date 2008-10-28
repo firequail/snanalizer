@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" >
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -37,25 +37,34 @@
 		   
 	</mx:Panel>
 	
+	<valid:RequiredText id="vnombre" source="{nombre}"/>
+	
 	<mx:RemoteObject id="gruposRecursosService" destination="gruposRecursosService"/>
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	
 		
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
 			import mx.collections.ArrayCollection;
 
 			import mx.rpc.events.ResultEvent;
 			import mx.controls.Alert;
-						
+			
+			private function isValid():Boolean {
+				return Validator.validateAll([vnombre]).length == 0;
+			}
+			
 			private function guardar():void {
-				var idRecursos:ArrayCollection = new ArrayCollection();
-				for each(var recurso:Object in listaGrupo.dataProvider) {
-					idRecursos.addItem(recurso.id);
+				if(isValid()) {
+					var idRecursos:ArrayCollection = new ArrayCollection();
+					for each(var recurso:Object in listaGrupo.dataProvider) {
+						idRecursos.addItem(recurso.id);
+					}
+					
+					gruposRecursosService.nuevoGrupo(nombre.text, idRecursos);
+					dispatchEvent(ResultEvent.createEvent());
 				}
-				
-				gruposRecursosService.nuevoGrupo(nombre.text, idRecursos);
-				dispatchEvent(ResultEvent.createEvent());
 			}
 			
 			

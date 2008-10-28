@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:ns1="sna.admin.encuestas.portal.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:valid="sna.validators.*" xmlns:ns1="sna.admin.encuestas.portal.*">
 	<mx:states>
 		<mx:State name="NuevaPregunta">
 			<mx:RemoveChild target="{panel1}"/>
@@ -36,8 +36,11 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
+	<valid:RequiredText id="vnombre" source="{nombre}"/>
+	
 	<mx:Script>
 		<![CDATA[
+			import mx.validators.Validator;
 			import mx.rpc.events.ResultEvent;
 			
 			[Bindable]
@@ -59,9 +62,15 @@
 				this.currentState = "";
 			}
 			
+			private function isValid():Boolean {
+				return Validator.validateAll([vnombre]).length == 0;
+			}
+			
 			public function guardar():void {
-				encuestasService.crearEncuestaPortal(encuesta);
-				dispatchEvent(ResultEvent.createEvent());
+				if(isValid()) {
+					encuestasService.crearEncuestaPortal(encuesta);
+					dispatchEvent(ResultEvent.createEvent());
+				}
 			}
 			
 			public function cancelar():void {
