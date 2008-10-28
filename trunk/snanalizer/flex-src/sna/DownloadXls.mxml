@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  >
+
+	<mx:Script>
+		<![CDATA[
+			
+			import flash.display.Sprite;
+		    import flash.net.FileReference;
+		    import flash.net.URLRequest;
+		    import flash.net.URLRequestMethod;
+		    import flash.net.URLVariables;
+		    
+		    public var redId:Object = 0;
+		    public var fileName:String = "red";
+		    
+	        private var fileToDownload:FileReference;
+	        public function export():void
+	        {
+	            var request:URLRequest = new URLRequest();
+	            request.url = "http://localhost:8080/snanalizer/downloadxls?red="+redId+"&filename="+fileName;
+	            request.method = URLRequestMethod.GET;
+	            fileToDownload = new FileReference();
+	            try {
+	                fileToDownload.download(request,fileName + ".xls");
+	            } catch (error:Error) {
+	                trace("Unable to download file.");
+	            }
+	        }
+			
+		]]>
+	</mx:Script>
+
+</mx:Canvas>

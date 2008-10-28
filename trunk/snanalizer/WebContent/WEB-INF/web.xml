@@ -42,6 +42,13 @@
         <servlet-class>snanalizer.services.FileUploadServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
+    <servlet>
+        <servlet-name>DownloadXlsServlet</servlet-name>
+        <display-name>DownloadXlsServlet</display-name>
+        <servlet-class>snanalizer.services.DownloadXlsServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>MessageBrokerServlet</servlet-name>
@@ -51,6 +58,11 @@
     <servlet-mapping>
         <servlet-name>FileUploadServlet</servlet-name>
         <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DownloadXlsServlet</servlet-name>
+        <url-pattern>/downloadxls</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

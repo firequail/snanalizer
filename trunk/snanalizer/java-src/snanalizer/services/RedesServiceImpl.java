@@ -16,8 +16,8 @@ import snanalizer.data.DatosMaestrosRepository;
 import snanalizer.data.EncuestasRepository;
 import snanalizer.data.GruposRecursosRepository;
 import snanalizer.data.NodosRepository;
-import snanalizer.data.PuntosDeVistaRepository;
 import snanalizer.data.PreguntasRepository;
+import snanalizer.data.PuntosDeVistaRepository;
 import snanalizer.data.RecursosRepository;
 import snanalizer.data.RedesRepository;
 import snanalizer.data.RelacionesRepository;
@@ -32,7 +32,6 @@ import snanalizer.domain.PuntoDeVista;
 import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
-import snanalizer.domain.BloqueEstadistico;
 
 @Transactional
 public class RedesServiceImpl implements RedesService {
@@ -350,6 +349,10 @@ public class RedesServiceImpl implements RedesService {
 		
 		
 		return bloque;
+	}
+
+	public Red getRedById(int redId) {
+		return redesRepository.getById(redId);
 	}
 	
 	

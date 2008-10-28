@@ -6,6 +6,7 @@
 	<mx:Metadata>
 		[Event(name="change", type="mx.events.FlexEvent")]
 		[Event(name="print", type="mx.events.FlexEvent")]
+		[Event(name="export", type="mx.events.FlexEvent")]
 	</mx:Metadata>
 
 	<mx:HBox width="100%" height="100%">
@@ -34,9 +35,8 @@
 			<mx:Label text="Seniority"/>
 			<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" unselectedLabel="Todos" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" change="filtrar()"/>
 		</mx:VBox>
-	</mx:HBox>
-	<mx:HBox width="100%" height="100%">
-		<mx:VBox  width="100%" height="100%" verticalAlign="bottom" horizontalAlign="right">
+		<mx:VBox width="100%" height="100%" verticalAlign="middle" horizontalAlign="right">
+			<mx:Button label="Exportar a XLS" click="fireExport()"/>
 			<mx:Button label="Imprimir" click="firePrint()"/>
 		</mx:VBox>
 	</mx:HBox>
@@ -87,6 +87,10 @@
 			
 			private function firePrint():void {
 				dispatchEvent(new FlexEvent("print"));
+			}
+			
+			private function fireExport():void {
+				dispatchEvent(new FlexEvent("export"));
 			}
 			
 			[Bindable("change")]

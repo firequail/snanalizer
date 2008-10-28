@@ -38,4 +38,6 @@ public interface RedesService {
 	public List<Relacion> getCaminoMasCorto(int idOrigen, int idDestino);
 	
 	public BloqueEstadistico getBloqueEstadistico(int idRed,int idPtoVista);
+
+	public Red getRedById(int redId);
 }
