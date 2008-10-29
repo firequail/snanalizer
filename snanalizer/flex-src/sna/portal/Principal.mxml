@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:portal="sna.portal.*"  >
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:portal="sna.portal.*"   >
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
+
 	<mx:HDividedBox width="100%" height="100%">
 		<mx:VBox width="25%" height="100%">
 			<mx:Panel width="100%" height="100%"  title=":: Novedades">
@@ -14,6 +15,13 @@
 			<mx:VDividedBox width="100%" height="100%">
 				<mx:HBox width="100%" height="70%">
 					<mx:Panel width="100%" height="100%" title=":: Browser corporativo">
+						<mx:VBox width="100%" height="100%" horizontalAlign="center" backgroundColor="#efeeee">
+							<mx:Spacer height="20"/>
+							<mx:Label text="SN Analyzer" fontFamily="tahoma" fontSize="60"/>
+							<mx:Image source="@Embed('../assets/logoSNAtra.gif')"/>
+							<mx:Spacer height="20"/>
+							<mx:Label text="¡Bienvenido a tu portal personal!" fontFamily="tahoma" fontSize="20"/> 
+						</mx:VBox>
 					</mx:Panel>
 				</mx:HBox>
 				<mx:HBox width="100%" height="30%" >
@@ -26,6 +34,7 @@
 	</mx:HDividedBox>
 	
 	<mx:RemoteObject id="encuestasService" destination="encuestasService"/>
+	
 	
 	<mx:Script>
 		<![CDATA[
@@ -40,8 +49,7 @@
 			public var recurso:Object;
 			[Bindable]
             public var answerSurvey:Encuesta;
-			
-			
+
 			private function openSurvey(event:ResultEvent):void {
 				dispatchEvent(event);
 			}
