@@ -63,17 +63,21 @@
 			}
 			
 			private function openMasInfo():void {
-				var msg:AbstractMessage = new AbstractMessage();
-				msg.messageId = "info";
-				var obj:Object = redesService.getNodo.lastResult.recurso as Object;
-				dispatchEvent(ResultEvent.createEvent(obj,null,msg));
+				if(redesService.getNodo.lastResult != null) {
+					var msg:AbstractMessage = new AbstractMessage();
+					msg.messageId = "info";
+					var obj:Object = redesService.getNodo.lastResult.recurso as Object;
+					dispatchEvent(ResultEvent.createEvent(obj,null,msg));
+				}
 			}
 			
 			private function openInfoEnc():void {
-				var msg:AbstractMessage = new AbstractMessage();
-				msg.messageId = "enc";
-				var obj:Object = redesService.getNodo.lastResult.recurso as Object;
-				dispatchEvent(ResultEvent.createEvent(obj,null,msg));
+				if(redesService.getNodo.lastResult != null) {
+					var msg:AbstractMessage = new AbstractMessage();
+					msg.messageId = "enc";
+					var obj:Object = redesService.getNodo.lastResult.recurso as Object;
+					dispatchEvent(ResultEvent.createEvent(obj,null,msg));
+				}
 			}
 			
 			private function onImageLoad(e:HTTPStatusEvent):void {
