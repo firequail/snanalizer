@@ -1,6 +1,5 @@
 package snanalizer.test;
 
-import java.io.FileOutputStream;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -9,10 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import snanalizer.domain.Recurso;
-import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.services.DatosMaestrosService;
-import snanalizer.services.ExcelExporterImpl;
 import snanalizer.services.RecursosService;
 import snanalizer.services.RedesService;
 

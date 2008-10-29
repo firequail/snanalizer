@@ -4,7 +4,7 @@
 		<mx:State name="NuevoUsuario">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
-				<usuarios:NuevoUsuario result="editarUsuarioOK(event)"/>
+				<usuarios:NuevoUsuario id="nuevoUsuario" result="editarUsuarioOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="EditarUsuario">
@@ -26,7 +26,7 @@
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button id="butEliminar" label="Eliminar Usuario" color="red" click="removerUsuario(listadoUsuarios.usuarios.selectedItem)" enabled="false"/>
-			<mx:Button label="Nuevo Usuario" click="nuevoUsuario()"/>
+			<mx:Button label="Nuevo Usuario" click="crearUsuario()"/>
 		</mx:ControlBar>
 		   
 	</mx:Panel>
@@ -42,12 +42,14 @@
 			import mx.rpc.events.ResultEvent;
 			
 		
-			private function nuevoUsuario():void {
+			private function crearUsuario():void {
 				this.currentState = "NuevoUsuario";
+				nuevoUsuario.init();
 			}
 			
 			private function modificarUsuario(event:ResultEvent):void {
 				this.currentState = "EditarUsuario";
+				editarUsuario.init();
 				editarUsuario.usuario = event.result;
 			}
 			

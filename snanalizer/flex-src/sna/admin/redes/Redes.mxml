@@ -24,7 +24,6 @@
 	
 	<mx:RemoteObject id="redesService" destination="redesService" />
 	
-	
 	<mx:Script>
 		<![CDATA[
 			

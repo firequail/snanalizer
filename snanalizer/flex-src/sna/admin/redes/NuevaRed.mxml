@@ -39,6 +39,8 @@
 			public function init():void {
 				gruposRecursosService.getAll();
 				encuestasService.getEncuestas();
+				nombre.text = "";
+				vnombre.reset();
 			}
 			
 			private function isValid():Boolean {

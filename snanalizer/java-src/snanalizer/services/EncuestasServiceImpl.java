@@ -1,7 +1,7 @@
 package snanalizer.services;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -14,15 +14,14 @@ import snanalizer.data.RedesRepository;
 import snanalizer.data.RespuestasDeRecursosRepository;
 import snanalizer.domain.Encuesta;
 import snanalizer.domain.EncuestaDePortal;
-import snanalizer.domain.PuntoDeVista;
-import snanalizer.domain.Red;
 import snanalizer.domain.Nodo;
-import snanalizer.domain.Relacion;
-import snanalizer.domain.Recurso;
 import snanalizer.domain.Pregunta;
+import snanalizer.domain.PuntoDeVista;
+import snanalizer.domain.Recurso;
+import snanalizer.domain.Red;
+import snanalizer.domain.RespuestaDePortal;
 import snanalizer.domain.RespuestaDeRecurso;
 import snanalizer.domain.RespuestaValor;
-import snanalizer.domain.RespuestaDePortal;
 
 
 

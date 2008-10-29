@@ -67,6 +67,20 @@
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
+			public function init():void {
+				email.text = "";
+				vemail.reset();
+				password1.text = "";
+				vpassword1.reset();
+				password2.text = "";
+				vpassword2.reset();
+				nombre.text = "";
+				vnombre.reset();
+				apellido.text = "";
+				vapellido.reset();
+				rolCombo.selectedIndex = 0;
+			}
+			
 		]]>
 	</mx:Script>
 	
