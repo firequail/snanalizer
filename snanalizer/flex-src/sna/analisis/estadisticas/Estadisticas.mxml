@@ -28,24 +28,24 @@
 			[Bindable]
 			private var idRedes:ArrayCollection;
 			
-			
 			private function verEstad():void {
-
 				var ids:String = "";
-				idRedes = new ArrayCollection();
 				idRedes = seleccionRedes.getSelected();
-				for each(var idRed:Object in idRedes) {
-					ids += idRed.toString() +  " ";
+				
+				if(idRedes.length != 0) {
+					for each(var idRed:Object in idRedes) {
+						ids += idRed.toString() +  " ";
+					}
+					
+					this.currentState = "VerEstadisticas";
+					viewEstad.setRedes(idRedes);
+					viewEstad.init();
 				}
-				
-				this.currentState = "VerEstadisticas";
-				viewEstad.setRedes(idRedes);
-				
 			}
 			
 			private function load(event:ResultEvent):void {
 				this.currentState = "";
-				seleccionRedes.load();
+				seleccionRedes.init();
 			}
 						
 		]]>
