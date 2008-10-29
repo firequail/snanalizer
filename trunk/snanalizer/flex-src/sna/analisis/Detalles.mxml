@@ -4,10 +4,7 @@
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 
-	            		
-            		
      <mx:RemoteObject id="recursosService" destination="recursosService"/>
-            		
 
      <mx:VBox width="100%" height="100%">
           <mx:HBox width="100%" height="33%" cornerRadius="5" borderStyle="solid" borderThickness="1" verticalAlign="middle" horizontalAlign="center">
@@ -20,7 +17,7 @@
 	               			<mx:Label text="{recurso.usuario.apellido}" fontWeight="normal"/>
 	               		</mx:FormItem>
 	               		<mx:FormItem label="Fecha de Nacimiento:" fontWeight="bold">
-	               			<mx:Label text="{recurso.fechaNac}" fontWeight="normal"/>
+	               			<mx:Label id="fechaNac" text="{recurso.fechaNac}" fontWeight="normal"/>
 	               		</mx:FormItem>
 	               	</mx:Box>
                </mx:VBox>
@@ -127,6 +124,8 @@
           </mx:HBox>
      </mx:VBox>
      
+     <mx:DateFormatter id="df" formatString="DD/MM/YYYY"/>
+     
      <mx:Script>
 		<![CDATA[
 		
@@ -138,6 +137,7 @@
 			public function setRec(value:Object):void {
 				this.recurso = value;
 				this.title = recurso.usuario.nombre + " " + recurso.usuario.apellido;
+				this.fechaNac.text = df.format(recurso.fechaNac);
 			}
 			
 		    private function closeMe():void {

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  >
 
+	<mx:RemoteObject id="properties" destination="propertiesService" showBusyCursor="true">
+		<mx:method name="getHost" result="startExport(event)"/>
+	</mx:RemoteObject>
+
 	<mx:Script>
 		<![CDATA[
+			import mx.rpc.events.ResultEvent;
 			
 			import flash.display.Sprite;
 		    import flash.net.FileReference;
@@ -14,10 +19,15 @@
 		    public var fileName:String = "red";
 		    
 	        private var fileToDownload:FileReference;
-	        public function export():void
+
+	        public function export():void {
+	        	properties.getHost();
+	        }
+
+	        public function startExport(e:ResultEvent):void
 	        {
 	            var request:URLRequest = new URLRequest();
-	            request.url = "http://localhost:8080/snanalizer/downloadxls?red="+redId+"&filename="+fileName;
+	            request.url = "http://" + properties.getHost.lastResult + "/snanalizer/downloadxls?red="+redId+"&filename="+fileName;
 	            request.method = URLRequestMethod.GET;
 	            fileToDownload = new FileReference();
 	            try {

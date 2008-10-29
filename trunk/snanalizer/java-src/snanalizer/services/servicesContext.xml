@@ -50,4 +50,9 @@
 
 	<bean id="excelExporter" class="snanalizer.services.ExcelExporterImpl"/>
 	
+	<bean id="propertiesService" class="snanalizer.services.PropertiesService">
+		<property name="host" value="${app.host}:${app.port}"/>
+	</bean>
+	
+	
 </beans>

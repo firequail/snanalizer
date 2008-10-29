@@ -80,5 +80,11 @@
         		<factory>spring</factory>
         		<source>respuestasDeRecursosService</source>
         	</properties>
-    </destination>    
+    </destination>
+    <destination id="propertiesService">
+        	<properties>
+        		<factory>spring</factory>
+        		<source>propertiesService</source>
+        	</properties>
+    </destination>
 </service>

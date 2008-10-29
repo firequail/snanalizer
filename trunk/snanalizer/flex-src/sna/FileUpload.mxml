@@ -10,8 +10,13 @@
 		[Event(name="uploadSecurityError", type="flash.events.SecurityErrorEvent")]
 	</mx:Metadata>
 
+	<mx:RemoteObject id="properties" destination="propertiesService" showBusyCursor="true">
+		<mx:method name="getHost" result="upload(event)"/>
+	</mx:RemoteObject>
+
 	<mx:Script>
 		<![CDATA[
+			import mx.rpc.events.ResultEvent;
 			
 			import mx.controls.*;
 			import mx.managers.*;
@@ -43,6 +48,11 @@
 			}
 			
 			public function startUploading():void {
+				properties.getHost();
+			}
+			
+			
+			public function upload(e:ResultEvent):void {
 				if(txtruta.text != "") {
 					var param:String = "fileName=" + _refAddFiles.fileList[0].name;
 					var sendVars:URLVariables = new URLVariables();
@@ -51,7 +61,7 @@
 	
 					var request:URLRequest = new URLRequest();
 					request.data = sendVars;
-					request.url = "http://localhost:8080/snanalizer/upload?"+param;
+					request.url = "http://" + properties.getHost.lastResult + "/snanalizer/upload?"+param;
 					request.method = URLRequestMethod.POST;
 					request.contentType = "multipart/form-data";
 					
