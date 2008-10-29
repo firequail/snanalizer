@@ -10,7 +10,7 @@
 			<mx:List id="listaRedes" dragExit="calcularItems()" dragEnter="restaurar()" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{redesService.getRedes.lastResult}"   height="100%" width="100%">
 				<mx:itemRenderer>
 					<mx:Component>
-						<mx:Label text="{data.descripcion}"/>
+						<mx:Label text="{data.nombre}"/>
 					</mx:Component>
 				</mx:itemRenderer>
 			</mx:List>
@@ -20,7 +20,7 @@
 			<mx:List id="listaSelec" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{selectedNets}"  height="100%" width="100%">
 				<mx:itemRenderer>
 					<mx:Component>
-						<mx:Label text="{data.descripcion}"/>
+						<mx:Label text="{data.nombre}"/>
 					</mx:Component>
 				</mx:itemRenderer>
 			</mx:List>

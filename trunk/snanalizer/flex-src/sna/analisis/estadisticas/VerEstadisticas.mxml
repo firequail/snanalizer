@@ -20,7 +20,7 @@
 		</mx:VBox>
 		<mx:Repeater id="rptRedes" dataProvider="{redesService.getRedesById.lastResult}" >
 			<mx:VBox height="100%" horizontalAlign="center" verticalAlign="middle" >
-				<mx:Label text="{rptRedes.currentItem.descripcion}" width="200" fontWeight="bold" paddingTop="2"/>
+				<mx:Label text="{rptRedes.currentItem.nombre}" width="200" fontWeight="bold" paddingTop="2"/>
 				<sna:DataComboBox id="arrayCmb" dataProvider="{rptRedes.currentItem.puntosDeVista}" labelFunction="getPtoVista" unselectedLabel="Seleccione" itemRenderer="mx.controls.Label" width="200" change="traerInfo(event)" />
 				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
 					<mx:Label id="cantNod" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>

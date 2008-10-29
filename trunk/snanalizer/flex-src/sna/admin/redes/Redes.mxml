@@ -13,7 +13,7 @@
 		<mx:HBox width="100%" height="100%">
 			<mx:DataGrid id="redes" dataProvider="{redesService.getRedes.lastResult}" width="100%" height="100%">
 				<mx:columns>
-					<mx:DataGridColumn headerText="Descripcion" dataField="descripcion" wordWrap="true"/>
+					<mx:DataGridColumn headerText="Nombre" dataField="nombre" wordWrap="true"/>
 				</mx:columns>
 			</mx:DataGrid>
 		</mx:HBox>
