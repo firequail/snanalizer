@@ -10,18 +10,19 @@
 
 	<mx:Form width="500">
 		<mx:Repeater id="rptPreguntas" dataProvider="{encuestasService.getPreguntasOf.lastResult}" >
-			
-			<mx:FormItem label="Pregunta:" fontWeight="bold" width="100%">
-				<mx:Text id="arrayPreguntas" fontWeight="bold"   text="{rptPreguntas.currentItem.descripcion}" width="80%"/>
-			</mx:FormItem>
-			<mx:VBox width="100%">
-				<mx:FormItem label="Respuesta:" fontWeight="bold" width="100%">
-					<sna:DataComboBox id="arrayRespuestas" dataProvider="{redesService.getRecursosOfExcept.lastResult}" dataField="id" labelFunction="getUsuarioNombre" unselectedLabel="Seleccione una respuesta"/>
+			<mx:VBox borderStyle="solid" width="98%" paddingTop="1" paddingBottom="1" paddingLeft="2" paddingRight="2" cornerRadius="5" borderThickness="1" backgroundColor="#F1EBEB">
+				<mx:FormItem label="Pregunta:" fontWeight="bold" width="100%">
+					<mx:Text id="arrayPreguntas" fontWeight="bold"   text="{rptPreguntas.currentItem.descripcion}" width="80%"/>
 				</mx:FormItem>
-				<mx:FormItem fontWeight="bold" label="Cuál es el grado de relación con esa persona?:" width="100%">
-					<sna:DataComboBox id="arrayIntensidad" dataProvider="{obtenerIntMax()}"  />
-				</mx:FormItem>
-				<mx:TextInput width="0" height="0" id="arrayId" text="{rptPreguntas.currentItem.id}" visible="false" />
+				<mx:VBox>
+					<mx:FormItem label="Respuesta:" fontWeight="bold" width="100%">
+						<sna:DataComboBox id="arrayRespuestas" width="100%" dataProvider="{redesService.getRecursosOfExcept.lastResult}" dataField="id" labelFunction="getUsuarioNombre" unselectedLabel="Seleccione una respuesta"/>
+					</mx:FormItem>
+					<mx:FormItem fontWeight="bold" label="Cuál es el grado de relación con esa persona?:" width="100%">
+						<sna:DataComboBox id="arrayIntensidad" dataProvider="{obtenerIntMax()}" />
+					</mx:FormItem>
+					<mx:TextInput width="0" height="0" id="arrayId" text="{rptPreguntas.currentItem.id}" visible="false" />
+				</mx:VBox>
 			</mx:VBox>
 		</mx:Repeater>
 	</mx:Form>
@@ -67,7 +68,7 @@
 			public function getUsuarioNombre(data:Object):String {
 				//Checkeo si es un usuario o el unselected label
 				if(data.id != null) {
-					return data.usuario.nombre;
+					return data.usuario.nombre + " " + data.usuario.apellido;
 				}
 				return data.label;
 			}

@@ -7,19 +7,19 @@
 	<mx:Panel title="Modificar usuario">
 		<mx:Form id="form1" defaultButton="{okButton}">
 			<mx:FormItem label="Email" tabIndex="1">
-				<mx:TextInput id="email" text="{usuario.email}"/>
+				<mx:TextInput id="email" text="{usuario.email}" maxChars="200"/>
 			</mx:FormItem>
 			<mx:FormItem label="Contraseña" tabIndex="2">
-				<mx:TextInput id="password1" displayAsPassword="true" text="{usuario.password}"/>
+				<mx:TextInput id="password1" displayAsPassword="true" text="{usuario.password}" maxChars="20"/>
 			</mx:FormItem>
 			<mx:FormItem label="Repetir Contraseña" tabIndex="3">
-				<mx:TextInput id="password2" displayAsPassword="true" text="{usuario.password}"/>
+				<mx:TextInput id="password2" displayAsPassword="true" text="{usuario.password}" maxChars="20"/>
 			</mx:FormItem>
 			<mx:FormItem label="Nombre" tabIndex="4">
-				<mx:TextInput id="nombre" text="{usuario.nombre}"/>
+				<mx:TextInput id="nombre" text="{usuario.nombre}" maxChars="50"/>
 			</mx:FormItem>
 			<mx:FormItem label="Apellido" tabIndex="5">
-				<mx:TextInput id="apellido" text="{usuario.apellido}"/>
+				<mx:TextInput id="apellido" text="{usuario.apellido}" maxChars="50"/>
 			</mx:FormItem>
 			<mx:FormItem label="Rol" tabIndex="4">
 				<sna:DataComboBox id="rolCombo" selectedData="{usuario.rol}">
@@ -38,10 +38,10 @@
 	</mx:Panel>
 	
 	<valid:UserEmailValidator id="vemail" source="{email}"/>
-	<valid:RequiredText id="vpassword1" source="{password1}"/>
-	<valid:RequiredText id="vpassword2" source="{password2}" equalTo="{password1}"/>
-	<valid:RequiredText id="vnombre" source="{nombre}"/>
-	<valid:RequiredText id="vapellido" source="{apellido}"/>
+	<valid:RequiredText id="vpassword1" source="{password1}" minLength="6" maxLength="20"/>
+	<valid:RequiredText id="vpassword2" source="{password2}" minLength="6" maxLength="20" equalTo="{password1}"/>
+	<valid:RequiredText id="vnombre" source="{nombre}" maxLength="50"/>
+	<valid:RequiredText id="vapellido" source="{apellido}" maxLength="50"/>
 	
 	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
 	
