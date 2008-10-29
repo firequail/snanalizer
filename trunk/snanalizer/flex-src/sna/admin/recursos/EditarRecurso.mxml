@@ -53,7 +53,6 @@
 	<valid:RequiredText id="vpassword2" source="{password2}" equalTo="{password1}"/>
 	<valid:RequiredText id="vnombre" source="{nombre}"/>
 	<valid:RequiredText id="vapellido" source="{apellido}"/>
-	<valid:RequiredText id="vfecha" source="{dtf}"/>
 		
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
@@ -70,7 +69,7 @@
 			public var recurso:Object;
 			
 			private function isValid():Boolean {
-				return Validator.validateAll([vemail,vpassword1,vpassword2,vnombre,vapellido,vfecha]).length == 0;
+				return Validator.validateAll([vemail,vpassword1,vpassword2,vnombre,vapellido]).length == 0;
 			}
 			
 			private function guardar():void {

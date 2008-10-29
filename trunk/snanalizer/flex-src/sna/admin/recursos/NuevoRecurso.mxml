@@ -22,7 +22,7 @@
 				<mx:TextInput id="apellido" text="" />
 			</mx:FormItem>
 			<mx:FormItem label="Fecha de Nacimiento" tabIndex="6">
-				<mx:DateField id="dtf" selectableRange="{{rangeEnd : new Date()}}" formatString="DD/MM/YYYY"/>
+				<mx:DateField id="dtf" selectedDate="{new Date(1980,01,01)}" selectableRange="{{rangeEnd : new Date()}}" formatString="DD/MM/YYYY"/>
 			</mx:FormItem>
 			<mx:FormItem label="Area" tabIndex="7">
 				<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getAreas.lastResult}"  >
@@ -54,7 +54,6 @@
 	<valid:RequiredText id="vpassword2" source="{password2}" equalTo="{password1}"/>
 	<valid:RequiredText id="vnombre" source="{nombre}"/>
 	<valid:RequiredText id="vapellido" source="{apellido}"/>
-	<valid:RequiredText id="vfecha" source="{dtf}"/>
 	
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
@@ -69,7 +68,7 @@
 			import mx.collections.ArrayCollection;
 
 			private function isValid():Boolean {
-				return Validator.validateAll([vemail,vpassword1,vpassword2,vnombre,vapellido,vfecha]).length == 0;
+				return Validator.validateAll([vemail,vpassword1,vpassword2,vnombre,vapellido]).length == 0;
 			}
 						
 			private function guardar():void {
