@@ -34,11 +34,11 @@
 	<bean id="respuestasDeRecursosService" class="snanalizer.services.RespuestasDeRecursosServiceImpl"/>
 	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="465" />
-		<property name="protocol" value="smtps" />
-		<property name="username" value="snanalyzer@gmail.com"/>
-		<property name="password" value="juancandado"/>
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
+		<property name="protocol" value="${mail.protocol}" />
+		<property name="username" value="${mail.username}"/>
+		<property name="password" value="${mail.password}"/>
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtps.auth">true</prop>
