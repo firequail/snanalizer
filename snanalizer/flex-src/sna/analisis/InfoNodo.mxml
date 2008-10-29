@@ -81,14 +81,8 @@
 			}
 			
 			private function onImageLoad(e:HTTPStatusEvent):void {
-				if(e.status != 200 && e.status != 0) {
+				if(actualImg.content == null) {
 					loadImage("null",false);
-				}
-			}
-			
-			private function onImageLoadNoRetry(e:HTTPStatusEvent):void {
-				if(e.status != 200 && e.status != 0) {
-					//Alert.show("HTTP Error: " + e);
 				}
 			}
 			
@@ -105,10 +99,9 @@
 			
 			private function loadImage(name:String, retry:Boolean):void {
 				var img:Image = new Image();
+				
 				if(retry) {
 					img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoad);
-				} else {
-					img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoadNoRetry);
 				}
 				
 				img.source = "resourcespics/"+name+".jpg";
