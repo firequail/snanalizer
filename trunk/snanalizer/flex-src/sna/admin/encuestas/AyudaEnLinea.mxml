@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="500" horizontalAlign="left">
+		<mx:TextArea width="100%" height="100%" backgroundColor="#FAF7D1" editable="false">
+       		<mx:htmlText>
+            	<![CDATA[Usted se encuentra en el módulo de <b>ENCUESTAS</b>.
+
+Este módulo contiene dos pestañas: <b>
+	- Encuestas de red
+	- Encuestas de portal</b>
+
+La pantalla principal de Encuestas de Red, presenta el listado de las encuestas de red del sistema.
+
+En esta pestaña se puede:<b>
+	- Crear una nueva encuesta de red</b>
+
+Para <b><u>crear un nueva encuesta de red</u></b> debe:
+	1- En la pantalla principal de Encuestas de Red, presionar el botón <b>Nueva Encuesta de Red</b>
+	2- Completar los siguientes datos de la encuesta de red:
+		• Nombre
+		• Preguntas. Para <b><u>crear una pregunta</u></b> debe:
+			a.	Presionar el botón <b>Nueva Pregunta</b>
+			b.	Hacer clic en la celda que dice <i>Ingrese la descripción de la pregunta</i>, bajo la columna <b>Descripción</b>.
+			c.	Ingresar la descripción de la pregunta
+			d.	En la misma fila, hacer clic sobre el número 5, bajo la columna <b>Intensidad máxima</b>
+			e.	Ingresar la intensidad máxima de la respuesta para esa pregunta
+			f.	Repetir los pasos a, b, c, d y e hasta ingresar todas las preguntas de la encuesta
+	3- Presionar el botón <b>OK</b>.
+
+La pantalla principal de Encuestas de Portal, presenta el listado de las encuestas de portal del sistema.
+
+En esta pestaña se puede:<b>
+	- Crear una nueva encuesta de portal</b>
+
+Para <b><u>crear una nueva encuesta de portal</u></b> debe:
+	1- En la pantalla principal de Encuestas de Portal, presionar el botón <b>Nueva Encuesta de Portal</b>
+	2- Completar los siguientes datos de la encuesta de portal:
+		• Nombre
+		• Pregunta. Para <b><u>crear una pregunta</u></b> debe:
+			a.	Presionar el botón <b>Nueva Pregunta</b>
+			b.	Completar los siguientes datos de la pregunta:
+				• Descripción
+				• Respuestas. Para <b><u>crear una respuesta</u></b> debe:
+					I.	Presionar el botón <b>Nueva Respuesta</b>
+					II.	Hacer clic en la celda que dice <i>Ingrese la descripción de la respuesta</i>, bajo la columna <b>Descripción</b>.
+					III.Ingresar la descripción de la respuesta.
+					IV.	Repetir los pasos I, II y III hasta ingresar todas las respuestas
+			c.	Presionar el botón <b>OK</b>
+	3- Presionar el botón <b>OK</b>.
+]]>
+        	</mx:htmlText>
+ 		</mx:TextArea>
+	</mx:Panel>
+</mx:Canvas>

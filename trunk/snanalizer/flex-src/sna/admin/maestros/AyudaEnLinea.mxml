@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="500" horizontalAlign="left">
+		<mx:TextArea width="100%" height="100%" backgroundColor="#FAF7D1" editable="false">
+       		<mx:htmlText>
+            	<![CDATA[Usted se encuentra en el módulo de <b>DATOS MAESTROS</b>.
+            	
+La pantalla principal presenta el listado de todos los datos maestros del sistema.
+
+En este módulo se puede:<b>
+	- Listar los atributos de un dato maestro
+	- Crear un nuevo atributo
+	- Modificar un atributo</b>
+	
+Para <b><u>listar los atributos de un dato maestro</u></b> debe:
+	1- En la pantalla principal, hacer doble clic en la fila de un dato maestro.
+	
+Para <b><u>crear un nuevo atributo</u></b> debe:
+	1- En la pantalla principal, hacer doble clic en la fila de un dato maestro
+	2- Presionar el botón <b>Nuevo atributo</b>
+	3- Completar los datos del atributo
+	4- Presionar el botón <b>OK</b>.
+	
+Para <b><u>modificar un atributo</u></b> debe:
+	1- En la pantalla principal, hacer doble clic en la fila de un dato maestro
+	2- Hacer doble clic en la fila del atributo a modificar
+	3- Modificar los datos que se deseen del atributo
+	4- Presionar el botón <b>OK</b>.
+	           	]]>
+        	</mx:htmlText>
+ 		</mx:TextArea>
+	</mx:Panel>
+</mx:Canvas>

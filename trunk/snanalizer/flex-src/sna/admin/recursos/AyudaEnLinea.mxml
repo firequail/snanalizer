@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="500" horizontalAlign="left">
+		<mx:TextArea width="100%" height="100%" backgroundColor="#FAF7D1" editable="false">
+       		<mx:htmlText>
+            	<![CDATA[Usted se encuentra en el módulo de <b>RECURSOS</b>.
+            	
+La pantalla principal presenta el listado de todos los recursos del sistema.
+
+En este módulo se puede: <b>
+	- Buscar recursos por nombre y/o apellido
+	- Crear un nuevo recurso
+	- Visualizar un recurso
+	- Modificar un recurso</b>
+	
+Para <b><u>buscar un recurso</u></b> debe:
+	1- Ingresar al menos uno de los siguientes parmámetros en los campos de texto correspondientes:
+    	- Nombre
+    	- Apellido
+	2- Presionar el botón <b>Buscar</b>.
+	
+<i><b>TIP!</b> No necesariamente se deben ingresar el nombre o el apellido completo. Esto es debido a que la aplicación busca que el texto ingresado forme parte del nombre o del apellido según corresponda.</i>
+
+Para <b><u>crear un nuevo recurso</u></b> debe:
+	1- En la pantalla principal, presionar el botón <b>Nuevo Recurso</b>
+	2- Completar los datos del recurso
+	3- Presionar el botón OK.
+	
+Para <b><u>visualizar un recurso</u></b> debe:
+	1- En la pantalla principal, hacer doble clic en la fila del recurso a visualizar.
+	
+Para <b><u>modificar un recurso</u></b> debe:
+	1- En la pantalla principal, hacer doble clic en la fila del recurso a modificar
+	2- Presionar el botón <b>Editar Recurso</b>
+	3- Modificar los datos que se deseen del recurso
+	4- Presionar el botón <b>OK</b>.
+]]>
+        	</mx:htmlText>
+ 		</mx:TextArea>
+	</mx:Panel>
+</mx:Canvas>
