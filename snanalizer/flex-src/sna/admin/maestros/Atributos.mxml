@@ -55,13 +55,17 @@
 			
 			private function nuevoAtributo():void {
 				this.currentState = "NuevoAtributo";
+				newAtributo.init();
 				newAtributo.setDatoMaestro(_datoMaestro);
 				
 			}
 			
 			private function modificarAtributo(event:ResultEvent):void {
-				this.currentState = "EditarAtributo";
-				editarAtributo.atributo = event.result;
+				if(event.result != null) {
+					this.currentState = "EditarAtributo";
+					editarAtributo.init();
+					editarAtributo.atributo = event.result;
+				}
 			}
 			
 			private function editarAtributoOK(event:ResultEvent):void {

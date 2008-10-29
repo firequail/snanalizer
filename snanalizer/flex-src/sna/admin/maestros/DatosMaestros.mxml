@@ -30,11 +30,10 @@
 			import mx.rpc.events.ResultEvent;
 			
 			private function verAtributos(event:ResultEvent):void {
-				
-				this.currentState = "PanelAtributos";
-				panelAtributos.setDatoMaestro(event.result);
-				//panel2.visible = true;
-				
+				if(event.result != null) {
+					this.currentState = "PanelAtributos";
+					panelAtributos.setDatoMaestro(event.result);
+				}
 			}
 			
 			private function atributosOK(event:ResultEvent):void {

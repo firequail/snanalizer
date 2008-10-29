@@ -48,9 +48,11 @@
 			}
 			
 			private function modificarUsuario(event:ResultEvent):void {
-				this.currentState = "EditarUsuario";
-				editarUsuario.init();
-				editarUsuario.usuario = event.result;
+				if(event.result != null) {
+					this.currentState = "EditarUsuario";
+					editarUsuario.init();
+					editarUsuario.usuario = event.result;
+				}
 			}
 			
 			

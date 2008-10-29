@@ -18,7 +18,7 @@
 
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
-			<mx:Button id="okButton" label="OK" tabIndex="5" />
+			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
 			<mx:Button label="Cancelar" click="cancelar()" tabIndex="6" />
 		</mx:ControlBar>
 	</mx:Panel>
@@ -49,6 +49,13 @@
 			
 			private function cancelar():void {
 				dispatchEvent(ResultEvent.createEvent());
+			}
+			
+			public function init():void {
+				nombre.text= "";
+				vnombre.reset();
+				descripcion.text="";
+				activo.selected = true;
 			}
 			
 		]]>

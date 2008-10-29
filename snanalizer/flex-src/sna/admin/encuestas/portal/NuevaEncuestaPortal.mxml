@@ -48,6 +48,7 @@
 			
 			public function init():void {
 				encuesta = new EncuestaDePortal();
+				vnombre.reset();
 			}
 			
 			public function nuevaPregunta():void {
