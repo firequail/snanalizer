@@ -216,10 +216,8 @@ public class RedesServiceImpl implements RedesService {
 			MimeMessage[] msgs = mails.toArray(new MimeMessage[0]);
 			mailSender.send(msgs);
 
-		} catch (MailException e) {
-			throw new RuntimeException(e);
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
