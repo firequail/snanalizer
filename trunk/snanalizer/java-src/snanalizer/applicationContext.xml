@@ -11,6 +11,15 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	  <property name="locations">
+	    <list>
+	      <value>/WEB-INF/classes/snanalizer/snanalizer.properties</value>
+	    </list>
+	  </property>
+	  <property name="ignoreUnresolvablePlaceholders"><value>true</value></property>
+	</bean>
+
 	<import resource="data/dataContext.xml"/>
 	<import resource="services/servicesContext.xml"/>
 

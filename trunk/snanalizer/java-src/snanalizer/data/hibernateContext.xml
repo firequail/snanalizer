@@ -14,10 +14,10 @@
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/sna" />
-		<property name="username" value="root" />
-		<property name="password" value="admin" />
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.user}" />
+		<property name="password" value="${db.password}" />
 	</bean>
 
 	<bean id="sessionFactory"
@@ -26,7 +26,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQLDialect
+					${db.hibernate.dialect}
 				</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">false</prop>
