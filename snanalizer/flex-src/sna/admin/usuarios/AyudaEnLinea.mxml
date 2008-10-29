@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
 	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="500" horizontalAlign="left">
-		<mx:TextArea id="txtAyuda" htmlText="{help}" focusAlpha="0.0" width="100%" height="100%"  backgroundColor="#FAF7D1"/>
-	</mx:Panel>
-	
-	<mx:String id="help" source="help_usuarios.html" />
+		<mx:TextArea width="100%" height="100%" backgroundColor="#FAF7D1" editable="false">
+       		<mx:htmlText>
+            	<![CDATA[Usted se encuentra en el módulo de <b>USUARIOS</b>.
+            	
+La pantalla principal presenta el listado de todos los usuarios del sistema.
 
+En este módulo se puede: <b>
+	- Crear un nuevo usuario
+	- Modificar un usuario
+	- Eliminar un usuario</b>
+
+<i><b>TIP!</b> La lista puede ordenarse de forma ascendente o descendente al cliquear en la cabecera de un campo.</i>
+	
+Para <b><u>crear un nuevo usuario</u></b> debe:
+	1- En la pantalla principal, presionar el botón <b>Nuevo usuario</b>
+	2- Completar los datos del usuario
+	3- Presionar el botón <b>OK</b>.
+	
+Para <b><u>modificar un usuario</u></b> debe:
+	1- En la pantalla principal, hacer doble clic en la fila del usuario a modificar
+	2- Modificar los datos que se deseen del usuario
+	3- Presionar el botón <b>OK</b>.
+	
+Para <b><u>eliminar un usuario</u></b> debe:
+	1- En la pantalla principal, hacer un clic en la fila del usuario a eliminar
+	2- Presionar el botón <b>Eliminar Usuario</b>
+	3- Confirmar presionando el botón <b>OK</b>.
+	
+<i><b>TIP!</b> El botón “Eliminar Usuario” se habilitará solo cuando se haga clic en la fila de un usuario.</i>
+            	]]>
+        	</mx:htmlText>
+ 		</mx:TextArea>
+
+	</mx:Panel>
 </mx:Canvas>

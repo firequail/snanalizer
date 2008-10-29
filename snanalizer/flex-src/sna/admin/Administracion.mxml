@@ -24,19 +24,34 @@
 				</mx:HBox>
 			</mx:Canvas>
 			<mx:Canvas label="Recursos" width="100%" height="100%">
-				<recursos:Recursos/>
+				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
+					<recursos:Recursos/>
+					<recursos:AyudaEnLinea/>		
+				</mx:HBox>
 			</mx:Canvas>
 			<mx:Canvas label="Datos Maestros" width="100%" height="100%">
-				<maestros:DatosMaestros/>
+				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
+					<maestros:DatosMaestros/>
+					<maestros:AyudaEnLinea/>
+				</mx:HBox>
 			</mx:Canvas>
 			<mx:Canvas label="Grupos de Recursos" width="100%" height="100%">
-				<grupos:Grupos/>
+				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
+					<grupos:Grupos/>
+					<grupos:AyudaEnLinea/>
+				</mx:HBox>				
 			</mx:Canvas>
 			<mx:Canvas label="Encuestas" width="100%" height="100%">
-				<encuestas:Encuestas/>
+				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">			
+					<encuestas:Encuestas/>
+					<encuestas:AyudaEnLinea/>
+				</mx:HBox>	
 			</mx:Canvas>
 			<mx:Canvas label="Redes" width="100%" height="100%">
-				<redes:Redes/>
+				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
+					<redes:Redes/>
+					<redes:AyudaEnLinea/>
+				</mx:HBox>	
 			</mx:Canvas>
 		</mx:TabNavigator>
 	</mx:Panel>

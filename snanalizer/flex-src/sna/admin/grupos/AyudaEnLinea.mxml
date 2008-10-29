@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="500" horizontalAlign="left">
+		<mx:TextArea width="100%" height="100%" backgroundColor="#FAF7D1" editable="false">
+       		<mx:htmlText>
+            	<![CDATA[Usted se encuentra en el módulo de <b>GRUPO DE RECURSOS</b>.
+
+La pantalla principal presenta el listado de los grupos de recursos del sistema.
+
+En este módulo se puede:<b>
+	- Crear un nuevo grupo de recursos
+	- Modificar un grupo de recursos
+	- Eliminar un grupo de recursos</b>
+
+Para <b><u>crear un nuevo grupo de recursos</u></b> debe:
+	1- En la pantalla principal, presionar el botón <b>Nuevo Grupo</b>
+	2- Completar los datos del grupo de recursos
+	3- Presionar el botón <b>OK</b>.
+
+<i><b>TIP!</b> Para seleccionar o deseleccionar un recurso, arrastrarlo con el mouse desde una la lista hacia la otra.</i>
+
+Para <b><u>modificar un grupo de recursos</u></b> debe:
+	1- En la pantalla principal, hacer doble clic en la fila del grupo de recursos a modificar
+	2- Modificar los datos que se deseen del grupo de recursos
+	3- Presionar el botón <b>Guardar</b>.
+
+Para <b><u>eliminar un grupo de recursos</u></b> debe:
+	1- En la pantalla principal, hacer doble clic en la fila del grupo de recursos a eliminar
+	2- Presionar el botón <b>Eliminar</b>
+	3- Presionar el botón <b>OK</b>.
+	
+	
+	           	]]>
+        	</mx:htmlText>
+ 		</mx:TextArea>
+	</mx:Panel>
+</mx:Canvas>
