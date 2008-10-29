@@ -3,33 +3,34 @@
 
 	<mx:states>
 		<mx:State name="NuevoRecurso">
-			<mx:RemoveChild target="{panel1}"/>
 			<mx:RemoveChild target="{panelBuscar}"/>
+			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
 				<recursos:NuevoRecurso id="newRecurso" result="editarRecursoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="EditarRecurso">
-			<mx:RemoveChild target="{panel1}"/>
 			<mx:RemoveChild target="{panelBuscar}"/>
+			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
 				<recursos:EditarRecurso id="editarRecurso" result="editarRecursoOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="VisualizarRecurso">
-			<mx:RemoveChild target="{panel1}"/>
 			<mx:RemoveChild target="{panelBuscar}"/>
+			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
 				<recursos:VisualizarRecurso id="mostrarRecurso" result="verRecursosOK(event)"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
-	<mx:Panel title="Buscar Recurso" id="panelBuscar" width="600">
+	<mx:VBox width="100%" height="95%" verticalAlign="middle">
+	<mx:Panel title="Buscar Recurso" id="panelBuscar" width="100%" height="20%">
 		<mx:HBox>
 			<recursos:BuscarRecurso id="buscarRecursos" result="buscarRecurso(event)"/>
 		</mx:HBox>
 	</mx:Panel>
-	<mx:Panel title="Listado de Recursos" id="panel1" width="600" height="300">
+	<mx:Panel title="Listado de Recursos" id="panel1" width="100%" height="80%">
 		<mx:HBox width="100%" height="100%">
 			<recursos:ListadoRecursos id="listadoRecursos" result="verRecurso(event)" width="100%" height="100%"/>
 		</mx:HBox>
@@ -37,6 +38,7 @@
 			<mx:Button label="Nuevo Recurso" click="nuevoRecurso()"/>
 		</mx:ControlBar>
 	</mx:Panel>
+	</mx:VBox>
 
 
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>

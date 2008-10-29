@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
-	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="500" horizontalAlign="left">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:recursos="sna.admin.recursos.*" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="95%" horizontalAlign="left">
 		<mx:TextArea width="100%" height="100%" backgroundColor="#FAF7D1" editable="false">
        		<mx:htmlText>
             	<![CDATA[Usted se encuentra en el módulo de <b>RECURSOS</b>.
@@ -38,4 +38,4 @@ Para <b><u>modificar un recurso</u></b> debe:
         	</mx:htmlText>
  		</mx:TextArea>
 	</mx:Panel>
-</mx:Canvas>
+</mx:VBox>
