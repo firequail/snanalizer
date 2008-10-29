@@ -5,7 +5,6 @@ import java.util.List;
 import snanalizer.domain.Encuesta;
 import snanalizer.domain.EncuestaDePortal;
 import snanalizer.domain.Pregunta;
-import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.RespuestaValor;
 

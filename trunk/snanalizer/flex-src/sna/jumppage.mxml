@@ -4,19 +4,19 @@
 		<mx:State name="Administracion">
 			<mx:RemoveChild target="{main}"/>
 			<mx:AddChild position="lastChild">
-				<admin:Administracion/>
+				<admin:Administracion logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Analisis">
 			<mx:RemoveChild target="{main}"/>
 			<mx:AddChild position="lastChild">
-				<analisis:Analisis/>
+				<analisis:Analisis logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Portal">
 			<mx:RemoveChild target="{main}"/>
 			<mx:AddChild position="lastChild">
-				<portal:Portal id="portalDeUsuario"/>
+				<portal:Portal id="portalDeUsuario" logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Test">
@@ -65,8 +65,10 @@
 				Alert.show("Elegí un Recurso");
 			
 		}
-
-	
+		
+		private function logout():void {
+			this.currentState = "";
+		}
 	
 		]]>
 	</mx:Script>

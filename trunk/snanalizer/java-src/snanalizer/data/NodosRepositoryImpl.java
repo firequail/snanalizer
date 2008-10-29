@@ -7,7 +7,6 @@ import org.hibernate.criterion.Restrictions;
 
 import snanalizer.domain.Nodo;
 import snanalizer.domain.PuntoDeVista;
-import snanalizer.domain.Recurso;
 
 public class NodosRepositoryImpl extends BaseRepositoryImpl<Nodo>
 		implements NodosRepository {
