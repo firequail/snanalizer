@@ -6,19 +6,19 @@
 	<mx:Panel title="Modificar Recurso">
 		<mx:Form id="form1" defaultButton="{okButton}">
 			<mx:FormItem label="E-Mail" tabIndex="1">
-				<mx:TextInput id="email" text="{recurso.usuario.email}"/>
+				<mx:TextInput id="email" text="{recurso.usuario.email}" maxChars="200"/>
 			</mx:FormItem>
 			<mx:FormItem label="Nombre" tabIndex="2">
-				<mx:TextInput id="nombre" text="{recurso.usuario.nombre}" />
+				<mx:TextInput id="nombre" text="{recurso.usuario.nombre}" maxChars="50"/>
 			</mx:FormItem>
 			<mx:FormItem label="Apellido" tabIndex="3">
-				<mx:TextInput id="apellido" text="{recurso.usuario.apellido}"/>
+				<mx:TextInput id="apellido" text="{recurso.usuario.apellido}" maxChars="50"/>
 			</mx:FormItem>
 			<mx:FormItem label="Contraseña" tabIndex="4">
-				<mx:TextInput id="password1" displayAsPassword="true" text="{recurso.usuario.password}" />
+				<mx:TextInput id="password1" displayAsPassword="true" text="{recurso.usuario.password}" maxChars="20"/>
 			</mx:FormItem>
 			<mx:FormItem label="Repetir Contraseña" tabIndex="5">
-				<mx:TextInput id="password2" displayAsPassword="true" text="{recurso.usuario.password}" />
+				<mx:TextInput id="password2" displayAsPassword="true" text="{recurso.usuario.password}" maxChars="20"/>
 			</mx:FormItem>
 			<mx:FormItem label="Fecha de Nacimiento" tabIndex="6">
 				<mx:DateField id="dtf" selectedDate="{recurso.fechaNac}"/>
@@ -49,10 +49,10 @@
 	</mx:Panel>
 	
 	<valid:UserEmailValidator id="vemail" source="{email}"/>
-	<valid:RequiredText id="vpassword1" source="{password1}"/>
-	<valid:RequiredText id="vpassword2" source="{password2}" equalTo="{password1}"/>
-	<valid:RequiredText id="vnombre" source="{nombre}"/>
-	<valid:RequiredText id="vapellido" source="{apellido}"/>
+	<valid:RequiredText id="vpassword1" source="{password1}" minLength="6" maxLength="20"/>
+	<valid:RequiredText id="vpassword2" source="{password2}" minLength="6" maxLength="20" equalTo="{password1}"/>
+	<valid:RequiredText id="vnombre" source="{nombre}" maxLength="50"/>
+	<valid:RequiredText id="vapellido" source="{apellido}" maxLength="50"/>
 		
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>

@@ -7,10 +7,10 @@
 	<mx:Panel title="Nuevo Atributo">
 		<mx:Form id="form1">
 			<mx:FormItem label="Nombre" tabIndex="1">
-				<mx:TextInput id="nombre"/>
+				<mx:TextInput id="nombre" maxChars="50"/>
 			</mx:FormItem>
 			<mx:FormItem label="Descripción" tabIndex="2">
-				<mx:TextInput id="descripcion"/>
+				<mx:TextInput id="descripcion" maxChars="200"/>
 			</mx:FormItem>
 			<mx:FormItem label="Activo" tabIndex="3">
 				<mx:CheckBox id="activo" selected="true" />
@@ -23,7 +23,7 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
-	<valid:RequiredText id="vnombre" source="{nombre}"/>
+	<valid:RequiredText id="vnombre" source="{nombre}" maxLength="50"/>
 	
 	<mx:RemoteObject id="atributosService" destination="atributosService"/>
 	

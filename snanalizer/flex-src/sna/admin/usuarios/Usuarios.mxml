@@ -22,7 +22,7 @@
 	</mx:states>
 	<mx:Panel title="Listado de usuarios" id="panel1" width="100%" height="95%">
 		<mx:HBox backgroundAlpha="0.0" width="100%" height="100%">
-			<usuarios:ListadoUsuarios id="listadoUsuarios" click="butEliminar.enabled=true" result="modificarUsuario(event)" width="100%" height="144" />
+			<usuarios:ListadoUsuarios id="listadoUsuarios" click="if(listadoUsuarios.usuarios.selectedItem!=null)butEliminar.enabled=true;" result="modificarUsuario(event)" width="100%" height="144" />
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button id="butEliminar" label="Eliminar Usuario" color="red" click="removerUsuario(listadoUsuarios.usuarios.selectedItem)" enabled="false"/>
