@@ -1,5 +1,6 @@
 package snanalizer.services;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -34,9 +35,16 @@ public class FileUploadServlet extends HttpServlet {
 			for (FileItem item : items) {
 				if (item.getName() != null) {
 					byte[] data = item.get();
-					FileOutputStream fileOutSt = new FileOutputStream(request
-							.getSession().getServletContext().getRealPath("")
-							+ "/sna/resourcespics/" + fileName + ".jpg");
+					FileOutputStream fileOutSt;
+					try {
+						fileOutSt = new FileOutputStream(request.getSession()
+								.getServletContext().getRealPath("")
+								+ "/resourcespics/" + fileName + ".jpg");
+					} catch (FileNotFoundException e) {
+						fileOutSt = new FileOutputStream(request.getSession()
+								.getServletContext().getRealPath("")
+								+ "/sna/resourcespics/" + fileName + ".jpg");
+					}
 					fileOutSt.write(data);
 					fileOutSt.close();
 				}

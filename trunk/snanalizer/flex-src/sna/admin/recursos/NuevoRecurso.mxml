@@ -74,6 +74,7 @@
 						
 			private function guardar():void {
 				if(isValid()) {
+					photo.fileName = email.text;
 					photo.startUploading();
 					recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,activo.selected);
 					dispatchEvent(ResultEvent.createEvent());
