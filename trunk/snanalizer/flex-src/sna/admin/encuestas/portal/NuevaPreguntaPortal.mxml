@@ -9,7 +9,7 @@
 	<mx:Panel title="Nueva pregunta" width="100%" height="100%">
 		<mx:Form id="form1" defaultButton="{okButton}" width="100%" height="100%">
 			<mx:FormItem label="Descripcion" tabIndex="1" width="100%">
-				<mx:TextInput id="descripcion" width="100%"/>
+				<mx:TextInput id="descripcion" width="100%" maxChars="200"/>
 			</mx:FormItem>
 			<mx:FormItem label="Respuestas" tabIndex="1" width="100%" height="100%">
 				<mx:DataGrid id="respuestas" editable="true" dataProvider="{pregunta.respuestas}" width="100%" height="100%">
@@ -26,7 +26,7 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
-	<valid:RequiredText id="vdescripcion" source="{descripcion}"/>
+	<valid:RequiredText id="vdescripcion" source="{descripcion}" maxLength="200"/>
 	
 	<mx:Script>
 		<![CDATA[
