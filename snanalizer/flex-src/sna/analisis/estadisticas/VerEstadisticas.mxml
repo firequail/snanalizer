@@ -67,7 +67,7 @@
 		
 			[Bindable]
 			private var idredes:ArrayCollection;
-			private var ultimoID:int;
+			private var ultimoID:Object;
 		
 			public function setRedes(arr:ArrayCollection):void {
 				this.idredes = arr; 
@@ -75,6 +75,7 @@
 		
 			public function init():void {
 				redesService.getRedesById(idredes);
+				
 			}
 			
 			public function getPtoVista(data:Object):String {
@@ -90,8 +91,9 @@
 				var combo:DataComboBox = DataComboBox(evt.currentTarget);
 				var obj:Object = combo.getRepeaterItem();
 				ultimoID = combo.selectedItem.id;
-
-				redesService.getBloqueEstadistico(obj.id as int,combo.selectedItem.id as int);
+				if(ultimoID != null && ultimoID != 0) {
+					redesService.getBloqueEstadistico(obj.id as int,combo.selectedItem.id as int);
+				}
 			}
 			
 			public function refreshEstadistica(event:ResultEvent):void {
@@ -107,16 +109,31 @@
 				cantNod[x].text = redesService.getBloqueEstadistico.lastResult.cantNodos;
 				cantEnl[x].text = redesService.getBloqueEstadistico.lastResult.cantEnlaces;
 				promEnl[x].text = redesService.getBloqueEstadistico.lastResult.promEnl;
-				nodoEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlEnt.recurso.usuario.nombre;
-				nodoEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlEnt + ")";
-				nodoEnlSal[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal.recurso.usuario.nombre;
-				nodoEnlSal[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlSal + ")";
+				if(redesService.getBloqueEstadistico.lastResult.nodoMaxEnlEnt != null) {
+					nodoEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlEnt.recurso.usuario.nombre;
+					nodoEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlEnt + ")";
+				} else {
+					nodoEnlEnt[x].text = "-";
+				}
+				if(redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal != null) {
+					nodoEnlSal[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal.recurso.usuario.nombre;
+					nodoEnlSal[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlSal + ")";
+				} else {
+					nodoEnlSal[x].text = "-";
+				}
 				promInt[x].text = redesService.getBloqueEstadistico.lastResult.promInt;
-				nodoMaySumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt.recurso.usuario.nombre;
-				nodoMaySumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlEnt + ")"; 
-				nodoMenSumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal.recurso.usuario.nombre;
-				nodoMenSumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlSal + ")";
-						
+				if(redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt != null) {
+					nodoMaySumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt.recurso.usuario.nombre;
+					nodoMaySumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlEnt + ")"; 
+				} else {
+					nodoMaySumEnlEnt[x].text = "-";
+				}
+				if(redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal != null) {
+					nodoMenSumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal.recurso.usuario.nombre;
+					nodoMenSumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlSal + ")";
+				} else {
+					nodoMenSumEnlEnt[x].text = "-";
+				}
 			}
 			
 			public function volver():void {
