@@ -22,7 +22,7 @@
 				<mx:TextInput id="apellido" text="" />
 			</mx:FormItem>
 			<mx:FormItem label="Fecha de Nacimiento" tabIndex="6">
-				<mx:DateField id="dtf" selectableRange="{{rangeEnd : new Date()}}"/>
+				<mx:DateField id="dtf" selectableRange="{{rangeEnd : new Date()}}" formatString="DD/MM/YYYY"/>
 			</mx:FormItem>
 			<mx:FormItem label="Area" tabIndex="7">
 				<sna:DataComboBox id="areaCombo" labelField="nombre" dataField="id" dataProvider="{datosMaestrosService.getAreas.lastResult}"  >
@@ -37,7 +37,7 @@
 				</sna:DataComboBox>
 			</mx:FormItem>
 			<mx:FormItem label="Foto" tabIndex="10">
-				<sna:FileUpload id="photo" uploadUrl="http://localhost:8080/snanalizer/upload.jsp"  width="100%" height="100%"/>
+				<sna:FileUpload id="photo" width="100%" height="100%"/>
 			</mx:FormItem>
 			<mx:FormItem label="Activo" tabIndex="11">
 				<mx:CheckBox id="activo" selected="true" />

@@ -28,7 +28,6 @@ import snanalizer.domain.Recurso;
 import snanalizer.domain.Red;
 import snanalizer.domain.Relacion;
 import snanalizer.domain.Usuario;
-import snanalizer.install.Installer;
 
 @Transactional
 public class InitDBServiceImpl implements InitDBService {
@@ -67,7 +66,7 @@ public class InitDBServiceImpl implements InitDBService {
 	private PreguntasRepository preguntasRepository;
 
 	public static void main(String[] args) {
-		new Installer().install();
+		new InitDBServiceImpl().recrearTestDB();
 	}
 
 	public void initDB() {
@@ -415,7 +414,8 @@ public class InitDBServiceImpl implements InitDBService {
 
 		Pregunta pregunta1 = new Pregunta();
 		preguntasRepository.add(pregunta1);
-		pregunta1.setDescripcion("Quien tiene mas conocimientos en usabilidad?");
+		pregunta1
+				.setDescripcion("Quien tiene mas conocimientos en usabilidad?");
 
 		PuntoDeVista puntoDeVista1 = new PuntoDeVista();
 		puntosDeVista.add(puntoDeVista1);
