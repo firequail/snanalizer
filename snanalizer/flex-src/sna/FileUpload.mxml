@@ -29,6 +29,8 @@
 			private var _refUploadFile:FileReference;
 			private var _arrUploadFiles:Array;
 			private var _numCurrentUpload:Number = 0;	
+			
+			public var fileName:String;
 		
 			// Set uploadUrl
 			public function set uploadUrl(strUploadUrl:String):void {
@@ -54,10 +56,10 @@
 			
 			public function upload(e:ResultEvent):void {
 				if(txtruta.text != "") {
-					var param:String = "fileName=" + _refAddFiles.fileList[0].name;
+					var param:String = "fileName=" + fileName;
 					var sendVars:URLVariables = new URLVariables();
 					sendVars.action = "upload";
-					sendVars.fileName = _refAddFiles.fileList[0].name;
+					sendVars.fileName = fileName;
 	
 					var request:URLRequest = new URLRequest();
 					request.data = sendVars;
