@@ -37,8 +37,11 @@
 			}
 			
 			private function modificarGrupo(event:ResultEvent):void {
-				this.currentState = "EditarGrupo";
-				editarGrupo.grupo = event.result;
+				if(event.result != null) {
+					this.currentState = "EditarGrupo";
+					editarGrupo.grupo = event.result;
+					editarGrupo.init();
+				}
 			}
 			
 			private function load(event:ResultEvent):void {

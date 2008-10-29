@@ -38,6 +38,7 @@
 			
 			public function init():void {
 				pregunta = new PreguntaDePortal();
+				vdescripcion.reset();
 			}
 			
 			public function nuevaRespuesta():void {

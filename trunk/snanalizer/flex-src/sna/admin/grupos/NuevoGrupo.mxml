@@ -11,7 +11,7 @@
 		<mx:HBox width="100%" height="100%" verticalAlign="bottom">
 			<mx:VBox width="100%" height="100%" verticalAlign="bottom">
 				<mx:Label text="Recursos Disponibles"/>
-				<mx:List id="listaRecursos" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{recursosService.getAll.lastResult}" height="90%" width="100%">
+				<mx:List id="listaRecursos" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" dataProvider="{recursosService.getAll.lastResult}" height="90%" width="100%" doubleClickEnabled="true" doubleClick="addRecurso()">
 					<mx:itemRenderer>
 						<mx:Component>
 							<mx:Label text="{data.usuario.email}"/>
@@ -21,7 +21,7 @@
 			</mx:VBox>
 			<mx:VBox width="100%" height="100%" verticalAlign="bottom">
 				<mx:Label text="Recursos seleccionados" id="lblGrupo"/>
-				<mx:List id="listaGrupo" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" height="90%" width="100%">
+				<mx:List id="listaGrupo" dragEnabled="true" dragMoveEnabled="true" dropEnabled="true" height="90%" width="100%" doubleClickEnabled="true" doubleClick="removeRecurso()">
 					<mx:itemRenderer>
 						<mx:Component>
 							<mx:Label text="{data.usuario.email}"/>
@@ -67,6 +67,19 @@
 				}
 			}
 			
+			private function addRecurso():void {
+				if(listaRecursos.selectedItem != null) {
+					(listaGrupo.dataProvider as ArrayCollection).addItem(listaRecursos.selectedItem);
+					(listaRecursos.dataProvider as ArrayCollection).removeItemAt(listaRecursos.selectedIndex);
+				}
+			}
+			
+			private function removeRecurso():void {
+				if(listaGrupo.selectedItem != null) {
+					(listaRecursos.dataProvider as ArrayCollection).addItem(listaGrupo.selectedItem);
+					(listaGrupo.dataProvider as ArrayCollection).removeItemAt(listaGrupo.selectedIndex);
+				}
+			}
 			
 			private function cancelar():void {
 				dispatchEvent(ResultEvent.createEvent());
@@ -76,6 +89,7 @@
 				listaGrupo.dataProvider = new ArrayCollection();
 				recursosService.getAll();
 				nombre.text = "";
+				vnombre.reset();
 			}
 			
 		]]>

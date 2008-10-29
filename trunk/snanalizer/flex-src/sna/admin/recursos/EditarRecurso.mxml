@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*" creationComplete="load()" >
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:valid="sna.validators.*" creationComplete="init()" >
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
@@ -48,7 +48,7 @@
 		</mx:ControlBar>
 	</mx:Panel>
 	
-	<mx:EmailValidator id="vemail" source="{email}" property="text" required="true"/>
+	<valid:UserEmailValidator id="vemail" source="{email}"/>
 	<valid:RequiredText id="vpassword1" source="{password1}"/>
 	<valid:RequiredText id="vpassword2" source="{password2}" equalTo="{password1}"/>
 	<valid:RequiredText id="vnombre" source="{nombre}"/>
@@ -85,10 +85,25 @@
 				dispatchEvent(ResultEvent.createEvent());
 			}
 			
-			private function load():void {
+			public function init():void {
 				datosMaestrosService.getAreas();
 				datosMaestrosService.getPuestos();
 				datosMaestrosService.getSeniorities();
+				email.text = "";
+				vemail.reset();
+				password1.text = "";
+				vpassword1.reset();
+				password2.text = "";
+				vpassword2.reset();
+				nombre.text = "";
+				vnombre.reset();
+				apellido.text = "";
+				vapellido.reset();
+				areaCombo.selectedIndex = 0;
+				puestoCombo.selectedIndex = 0;
+				seniorityCombo.selectedIndex = 0;
+				dtf.text = "";
+				activo.selected = true;
 			}
 			
 		]]>
