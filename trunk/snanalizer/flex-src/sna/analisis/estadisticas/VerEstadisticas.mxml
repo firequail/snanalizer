@@ -73,7 +73,7 @@
 				this.idredes = arr; 
 			}
 		
-			private function init():void {
+			public function init():void {
 				redesService.getRedesById(idredes);
 			}
 			
