@@ -9,7 +9,9 @@ public interface RecursosRepository extends BaseRepository<Recurso> {
 	
 	public List<Recurso> buscarRecursoByName(List<Usuario> user);
 
-	public List<Recurso> buscarRecursoByName(String nombre, String apellido);
+	public List<Recurso> buscarRecursoByName(String nombre, String apellido, boolean estado);
 
 	public Recurso getByUsuario(Usuario usuario);
+
+	public List<Recurso> getAllActivos();
 }

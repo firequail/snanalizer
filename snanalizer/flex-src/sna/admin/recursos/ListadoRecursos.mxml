@@ -8,8 +8,6 @@
 		<mx:method name="buscarRecursoByName" result="refreshRecursos(event)"/>
 	</mx:RemoteObject>
 	
-
-
 	<mx:DataGrid id="recursos"  dataProvider="{recursosService.getAll.lastResult}" doubleClickEnabled="true" doubleClick="verRecurso()"  width="100%" height="100%">
 		<mx:columns>
 			<mx:DataGridColumn headerText="Nombre">
@@ -55,7 +53,6 @@
 
 	</mx:DataGrid>
 	
-	
 	<mx:Script>
 		<![CDATA[
 			import mx.utils.StringUtil;
@@ -63,12 +60,16 @@
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 			
+			[Bindable]
 			public var nombre:String;
+			[Bindable]
 			public var apellido:String;
+			[Bindable]
+			public var estado:Boolean;
 			
 			
 			public function load():void {
-				recursosService.getAll();
+				recursosService.buscarRecursoByName(nombre,apellido,estado);
 			}
 
 			private function verRecurso():void {
@@ -76,18 +77,12 @@
 			}
 			
 			public function busqueda():void {
-				recursosService.buscarRecursoByName(nombre,apellido);
-				//recursos.dataProvider = recursosService.buscarRecursoByName.lastResult;
-				//recursos.dataProvider = recursosService.getAll();
-				//recursos.
+				recursosService.buscarRecursoByName(nombre,apellido,estado);
 			}
 
 			public function refreshRecursos(event:ResultEvent):void {
 				recursos.dataProvider = recursosService.buscarRecursoByName.lastResult;
 			}
-			
-			
-
 
 		]]>
 	</mx:Script>

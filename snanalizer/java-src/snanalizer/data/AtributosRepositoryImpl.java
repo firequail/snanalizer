@@ -21,11 +21,9 @@ public class AtributosRepositoryImpl extends BaseRepositoryImpl<Atributo> implem
 	
 	}
 	
-	
 	public List<Atributo> getAtributos(DatoMaestro dm) {
 		Criteria criteria = createCriteria();
 		criteria.add(Restrictions.eq("datoMaestro", dm));
-
 		return find(criteria);
 	}
 	

@@ -53,10 +53,13 @@
         
     
     
-    <mx:RemoteObject id="encuestasService" destination="encuestasService"/>
+    <mx:RemoteObject id="encuestasService" destination="encuestasService">
+    	<mx:method name="getTotalRespuestas" result="onGetTotalRespuestas(event)"/>
+    </mx:RemoteObject>
     
     <mx:Script>
-        <![CDATA[          
+        <![CDATA[
+        	import mx.rpc.events.ResultEvent;          
         import mx.collections.ArrayCollection;
         import mx.managers.PopUpManager;
  
@@ -72,7 +75,11 @@
 			this.title = enc.preguntas.getItemAt(0).descripcion;
 			encuestasService.getTotalRespuestas(enc.id as int);
 		}
-        
+		
+		public function onGetTotalRespuestas(e:ResultEvent):void {
+			var results:Object = encuestasService.getTotalRespuestas.lastResult;
+			e.toString();
+		}
     
       	private function displayInfo(data:Object, field:String, index:Number, percentValue:Number):String {
             var temp:String= (" " + percentValue).substr(0,6);

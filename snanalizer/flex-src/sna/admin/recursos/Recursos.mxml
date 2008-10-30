@@ -32,7 +32,7 @@
 	</mx:Panel>
 	<mx:Panel title="Listado de Recursos" id="panel1" width="100%" height="80%">
 		<mx:HBox width="100%" height="100%">
-			<recursos:ListadoRecursos id="listadoRecursos" result="verRecurso(event)" width="100%" height="100%"/>
+			<recursos:ListadoRecursos id="listadoRecursos" result="verRecurso(event)" nombre="{buscarRecursos.nombre.text}" apellido="{buscarRecursos.apellido.text}" estado="{buscarRecursos.estado.selected}" width="100%" height="100%"/>
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Nuevo Recurso" click="nuevoRecurso()"/>
@@ -86,6 +86,7 @@
 			private function buscarRecurso(event:Event):void {
 				listadoRecursos.nombre = buscarRecursos.nombre.text;
 				listadoRecursos.apellido = buscarRecursos.apellido.text;
+				listadoRecursos.estado = buscarRecursos.estado.selected;
 				listadoRecursos.busqueda();
 			}
 

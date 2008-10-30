@@ -32,7 +32,7 @@ public class RecursosServiceImpl implements RecursosService {
 	
 	
 	public List<Recurso> getAll() {
-		return recursos.getAll();
+		return recursos.getAllActivos();
 	}
 	
 	public List<Recurso> getAllExcept(int grupoId) {
@@ -43,8 +43,8 @@ public class RecursosServiceImpl implements RecursosService {
 		return listaCompleta;		
 	}
 	
-	public List<Recurso> buscarRecursoByName(String nombre,String apellido) {
-		return recursos.buscarRecursoByName(nombre, apellido);
+	public List<Recurso> buscarRecursoByName(String nombre, String apellido, boolean estado) {
+		return recursos.buscarRecursoByName(nombre, apellido, estado);
 	}
 	
 	public void crear(String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior, boolean estado) {

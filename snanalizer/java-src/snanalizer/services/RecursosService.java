@@ -11,7 +11,7 @@ public interface RecursosService {
 	
 	public List<Recurso> getAllExcept(int grupoId);
 	
-	public List<Recurso> buscarRecursoByName(String nombre,String apellido);
+	public List<Recurso> buscarRecursoByName(String nombre, String apellido, boolean estado);
 	
 	public void crear(String nombre, String apellido, String email, String password, Date fecha,int area, int puesto,int senior,boolean estado);
 	
