@@ -1594,7 +1594,7 @@ CREATE TABLE `respuestaderecurso` (
   CONSTRAINT `FK405BAAC848C17794` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestadeportal` (`id`),
   CONSTRAINT `FK405BAAC87D38E34D` FOREIGN KEY (`recurso_id`) REFERENCES `recurso` (`id`),
   CONSTRAINT `FK405BAAC8E0F1789A` FOREIGN KEY (`respuesta_id`) REFERENCES `respuestadeportal` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `respuestaderecurso`
@@ -1610,7 +1610,9 @@ INSERT INTO `respuestaderecurso` (`id`,`encuesta_id`,`recurso_id`,`respuesta_id`
  (6,2,19,5),
  (7,1,19,1),
  (8,1,18,1),
- (9,2,18,4);
+ (9,2,18,4),
+ (10,1,5,2),
+ (11,2,5,5);
 /*!40000 ALTER TABLE `respuestaderecurso` ENABLE KEYS */;
 
 
@@ -1638,23 +1640,23 @@ INSERT INTO `usuario` (`id`,`apellido`,`email`,`nombre`,`password`,`rol`) VALUES
  (1,'Admin','admin','Admin','admin','ADMIN'),
  (2,'Analista','analista','Analista','analista','ANALISTA'),
  (3,'HR','hr','HR','hr','HR'),
- (4,'Lopez','r1@hotmail.com','Pepe','pepelopez','RECURSO'),
+ (4,'Lopez','r1@hotmail.com','Pedro','pepelopez','RECURSO'),
  (5,'Ticolis','r2@hotmail.com','Nestor','nestorticolis','RECURSO'),
- (6,'Candado','r3@hotmail.com','Juan','password','RECURSO'),
+ (6,'Candado','r3@hotmail.com','Jimena','password','RECURSO'),
  (7,'Ortega','r4@hotmail.com','Ariel','password','RECURSO'),
- (8,'Tsiros','r13@hotmail.com','Pedro','password','RECURSO'),
+ (8,'Tsiros','r13@hotmail.com','Ana','password','RECURSO'),
  (9,'Martinez','r14@hotmail.com','Carlos','password','RECURSO'),
  (10,'Romano','r15@hotmail.com','Martin','password','RECURSO'),
- (11,'Ruffo','r16@hotmail.com','Oscar','password','RECURSO'),
+ (11,'Ruffo','r16@hotmail.com','Laura','password','RECURSO'),
  (12,'Sidders','r17@hotmail.com','Alejandro','password','RECURSO'),
  (13,'Domenico','r9@hotmail.com','Gabriel','password','RECURSO'),
- (14,'Cao','r10@hotmail.com','Leandro','password','RECURSO'),
+ (14,'Cao','r10@hotmail.com','Julieta','password','RECURSO'),
  (15,'Andrade','r11@hotmail.com','Nicolas','password','RECURSO'),
  (16,'Gunelli','r12@hotmail.com','Patricio','password','RECURSO'),
  (17,'Torres','r5@hotmail.com','Gustavo','password','RECURSO'),
  (18,'Ferraro','r6@hotmail.com','Daniel','password','RECURSO'),
  (19,'Medina','r7@hotmail.com','Jose','password','RECURSO'),
- (20,'Nicosia','r8@hotmail.com','Gonzalo','password','RECURSO'),
+ (20,'Nicosia','r8@hotmail.com','Florencia','password','RECURSO'),
  (21,'Aguirre','r9@hotmail.com','Pablo','password','RECURSO'),
  (22,'Arias','asd@asd.com','Luciano','asd','ADMIN'),
  (23,'Arroyo','asd@asd.com','Javier','password','RECURSO'),
