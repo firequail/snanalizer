@@ -2,7 +2,7 @@
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
 	verticalAlign="middle" horizontalAlign="center"
 	 >
-	<mx:Label toolTip="{edgeLabel()}" color="#CCCCCC" />
+	<mx:Label text="{edgeLabel()}" color="#CCCCCC" />
 	<mx:Spacer height="10"/>
 
 	<mx:Script>
