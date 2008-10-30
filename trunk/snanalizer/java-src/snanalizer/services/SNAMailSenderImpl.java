@@ -38,9 +38,6 @@ public class SNAMailSenderImpl implements SNAMailSender {
 		this.executor = executor;
 	}
 
-	/* (non-Javadoc)
-	 * @see snanalizer.services.SNAMailSender#enviarEncuesta(java.util.List)
-	 */
 	public void enviarEncuesta(List<Recurso> recursos) {
 
 		try {
