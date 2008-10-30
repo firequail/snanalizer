@@ -180,8 +180,6 @@ package sna.analisis.renderers.nodes {
 
 			lb = new LinkButton();
 			
-			lb.width = 100;
-
 			lb.toolTip = "Click para seleccionar";
 			lb.setStyle("fontWeight","normal");
 			lb.setStyle("rollOverColor",0xcccccc);
