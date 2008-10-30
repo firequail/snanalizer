@@ -42,7 +42,7 @@ public class Nodo extends DomainEntity {
 		this.relaciones = relaciones;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SUBSELECT)
 	public List<Relacion> getRelaciones() {
 		return relaciones;

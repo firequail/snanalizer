@@ -1,13 +1,15 @@
 package snanalizer.services;
 
 import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.transaction.annotation.Transactional;
 
-import snanalizer.data.DatosMaestrosRepository;
 import snanalizer.data.AtributosRepository;
-import snanalizer.domain.DatoMaestro;
+import snanalizer.data.DatosMaestrosRepository;
 import snanalizer.domain.Atributo;
+import snanalizer.domain.DatoMaestro;
 
 
 
@@ -17,25 +19,24 @@ public class DatosMaestrosServiceImpl implements DatosMaestrosService {
 	@Resource
 	private DatosMaestrosRepository datosMaestros;
 	@Resource
-	public AtributosRepository atributos;
+	public AtributosRepository atributosRepo;
 	
 	public List<DatoMaestro> getAll() {
 		return datosMaestros.getAll();
 	}
 	
 	public AtributosRepository getAtributos() {
-		return atributos;
+		return atributosRepo;
 	}
 	
 	public List<Atributo> getAtributos(int datoMaestroId) {
 		DatoMaestro dm = datosMaestros.getById(datoMaestroId);
-		return dm.getAtributos();
-		
+		return atributosRepo.getAtributos(dm);
 	}
 	
 	public List<Atributo> getAtributosByDesc(String desc) {
 		DatoMaestro dm = datosMaestros.getDatoMaestro(desc);
-		return dm.getAtributos();
+		return atributosRepo.getAtributos(dm);
 	}
 	
 	public List<Atributo> getAreas() { return this.getAtributosByDesc("Area"); }

@@ -31,7 +31,7 @@ public class DatoMaestro extends DomainEntity {
 		this.atributos = atributos;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SUBSELECT)
 	public List<Atributo> getAtributos() {
 		return atributos;
