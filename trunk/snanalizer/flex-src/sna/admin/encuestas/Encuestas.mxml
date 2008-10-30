@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:encuestas="sna.admin.encuestas.*" xmlns:encuestasPortal="sna.admin.encuestas.portal.*">
-	<mx:TabNavigator width="100%" height="100%">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:encuestas="sna.admin.encuestas.*" xmlns:encuestasPortal="sna.admin.encuestas.portal.*" verticalAlign="middle">
+	<mx:TabNavigator width="100%" height="95%">
 			<mx:Canvas label="Encuestas de Red" width="100%" height="100%">
 				<encuestas:EncuestasRed width="100%" height="100%"/>
 			</mx:Canvas>
@@ -8,4 +8,4 @@
 				<encuestasPortal:EncuestasPortal width="100%" height="100%"/>
 			</mx:Canvas>
 		</mx:TabNavigator>
-</mx:Canvas>
+</mx:VBox>

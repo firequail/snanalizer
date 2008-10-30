@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:encuestas="sna.admin.encuestas.*" xmlns:encuestasPortal="sna.admin.encuestas.portal.*" verticalAlign="middle">
 	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="500" horizontalAlign="left">
 		<mx:TextArea width="100%" height="100%" backgroundColor="#FAF7D1" editable="false">
        		<mx:htmlText>
@@ -51,4 +51,4 @@ Para <b><u>crear una nueva encuesta de portal</u></b> debe:
         	</mx:htmlText>
  		</mx:TextArea>
 	</mx:Panel>
-</mx:Canvas>
+</mx:VBox>
