@@ -43,9 +43,9 @@ CREATE TABLE `atributo` (
 
 /*!40000 ALTER TABLE `atributo` DISABLE KEYS */;
 INSERT INTO `atributo` (`id`,`descripcion`,`estado`,`nombre`,`datoMaestro_id`) VALUES 
- (1,NULL,NULL,'DEV',1),
- (2,NULL,NULL,'RRHH',1),
- (3,NULL,NULL,'Finances',1),
+ (1,'',0x01,'DEV',1),
+ (2,'',0x01,'RRHH',1),
+ (3,'',0x01,'Finances',1),
  (4,NULL,NULL,'FA',2),
  (5,NULL,NULL,'DEV',2),
  (6,NULL,NULL,'QC',2),
@@ -199,7 +199,7 @@ CREATE TABLE `encuesta` (
   `id` int(11) NOT NULL auto_increment,
   `nombre` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `encuesta`
@@ -208,7 +208,8 @@ CREATE TABLE `encuesta` (
 /*!40000 ALTER TABLE `encuesta` DISABLE KEYS */;
 INSERT INTO `encuesta` (`id`,`nombre`) VALUES 
  (1,'Encuesta Area Desarrollo'),
- (2,'Encuesta Marian');
+ (2,'Encuesta Marian'),
+ (3,'Encuesta de Nico');
 /*!40000 ALTER TABLE `encuesta` ENABLE KEYS */;
 
 
@@ -238,7 +239,9 @@ INSERT INTO `encuesta_pregunta` (`Encuesta_id`,`preguntas_id`) VALUES
  (1,7),
  (1,8),
  (2,9),
- (2,10);
+ (2,10),
+ (3,11),
+ (3,12);
 /*!40000 ALTER TABLE `encuesta_pregunta` ENABLE KEYS */;
 
 
@@ -376,7 +379,7 @@ CREATE TABLE `nodo` (
   PRIMARY KEY  (`id`),
   KEY `FK25222C7D38E34D` (`recurso_id`),
   CONSTRAINT `FK25222C7D38E34D` FOREIGN KEY (`recurso_id`) REFERENCES `recurso` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=375 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=415 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `nodo`
@@ -397,6 +400,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (314,1),
  (335,1),
  (355,1),
+ (375,1),
+ (395,1),
  (2,2),
  (20,2),
  (25,2),
@@ -410,6 +415,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (315,2),
  (336,2),
  (356,2),
+ (376,2),
+ (396,2),
  (3,3),
  (21,3),
  (26,3),
@@ -423,6 +430,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (316,3),
  (337,3),
  (357,3),
+ (377,3),
+ (397,3),
  (4,4),
  (22,4),
  (27,4),
@@ -436,6 +445,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (317,4),
  (338,4),
  (358,4),
+ (378,4),
+ (398,4),
  (5,5),
  (185,5),
  (204,5),
@@ -447,6 +458,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (318,5),
  (339,5),
  (359,5),
+ (379,5),
+ (399,5),
  (6,6),
  (186,6),
  (205,6),
@@ -458,6 +471,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (319,6),
  (340,6),
  (360,6),
+ (380,6),
+ (400,6),
  (7,7),
  (187,7),
  (206,7),
@@ -469,6 +484,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (320,7),
  (341,7),
  (361,7),
+ (381,7),
+ (401,7),
  (8,8),
  (188,8),
  (207,8),
@@ -480,6 +497,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (321,8),
  (342,8),
  (362,8),
+ (382,8),
+ (402,8),
  (9,9),
  (23,9),
  (28,9),
@@ -493,6 +512,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (322,9),
  (343,9),
  (363,9),
+ (383,9),
+ (403,9),
  (10,10),
  (190,10),
  (209,10),
@@ -504,6 +525,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (323,10),
  (344,10),
  (364,10),
+ (384,10),
+ (404,10),
  (11,11),
  (191,11),
  (210,11),
@@ -515,6 +538,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (324,11),
  (345,11),
  (365,11),
+ (385,11),
+ (405,11),
  (12,12),
  (192,12),
  (211,12),
@@ -526,6 +551,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (325,12),
  (346,12),
  (366,12),
+ (386,12),
+ (406,12),
  (13,13),
  (193,13),
  (212,13),
@@ -537,6 +564,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (326,13),
  (347,13),
  (367,13),
+ (387,13),
+ (407,13),
  (14,14),
  (194,14),
  (213,14),
@@ -548,6 +577,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (327,14),
  (348,14),
  (368,14),
+ (388,14),
+ (408,14),
  (15,15),
  (195,15),
  (214,15),
@@ -559,6 +590,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (328,15),
  (349,15),
  (369,15),
+ (389,15),
+ (409,15),
  (16,16),
  (196,16),
  (215,16),
@@ -570,6 +603,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (329,16),
  (350,16),
  (370,16),
+ (390,16),
+ (410,16),
  (17,17),
  (197,17),
  (216,17),
@@ -581,6 +616,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (330,17),
  (351,17),
  (371,17),
+ (391,17),
+ (411,17),
  (18,18),
  (198,18),
  (217,18),
@@ -592,6 +629,8 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (331,18),
  (352,18),
  (372,18),
+ (392,18),
+ (412,18),
  (199,19),
  (218,19),
  (237,19),
@@ -602,10 +641,14 @@ INSERT INTO `nodo` (`id`,`recurso_id`) VALUES
  (332,19),
  (353,19),
  (373,19),
+ (393,19),
+ (413,19),
  (333,20),
  (334,20),
  (354,20),
- (374,20);
+ (374,20),
+ (394,20),
+ (414,20);
 /*!40000 ALTER TABLE `nodo` ENABLE KEYS */;
 
 
@@ -692,11 +735,8 @@ INSERT INTO `nodo_relacion` (`Nodo_id`,`relaciones_id`) VALUES
  (360,36),
  (341,37),
  (342,39),
- (351,43),
  (364,44),
- (370,44),
  (345,45),
- (350,45),
  (365,46),
  (346,47),
  (347,49),
@@ -707,8 +747,6 @@ INSERT INTO `nodo_relacion` (`Nodo_id`,`relaciones_id`) VALUES
  (348,51),
  (368,48),
  (368,52),
- (371,42),
- (371,52),
  (340,31),
  (340,33),
  (340,35),
@@ -748,7 +786,56 @@ INSERT INTO `nodo_relacion` (`Nodo_id`,`relaciones_id`) VALUES
  (361,34),
  (361,38),
  (361,60),
- (372,60);
+ (372,60),
+ (223,61),
+ (237,61),
+ (246,62),
+ (256,62),
+ (199,63),
+ (201,64),
+ (218,64),
+ (231,65),
+ (236,65),
+ (250,66),
+ (255,66),
+ (193,67),
+ (198,67),
+ (212,68),
+ (217,68),
+ (230,69),
+ (249,70),
+ (192,71),
+ (211,72),
+ (225,73),
+ (244,74),
+ (187,75),
+ (206,76),
+ (221,77),
+ (235,69),
+ (235,73),
+ (235,77),
+ (240,78),
+ (254,70),
+ (254,74),
+ (254,78),
+ (183,63),
+ (183,79),
+ (197,71),
+ (197,75),
+ (197,79),
+ (202,80),
+ (216,72),
+ (216,76),
+ (216,80),
+ (350,45),
+ (350,81),
+ (351,43),
+ (351,81),
+ (370,44),
+ (370,82),
+ (371,42),
+ (371,52),
+ (371,82);
 /*!40000 ALTER TABLE `nodo_relacion` ENABLE KEYS */;
 
 
@@ -765,7 +852,7 @@ CREATE TABLE `pregunta` (
   PRIMARY KEY  (`id`),
   KEY `FKB7202F0A17148A27` (`encuesta_id`),
   CONSTRAINT `FKB7202F0A17148A27` FOREIGN KEY (`encuesta_id`) REFERENCES `encuesta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pregunta`
@@ -782,7 +869,9 @@ INSERT INTO `pregunta` (`id`,`descripcion`,`maximaIntensidad`,`encuesta_id`) VAL
  (7,'Quién fue su mentor cuando ingresó a la empresa?',5,1),
  (8,'Quién lo ayuda más diariamente?',5,1),
  (9,'A quién consulta sobre tal cosa?',5,2),
- (10,'A quién consulta sobre tal otra?',5,2);
+ (10,'A quién consulta sobre tal otra?',5,2),
+ (11,'Quien te ayuda mas?',5,3),
+ (12,'Quien se viste mejor?',5,3);
 /*!40000 ALTER TABLE `pregunta` ENABLE KEYS */;
 
 
@@ -849,7 +938,7 @@ CREATE TABLE `puntodevista` (
   PRIMARY KEY  (`id`),
   KEY `FK63AB4EC85B1355A7` (`pregunta_id`),
   CONSTRAINT `FK63AB4EC85B1355A7` FOREIGN KEY (`pregunta_id`) REFERENCES `pregunta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `puntodevista`
@@ -878,7 +967,9 @@ INSERT INTO `puntodevista` (`id`,`descripcion`,`pregunta_id`) VALUES
  (27,'A quién consulta sobre tal cosa?',9),
  (28,'A quién consulta sobre tal otra?',10),
  (29,'A quién consulta sobre tal cosa?',9),
- (30,'A quién consulta sobre tal otra?',10);
+ (30,'A quién consulta sobre tal otra?',10),
+ (31,'Quien te ayuda mas?',11),
+ (32,'Quien se viste mejor?',12);
 /*!40000 ALTER TABLE `puntodevista` ENABLE KEYS */;
 
 
@@ -1124,7 +1215,47 @@ INSERT INTO `puntodevista_nodo` (`PuntoDeVista_id`,`nodos_id`) VALUES
  (30,371),
  (30,372),
  (30,373),
- (30,374);
+ (30,374),
+ (31,375),
+ (31,376),
+ (31,377),
+ (31,378),
+ (31,379),
+ (31,380),
+ (31,381),
+ (31,382),
+ (31,383),
+ (31,384),
+ (31,385),
+ (31,386),
+ (31,387),
+ (31,388),
+ (31,389),
+ (31,390),
+ (31,391),
+ (31,392),
+ (31,393),
+ (31,394),
+ (32,395),
+ (32,396),
+ (32,397),
+ (32,398),
+ (32,399),
+ (32,400),
+ (32,401),
+ (32,402),
+ (32,403),
+ (32,404),
+ (32,405),
+ (32,406),
+ (32,407),
+ (32,408),
+ (32,409),
+ (32,410),
+ (32,411),
+ (32,412),
+ (32,413),
+ (32,414);
 /*!40000 ALTER TABLE `puntodevista_nodo` ENABLE KEYS */;
 
 
@@ -1211,23 +1342,23 @@ CREATE TABLE `recurso` (
 INSERT INTO `recurso` (`id`,`anioEgreso`,`anioIngreso`,`estado`,`experiencia`,`fechaNac`,`localidad`,`picture`,`titulo`,`area_id`,`estadoCivil_id`,`hobbie1_id`,`hobbie2_id`,`hobbie3_id`,`hobbie4_id`,`hobbie5_id`,`hobbie6_id`,`idioma1_id`,`idioma2_id`,`idioma3_id`,`institucion_id`,`nivelIdioma1_id`,`nivelIdioma2_id`,`nivelIdioma3_id`,`provincia_id`,`puesto_id`,`seniority_id`,`usuario_id`) VALUES 
  (1,0,0,0x01,NULL,'2008-10-01 00:00:00','Capital Federal',NULL,NULL,1,28,22,23,24,25,NULL,NULL,10,11,13,18,16,15,14,26,4,7,4),
  (2,0,0,0x01,NULL,'2008-10-01 00:00:00',NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,4,8,5),
- (3,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,9,6),
- (4,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,8,7),
- (5,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,8),
- (6,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9),
- (7,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,10),
- (8,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,11),
- (9,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,9,12),
- (10,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,13),
- (11,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,14),
- (12,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,15),
- (13,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16),
- (14,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,17),
- (15,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,18),
- (16,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,19),
- (17,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,20),
- (18,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,21),
- (19,0,0,0x01,NULL,'2008-10-01 00:00:00',NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,23),
+ (3,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,9,6),
+ (4,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,8,7),
+ (5,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,8),
+ (6,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,9),
+ (7,0,0,0x01,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,10),
+ (8,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,9,11),
+ (9,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,9,12),
+ (10,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,13),
+ (11,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,7,14),
+ (12,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,15),
+ (13,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,16),
+ (14,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,17),
+ (15,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,18),
+ (16,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,19),
+ (17,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,20),
+ (18,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,21),
+ (19,0,0,0x01,NULL,'2008-07-01 23:00:00',NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,23),
  (20,0,0,0x01,NULL,'2008-03-04 00:00:00',NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,25);
 /*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
 
@@ -1245,7 +1376,7 @@ CREATE TABLE `red` (
   PRIMARY KEY  (`id`),
   KEY `FK1407117148A27` (`encuesta_id`),
   CONSTRAINT `FK1407117148A27` FOREIGN KEY (`encuesta_id`) REFERENCES `encuesta` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `red`
@@ -1253,14 +1384,15 @@ CREATE TABLE `red` (
 
 /*!40000 ALTER TABLE `red` DISABLE KEYS */;
 INSERT INTO `red` (`id`,`descripcion`,`nombre`,`encuesta_id`) VALUES 
- (1,'Red de Prueba',NULL,1),
- (2,'Red de Prueba2',NULL,NULL),
+ (1,'Red de Prueba','Red de Prueba',1),
+ (2,'Red de Prueba2','Red de Prueba2',NULL),
  (3,'Red de Marian','Red de Marian',2),
  (8,'','Red de Nico',2),
  (9,'','Red de Nico',2),
  (10,'Red de Nico2','Red de Nico2',1),
  (11,'','Nico',2),
- (12,'','Prueba muchos',2);
+ (12,'','Prueba muchos',2),
+ (13,'','Muchos Nico',3);
 /*!40000 ALTER TABLE `red` ENABLE KEYS */;
 
 
@@ -1306,7 +1438,9 @@ INSERT INTO `red_puntodevista` (`Red_id`,`puntosDeVista_id`) VALUES
  (11,27),
  (11,28),
  (12,29),
- (12,30);
+ (12,30),
+ (13,31),
+ (13,32);
 /*!40000 ALTER TABLE `red_puntodevista` ENABLE KEYS */;
 
 
@@ -1325,7 +1459,7 @@ CREATE TABLE `relacion` (
   KEY `FKE2C6A3CDD57B676B` (`destino_id`),
   CONSTRAINT `FKE2C6A3CD81C8DB89` FOREIGN KEY (`origen_id`) REFERENCES `nodo` (`id`),
   CONSTRAINT `FKE2C6A3CDD57B676B` FOREIGN KEY (`destino_id`) REFERENCES `nodo` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `relacion`
@@ -1358,41 +1492,63 @@ INSERT INTO `relacion` (`id`,`intensidad`,`destino_id`,`origen_id`) VALUES
  (23,5,20,23),
  (24,4,26,28),
  (25,1,336,335),
- (26,1,357,355),
- (27,1,339,336),
- (28,1,357,356),
- (29,1,336,337),
- (30,1,359,357),
- (31,1,340,338),
+ (26,2,357,355),
+ (27,3,339,336),
+ (28,3,357,356),
+ (29,3,336,337),
+ (30,4,359,357),
+ (31,5,340,338),
  (32,1,362,358),
- (33,1,340,339),
+ (33,5,340,339),
  (34,1,361,359),
- (35,1,343,340),
- (36,1,374,360),
- (37,1,354,341),
+ (35,2,343,340),
+ (36,4,374,360),
+ (37,4,354,341),
  (38,1,373,361),
- (39,1,352,342),
- (40,1,373,362),
- (41,1,352,343),
- (42,1,371,363),
+ (39,2,352,342),
+ (40,2,373,362),
+ (41,2,352,343),
+ (42,3,371,363),
  (43,1,351,344),
- (44,1,370,364),
- (45,1,350,345),
+ (44,4,370,364),
+ (45,2,350,345),
  (46,1,369,365),
  (47,1,349,346),
- (48,1,368,366),
- (49,1,348,347),
- (50,1,366,367),
- (51,1,343,348),
- (52,1,371,368),
- (53,1,340,349),
+ (48,4,368,366),
+ (49,5,348,347),
+ (50,5,366,367),
+ (51,5,343,348),
+ (52,3,371,368),
+ (53,2,340,349),
  (54,1,362,369),
- (55,1,336,354),
- (56,1,358,374),
+ (55,4,336,354),
+ (56,4,358,374),
  (57,1,344,353),
- (58,1,363,373),
- (59,1,343,352),
- (60,1,361,372);
+ (58,3,363,373),
+ (59,3,343,352),
+ (60,5,361,372),
+ (61,5,223,237),
+ (62,1,246,256),
+ (63,1,183,199),
+ (64,2,201,218),
+ (65,2,236,231),
+ (66,2,255,250),
+ (67,1,198,193),
+ (68,3,217,212),
+ (69,1,235,230),
+ (70,5,254,249),
+ (71,4,197,192),
+ (72,3,216,211),
+ (73,1,235,225),
+ (74,1,254,244),
+ (75,1,197,187),
+ (76,3,216,206),
+ (77,3,235,221),
+ (78,5,254,240),
+ (79,5,197,183),
+ (80,5,216,202),
+ (81,5,351,350),
+ (82,5,371,370);
 /*!40000 ALTER TABLE `relacion` ENABLE KEYS */;
 
 
@@ -1484,27 +1640,26 @@ INSERT INTO `usuario` (`id`,`apellido`,`email`,`nombre`,`password`,`rol`) VALUES
  (3,'','hr','','hr','HR'),
  (4,'Lopez','r1@hotmail.com','Pepe','pepelopez','RECURSO'),
  (5,'Ticolis','r2@hotmail.com','Nestor','nestorticolis','RECURSO'),
- (6,'Candado','r3@hotmail.com','Juan','','RECURSO'),
- (7,'Ortega','r4@hotmail.com','Ariel','','RECURSO'),
- (8,'Lopez','r13@hotmail.com','Pepe','','RECURSO'),
- (9,'Ticolis','r14@hotmail.com','Nestor','','RECURSO'),
- (10,'Candado','r15@hotmail.com','Juan','','RECURSO'),
- (11,'Ortega','r16@hotmail.com','Ariel','','RECURSO'),
- (12,'Alterio','r17@hotmail.com','Hector','','RECURSO'),
- (13,'Lopez','r9@hotmail.com','Pepe','','RECURSO'),
- (14,'Ticolis','r10@hotmail.com','Nestor','','RECURSO'),
- (15,'Candado','r11hotmail.com','Juan','','RECURSO'),
- (16,'Ortega','r12@hotmail.com','Ariel','','RECURSO'),
- (17,'Lopez','r5@hotmail.com','Pepe','','RECURSO'),
- (18,'Ticolis','r6@hotmail.com','Nestor','','RECURSO'),
- (19,'Candado','r7@hotmail.com','Juan','','RECURSO'),
- (20,'Ortega','r8@hotmail.com','Ariel','','RECURSO'),
- (21,'Ibarra','r9@hotmail.com','Anibal','','RECURSO'),
+ (6,'Candado','r3@hotmail.com','Juan','password','RECURSO'),
+ (7,'Ortega','r4@hotmail.com','Ariel','password','RECURSO'),
+ (8,'Lopez','r13@hotmail.com','Pepe','password','RECURSO'),
+ (9,'Ticolis','r14@hotmail.com','Nestor','password','RECURSO'),
+ (10,'Candado','r15@hotmail.com','Juan','password','RECURSO'),
+ (11,'Ortega','r16@hotmail.com','Ariel','password','RECURSO'),
+ (12,'Alterio','r17@hotmail.com','Hector','password','RECURSO'),
+ (13,'Lopez','r9@hotmail.com','Pepe','password','RECURSO'),
+ (14,'Ticolis','r10@hotmail.com','Nestor','password','RECURSO'),
+ (15,'Candado','r11@hotmail.com','Juan','password','RECURSO'),
+ (16,'Ortega','r12@hotmail.com','Ariel','password','RECURSO'),
+ (17,'Lopez','r5@hotmail.com','Pepe','password','RECURSO'),
+ (18,'Ticolis','r6@hotmail.com','Nestor','password','RECURSO'),
+ (19,'Candado','r7@hotmail.com','Juan','password','RECURSO'),
+ (20,'Ortega','r8@hotmail.com','Ariel','password','RECURSO'),
+ (21,'Ibarra','r9@hotmail.com','Anibal','password','RECURSO'),
  (22,'asd','asd@asd.com','asd','asd','ADMIN'),
- (23,'asdapellido','asd@asd.com','asd','asd','RECURSO'),
+ (23,'asdapellido','asd@asd.com','asd','password','RECURSO'),
  (24,'Ganada','javier@hotmail.com','Javier','javier','ADMIN'),
- (25,'Font','nicolasfont@gmail.com','Nicolas','nico','RECURSO'),
- (26,'bla','blabla@hotmail.com','bla','blabla','ADMIN');
+ (25,'Font','nicolasfont@gmail.com','Nicolas','nicolas','RECURSO');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
