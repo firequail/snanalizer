@@ -66,9 +66,9 @@ public class RedesServiceTest extends TestCase {
 	}
 
 	public void xtestMail() {
-		List<Recurso> recursos = recursosService.buscarRecursoByName("pepe",
-				"lopez");
-		redesService.enviarEncuesta(recursos);
+		// List<Recurso> recursos =
+		// recursosService.buscarRecursoByName("pepe","lopez");
+		// redesService.enviarEncuesta(recursos);
 	}
 
 	public void xtestCaminoMasCorto() {

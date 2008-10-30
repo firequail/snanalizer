@@ -33,8 +33,6 @@ public interface RedesService {
 	
 	public void generarRelaciones(int idRed,int idRec,List<Integer> preguntas,List<Integer> intensidades,List<Integer> recursos);
 	
-	public void enviarEncuesta(List<Recurso> recursos);
-
 	public List<Relacion> getCaminoMasCorto(int idOrigen, int idDestino);
 	
 	public BloqueEstadistico getBloqueEstadistico(int idRed,int idPtoVista);
