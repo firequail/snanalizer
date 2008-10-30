@@ -21,7 +21,7 @@ package sna.analisis.renderers.edges {
 		 * The size of the arrowhead in pixel. The distance of the
 		 * two points defining the base of the arrowhead.
 		 * */
-		public var arrowBaseSize:Number = 10;
+		public var arrowBaseSize:Number = 4;
 		
 		/**
 		 * The distance of the arrowbase from the tip in pixel.
@@ -74,11 +74,11 @@ package sna.analisis.renderers.edges {
 			var toIntensity:int = parseInt(vedge.data.@toIntensity.toString());
 			
 			if (fromIntensity > 0) {
-				drawArrow(fP, tP);
+				drawArrow(fP, tP, fromIntensity);
 			} 
 			
 			if (toIntensity > 0) {
-				drawArrow(tP, fP);
+				drawArrow(tP, fP, toIntensity);
 			}
 			
 			_g.endFill();
@@ -90,14 +90,14 @@ package sna.analisis.renderers.edges {
 			}
 		}
 		
-		private function drawArrow(fP:Point, tP:Point):void {
+		private function drawArrow(fP:Point, tP:Point, intensity:int):void {
 			var edgeAngle:Number = Math.atan2(tP.y - fP.y,tP.x - fP.x);
 			
 			var mArrowBase:Point = Point.polar(Point.distance(tP,fP) - arrowHeadLength,edgeAngle);
 			mArrowBase.offset(fP.x,fP.y);
 		
-			var lArrowBase:Point = Point.polar(arrowBaseSize / 2.9,(edgeAngle - (Math.PI / 2.0)));
-			var rArrowBase:Point = Point.polar(arrowBaseSize / 2.9,(edgeAngle + (Math.PI / 2.0)));
+			var lArrowBase:Point = Point.polar((arrowBaseSize * intensity)/ 2.9,(edgeAngle - (Math.PI / 2.0)));
+			var rArrowBase:Point = Point.polar((arrowBaseSize * intensity)/ 2.9,(edgeAngle + (Math.PI / 2.0)));
 			
 			lArrowBase.offset(mArrowBase.x,mArrowBase.y);			
 			rArrowBase.offset(mArrowBase.x,mArrowBase.y);
