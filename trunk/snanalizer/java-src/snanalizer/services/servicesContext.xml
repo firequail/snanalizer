@@ -33,7 +33,11 @@
 	
 	<bean id="respuestasDeRecursosService" class="snanalizer.services.RespuestasDeRecursosServiceImpl"/>
 	
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<bean id="mailSender" class="snanalizer.services.SNAMailSenderImpl"/>
+	
+	<bean id="asyncTaskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor"/>
+	
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.host}" />
 		<property name="port" value="${mail.port}" />
 		<property name="protocol" value="${mail.protocol}" />

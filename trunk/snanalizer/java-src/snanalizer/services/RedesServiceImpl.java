@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.mail.internet.MimeMessage;
 
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.transaction.annotation.Transactional;
 
 import snanalizer.data.DatosMaestrosRepository;
@@ -52,7 +49,6 @@ public class RedesServiceImpl implements RedesService {
 	@Resource
 	private PreguntasRepository preguntasRepository;
 
-
 	@Resource
 	private DatosMaestrosRepository datosMaestrosRepository;
 
@@ -63,7 +59,7 @@ public class RedesServiceImpl implements RedesService {
 	private GruposRecursosRepository gruposRecursosRepository;
 
 	@Resource
-	private JavaMailSender mailSender;
+	private SNAMailSender mailSender;
 
 	public void setPuntosDeVista(PuntosDeVistaRepository puntosDeVista) {
 		this.puntosDeVistaRepository = puntosDeVista;
@@ -115,11 +111,11 @@ public class RedesServiceImpl implements RedesService {
 		this.gruposRecursosRepository = gruposRecursosRepository;
 	}
 
-	public JavaMailSender getMailSender() {
+	public SNAMailSender getMailSender() {
 		return mailSender;
 	}
 
-	public void setMailSender(JavaMailSender mailSender) {
+	public void setMailSender(SNAMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
 
@@ -189,35 +185,7 @@ public class RedesServiceImpl implements RedesService {
 			}
 		}
 
-		enviarEncuesta(grupo.getRecursos());
-	}
-
-	public void enviarEncuesta(List<Recurso> recursos) {
-
-		try {
-			List<MimeMessage> mails = new ArrayList<MimeMessage>(recursos
-					.size());
-
-			for (Recurso recurso : recursos) {
-				MimeMessage msg = mailSender.createMimeMessage();
-				MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-				helper.setTo(recurso.getUsuario().getEmail());
-				helper.setFrom("snanalizer@gmail.com");
-				helper.setSubject("SNA");
-				helper
-						.setText(
-								"<html><body><b>msg</b> de prueba de sna</body></html>",
-								true);
-				mails.add(msg);
-			}
-
-			MimeMessage[] msgs = mails.toArray(new MimeMessage[0]);
-			mailSender.send(msgs);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		mailSender.enviarEncuesta(grupo.getRecursos());
 	}
 
 	public List<Recurso> getRecursosOf(int redId) {
