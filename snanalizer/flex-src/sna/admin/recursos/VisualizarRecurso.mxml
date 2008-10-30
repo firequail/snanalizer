@@ -1,75 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*"  width="100%" height="95%" creationComplete="init()">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 	
-	<mx:Panel x="57.25" y="10" width="876.5" height="691" layout="absolute" title="Datos del recurso">
+	<mx:Panel width="100%" height="100%" title="Datos del recurso">
 
-		<mx:Text x="97" y="40" text="Nombre" width="140"/>
-		<mx:Text x="97" y="68" text="Apellido" width="140"/>
-
-		<mx:Text x="226" y="40" text="{recurso.usuario.nombre}" width="157.5" fontWeight="bold"/>
-		<mx:Text x="226" y="68" text="{recurso.usuario.apellido}" width="157.5" fontWeight="bold"/>
-		<mx:Image y="10" width="85" height="78" x="417" scaleContent="true" source="{recurso.foto}"/>
-		<mx:Panel x="57" y="107" width="326.5" height="166" layout="absolute" title="Datos laborales">
-			<mx:Text x="28.75" y="40" text="Puesto" width="140"/>
-			<mx:Text x="28.75" y="66" text="Seniority" width="140"/>
-			<mx:Text x="28.75" y="12" text="Area" width="140"/> 
-			<mx:Text x="156.5" y="38" text="{recurso.puesto.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="156.5" y="64" text="{recurso.seniority.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="156.5" y="10" text="{recurso.area.nombre}" width="140" fontWeight="bold"/>
-		</mx:Panel>
-		<mx:Panel x="401" y="106.9" width="376.2879" height="166.06061" layout="absolute" title="Datos personales">
-			<mx:Text x="27.75" y="68" text="Localidad de residencia" width="140"/>
-			<mx:Text x="27.75" y="40" text="Estado Civil" width="140"/>
-			<mx:Text x="26.75" y="12" text="Fecha de nacimiento" width="140"/>
-			<mx:Text x="27.75" y="96" text="Provincia de residencia" width="140"/>
-			<mx:Text x="199.75" y="12" text="{recurso.fechaNac as Date}" width="140" fontWeight="bold"/>
-			<mx:Text x="199.75" y="40" text="{recurso.estadoCivil}" width="140" fontWeight="bold"/>
-			<mx:Text x="199.75" y="68" text="{recurso.localidad}" width="140" fontWeight="bold"/>
-			<mx:Text x="199.75" y="96" text="{recurso.provincia.nombre}" width="140" fontWeight="bold"/>
-		</mx:Panel>
-		<mx:Panel x="57" y="281" width="326.5" height="165" layout="absolute" title="Datos académicos">
-			<mx:Text x="28.75" y="10" text="Título" width="140"/>
-			<mx:Text x="28.75" y="36" text="Establecimiento" width="140"/>
-			<mx:Text x="28.75" y="62" text="Año de ingreso" width="140"/>
-			<mx:Text x="28.75" y="90" text="Año de egreso" width="140"/>
-			<mx:Text x="156.5" y="10" text="{recurso.titulo}" width="140" fontWeight="bold"/>
-			<mx:Text x="156.5" y="36" text="{recurso.institucion.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="156.5" y="62" text="{recurso.anioIngreso}" width="140" fontWeight="bold"/>
-			<mx:Text x="156.5" y="90" text="{recurso.anioEgreso}" width="140" fontWeight="bold"/>
-		</mx:Panel>
-		<mx:Panel x="401" y="281" width="376.2879" height="165" layout="absolute" title="Idiomas">
-			<mx:Text x="29.75" y="10" text="Idioma" width="140"/>
-			<mx:Text x="202.75" y="10" text="Nivel" width="140"/>
-			<mx:Text x="29.75" y="38" text="{recurso.idioma1.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="29.75" y="66" text="{recurso.idioma2.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="29.75" y="94" text="{recurso.idioma3.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="202.75" y="36" text="{recurso.nivelIdioma1.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="202.75" y="64" text="{recurso.nivelIdioma2.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="202.75" y="92" text="{recurso.nivelIdioma3.nombre}" width="150" fontWeight="bold"/>
-		</mx:Panel>
-		<mx:Panel x="57" y="454" width="326.5" height="140" layout="absolute" title="Hobbies">
-
-			<mx:Text x="26.1" y="12" text="{recurso.hobbie1.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="26.1" y="40" text="{recurso.hobbie2.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="26.1" y="68" text="{recurso.hobbie3.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="166.5" y="12" text="{recurso.hobbie4.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="166.5" y="40" text="{recurso.hobbie5.nombre}" width="140" fontWeight="bold"/>
-			<mx:Text x="166.5" y="68" text="{recurso.hobbie6.nombre}" width="140" fontWeight="bold"/>
-		</mx:Panel>
-		<mx:Panel x="401" y="453.95" width="376.2879" height="140" layout="absolute" title="Experiencia laboral">
-			<mx:TextArea x="10" y="10" width="337.12122" height="80" editable="false" enabled="true" fontWeight="bold">
-				<mx:text>{recurso.experiencia}</mx:text>
-			</mx:TextArea>
-		</mx:Panel>
+		     <mx:VBox width="100%" height="100%">
+          <mx:HBox width="100%" height="33%" cornerRadius="5" borderStyle="solid" borderThickness="1" verticalAlign="middle" horizontalAlign="center">
+               <mx:VBox width="49%" height="95%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:Box paddingTop="10" paddingLeft="10">
+	               		<mx:FormItem label="Nombre:" fontWeight="bold"  >
+	               			<mx:Label text="{recurso.usuario.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Apellido:" fontWeight="bold">
+	               			<mx:Label text="{recurso.usuario.apellido}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Fecha de Nacimiento:" fontWeight="bold">
+	               			<mx:Label id="fechaNac" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               	</mx:Box>
+               </mx:VBox>
+               <mx:VBox width="49%" height="95%" cornerRadius="10" backgroundColor="#F5F3F3" verticalAlign="top"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:Box paddingTop="10" paddingLeft="10">
+	               		<mx:FormItem label="Area:" fontWeight="bold">
+	               			<mx:Label text="{recurso.area.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Puesto:" fontWeight="bold">
+	               			<mx:Label text="{recurso.puesto.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Seniority:" fontWeight="bold">
+	               			<mx:Label text="{recurso.seniority.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               	</mx:Box>
+               </mx:VBox>
+          </mx:HBox>
+           <mx:HBox width="100%" height="33%" cornerRadius="5" borderStyle="solid" borderThickness="1" verticalAlign="middle" horizontalAlign="center">
+               <mx:VBox width="49%" height="95%" cornerRadius="10" backgroundColor="#F5F3F3" verticalAlign="top"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:Box paddingTop="10" paddingLeft="10">
+	               		<mx:FormItem label="Estado Civil:" fontWeight="bold">
+	               			<mx:Label text="{recurso.estadoCivil.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Provincia:" fontWeight="bold">
+	               			<mx:Label text="{recurso.provincia.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Localidad:" fontWeight="bold">
+	               			<mx:Label text="{recurso.localidad}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               	</mx:Box>
+               </mx:VBox>
+               <mx:VBox width="49%" height="95%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:Box paddingTop="10" paddingLeft="10">
+	               		<mx:FormItem label="Título:" fontWeight="bold"  >
+	               			<mx:Label text="{recurso.titulo}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:FormItem label="Establecimiento:" fontWeight="bold">
+	               			<mx:Label text="{recurso.institucion.nombre}" fontWeight="normal"/>
+	               		</mx:FormItem>
+	               		<mx:HBox>
+		               		<mx:FormItem label="Ingresó en:" fontWeight="bold">
+		               			<mx:Label text="{recurso.anioIngreso}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		             		<mx:FormItem label="Egresó en:" fontWeight="bold">
+		               			<mx:Label text="{recurso.anioEgreso}" fontWeight="normal"/>
+		               		</mx:FormItem>
+	               		</mx:HBox>	               		
+	               	</mx:Box>
+               </mx:VBox>
+          </mx:HBox>
+           <mx:HBox width="100%" height="33%" cornerRadius="5" borderStyle="solid" borderThickness="1" verticalAlign="middle" horizontalAlign="center">
+               <mx:VBox width="49%" height="95%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:HBox paddingTop="10" paddingLeft="10">
+						<mx:VBox width="50%" height="100%">
+		               		<mx:FormItem label="Idioma:" fontWeight="bold">
+		               			<mx:Label text="{recurso.idioma1.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Idioma:" fontWeight="bold">
+		               			<mx:Label text="{recurso.idioma2.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Idioma:" fontWeight="bold">
+		               			<mx:Label text="{recurso.idioma3.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               	</mx:VBox>
+						<mx:VBox width="50%" height="100%">
+		               		<mx:FormItem label="Nivel:" fontWeight="bold">
+		               			<mx:Label text="{recurso.nivelIdioma1.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		             		<mx:FormItem label="Nivel:" fontWeight="bold">
+		               			<mx:Label text="{recurso.nivelIdioma2.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Nivel:" fontWeight="bold">
+		               			<mx:Label text="{recurso.nivelIdioma3.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+	               		</mx:VBox>	               		
+	               	</mx:HBox>
+               </mx:VBox>
+               <mx:VBox width="49%" height="95%" verticalAlign="top" cornerRadius="10" backgroundColor="#F5F3F3"  borderStyle="solid" borderColor="#F5F3F3">
+               		<mx:HBox paddingTop="10" paddingLeft="10">
+						<mx:VBox width="50%" height="100%">
+		               		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie1.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie2.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie3.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		               	</mx:VBox>
+						<mx:VBox width="50%" height="100%">
+		             		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie4.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		             		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie5.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+		             		<mx:FormItem label="Hobby:" fontWeight="bold">
+		               			<mx:Label text="{recurso.hobbie6.nombre}" fontWeight="normal"/>
+		               		</mx:FormItem>
+	               		</mx:VBox>	               		
+	               	</mx:HBox>
+               </mx:VBox>
+          </mx:HBox>
+     </mx:VBox>
+ 
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Volver al listado" click="backToRecursos()"/>
 			<mx:Button label="Editar Recurso" click="editarRecurso()" />
 		</mx:ControlBar>
 	</mx:Panel>
-	
+ 	<mx:DateFormatter id="df" formatString="DD/MM/YYYY"/>
+ 	
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	
 
@@ -81,6 +142,10 @@
 		
 			[Bindable]
 			public var recurso:Object;
+			
+			private function init():void {
+				this.fechaNac.text = df.format(recurso.fechaNac);
+			}
 			
 			private function backToRecursos():void {
 				dispatchEvent(ResultEvent.createEvent(null));

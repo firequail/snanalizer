@@ -19,9 +19,9 @@
 		</mx:State>
 	</mx:states>
 
-	<mx:Panel title="Listado de Atributos" id="panel1" width="402" height="300">
-		<mx:HBox>
-			<maestros:ListadoAtributos id="listadoAtributos" result="modificarAtributo(event)" width="382" height="224"/>
+	<mx:Panel title="Listado de Atributos" id="panel1" width="100%" height="95%">
+		<mx:HBox width="100%" height="100%">
+			<maestros:ListadoAtributos id="listadoAtributos" result="modificarAtributo(event)" width="100%" height="100%"/>
 		</mx:HBox>
 		<mx:ControlBar horizontalAlign="middle">
 			<mx:Button label="Nuevo Atributo" click="nuevoAtributo()"/>
