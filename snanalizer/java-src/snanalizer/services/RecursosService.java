@@ -19,6 +19,8 @@ public interface RecursosService {
 	
 	public Recurso getRecursoById(int recId);
 	
+	public Recurso getRecursoByUsuario(int usuarioId);
+	
 	public void modificarDatosPersonales(int idRec,int idEstadoCivil,int idProvincia,String localidad);
 	
 	public void modificarOtrosDatos(int idRec, String titulo, int idEstab, int anioIng, int anioEg, String exp);
