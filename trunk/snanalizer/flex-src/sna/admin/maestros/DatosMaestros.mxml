@@ -4,14 +4,14 @@
 		<mx:State name="PanelAtributos">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
-				<maestros:Atributos id="panelAtributos" result="atributosOK(event)" />
+				<maestros:Atributos id="panelAtributos" result="atributosOK(event)" width="100%" height="100%"/>
 			</mx:AddChild>	
 			
 		</mx:State>
 	</mx:states>
-	<mx:Panel title="Listado de Datos Maestros" id="panel1" width="402" height="300">
-		<mx:HBox>
-			<maestros:ListadoDatosMaestros id="listadoDatosMaestros" result="verAtributos(event)" width="382" height="224"/>
+	<mx:Panel title="Listado de Datos Maestros" id="panel1" width="100%" height="100%">
+		<mx:HBox width="100%" height="100%">
+			<maestros:ListadoDatosMaestros id="listadoDatosMaestros" result="verAtributos(event)" width="100%" height="100%"/>
 		</mx:HBox>
 
 	</mx:Panel>
