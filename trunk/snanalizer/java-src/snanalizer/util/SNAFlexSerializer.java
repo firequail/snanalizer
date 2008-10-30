@@ -4,6 +4,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public class SNAFlexSerializer {
 
 	private boolean isPrimitive(Object object) {
 		return object instanceof String || object instanceof Integer
-				|| object instanceof Boolean;
+				|| object instanceof Boolean || object instanceof Date;
 	}
 
 	@SuppressWarnings("unchecked")
