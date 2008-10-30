@@ -4,7 +4,7 @@
 		<mx:State name="Portal">
 			<mx:RemoveChild target="{login}"/>
 			<mx:AddChild position="lastChild">
-				<portal:Portal logout="logout()"/>
+				<portal:Portal id="portal" logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Administracion">
@@ -22,6 +22,10 @@
 	</mx:states>
 
 	<sna:Login result="handleLoginResult(event)" id="login"/>
+
+	<mx:RemoteObject id="recursosService" destination="recursosService" showBusyCursor="true">
+		<mx:method name="getRecursoByUsuario" result="onGetRecursoByUsuario(event)"/>
+	</mx:RemoteObject>
 	
 	<mx:Script>
 		<![CDATA[
@@ -33,7 +37,7 @@
 				var usuario:Object = event.result;
 				
 				if(usuario.rol == "RECURSO"){
-					this.currentState = "Portal";
+					recursosService.getRecursoByUsuario(usuario.id);
 					
 				} else if(usuario.rol == "ADMIN"){
 					this.currentState = "Administracion";
@@ -41,6 +45,11 @@
 				} else if(usuario.rol == "ANALISTA"){
 					this.currentState = "Analisis";
 				}
+			}
+			
+			private function onGetRecursoByUsuario(e:ResultEvent):void {
+					this.currentState = "Portal";
+					portal.setRecurso(e.result);
 			}
 			
 			private function logout():void {

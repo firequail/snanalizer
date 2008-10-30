@@ -30,4 +30,10 @@ public class RecursosRepositoryImpl extends BaseRepositoryImpl<Recurso>
 		// criteria.add(Restrictions.eq("estado",true));
 		return find(criteria);
 	}
+	
+	public Recurso getByUsuario(Usuario usuario) {
+		Criteria criteria = createCriteria();
+		criteria.add(Restrictions.eq("usuario", usuario));
+		return findUnique(criteria);
+	}
 }

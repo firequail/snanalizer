@@ -80,6 +80,11 @@ public class RecursosServiceImpl implements RecursosService {
 		return recursos.getById(recId);
 	}
 	
+	public Recurso getRecursoByUsuario(int usuarioId) {
+		Usuario usuario = usuarios.getById(usuarioId);
+		return recursos.getByUsuario(usuario);
+	}
+	
 	public void modificarDatosPersonales(int idRec,int idEstadoCivil,int idProvincia,String localidad) {
 		Recurso rec = recursos.getById(idRec);
 		rec.setEstadoCivil(atributos.getById(idEstadoCivil));
