@@ -125,7 +125,7 @@ public class RedesServiceImpl implements RedesService {
 
 	public List<PuntoDeVista> getPuntosDeVista(int redId) {
 		Red red = redesRepository.getById(redId);
-		return red.getPuntosDeVista();
+		return puntosDeVistaRepository.getByRed(red);
 	}
 
 	public List<Red> getRedes() {

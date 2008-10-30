@@ -8,7 +8,7 @@ import javax.persistence.Transient;
 
 @MappedSuperclass
 public abstract class DomainEntity {
-	private Integer id;
+	private Integer id = 0;
 
 	public void setId(Integer id) {
 		if (id < 1) {

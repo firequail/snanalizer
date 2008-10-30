@@ -2,7 +2,7 @@ package snanalizer.domain;
 
 
 
-public class BloqueEstadistico {
+public class BloqueEstadistico extends DomainEntity {
 
 	private int cantNodos;
 	private int cantEnlaces;
@@ -17,7 +17,14 @@ public class BloqueEstadistico {
 	private Nodo nodoMaxSumEnlSal;
 	private int maxSumEnlSal;
 	
-	public BloqueEstadistico() {}
+	public BloqueEstadistico() {
+	}
+	
+	@Override
+	public int hashCode() {
+		//TODO:
+		return 23 * promEnl;
+	}
 
 	public int getCantNodos() {
 		return cantNodos;
