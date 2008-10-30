@@ -8,7 +8,8 @@
 		<mx:VBox width="20%" height="100%">
 			<mx:Panel width="100%" height="50%"  title=":: Info General" horizontalAlign="center" paddingTop="20">
 				<mx:VBox width="100%" height="100%" horizontalAlign="center">
-					<mx:Image source="@Embed('../resourcespics/pity.jpg')" autoLoad="true"/>
+					<mx:VBox id="imgBox">
+					</mx:VBox>
 					<mx:VBox width="100%" height="100%" horizontalAlign="left" paddingLeft="10" paddingTop="10" paddingBottom="10">
 						<mx:Label text="Nombre: {recurso.usuario.nombre}" />
     	        		<mx:Label text="Apellido: {recurso.usuario.apellido}"/>
@@ -162,6 +163,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Image;
 			import mx.formatters.DateBase;
 			import mx.controls.Alert;
 		
@@ -177,6 +179,7 @@
 				datosMaestrosService.getIdiomas();
 				datosMaestrosService.getProvincias();
 				datosMaestrosService.getEstadosCiviles();
+				initImg();
 			}
 			
 			public function saveData():void {
@@ -185,6 +188,36 @@
 				recursosService.modificarIdiomas(recurso.id as int,idioma1Combo.selectedData as int,nivel1Combo.selectedData as int, idioma2Combo.selectedData as int,nivel2Combo.selectedData as int,idioma3Combo.selectedData as int,nivel3Combo.selectedData as int);
 				recursosService.modificarHobbies(recurso.id as int,hobbie1Combo.selectedData as int, hobbie2Combo.selectedData as int, hobbie3Combo.selectedData as int, hobbie4Combo.selectedData as int, hobbie5Combo.selectedData as int, hobbie6Combo.selectedData as int);
 				Alert.show("Su información ha sido actualizada exitosamente");
+			}
+			
+			private function onImageLoad(e:HTTPStatusEvent):void {
+				if(actualImg.content == null) {
+					loadImage("null",false);
+				}
+			}
+			
+			private function initImg():void {
+				loadImage(recurso.usuario.email,true);
+			}
+			
+			private var actualImg:Image = null;
+			
+			private function loadImage(name:String, retry:Boolean):void {
+				var img:Image = new Image();
+				
+				if(retry) {
+					img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoad);
+				}
+				
+				img.source = "resourcespics/"+name+".jpg";
+				img.width = 140;
+				img.height = 172;
+				
+				imgBox.addChild(img);
+				if(actualImg != null) {
+					imgBox.removeChild(actualImg);
+				}
+				actualImg = img;
 			}
 		]]>
 	</mx:Script>

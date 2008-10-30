@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:portal="sna.portal.*"  width="100%" height="100%" creationComplete="load()">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:portal="sna.portal.*"  width="100%" height="100%">
 	<mx:Metadata>
 		[Event(name="logout", type="mx.events.FlexEvent")]
 	</mx:Metadata>
@@ -16,7 +16,9 @@
 		</mx:TabNavigator>
 	</mx:Panel>
 	
-	<mx:RemoteObject id="recursosService" destination="recursosService"/>
+	<mx:RemoteObject id="recursosService" destination="recursosService">
+		<mx:method name="getRecursoById" result="onGetRecursoById(event)"/>
+	</mx:RemoteObject>
 	
 	<mx:Script>
 		<![CDATA[
@@ -34,9 +36,18 @@
 			
 			public function setRecurso(value:Object):void {
 				recurso = value;
-				
+				load();
 			}
-		
+			
+			public function onGetRecursoById(e:ResultEvent):void {
+				if(personal != null) {
+					personal.load();
+				}
+				if(principal != null) {
+					principal.load();
+				}
+			}
+			
 			public function load():void {
 				recursosService.getRecursoById(recurso.id);
 			}

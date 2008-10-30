@@ -49,6 +49,15 @@
 			public var recurso:Object;
 			[Bindable]
             public var answerSurvey:Encuesta;
+            
+            public function load():void {
+            	if(encPend != null) {
+            		encPend.load();
+            	}
+            	if(encPortal != null) {
+            		encPortal.load();
+            	}
+            }
 
 			private function openSurvey(event:ResultEvent):void {
 				dispatchEvent(event);
