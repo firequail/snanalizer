@@ -37,10 +37,6 @@ public class Recurso extends DomainEntity {
 	private Boolean estado;
 	private String picture;
 
-	/*
-	 * @Basic(fetch=LAZY) @Lob @Column(name="PIC") private byte[] picture;
-	 */
-
 	public Recurso() {
 
 	}
