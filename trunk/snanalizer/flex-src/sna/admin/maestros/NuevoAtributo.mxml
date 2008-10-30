@@ -12,9 +12,6 @@
 			<mx:FormItem label="Descripción" tabIndex="2">
 				<mx:TextInput id="descripcion" maxChars="200"/>
 			</mx:FormItem>
-			<mx:FormItem label="Activo" tabIndex="3">
-				<mx:CheckBox id="activo" selected="true" />
-			</mx:FormItem>
 			
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
@@ -46,7 +43,7 @@
 			
 			private function guardar():void {
 				if(isValid()) {
-					atributosService.crear(nombre.text, descripcion.text,activo.selected,_datoMaestro.id as int);
+					atributosService.crear(nombre.text, descripcion.text,true,_datoMaestro.id as int);
 					dispatchEvent(ResultEvent.createEvent());
 				}
 			}
@@ -59,7 +56,6 @@
 				nombre.text= "";
 				vnombre.reset();
 				descripcion.text="";
-				activo.selected = true;
 			}
 			
 		]]>

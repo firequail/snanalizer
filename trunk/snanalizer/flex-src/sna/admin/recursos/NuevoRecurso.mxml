@@ -39,9 +39,6 @@
 			<mx:FormItem label="Foto" tabIndex="10">
 				<sna:FileUpload id="photo" width="100%" height="100%"/>
 			</mx:FormItem>
-			<mx:FormItem label="Activo" tabIndex="11">
-				<mx:CheckBox id="activo" selected="true" />
-			</mx:FormItem>
 		</mx:Form>
 		<mx:ControlBar horizontalAlign="right">
 			<mx:Button id="okButton" label="OK" click="guardar()" tabIndex="5" />
@@ -75,7 +72,7 @@
 				if(isValid()) {
 					photo.fileName = email.text;
 					photo.startUploading();
-					recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,activo.selected);
+					recursosService.crear(nombre.text,apellido.text, email.text,password1.text,dtf.selectedDate as Date,areaCombo.selectedData as int,puestoCombo.selectedData as int,seniorityCombo.selectedData as int,true);
 					dispatchEvent(ResultEvent.createEvent());
 				}
 			}
@@ -102,7 +99,6 @@
 				puestoCombo.selectedIndex = 0;
 				seniorityCombo.selectedIndex = 0;
 				dtf.text = "";
-				activo.selected = true;
 			}
 			
 		]]>

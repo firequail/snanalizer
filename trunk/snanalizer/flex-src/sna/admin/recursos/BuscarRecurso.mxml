@@ -7,16 +7,19 @@
 
 		<mx:HBox width="100%" height="50" verticalAlign="middle" horizontalAlign="center">
 			<mx:VBox height="30" width="224" verticalAlign="middle" horizontalAlign="center">
-			
-				
-					<mx:FormItem label="Nombre" fontSize="10" tabIndex="1" paddingBottom="0" paddingTop="0">
-						<mx:TextInput id="nombre" text="" fontSize="10" />
-					</mx:FormItem>
+				<mx:FormItem label="Nombre" fontSize="10" tabIndex="1" paddingBottom="0" paddingTop="0">
+					<mx:TextInput id="nombre" text="" fontSize="10" />
+				</mx:FormItem>
 			</mx:VBox>
 			<mx:VBox height="30" width="238" verticalAlign="middle" horizontalAlign="center">
-					<mx:FormItem label="Apellido" fontSize="10" horizontalAlign="center" paddingBottom="0" paddingTop="0">
-						<mx:TextInput id="apellido" fontSize="10" text="" />
-					</mx:FormItem>
+				<mx:FormItem label="Apellido" fontSize="10" horizontalAlign="center" paddingBottom="0" paddingTop="0">
+					<mx:TextInput id="apellido" fontSize="10" text="" />
+				</mx:FormItem>
+			</mx:VBox>
+			<mx:VBox verticalAlign="middle" horizontalAlign="center">
+				<mx:FormItem label="Activos" fontSize="10" horizontalAlign="center" paddingBottom="0" paddingTop="0">
+					<mx:CheckBox id="estado" fontSize="10" selected="true"/>
+				</mx:FormItem>
 			</mx:VBox>
 			<mx:VBox height="30" width="86" verticalAlign="middle" horizontalAlign="center">
 				<mx:Button id="okButton" label="Buscar" click="buscar()"  tabIndex="5" />

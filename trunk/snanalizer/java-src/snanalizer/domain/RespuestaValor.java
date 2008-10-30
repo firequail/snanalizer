@@ -2,7 +2,7 @@ package snanalizer.domain;
 
 
 
-public class RespuestaValor {
+public class RespuestaValor extends DomainEntity {
 	
 	private String respuesta;
 	private int valor;
@@ -25,6 +25,9 @@ public class RespuestaValor {
 		this.valor = valor;
 	}
 	
-	
+	@Override
+	public int hashCode() {
+		return 17 * respuesta.hashCode() + 23 * valor;
+	}
 
 }

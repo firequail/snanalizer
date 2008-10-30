@@ -12,22 +12,28 @@ import snanalizer.domain.Usuario;
 public class RecursosRepositoryImpl extends BaseRepositoryImpl<Recurso>
 		implements RecursosRepository {
 
+	public List<Recurso> getAllActivos() {
+		Criteria criteria = createCriteria();
+		criteria.add(Restrictions.eq("estado",true));
+		return find(criteria);
+	}
+	
 	public List<Recurso> buscarRecursoByName(List<Usuario> usuarios) {
 		if (!usuarios.isEmpty()) {
 			Criteria criteria = createCriteria();
 			criteria.add(Restrictions.eq("usuario", usuarios.get(0)));
-			// criteria.add(Restrictions.eq("estado",true));
+			criteria.add(Restrictions.eq("estado",true));
 			return find(criteria);
 		}
 		return new ArrayList<Recurso>(0);
 	}
 
-	public List<Recurso> buscarRecursoByName(String nombre, String apellido) {
+	public List<Recurso> buscarRecursoByName(String nombre, String apellido, boolean estado) {
 		Criteria criteria = createCriteria();
 		criteria.createAlias("usuario", "usuario");
 		criteria.add(Restrictions.like("usuario.nombre", "%" + nombre + "%"));
 		criteria.add(Restrictions.like("usuario.apellido", "%" + apellido + "%"));
-		// criteria.add(Restrictions.eq("estado",true));
+		criteria.add(Restrictions.eq("estado",estado));
 		return find(criteria);
 	}
 	

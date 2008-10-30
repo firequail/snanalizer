@@ -48,8 +48,12 @@
 			}
 			
 			private function onGetRecursoByUsuario(e:ResultEvent):void {
-					this.currentState = "Portal";
-					portal.setRecurso(e.result);
+					if(e.result.estado == true) {
+						this.currentState = "Portal";
+						portal.setRecurso(e.result);
+					} else {
+						Alert.show("Su usuario no esta habilitado para entrar al sistema.");
+					}
 			}
 			
 			private function logout():void {

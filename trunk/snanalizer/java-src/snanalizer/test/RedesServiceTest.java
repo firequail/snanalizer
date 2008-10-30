@@ -60,7 +60,7 @@ public class RedesServiceTest extends TestCase {
 
 	public void xtestBusquedaRecursos() {
 		List<Recurso> recursos = recursosService.buscarRecursoByName("pepe",
-				"lopez");
+				"lopez", true);
 
 		System.out.println(recursos);
 	}

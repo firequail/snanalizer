@@ -12,7 +12,7 @@
 		<mx:columns>
 			<mx:DataGridColumn headerText="Nombre" dataField="nombre"/>
 			<mx:DataGridColumn headerText="Descripción" dataField="descripcion"/>
-			<mx:DataGridColumn headerText="Estado" dataField="estado"/>
+			<mx:DataGridColumn headerText="Estado" dataField="estado" labelFunction="labelEstado"/>
 		</mx:columns>
 	</mx:DataGrid>
 
@@ -21,10 +21,10 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.dataGridClasses.DataGridColumn;
 
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
-			
 			
 			[Bindable]
 			private var datoMaestro:Object;
@@ -32,7 +32,6 @@
 			public function setDatoMaestro(value:Object):void {
 				datoMaestro = value;
 				datosMaestrosService.getAtributos(datoMaestro.id as int);
-				
 			}
 			
 			private function modificarAtributo():void {
@@ -41,9 +40,14 @@
 			
 			public function refreshGrid():void {
 				datosMaestrosService.getAtributos(datoMaestro.id as int);
-				
 			}
 			
+			public function labelEstado(atributo:Object,col:DataGridColumn):String {
+				if(atributo.estado == true) {
+					return "Activo";
+				}
+				return "Inactivo";
+			}
 			
 		]]>
 	</mx:Script>
