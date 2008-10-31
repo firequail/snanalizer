@@ -54,7 +54,9 @@
 	
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
-	
+	<mx:RemoteObject id="usuariosService" destination="usuariosService">
+		<mx:method name="getByEmail" result="onGetByEmail(event)"/>
+	</mx:RemoteObject>
 		
 	<mx:Script>
 		<![CDATA[
@@ -69,6 +71,14 @@
 			}
 						
 			private function guardar():void {
+				usuariosService.getByEmail(email.text);
+			}
+				
+			private function onGetByEmail(e:ResultEvent):void {
+				vemail.usuario = e.result;
+				doSave();
+			}
+			private function doSave():void {
 				if(isValid()) {
 					photo.fileName = email.text;
 					photo.startUploading();

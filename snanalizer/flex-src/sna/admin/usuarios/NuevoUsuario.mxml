@@ -44,7 +44,9 @@
 	<valid:RequiredText id="vnombre" source="{nombre}" maxLength="50"/>
 	<valid:RequiredText id="vapellido" source="{apellido}" maxLength="50"/>
 
-	<mx:RemoteObject id="usuariosService" destination="usuariosService"/>
+	<mx:RemoteObject id="usuariosService" destination="usuariosService">
+		<mx:method name="getByEmail" result="onGetByEmail(event)"/>
+	</mx:RemoteObject>
 	
 	
 	<mx:Script>
@@ -57,6 +59,14 @@
 			}
 			
 			private function guardar():void {
+				usuariosService.getByEmail(email.text);
+			}
+				
+			private function onGetByEmail(e:ResultEvent):void {
+				vemail.usuario = e.result;
+				doSave();
+			}
+			private function doSave():void {
 				if(isValid()) {
 					usuariosService.crear(email.text, password1.text, nombre.text, apellido.text, rolCombo.selectedData);
 					dispatchEvent(ResultEvent.createEvent());

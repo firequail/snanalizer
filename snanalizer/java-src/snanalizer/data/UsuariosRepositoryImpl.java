@@ -50,4 +50,12 @@ public class UsuariosRepositoryImpl extends BaseRepositoryImpl<Usuario> implemen
 		
 		return find(criteria);
 	}
+	
+	public Usuario getByEmail(String email) {
+		Criteria criteria = createCriteria();
+		
+		criteria.add(Restrictions.eq("email", email));
+		
+		return findUnique(criteria);
+	}
 }

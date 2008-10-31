@@ -13,4 +13,6 @@ public interface UsuariosRepository extends BaseRepository<Usuario> {
 	public List<Usuario> getNoRecursos();
 	
 	public List<Usuario> getUsuarioByName(String name, String apellido);
+
+	public Usuario getByEmail(String email);
 }

@@ -18,4 +18,6 @@ public interface UsuariosService {
 	
 	public Usuario getById(int id);
 
+	public Usuario getByEmail(String email);
+	
 }
