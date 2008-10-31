@@ -6,7 +6,7 @@
 	
 	<sna:ControlBar logout="dispatchEvent(event)"/>
 	<mx:Panel layout="absolute" title="Portal" width="100%" height="100%">
-	<mx:TabNavigator width="100%" height="100%">
+	<mx:TabNavigator id="tabs" width="100%" height="100%">
 			<mx:Canvas label="Inicio" width="100%" height="100%">
 				<portal:Principal id="principal" recurso="{recurso}" result="openPopUp(event)" />
 			</mx:Canvas>
@@ -50,6 +50,7 @@
 			
 			public function load():void {
 				recursosService.getRecursoById(recurso.id);
+				tabs.selectedIndex = 0;
 			}
 			
 			private function openPopUp(event:ResultEvent): void {

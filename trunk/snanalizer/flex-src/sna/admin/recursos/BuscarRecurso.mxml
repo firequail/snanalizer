@@ -32,6 +32,12 @@
 			import mx.collections.ArrayCollection;
 			import mx.rpc.events.ResultEvent;
 			
+			public function init():void {
+				nombre.text = "";
+				apellido.text = "";
+				estado.selected = true;
+			}
+			
 			private function buscar():void {
 				dispatchEvent(ResultEvent.createEvent());
 			}
