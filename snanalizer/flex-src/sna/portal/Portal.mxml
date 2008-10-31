@@ -40,10 +40,13 @@
 			}
 			
 			public function onGetRecursoById(e:ResultEvent):void {
+				recurso = e.result;
 				if(personal != null) {
+					personal.recurso = recurso;
 					personal.load();
 				}
 				if(principal != null) {
+					principal.recurso = recurso;
 					principal.load();
 				}
 			}

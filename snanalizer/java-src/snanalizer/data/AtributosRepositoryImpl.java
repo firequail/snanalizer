@@ -3,6 +3,7 @@ package snanalizer.data;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 
@@ -24,6 +25,7 @@ public class AtributosRepositoryImpl extends BaseRepositoryImpl<Atributo> implem
 	public List<Atributo> getAtributos(DatoMaestro dm) {
 		Criteria criteria = createCriteria();
 		criteria.add(Restrictions.eq("datoMaestro", dm));
+		criteria.addOrder(Order.asc("nombre"));
 		return find(criteria);
 	}
 	

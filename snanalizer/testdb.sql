@@ -35,7 +35,7 @@ CREATE TABLE `atributo` (
   PRIMARY KEY  (`id`),
   KEY `FK20FDAAD8398792ED` (`datoMaestro_id`),
   CONSTRAINT `FK20FDAAD8398792ED` FOREIGN KEY (`datoMaestro_id`) REFERENCES `datomaestro` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `atributo`
@@ -95,10 +95,7 @@ INSERT INTO `atributo` (`id`,`descripcion`,`estado`,`nombre`,`datoMaestro_id`) V
  (51,'Santa Fe',0x01,'Santa Fe',8),
  (52,'Santiago del Estero',0x01,'Santiago del Estero',8),
  (53,'Tierra del Fuego',0x01,'Tierra del Fuego',8),
- (54,'Catamarca',0x01,'Catamarca',8),
- (55,'Mendoza',0x01,'Mendoza',8),
- (56,'La Rioja',0x01,'La Rioja',8),
- (57,'Misiones',0x01,'Misiones',8);
+ (58,'Ciudad Autónoma de Buenos Aires',0x01,'Capital Federal',8);
 /*!40000 ALTER TABLE `atributo` ENABLE KEYS */;
 
 
@@ -179,10 +176,7 @@ INSERT INTO `datomaestro_atributo` (`DatoMaestro_id`,`atributos_id`) VALUES
  (7,25),
  (8,26),
  (8,27),
- (8,54),
- (8,55),
- (8,56),
- (8,57),
+ (8,58),
  (9,28),
  (9,29),
  (9,30),
@@ -1340,9 +1334,9 @@ CREATE TABLE `recurso` (
 
 /*!40000 ALTER TABLE `recurso` DISABLE KEYS */;
 INSERT INTO `recurso` (`id`,`anioEgreso`,`anioIngreso`,`estado`,`experiencia`,`fechaNac`,`localidad`,`picture`,`titulo`,`area_id`,`estadoCivil_id`,`hobbie1_id`,`hobbie2_id`,`hobbie3_id`,`hobbie4_id`,`hobbie5_id`,`hobbie6_id`,`idioma1_id`,`idioma2_id`,`idioma3_id`,`institucion_id`,`nivelIdioma1_id`,`nivelIdioma2_id`,`nivelIdioma3_id`,`provincia_id`,`puesto_id`,`seniority_id`,`usuario_id`) VALUES 
- (1,0,0,0x01,NULL,'2008-10-01 00:00:00','Capital Federal',NULL,NULL,1,28,22,23,24,25,NULL,NULL,10,11,13,18,16,15,14,26,4,7,4),
- (2,0,0,0x01,NULL,'2008-10-01 00:00:00',NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,4,8,5),
- (3,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,9,6),
+ (1,1995,1990,0x01,'','2008-10-01 00:00:00','La Rioja',NULL,'Ing Industrial',1,28,22,23,24,25,NULL,NULL,10,11,13,18,16,15,14,42,4,7,4),
+ (2,0,2000,0x01,'','2008-10-01 00:00:00','',NULL,'Técnico',1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,58,4,8,5),
+ (3,0,0,0x01,'',NULL,'',NULL,'',1,28,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,9,6),
  (4,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,8,7),
  (5,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,8),
  (6,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,9),
