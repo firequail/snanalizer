@@ -9,17 +9,20 @@
 	</mx:RemoteObject>
 
 	<mx:Panel title="Login" id="loginPanel">
-		<mx:Form defaultButton="{loginButton}">
-			<mx:FormItem label="Email" tabIndex="1">
-				<mx:TextInput id="txtEmail" tabIndex="1"/>
-			</mx:FormItem>
-			<mx:FormItem label="Contraseña" tabIndex="2">
-				<mx:TextInput id="txtPassword" displayAsPassword="true" tabIndex="2"/>
-			</mx:FormItem>
-		</mx:Form>
-		<mx:ControlBar horizontalAlign="right" id="controlbar1">
-			<mx:Button id="loginButton" label="Ingresar" click="login()" tabIndex="3" />
-		</mx:ControlBar>
+		<mx:HBox width="100%" height="100%" verticalAlign="middle" backgroundColor="#a4b6bf" paddingBottom="2" paddingLeft="10" paddingRight="2" paddingTop="2">
+			<mx:Image source="@Embed('assets/logoSNA-2.png')" autoLoad="true" />
+			<mx:Form defaultButton="{loginButton}">
+				<mx:FormItem label="Email" tabIndex="1">
+					<mx:TextInput id="txtEmail" tabIndex="1"/>
+				</mx:FormItem>
+				<mx:FormItem label="Contraseña" tabIndex="2">
+					<mx:TextInput id="txtPassword" displayAsPassword="true" tabIndex="2"/>
+				</mx:FormItem>
+			</mx:Form>
+		</mx:HBox>
+			<mx:ControlBar horizontalAlign="right" id="controlbar1">
+				<mx:Button id="loginButton" label="Ingresar" click="login()" tabIndex="3" />
+			</mx:ControlBar>
 	</mx:Panel>
 	
 	<mx:Script>
