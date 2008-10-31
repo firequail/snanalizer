@@ -25,7 +25,7 @@
 				<sna:DataComboBox id="rolCombo" selectedData="{usuario.rol}">
 					<mx:ArrayCollection>
 	                 <mx:Object label="Administrador" data="ADMIN"/>
-	                 <mx:Object label="Recurso" data="RECURSO"/>
+	                 <mx:Object label="RRHH" data="RRHH"/>
 	                 <mx:Object label="Analista" data="ANALISTA"/>
 	              </mx:ArrayCollection>
 				</sna:DataComboBox>
