@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:maestros="sna.admin.maestros.*" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
-	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="500" horizontalAlign="left">
+	<mx:Panel title="Ayuda en Línea!" id="panelAyuda" width="100%" height="95%" horizontalAlign="left">
 		<mx:TextArea width="100%" height="100%" backgroundColor="#FAF7D1" editable="false">
        		<mx:htmlText>
             	<![CDATA[Usted se encuentra en el módulo de <b>DATOS MAESTROS</b>.
