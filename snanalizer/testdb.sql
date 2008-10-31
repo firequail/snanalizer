@@ -1337,7 +1337,7 @@ INSERT INTO `recurso` (`id`,`anioEgreso`,`anioIngreso`,`estado`,`experiencia`,`f
  (1,1995,1990,0x01,'','2008-10-01 00:00:00','La Rioja',NULL,'Ing Industrial',1,28,22,23,24,25,NULL,NULL,10,11,13,18,16,15,14,42,4,7,4),
  (2,0,2000,0x01,'','2008-10-01 00:00:00','',NULL,'Técnico',1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,58,4,8,5),
  (3,0,0,0x01,'',NULL,'',NULL,'',1,28,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,9,6),
- (4,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,8,7),
+ (4,0,0,0x01,NULL,'1998-12-02 00:00:00',NULL,NULL,NULL,1,NULL,22,23,24,25,NULL,NULL,10,11,13,18,14,15,14,NULL,5,8,7),
  (5,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,8),
  (6,0,0,0x01,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,9),
  (7,0,0,0x01,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,10),
@@ -1632,9 +1632,9 @@ CREATE TABLE `usuario` (
 
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`,`apellido`,`email`,`nombre`,`password`,`rol`) VALUES 
- (1,'Admin','admin','Admin','admin','ADMIN'),
- (2,'Analista','analista','Analista','analista','ANALISTA'),
- (3,'HR','hr','HR','hr','HR'),
+ (1,'Admin','admin@sna.com','Admin','password','ADMIN'),
+ (2,'Analista','analista@sna.com','Analista','password','ANALISTA'),
+ (3,'HR','rrhh@sna.com','HR','password','RRHH'),
  (4,'Lopez','r1@hotmail.com','Pedro','pepelopez','RECURSO'),
  (5,'Ticolis','r2@hotmail.com','Nestor','nestorticolis','RECURSO'),
  (6,'Candado','r3@hotmail.com','Jimena','password','RECURSO'),
