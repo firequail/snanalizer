@@ -16,13 +16,7 @@
 		<mx:State name="Analyst">
 			<mx:RemoveChild target="{main}"/>
 			<mx:AddChild position="lastChild">
-				<sna:AnalystPortal logout="logout()" />
-			</mx:AddChild>
-		</mx:State>
-		<mx:State name="Analisis">
-			<mx:RemoveChild target="{main}"/>
-			<mx:AddChild position="lastChild">
-				<analisis:Analisis id="analisis" logout="logout()"/>
+				<sna:AnalystPortal id="analisis" logout="logout()" />
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Portal">
@@ -40,8 +34,6 @@
 	</mx:states>
 
 	<mx:VBox id="main" height="100%" horizontalAlign="center" verticalAlign="middle">
-		<mx:Button label="Admin" click="currentState='Administracion'"/>
-		<mx:Button label="Analisis" click="currentState='Analisis';analisis.init();"/>
 		<mx:HBox>
 			<sna:DataComboBox id="comboRecursos" dataProvider="{recursosService.getAll.lastResult}" dataField="id" labelFunction="getUsuarioNombre" unselectedLabel="Select"/>
 			<mx:Button label="Portal" click="entrarAlPortal();"/>	
@@ -85,18 +77,16 @@
 		}
 		
 		private function openAdmin():void {
-			this.currentState = "";
 			this.currentState = "Administracion";
 		}
 		
 		private function openRRHH():void {
-			this.currentState = "";
 			this.currentState = "rrhh";
 		}
 		
 		private function openAnalyst():void {
-			this.currentState = "";
 			this.currentState = "Analyst";
+			analisis.init();
 		}
 		
 		private function logout():void {

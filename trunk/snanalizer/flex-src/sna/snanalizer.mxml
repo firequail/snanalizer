@@ -13,10 +13,16 @@
 				<admin:Administracion id="admin" logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="rrhh">
+			<mx:RemoveChild target="{login}"/>
+			<mx:AddChild position="lastChild">
+				<sna:RRHHPortal logout="logout()" />
+			</mx:AddChild>
+		</mx:State>
 		<mx:State name="Analisis">
 			<mx:RemoveChild target="{login}"/>
 			<mx:AddChild position="lastChild">
-				<analisis:Analisis id="analisis" logout="logout()"/>
+				<sna:AnalystPortal id="analisis" logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -41,6 +47,9 @@
 					
 				} else if(usuario.rol == "ADMIN"){
 					this.currentState = "Administracion";
+
+				} else if(usuario.rol == "RRHH"){
+					this.currentState = "rrhh";
 					
 				} else if(usuario.rol == "ANALISTA"){
 					this.currentState = "Analisis";

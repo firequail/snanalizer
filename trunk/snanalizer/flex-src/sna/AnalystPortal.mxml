@@ -7,6 +7,17 @@
 			private function logout():void {
 				dispatchEvent(new FlexEvent("logout"));
 			}
+			
+			public function init():void {
+				tabs.selectedIndex = 0;
+				if(analisisAdmin != null) {
+					analisisAdmin.init();
+				}
+				if(analisisRedes != null) {
+					analisisRedes.init();
+				}
+			}
+			
 		]]>
 	</mx:Script>
 	
@@ -16,15 +27,15 @@
 	
 	<sna:ControlBar logout="logout()"/>
 	<mx:Panel title="Portal de Analistas" width="100%" height="100%">
-		<mx:TabNavigator width="100%" height="100%" backgroundColor="#efeeee">
+		<mx:TabNavigator id="tabs" width="100%" height="100%" backgroundColor="#efeeee">
 			<mx:Canvas label="Administración" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" >
-					<admin:AnalystAdmin/>		
+					<admin:AnalystAdmin id="analisisAdmin"/>		
 				</mx:HBox>
 			</mx:Canvas>
 			<mx:Canvas label="Análisis de Redes" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" >
-					<analisis:AnalisisNoCtrlBar/>
+					<analisis:AnalisisNoCtrlBar id="analisisRedes"/>
 				</mx:HBox>				
 			</mx:Canvas>
 		</mx:TabNavigator>
