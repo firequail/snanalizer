@@ -6,6 +6,12 @@
 			
 			public function init():void {
 				tabs.selectedIndex = 0;
+				if(recursos != null) {
+					recursos.init();
+				}
+				if(grupos != null) {
+					grupos.init();
+				}
 			}
 			
 			private function logout():void {
@@ -23,13 +29,13 @@
 		<mx:TabNavigator id="tabs" width="100%" height="100%" backgroundColor="#efeeee">
 			<mx:Canvas label="Recursos" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
-					<recursos:Recursos/>
+					<recursos:Recursos id="recursos"/>
 					<recursos:AyudaEnLinea/>		
 				</mx:HBox>
 			</mx:Canvas>
 			<mx:Canvas label="Grupos de Recursos" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
-					<grupos:Grupos/>
+					<grupos:Grupos id="grupos"/>
 					<grupos:AyudaEnLinea/>
 				</mx:HBox>				
 			</mx:Canvas>

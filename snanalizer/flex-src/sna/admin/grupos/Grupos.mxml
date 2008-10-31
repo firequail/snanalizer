@@ -44,9 +44,13 @@
 				}
 			}
 			
-			private function load(event:ResultEvent):void {
-				listadoGrupos.load();
+			public function load(event:ResultEvent):void {
+				init();
+			}
+			
+			public function init():void {
 				this.currentState = "";
+				listadoGrupos.load();
 			}
 						
 		]]>

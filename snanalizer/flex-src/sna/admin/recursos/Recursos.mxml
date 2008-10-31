@@ -54,6 +54,12 @@
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 			
+			public function init():void {
+				this.currentState = "";
+				buscarRecursos.init();
+				listadoRecursos.load();
+			}
+			
 			private function verRecurso(event:ResultEvent):void {
 				this.currentState = "VisualizarRecurso";
 				mostrarRecurso.recurso = event.result;

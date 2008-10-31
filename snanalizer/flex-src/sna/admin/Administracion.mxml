@@ -6,6 +6,24 @@
 			
 			public function init():void {
 				tabs.selectedIndex = 0;
+				if(usuarios != null) {
+					usuarios.init();
+				}
+				if(recursos != null) {
+					recursos.init();
+				}
+				if(maestros != null) {
+					maestros.init();
+				}
+				if(grupos != null) {
+					grupos.init();
+				}
+				if(encuestas != null) {
+					encuestas.init();
+				}
+				if(redes != null) {
+					redes.load();
+				}
 			}
 			
 			private function logout():void {
@@ -23,37 +41,37 @@
 		<mx:TabNavigator id="tabs" width="100%" height="100%" backgroundColor="#efeeee">
 			<mx:Canvas label="Usuarios" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
-					<usuarios:Usuarios/>
+					<usuarios:Usuarios id="usuarios"/>
 					<usuarios:AyudaEnLinea/>		
 				</mx:HBox>
 			</mx:Canvas>
 			<mx:Canvas label="Recursos" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
-					<recursos:Recursos/>
+					<recursos:Recursos id="recursos"/>
 					<recursos:AyudaEnLinea/>		
 				</mx:HBox>
 			</mx:Canvas>
 			<mx:Canvas label="Datos Maestros" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
-					<maestros:DatosMaestros/>
+					<maestros:DatosMaestros id="maestros"/>
 					<maestros:AyudaEnLinea/>
 				</mx:HBox>
 			</mx:Canvas>
 			<mx:Canvas label="Grupos de Recursos" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
-					<grupos:Grupos/>
+					<grupos:Grupos id="grupos"/>
 					<grupos:AyudaEnLinea/>
 				</mx:HBox>				
 			</mx:Canvas>
 			<mx:Canvas label="Encuestas" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">			
-					<encuestas:Encuestas/>
+					<encuestas:Encuestas id="encuestas"/>
 					<encuestas:AyudaEnLinea/>
 				</mx:HBox>	
 			</mx:Canvas>
 			<mx:Canvas label="Redes" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
-					<redes:Redes/>
+					<redes:Redes id="redes"/>
 					<redes:AyudaEnLinea/>
 				</mx:HBox>	
 			</mx:Canvas>

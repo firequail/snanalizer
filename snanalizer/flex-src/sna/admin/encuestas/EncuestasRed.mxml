@@ -4,7 +4,7 @@
 		<mx:State name="nuevaEncuesta">
 			<mx:RemoveChild target="{panel1}"/>
 			<mx:AddChild position="lastChild">
-				<ns1:NuevaEncuesta id="nuevaEncuestaForm" result="currentState='';load()"/>
+				<ns1:NuevaEncuesta id="nuevaEncuestaForm" result="load()"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -29,6 +29,7 @@
 		<![CDATA[
 			
 			public function load():void {
+				this.currentState = "";
 				encuestasService.getEncuestas();
 			}
 			

@@ -43,10 +43,13 @@
 			[Bindable]
 			private var _datoMaestro:Object;
 			
+			public function init():void {
+				this.currentState = "";
+			}
+			
 			public function setDatoMaestro(value:Object):void {
 				_datoMaestro = value;
 				listadoAtributos.setDatoMaestro(_datoMaestro);
-				//newAtributo.setDatoMaestro(_datoMaestro);
 			}
 			
 			private function backToDatosMaestros():void {
