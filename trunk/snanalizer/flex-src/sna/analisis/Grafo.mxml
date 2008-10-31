@@ -17,7 +17,9 @@
 		<mx:method name="getCaminoMasCorto" result="mostrarCaminoMasCorto(event)"/>
 	</mx:RemoteObject>
 	
-	<sna:ScrollableVBox id="listaGrafos" width="100%" height="100%" verticalScrollPolicy="auto"/>
+	<sna:ScrollableVBox width="100%" height="100%" verticalScrollPolicy="on">
+		<mx:VBox id="listaGrafos" width="100%" height="100%"/>
+	</sna:ScrollableVBox>
 	
 	<mx:Script>
 		<![CDATA[
