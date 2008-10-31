@@ -143,7 +143,13 @@
 					grafo.vgraph.selectedNode2 = selectedNode2;
 				}
 				
-				dispatchEvent(e);
+				if(infoEnabled()) {
+					dispatchEvent(e);
+				}
+			}
+			
+			private function infoEnabled():Boolean {
+				return datoMaestroId == null;
 			}
 			
 			private function selectEnabled():Boolean {
