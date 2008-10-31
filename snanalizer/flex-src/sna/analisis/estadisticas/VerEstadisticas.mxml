@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="init();" xmlns:sna="sna.*" >
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="init();" xmlns:sna="sna.*"  verticalAlign="middle" horizontalAlign="center">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 	
 	<mx:VBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" horizontalAlign="center">
-	<mx:HBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" verticalAlign="middle" borderThickness="2" borderColor="#C6CACD" borderStyle="solid" horizontalAlign="center" cornerRadius="10">
+	<mx:HBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" verticalAlign="middle" borderThickness="2" borderColor="#C6CACD" borderStyle="solid" horizontalAlign="center" cornerRadius="10" backgroundColor="#A4B6BF">
 		<mx:VBox height="100%" verticalAlign="middle">
 			<mx:Label text="" paddingTop="2"/>
 			<mx:Label text="" paddingTop="2"/>
@@ -144,4 +144,4 @@
 		]]>
 	</mx:Script>
 	
-</mx:Canvas>
+</mx:VBox>
