@@ -110,26 +110,26 @@
 				cantEnl[x].text = redesService.getBloqueEstadistico.lastResult.cantEnlaces;
 				promEnl[x].text = redesService.getBloqueEstadistico.lastResult.promEnl;
 				if(redesService.getBloqueEstadistico.lastResult.nodoMaxEnlEnt != null) {
-					nodoEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlEnt.recurso.usuario.nombre;
+					nodoEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlEnt.recurso.usuario.nombre + " " + redesService.getBloqueEstadistico.lastResult.nodoMaxEnlEnt.recurso.usuario.apellido;
 					nodoEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlEnt + ")";
 				} else {
 					nodoEnlEnt[x].text = "-";
 				}
 				if(redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal != null) {
-					nodoEnlSal[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal.recurso.usuario.nombre;
+					nodoEnlSal[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal.recurso.usuario.nombre+ " " + redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal.recurso.usuario.apellido;
 					nodoEnlSal[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlSal + ")";
 				} else {
 					nodoEnlSal[x].text = "-";
 				}
 				promInt[x].text = redesService.getBloqueEstadistico.lastResult.promInt;
 				if(redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt != null) {
-					nodoMaySumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt.recurso.usuario.nombre;
+					nodoMaySumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt.recurso.usuario.nombre+ " " + redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt.recurso.usuario.apellido;
 					nodoMaySumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlEnt + ")"; 
 				} else {
 					nodoMaySumEnlEnt[x].text = "-";
 				}
 				if(redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal != null) {
-					nodoMenSumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal.recurso.usuario.nombre;
+					nodoMenSumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal.recurso.usuario.nombre+ " " + redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal.recurso.usuario.apellido;
 					nodoMenSumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlSal + ")";
 				} else {
 					nodoMenSumEnlEnt[x].text = "-";
