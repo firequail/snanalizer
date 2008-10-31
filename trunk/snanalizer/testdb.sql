@@ -1332,7 +1332,7 @@ CREATE TABLE `recurso` (
   CONSTRAINT `FKA3C27229FC5C2A5` FOREIGN KEY (`nivelIdioma1_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C27229FC63704` FOREIGN KEY (`nivelIdioma2_id`) REFERENCES `atributo` (`id`),
   CONSTRAINT `FKA3C27229FC6AB63` FOREIGN KEY (`nivelIdioma3_id`) REFERENCES `atributo` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recurso`
@@ -1359,7 +1359,8 @@ INSERT INTO `recurso` (`id`,`anioEgreso`,`anioIngreso`,`estado`,`experiencia`,`f
  (17,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,20),
  (18,0,0,0x00,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,21),
  (19,0,0,0x01,NULL,'2008-07-01 23:00:00',NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,23),
- (20,0,0,0x01,NULL,'2008-03-04 00:00:00',NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,25);
+ (20,0,0,0x01,NULL,'2008-03-04 00:00:00',NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,25),
+ (21,0,0,0x01,NULL,'1980-02-01 00:00:00',NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,7,31);
 /*!40000 ALTER TABLE `recurso` ENABLE KEYS */;
 
 
@@ -1629,7 +1630,7 @@ CREATE TABLE `usuario` (
   `password` varchar(255) default NULL,
   `rol` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuario`
@@ -1658,10 +1659,10 @@ INSERT INTO `usuario` (`id`,`apellido`,`email`,`nombre`,`password`,`rol`) VALUES
  (19,'Medina','r7@hotmail.com','Jose','password','RECURSO'),
  (20,'Nicosia','r8@hotmail.com','Florencia','password','RECURSO'),
  (21,'Aguirre','r9@hotmail.com','Pablo','password','RECURSO'),
- (22,'Arias','asd@asd.com','Luciano','asd','ADMIN'),
  (23,'Arroyo','asd@asd.com','Javier','password','RECURSO'),
  (24,'Campo','javier@hotmail.com','Sebastian','javier','ADMIN'),
- (25,'Castillo','nicolasfont@gmail.com','Ignacio','nicolas','RECURSO');
+ (25,'Castillo','nicolasfont@gmail.com','Ignacio','nicolas','RECURSO'),
+ (31,'Font','nicofont@hotmail.com','Nico','password','RECURSO');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 
