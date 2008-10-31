@@ -10,13 +10,13 @@
 		<mx:State name="Administracion">
 			<mx:RemoveChild target="{login}"/>
 			<mx:AddChild position="lastChild">
-				<admin:Administracion logout="logout()"/>
+				<admin:Administracion id="admin" logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Analisis">
 			<mx:RemoveChild target="{login}"/>
 			<mx:AddChild position="lastChild">
-				<analisis:Analisis logout="logout()"/>
+				<analisis:Analisis id="analisis" logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -44,6 +44,7 @@
 					
 				} else if(usuario.rol == "ANALISTA"){
 					this.currentState = "Analisis";
+					analisis.init();
 				}
 			}
 			

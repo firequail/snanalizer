@@ -28,6 +28,12 @@
             [Bindable]
             private var infoEnc:InfoEncuestas;
             
+            public function init():void {
+            	if(controles != null) {
+            		controles.init();
+            	}
+            }
+            
             private function export():void {
             	var download:DownloadXls = new DownloadXls();
             	 download.redId = controles.redesCombo.selectedData;
