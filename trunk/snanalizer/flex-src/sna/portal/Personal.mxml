@@ -21,7 +21,7 @@
 			<mx:Panel width="100%" height="100%"  title=":: Mis Datos">
 				<mx:Accordion id="accordion" width="100%" height="100%">
             	
-        	    	<mx:VBox label=":: Laborales" paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20" width="100%" height="100%" backgroundColor="#e2e1dc" alpha="0.42">
+        	    	<mx:VBox id="datosLaborales" label=":: Laborales" paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20" width="100%" height="100%" backgroundColor="#e2e1dc" alpha="0.42">
         	    		<mx:HBox width="100%" height="100%" horizontalAlign="center">
     	            		<mx:Box borderStyle="solid" width="50%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" cornerRadius="10" borderThickness="2">
     	            			<mx:Label text="Area: {recurso.area.nombre}"/>
@@ -36,7 +36,7 @@
     	            	</mx:HBox>
 	            	</mx:VBox>
 
-            		<mx:VBox creationComplete="formatFechaNac()" label=":: Personales" paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20" width="100%" height="100%" backgroundColor="#e2e1dc" alpha="0.42">
+            		<mx:VBox id="datosPersonales" creationComplete="formatFechaNac()" label=":: Personales" paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20" width="100%" height="100%" backgroundColor="#e2e1dc" alpha="0.42">
                 		<mx:HBox width="100%" height="100%" horizontalAlign="center">
     	            		<mx:Box borderStyle="solid" width="50%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" cornerRadius="10" borderThickness="2">
     	            			<mx:Label text="Nombre: {recurso.usuario.nombre}"/>
@@ -58,7 +58,7 @@
     	            	</mx:HBox>
             		</mx:VBox>
 
-            		<mx:VBox label=":: Otros" paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20" width="100%" height="100%" backgroundColor="#e2e1dc" alpha="0.42">
+            		<mx:VBox id="otrosDatos" label=":: Otros" paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20" width="100%" height="100%" backgroundColor="#e2e1dc" alpha="0.42">
             			<mx:HBox width="100%" height="40%" horizontalAlign="center">
             			<mx:VBox width="100%" height="100%" verticalAlign="top">
             				<mx:Label text="Datos Académicos"/>
@@ -79,6 +79,7 @@
     	            		</mx:VBox>
     	            		</mx:Box>
             			</mx:VBox>
+            			
             			<mx:VBox width="100%" height="100%" verticalAlign="top">
             				<mx:Label text="Idiomas"/>
     	            		<mx:Box borderStyle="solid" width="100%" paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" cornerRadius="10" borderThickness="2" height="90%">
@@ -192,10 +193,14 @@
 			}
 			
 			public function saveData():void {
-				recursosService.modificarOtrosDatos(recurso.id as int,txttitulo.text,establecimCombo.selectedData as int,txtanioing.text,txtanioeg.text as int,txtexp.text);
-				recursosService.modificarDatosPersonales(recurso.id as int,estadoCivilCombo.selectedData,provinciaCombo.selectedData as int,txtlocalidad.text);
-				recursosService.modificarIdiomas(recurso.id as int,idioma1Combo.selectedData as int,nivel1Combo.selectedData as int, idioma2Combo.selectedData as int,nivel2Combo.selectedData as int,idioma3Combo.selectedData as int,nivel3Combo.selectedData as int);
-				recursosService.modificarHobbies(recurso.id as int,hobbie1Combo.selectedData as int, hobbie2Combo.selectedData as int, hobbie3Combo.selectedData as int, hobbie4Combo.selectedData as int, hobbie5Combo.selectedData as int, hobbie6Combo.selectedData as int);
+				if(estadoCivilCombo != null) {
+					recursosService.modificarDatosPersonales(recurso.id as int,estadoCivilCombo.selectedData,provinciaCombo.selectedData as int,txtlocalidad.text);
+				}
+				if(txttitulo != null) {
+					//recursosService.modificarOtrosDatos(recurso.id as int,txttitulo.text,establecimCombo.selectedData as int,parseInt(txtanioing.text),parseInt(txtanioeg.text),txtexp.text);
+					//recursosService.modificarIdiomas(recurso.id as int,idioma1Combo.selectedData as int,nivel1Combo.selectedData as int, idioma2Combo.selectedData as int,nivel2Combo.selectedData as int,idioma3Combo.selectedData as int,nivel3Combo.selectedData as int);
+					//recursosService.modificarHobbies(recurso.id as int,hobbie1Combo.selectedData as int, hobbie2Combo.selectedData as int, hobbie3Combo.selectedData as int, hobbie4Combo.selectedData as int, hobbie5Combo.selectedData as int, hobbie6Combo.selectedData as int);
+				}
 				Alert.show("Su información ha sido actualizada exitosamente");
 			}
 			
