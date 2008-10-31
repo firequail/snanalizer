@@ -7,6 +7,18 @@
 				<admin:Administracion id="admin" logout="logout()"/>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="rrhh">
+			<mx:RemoveChild target="{main}"/>
+			<mx:AddChild position="lastChild">
+				<sna:RRHHPortal logout="logout()" />
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Analyst">
+			<mx:RemoveChild target="{main}"/>
+			<mx:AddChild position="lastChild">
+				<sna:AnalystPortal logout="logout()" />
+			</mx:AddChild>
+		</mx:State>
 		<mx:State name="Analisis">
 			<mx:RemoveChild target="{main}"/>
 			<mx:AddChild position="lastChild">
@@ -35,6 +47,12 @@
 			<mx:Button label="Portal" click="entrarAlPortal();"/>	
 		</mx:HBox>
 		<mx:Button label="Test" click="currentState='Test'"/>
+		<mx:Spacer height="15"/>
+		<mx:Button label="Administrador" click="openAdmin()" />
+		<mx:Button label="RRHH" click="openRRHH()" />
+		<mx:Button label="Analista redes" click="openAnalyst()" />
+			
+		
 	</mx:VBox>
 	
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
@@ -64,6 +82,21 @@
 			else
 				Alert.show("Elegí un Recurso");
 			
+		}
+		
+		private function openAdmin():void {
+			this.currentState = "";
+			this.currentState = "Administracion";
+		}
+		
+		private function openRRHH():void {
+			this.currentState = "";
+			this.currentState = "rrhh";
+		}
+		
+		private function openAnalyst():void {
+			this.currentState = "";
+			this.currentState = "Analyst";
 		}
 		
 		private function logout():void {
