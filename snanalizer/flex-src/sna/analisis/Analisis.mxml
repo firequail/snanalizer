@@ -6,7 +6,7 @@
 	
 	<sna:ControlBar logout="dispatchEvent(event)"/>
 	<mx:Panel title="Analisis" width="100%" height="100%">
-		<mx:TabNavigator id="tabs" width="100%" height="100%">
+		<mx:TabNavigator id="tabs" width="100%" height="100%" backgroundColor="#efeeee">
 			<mx:Canvas label="Redes" width="100%" height="100%">
 				<analisis:Red id="red" width="100%" height="100%"/>
 			</mx:Canvas>
