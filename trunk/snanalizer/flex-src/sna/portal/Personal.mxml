@@ -265,7 +265,7 @@
 					img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoad);
 				}
 				
-				img.source = "resourcespics/"+name+".jpg";
+				img.source = "resourcespics/"+name+".jpg?" + Math.random();
 				img.width = 140;
 				img.height = 172;
 				
