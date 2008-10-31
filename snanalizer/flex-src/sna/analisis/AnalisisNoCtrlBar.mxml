@@ -4,15 +4,29 @@
 		[Event(name="logout", type="mx.events.FlexEvent")]
 	</mx:Metadata>
 	
+	<mx:TabNavigator id="tabs" width="100%" height="100%" backgroundColor="#efeeee">
+		<mx:Canvas label="Redes" width="100%" height="100%">
+			<analisis:Red id="red" width="100%" height="100%"/>
+		</mx:Canvas>
+		<mx:Canvas label="Estadísticas" width="100%" height="100%">
+			<estadisticas:Estadisticas id="estadisticas" width="100%" height="100%"/>
+		</mx:Canvas>
+	</mx:TabNavigator>
 
-		<mx:TabNavigator width="100%" height="100%" backgroundColor="#efeeee">
-			<mx:Canvas label="Redes" width="100%" height="100%">
-				<analisis:Red width="100%" height="100%"/>
-			</mx:Canvas>
-			<mx:Canvas label="Estadísticas" width="100%" height="100%">
-				<estadisticas:Estadisticas width="100%" height="100%"/>
-			</mx:Canvas>
-		</mx:TabNavigator>
-
+	<mx:Script>
+		<![CDATA[
+			
+			public function init():void {
+				tabs.selectedIndex = 0;
+				if(red != null) {
+					red.init();
+				}
+				if(estadisticas != null) {
+					estadisticas.init();
+				}
+			}
+			
+		]]>
+	</mx:Script>
 	
 </mx:Box>

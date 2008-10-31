@@ -17,12 +17,12 @@
 		<mx:method name="getCaminoMasCorto" result="mostrarCaminoMasCorto(event)"/>
 	</mx:RemoteObject>
 	
-	<sna:ScrollableVBox width="100%" height="100%" verticalScrollPolicy="on">
-		<mx:VBox id="listaGrafos" width="100%" height="100%"/>
+	<sna:ScrollableVBox id="scroll" width="100%" height="100%" verticalScrollPolicy="on">
 	</sna:ScrollableVBox>
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.containers.VBox;
 			import mx.printing.FlexPrintJobScaleType;
 			import mx.printing.FlexPrintJob;
 			import sna.analisis.renderers.nodes.SNANodeRenderer;
@@ -81,6 +81,8 @@
 			public var selectedNode1:IVisualNode = null;
 			public var selectedNode2:IVisualNode = null;
 			
+			private var listaGrafos:VBox;
+			
 			private var grafos:ArrayCollection = new ArrayCollection();
 			
 			private function crearGrafos(event:ResultEvent):void {
@@ -89,9 +91,11 @@
 				
 				dispatchEvent(new NodeSelectedEvent(NodeSelectedEvent.NODE_SELECTED,null));
 				
-				for each(var grafoViejo:GrafoRavis in grafos) {
-					listaGrafos.removeChild(grafoViejo);
-				}
+				scroll.removeAllChildren();
+				listaGrafos = new VBox();
+				listaGrafos.percentHeight = 100;
+				listaGrafos.percentWidth = 100;
+				scroll.addChild(listaGrafos);
 				
 				grafos = new ArrayCollection();
 				var xmlData:XMLList = new XMLList(redesService.getGrafo.lastResult)

@@ -16,7 +16,7 @@
 		<mx:State name="rrhh">
 			<mx:RemoveChild target="{login}"/>
 			<mx:AddChild position="lastChild">
-				<sna:RRHHPortal logout="logout()" />
+				<sna:RRHHPortal id="rrhh" logout="logout()" />
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Analisis">
@@ -47,9 +47,11 @@
 					
 				} else if(usuario.rol == "ADMIN"){
 					this.currentState = "Administracion";
+					admin.init();
 
 				} else if(usuario.rol == "RRHH"){
 					this.currentState = "rrhh";
+					rrhh.init();
 					
 				} else if(usuario.rol == "ANALISTA"){
 					this.currentState = "Analisis";
