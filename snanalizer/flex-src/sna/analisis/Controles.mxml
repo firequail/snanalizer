@@ -53,7 +53,7 @@
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
-			private function init():void {
+			public function init():void {
 				redesService.getRedes();
 				redesService.getDatosMaestros();
 				datosMaestrosService.getAreas();
