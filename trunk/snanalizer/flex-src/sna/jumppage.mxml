@@ -10,7 +10,7 @@
 		<mx:State name="rrhh">
 			<mx:RemoveChild target="{main}"/>
 			<mx:AddChild position="lastChild">
-				<sna:RRHHPortal logout="logout()" />
+				<sna:RRHHPortal id="rrhh" logout="logout()" />
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Analyst">
@@ -78,10 +78,12 @@
 		
 		private function openAdmin():void {
 			this.currentState = "Administracion";
+			admin.init();
 		}
 		
 		private function openRRHH():void {
 			this.currentState = "rrhh";
+			rrhh.init();
 		}
 		
 		private function openAnalyst():void {
