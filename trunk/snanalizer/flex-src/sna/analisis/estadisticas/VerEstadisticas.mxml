@@ -4,8 +4,8 @@
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 	
-	<mx:VBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" horizontalAlign="center">
-	<mx:HBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" verticalAlign="middle" borderThickness="2" borderColor="#C6CACD" borderStyle="solid" horizontalAlign="center" cornerRadius="10" backgroundColor="#A4B6BF">
+	<mx:Panel paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" horizontalAlign="center">
+	<mx:HBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" verticalAlign="middle" horizontalAlign="center">
 		<mx:VBox height="100%" verticalAlign="middle">
 			<mx:Label text="" paddingTop="2"/>
 			<mx:Label text="" paddingTop="2"/>
@@ -22,28 +22,28 @@
 			<mx:VBox height="100%" horizontalAlign="center" verticalAlign="middle" >
 				<mx:Label text="{rptRedes.currentItem.nombre}" width="200" fontWeight="bold" paddingTop="2"/>
 				<sna:DataComboBox id="arrayCmb" dataProvider="{rptRedes.currentItem.puntosDeVista}" labelFunction="getPtoVista" unselectedLabel="Seleccione" itemRenderer="mx.controls.Label" width="200" change="traerInfo(event)" />
-				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 					<mx:Label id="cantNod" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>
 				</mx:Box>
-				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 					<mx:Label id="cantEnl" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>
 				</mx:Box>
-				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 					<mx:Label id="promEnl" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 				</mx:Box>
-				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 					<mx:Label id="nodoEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 				</mx:Box>
-				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 					<mx:Label id="nodoEnlSal" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 				</mx:Box>
-				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 					<mx:Label id="promInt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 				</mx:Box>
-				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 					<mx:Label id="nodoMaySumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 				</mx:Box>
-				<mx:Box width="100%" cornerRadius="10" borderThickness="1" borderStyle="solid" borderColor="#EFF4F7" backgroundColor="#EFF4F7">
+				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 					<mx:Label id="nodoMenSumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 				</mx:Box> 
 			</mx:VBox>
@@ -52,7 +52,7 @@
 	<mx:Box width="100%" paddingTop="20">
 		<mx:Button id="butVolver" label="Volver" click="volver()"/>
 	</mx:Box>
-	</mx:VBox>
+	</mx:Panel>
 	
 	<mx:RemoteObject id="redesService" destination="redesService">
 		<mx:method name="getBloqueEstadistico" result="refreshEstadistica(event)"/>

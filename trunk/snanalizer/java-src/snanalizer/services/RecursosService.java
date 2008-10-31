@@ -23,7 +23,7 @@ public interface RecursosService {
 	
 	public void modificarDatosPersonales(int idRec,int idEstadoCivil,int idProvincia,String localidad);
 	
-	public void modificarOtrosDatos(int idRec, String titulo, int idEstab, int anioIng, int anioEg, String exp);
+	public void modificarOtrosDatos(int idRec, String titulo, int idEstab, String anioIng, String anioEg, String exp);
 	
 	public void modificarIdiomas(int idRec,int idId1, int idNi1,  int idId2, int idNi2, int idId3, int idNi3);
 	

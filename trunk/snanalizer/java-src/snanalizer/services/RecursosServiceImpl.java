@@ -92,12 +92,16 @@ public class RecursosServiceImpl implements RecursosService {
 		rec.setLocalidad(localidad);
 	}
 	
-	public void modificarOtrosDatos(int idRec, String titulo, int idEstab, int anioIng, int anioEg, String exp) {
+	public void modificarOtrosDatos(int idRec, String titulo, int idEstab, String anioIng, String anioEg, String exp) {
 		Recurso rec = recursos.getById(idRec);
 		rec.setTitulo(titulo);
 		rec.setInstitucion(atributos.getById(idEstab));
-		rec.setAnioIngreso(anioIng);
-		rec.setAnioEgreso(anioEg);
+		if(anioIng != null && !"".equals(anioIng.trim())) {
+			rec.setAnioIngreso(Integer.parseInt(anioIng.trim()));
+		}
+		if(anioEg != null && !"".equals(anioEg.trim())) {
+			rec.setAnioEgreso(Integer.parseInt(anioEg.trim()));
+		}
 		rec.setExperiencia(exp);
 	}
 	
