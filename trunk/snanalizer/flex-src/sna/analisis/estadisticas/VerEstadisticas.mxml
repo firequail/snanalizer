@@ -4,54 +4,55 @@
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 	
-	<mx:Panel paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" horizontalAlign="center">
-	<mx:HBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" verticalAlign="middle" horizontalAlign="center">
-		<mx:VBox height="100%" verticalAlign="middle">
-			<mx:Label text="" paddingTop="2"/>
-			<mx:Label text="" paddingTop="2"/>
-			<mx:Label text="Cantidad de Nodos" fontWeight="bold" paddingTop="2" />
-			<mx:Label text="Cantidad de Enlaces" fontWeight="bold" paddingTop="2"/>
-			<mx:Label text="Promedio de enlace por nodo" fontWeight="bold" paddingTop="2"/>
-			<mx:Label text="Nodo con + cantidad de enlaces entrantes" fontWeight="bold" paddingTop="2"/>
-			<mx:Label text="Nodo con + cantidad de enlaces salientes" fontWeight="bold" paddingTop="2"/>
-			<mx:Label text="Promedio de intensidades" fontWeight="bold" paddingTop="2"/>
-			<mx:Label text="Nodo con mayor sumatoria de intensidades entrantes" fontWeight="bold" paddingTop="2"/>
-			<mx:Label text="Nodo con menor sumatoria de intensidades salientes" fontWeight="bold" paddingTop="2"/> 
-		</mx:VBox>
-		<mx:Repeater id="rptRedes" dataProvider="{redesService.getRedesById.lastResult}" >
-			<mx:VBox height="100%" horizontalAlign="center" verticalAlign="middle" >
-				<mx:Label text="{rptRedes.currentItem.nombre}" width="200" fontWeight="bold" paddingTop="2"/>
-				<sna:DataComboBox id="arrayCmb" dataProvider="{rptRedes.currentItem.puntosDeVista}" labelFunction="getPtoVista" unselectedLabel="Seleccione" itemRenderer="mx.controls.Label" width="200" change="traerInfo(event)" />
-				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-					<mx:Label id="cantNod" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>
-				</mx:Box>
-				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-					<mx:Label id="cantEnl" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>
-				</mx:Box>
-				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-					<mx:Label id="promEnl" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
-				</mx:Box>
-				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-					<mx:Label id="nodoEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
-				</mx:Box>
-				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-					<mx:Label id="nodoEnlSal" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
-				</mx:Box>
-				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-					<mx:Label id="promInt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
-				</mx:Box>
-				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-					<mx:Label id="nodoMaySumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
-				</mx:Box>
-				<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-					<mx:Label id="nodoMenSumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
-				</mx:Box> 
+	<mx:Panel id="panelEstadisticas" paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" horizontalAlign="center">
+		<mx:HBox paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="20" verticalAlign="middle" horizontalAlign="center">
+			<mx:VBox height="100%" verticalAlign="middle">
+				<mx:Label text="" paddingTop="2"/>
+				<mx:Label text="" paddingTop="2"/>
+				<mx:Label text="Cantidad de Nodos" fontWeight="bold" paddingTop="2" />
+				<mx:Label text="Cantidad de Enlaces" fontWeight="bold" paddingTop="2"/>
+				<mx:Label text="Promedio de enlace por nodo" fontWeight="bold" paddingTop="2"/>
+				<mx:Label text="Nodo con + cantidad de enlaces entrantes" fontWeight="bold" paddingTop="2"/>
+				<mx:Label text="Nodo con + cantidad de enlaces salientes" fontWeight="bold" paddingTop="2"/>
+				<mx:Label text="Promedio de intensidades" fontWeight="bold" paddingTop="2"/>
+				<mx:Label text="Nodo con mayor sumatoria de intensidades entrantes" fontWeight="bold" paddingTop="2"/>
+				<mx:Label text="Nodo con menor sumatoria de intensidades salientes" fontWeight="bold" paddingTop="2"/> 
 			</mx:VBox>
-		</mx:Repeater>
-	</mx:HBox>
-	<mx:Box width="100%" paddingTop="20">
-		<mx:Button id="butVolver" label="Volver" click="volver()"/>
-	</mx:Box>
+			<mx:Repeater id="rptRedes" dataProvider="{redesService.getRedesById.lastResult}" >
+				<mx:VBox height="100%" horizontalAlign="center" verticalAlign="middle" >
+					<mx:Label text="{rptRedes.currentItem.nombre}" width="200" fontWeight="bold" paddingTop="2"/>
+					<sna:DataComboBox id="arrayCmb" dataProvider="{rptRedes.currentItem.puntosDeVista}" labelFunction="getPtoVista" unselectedLabel="Seleccione" itemRenderer="mx.controls.Label" width="200" change="traerInfo(event)" />
+					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
+						<mx:Label id="cantNod" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>
+					</mx:Box>
+					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
+						<mx:Label id="cantEnl" text="-" paddingTop="2"  width="95%" enabled="true" textAlign="center"/>
+					</mx:Box>
+					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
+						<mx:Label id="promEnl" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+					</mx:Box>
+					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
+						<mx:Label id="nodoEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+					</mx:Box>
+					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
+						<mx:Label id="nodoEnlSal" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+					</mx:Box>
+					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
+						<mx:Label id="promInt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+					</mx:Box>
+					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
+						<mx:Label id="nodoMaySumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+					</mx:Box>
+					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
+						<mx:Label id="nodoMenSumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
+					</mx:Box> 
+				</mx:VBox>
+			</mx:Repeater>
+		</mx:HBox>
+		<mx:ControlBar horizontalAlign="left">
+			<mx:Button id="butVolver" label="Volver" click="volver()"/>
+			<mx:Button id="butPrint" label="Imprimir" click="print()"/>
+		</mx:ControlBar>
 	</mx:Panel>
 	
 	<mx:RemoteObject id="redesService" destination="redesService">
@@ -60,6 +61,8 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.printing.FlexPrintJobScaleType;
+			import mx.printing.FlexPrintJob;
 			import sna.DataComboBox;
 			import mx.collections.ArrayCollection;
 			import mx.controls.Alert;
@@ -139,7 +142,19 @@
 			public function volver():void {
 				dispatchEvent(ResultEvent.createEvent());
 			}
-		
+			
+			
+			public function print():void {
+				var job:FlexPrintJob = new FlexPrintJob();
+				
+				if (job.start() != true) {
+					return;				
+				}
+				
+				job.addObject(panelEstadisticas,FlexPrintJobScaleType.SHOW_ALL);
+				
+				job.send();
+			}
 		
 		]]>
 	</mx:Script>
