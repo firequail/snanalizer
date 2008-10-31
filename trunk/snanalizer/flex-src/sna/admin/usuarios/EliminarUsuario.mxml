@@ -7,7 +7,6 @@
 	<mx:Panel title="Eliminar usuario">
 	<mx:Form id="form1" defaultButton="{okButton}" >
 			<mx:Label id="lblleyenda" text="Se eliminará el siguiente usuario:" />
-			<mx:Label id="lblid" text="ID: {usuario.id}" />
 			<mx:Label id="lblemail" text="E-Mail: {usuario.email}"/>
 			<mx:Label id="lblrol" text="Rol: {usuario.rol}" />
 	</mx:Form>

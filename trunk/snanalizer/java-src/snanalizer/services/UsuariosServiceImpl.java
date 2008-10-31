@@ -52,4 +52,8 @@ public class UsuariosServiceImpl implements UsuariosService {
 	public Usuario getById(int id) {
 		return usuarios.getById(id);
 	}
+	
+	public Usuario getByEmail(String email) {
+		return usuarios.getByEmail(email);
+	}
 }

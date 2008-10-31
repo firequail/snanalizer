@@ -56,7 +56,10 @@
 		
 	<mx:RemoteObject id="recursosService" destination="recursosService"/>
 	<mx:RemoteObject id="datosMaestrosService" destination="datosMaestrosService"/>
-		
+	<mx:RemoteObject id="usuariosService" destination="usuariosService">
+		<mx:method name="getByEmail" result="onGetByEmail(event)"/>
+	</mx:RemoteObject>
+	
 	<mx:Script>
 		<![CDATA[
 			import mx.validators.Validator;
@@ -73,6 +76,19 @@
 			}
 			
 			private function guardar():void {
+				if(email.text != recurso.usuario.email) {
+					usuariosService.getByEmail(email.text);
+				} else {
+					vemail.reset();
+					doSave();
+				}
+			}
+				
+			private function onGetByEmail(e:ResultEvent):void {
+				vemail.usuario = e.result;
+				doSave();
+			}
+			private function doSave():void {
 				if(isValid()) {
 					fileUpload.fileName = email.text;
 					fileUpload.startUploading();
