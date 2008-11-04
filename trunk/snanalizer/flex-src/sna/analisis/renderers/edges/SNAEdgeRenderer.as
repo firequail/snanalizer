@@ -41,7 +41,7 @@ package sna.analisis.renderers.edges {
 		}
 		
 		public function unselect(vedge:IVisualEdge):void {
-			vedge.lineStyle.color = 0xcccccc;
+			vedge.lineStyle.color = 0x333333;
 		}
 		
 		/**

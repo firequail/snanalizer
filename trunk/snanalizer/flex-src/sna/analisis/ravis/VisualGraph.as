@@ -238,7 +238,7 @@ package sna.analisis.ravis {
 		protected var _defaultEdgeStyle:Object = {
 			thickness:1,
 			alpha:1.0,
-			color:0xcccccc,
+			color:0x333333,
 			pixelHinting:false,
 			scaleMode:"normal",
 			caps:null,
