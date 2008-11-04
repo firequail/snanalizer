@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()">
+	<mx:VBox id="imgBox" width="100%" height="100%">
+	</mx:VBox>
+	
+	<mx:Dissolve id="dissolve" duration="250" alphaFrom="0.0" alphaTo="1.0" target="{this}"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Image;
+			
+			private var actualImg:Image = null;
+			
+			public var path:String = "";
+			
+			public var _source:String;
+			
+			public var defaultSource:String = "null";
+			
+			public var extension:String = "jpg";
+			
+			private function onImageLoad(e:HTTPStatusEvent):void {
+				if(actualImg.content == null && _source != defaultSource) {
+					source = null;
+				} else {
+					dissolve.end();
+					dissolve.play();
+				}
+			}
+			
+			private function init():void {
+				source = defaultSource;
+			}
+			
+			public function set source(value:String):void {
+				if(value == null && _source != defaultSource) {
+					_source = defaultSource;
+					loadImage();
+				} else if(value != null && _source != value){
+					_source = value;
+					loadImage();
+				}
+			}
+			
+			private function loadImage():void {
+				var img:Image = new Image();
+				
+				img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoad);
+				
+				img.source = path + _source + "." + extension + "?" + Math.random();
+				img.percentWidth = 100;
+				img.percentHeight = 100;
+				
+				imgBox.addChild(img);
+				if(actualImg != null) {
+					imgBox.removeChild(actualImg);
+				}
+				actualImg = img;
+			}
+			
+		]]>
+	</mx:Script>
+		
+</mx:Canvas>

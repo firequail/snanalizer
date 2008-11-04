@@ -1,43 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:grupos="sna.admin.grupos.*" xmlns:sna="sna.*" xmlns:usuarios="sna.admin.usuarios.*" width="100%" height="100%" xmlns:maestros="sna.admin.maestros.*" xmlns:recursos="sna.admin.recursos.*" xmlns:encuestas="sna.admin.encuestas.*" xmlns:redes="sna.admin.redes.*" >
-	<mx:Script>
-		<![CDATA[
-			import mx.events.FlexEvent;
-			
-			public function init():void {
-				tabs.selectedIndex = 0;
-				if(usuarios != null) {
-					usuarios.init();
-				}
-				if(recursos != null) {
-					recursos.init();
-				}
-				if(maestros != null) {
-					maestros.init();
-				}
-				if(grupos != null) {
-					grupos.init();
-				}
-				if(encuestas != null) {
-					encuestas.init();
-				}
-				if(redes != null) {
-					redes.load();
-				}
-			}
-			
-			private function logout():void {
-				dispatchEvent(new FlexEvent("logout"));
-			}
-		]]>
-	</mx:Script>
+<mx:VBox creationCompleteEffect="{dissolve}" xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:grupos="sna.admin.grupos.*" xmlns:sna="sna.*" xmlns:usuarios="sna.admin.usuarios.*" width="100%" height="100%" xmlns:maestros="sna.admin.maestros.*" xmlns:recursos="sna.admin.recursos.*" xmlns:encuestas="sna.admin.encuestas.*" xmlns:redes="sna.admin.redes.*" >
 	
-	<mx:Metadata>
-		[Event(name="logout", type="mx.events.FlexEvent")]
-	</mx:Metadata>
-	
-	<sna:ControlBar logout="logout()"/>
-	<mx:Panel title="Administración" width="100%" height="100%">
+	<sna:ControlBar id="controlBar" logout="logout()"/>
+	<mx:Panel id="main" title="Administración" width="100%" height="100%">
 		<mx:TabNavigator id="tabs" width="100%" height="100%" backgroundColor="#efeeee">
 			<mx:Canvas label="Usuarios" width="100%" height="100%">
 				<mx:HBox width="100%" height="100%" paddingRight="10" paddingBottom="10" paddingLeft="10" paddingTop="10">
@@ -77,5 +42,46 @@
 			</mx:Canvas>
 		</mx:TabNavigator>
 	</mx:Panel>
+	
+	<mx:Dissolve id="dissolve" duration="500" alphaFrom="0.0" alphaTo="1.0" target="{this}"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.graphics.RoundedRectangle;
+			import mx.events.FlexEvent;
+			
+			public function init():void {
+				tabs.selectedIndex = 0;
+				if(usuarios != null) {
+					usuarios.init();
+				}
+				if(recursos != null) {
+					recursos.init();
+				}
+				if(maestros != null) {
+					maestros.init();
+				}
+				if(grupos != null) {
+					grupos.init();
+				}
+				if(encuestas != null) {
+					encuestas.init();
+				}
+				if(redes != null) {
+					redes.load();
+				}
+				dissolve.end();
+				dissolve.play();
+			}
+			
+			private function logout():void {
+				dispatchEvent(new FlexEvent("logout"));
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:Metadata>
+		[Event(name="logout", type="mx.events.FlexEvent")]
+	</mx:Metadata>
 	
 </mx:VBox>

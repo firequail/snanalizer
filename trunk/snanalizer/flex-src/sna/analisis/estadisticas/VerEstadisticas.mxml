@@ -11,12 +11,10 @@
 				<mx:Label text="" paddingTop="2"/>
 				<mx:Label text="Cantidad de Nodos" fontWeight="bold" paddingTop="2" />
 				<mx:Label text="Cantidad de Enlaces" fontWeight="bold" paddingTop="2"/>
-				<mx:Label text="Promedio de enlace por nodo" fontWeight="bold" paddingTop="2"/>
+				<mx:Label text="Promedio de enlaces por nodo" fontWeight="bold" paddingTop="2"/>
 				<mx:Label text="Nodo con + cantidad de enlaces entrantes" fontWeight="bold" paddingTop="2"/>
-				<mx:Label text="Nodo con + cantidad de enlaces salientes" fontWeight="bold" paddingTop="2"/>
 				<mx:Label text="Promedio de intensidades" fontWeight="bold" paddingTop="2"/>
 				<mx:Label text="Nodo con mayor sumatoria de intensidades entrantes" fontWeight="bold" paddingTop="2"/>
-				<mx:Label text="Nodo con menor sumatoria de intensidades salientes" fontWeight="bold" paddingTop="2"/> 
 			</mx:VBox>
 			<mx:Repeater id="rptRedes" dataProvider="{redesService.getRedesById.lastResult}" >
 				<mx:VBox height="100%" horizontalAlign="center" verticalAlign="middle" >
@@ -35,17 +33,11 @@
 						<mx:Label id="nodoEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 					</mx:Box>
 					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-						<mx:Label id="nodoEnlSal" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
-					</mx:Box>
-					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 						<mx:Label id="promInt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 					</mx:Box>
 					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 						<mx:Label id="nodoMaySumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
 					</mx:Box>
-					<mx:Box width="100%" cornerRadius="5" borderThickness="1" borderStyle="solid" backgroundColor="#F1EBEB" borderColor="#B7BABC">
-						<mx:Label id="nodoMenSumEnlEnt" text="-" paddingTop="2" width="95%" enabled="true" textAlign="center" />
-					</mx:Box> 
 				</mx:VBox>
 			</mx:Repeater>
 		</mx:HBox>
@@ -118,24 +110,12 @@
 				} else {
 					nodoEnlEnt[x].text = "-";
 				}
-				if(redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal != null) {
-					nodoEnlSal[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal.recurso.usuario.nombre+ " " + redesService.getBloqueEstadistico.lastResult.nodoMaxEnlSal.recurso.usuario.apellido;
-					nodoEnlSal[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxEnlSal + ")";
-				} else {
-					nodoEnlSal[x].text = "-";
-				}
 				promInt[x].text = redesService.getBloqueEstadistico.lastResult.promInt;
 				if(redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt != null) {
 					nodoMaySumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt.recurso.usuario.nombre+ " " + redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlEnt.recurso.usuario.apellido;
 					nodoMaySumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlEnt + ")"; 
 				} else {
 					nodoMaySumEnlEnt[x].text = "-";
-				}
-				if(redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal != null) {
-					nodoMenSumEnlEnt[x].text = redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal.recurso.usuario.nombre+ " " + redesService.getBloqueEstadistico.lastResult.nodoMaxSumEnlSal.recurso.usuario.apellido;
-					nodoMenSumEnlEnt[x].text += " (" + redesService.getBloqueEstadistico.lastResult.maxSumEnlSal + ")";
-				} else {
-					nodoMenSumEnlEnt[x].text = "-";
 				}
 			}
 			
