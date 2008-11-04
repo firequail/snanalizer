@@ -17,6 +17,8 @@
 		<mx:method name="getCaminoMasCorto" result="mostrarCaminoMasCorto(event)"/>
 	</mx:RemoteObject>
 	
+	<mx:Dissolve id="dissolve" duration="500" alphaFrom="0.0" alphaTo="1.0" target="{this}"/>
+	
 	<sna:ScrollableVBox id="scroll" width="100%" height="100%" verticalScrollPolicy="on">
 	</sna:ScrollableVBox>
 	
@@ -107,6 +109,8 @@
 					grafo.addEventListener(NodeSelectedEvent.NODE_SELECTED, nodeSelected);
 					addGrafo(grafo);
 				}
+				dissolve.end();
+				dissolve.play();
 			}
 			
 			private function addGrafo(grafo:GrafoRavis):void {

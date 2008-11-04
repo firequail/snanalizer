@@ -9,7 +9,7 @@
 		[Event(name="export", type="mx.events.FlexEvent")]
 	</mx:Metadata>
 
-	<mx:HBox width="100%" height="100%">
+	<mx:HBox width="100%" height="100%" paddingBottom="2" paddingLeft="2" paddingRight="2" paddingTop="2">
 		<mx:VBox>
 			<mx:Label text="Red"/>
 			<sna:DataComboBox id="redesCombo" labelField="nombre" dataField="id" dataProvider="{redesService.getRedes.lastResult}" change="loadPuntosDeVista()"/>
@@ -35,9 +35,10 @@
 			<mx:Label text="Seniority"/>
 			<sna:DataComboBox id="seniorityCombo" labelField="nombre" dataField="id" unselectedLabel="Todos" dataProvider="{datosMaestrosService.getSeniorities.lastResult}" change="filtrar()"/>
 		</mx:VBox>
-		<mx:VBox width="100%" height="100%" verticalAlign="middle" horizontalAlign="right">
-			<mx:Button label="Exportar a XLS" click="fireExport()"/>
-			<mx:Button label="Imprimir" click="firePrint()"/>
+		<mx:Spacer width="100%"/>
+		<mx:VBox height="100%" verticalAlign="middle" horizontalAlign="right">
+			<mx:Button label="Exportar" click="fireExport()" icon="@Embed('../assets/analisis/xls.gif')" width="100%"/>
+			<mx:Button label="Imprimir" click="firePrint()" icon="@Embed('../assets/analisis/print.jpg')" width="100%"/>
 		</mx:VBox>
 	</mx:HBox>
 	

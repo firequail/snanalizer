@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel title="Informacion del recurso" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml">
+<mx:Panel title="Informacion del recurso" height="100%" xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*">
 	<mx:Metadata>
 	   [ Event( name="result", type="mx.rpc.events.ResultEvent") ]
 	</mx:Metadata>
 
 	<mx:VBox width="100%" height="100%" horizontalAlign="center" paddingTop="15">
-		<mx:VBox id="imgBox">
-		</mx:VBox>
+		<sna:SNAImage width="140" height="172" path="resourcespics/" source="{redesService.getNodo.lastResult.recurso.usuario.email}"/>
 		<mx:VBox width="100%" height="100%" horizontalAlign="left" paddingLeft="10" paddingTop="10" paddingBottom="10">
 			<mx:HBox borderStyle="solid" width="98%" paddingTop="2" paddingBottom="2" paddingLeft="2" paddingRight="2" cornerRadius="5" borderThickness="1" backgroundColor="#F1EBEB" borderColor="#B7BABC">
 			<mx:Text text="Nombre:" fontWeight="bold"/>
@@ -33,31 +32,24 @@
     	    <mx:Label text="{redesService.getNodo.lastResult.recurso.seniority.nombre}"/>
     	    </mx:HBox>
     	    <mx:HBox horizontalAlign="center" paddingTop="20" width="100%">
-    	    <mx:Button top="5" id="butVerMasInfo" click="openMasInfo()" label="Ver más Información" icon="@Embed('../assets/analisis/page_white_text.png')" width="80%"/>
+    	    <mx:Button enabled="false" top="5" id="butVerMasInfo" click="openMasInfo()" label="Ver más Información" icon="@Embed('../assets/analisis/page_white_text.png')" width="80%"/>
     	    </mx:HBox>
     	    <mx:HBox horizontalAlign="center" paddingTop="2" width="100%">
-    	    <mx:Button top="5" id="butVerInfoEnc" click="openInfoEnc()" label="Ver Info de Encuestas" icon="@Embed('../assets/analisis/chart_bar.png')"  labelPlacement="left" width="80%"/>
+    	    <mx:Button enabled="false" top="5" id="butVerInfoEnc" click="openInfoEnc()" label="Ver Info de Encuestas" icon="@Embed('../assets/analisis/chart_bar.png')"  labelPlacement="left" width="80%"/>
     	    </mx:HBox>
     	</mx:VBox>
 	</mx:VBox>
 	
 
 	<mx:RemoteObject id="redesService" destination="redesService">
-		<mx:method name="getNodo" result="initImg()"/>
+		<mx:method name="getNodo" result="onGetNodo()"/>
 	</mx:RemoteObject>
 	
 	<mx:Script>
 		<![CDATA[
-			import mx.controls.Alert;
-			import mx.controls.Image;
-
 			import mx.rpc.events.ResultEvent;
 			import mx.messaging.messages.AbstractMessage;
-             
-            
-            [Bindable]
-            private var masInfo:Detalles;
-			
+             			
 			public function set nodeId(nodeId:int):void {
 				redesService.getNodo(nodeId);
 			}
@@ -80,39 +72,14 @@
 				}
 			}
 			
-			private function onImageLoad(e:HTTPStatusEvent):void {
-				if(actualImg.content == null) {
-					loadImage("null",false);
-				}
-			}
-			
-			private function initImg():void {
-				var nodo:Object = redesService.getNodo.lastResult;
-				if(nodo != null) {				
-					loadImage(nodo.recurso.usuario.email,true);
+			private function onGetNodo():void {
+				if(redesService.getNodo.lastResult != null) {				
+					butVerInfoEnc.enabled = true;
+					butVerMasInfo.enabled = true;
 				} else {
-					loadImage("null",false);
+					butVerInfoEnc.enabled = false;
+					butVerMasInfo.enabled = false;
 				}
-			}
-			
-			private var actualImg:Image = null;
-			
-			private function loadImage(name:String, retry:Boolean):void {
-				var img:Image = new Image();
-				
-				if(retry) {
-					img.addEventListener(HTTPStatusEvent.HTTP_STATUS, onImageLoad);
-				}
-				
-				img.source = "resourcespics/"+name+".jpg?" + Math.random();
-				img.width = 140;
-				img.height = 172;
-				
-				imgBox.addChild(img);
-				if(actualImg != null) {
-					imgBox.removeChild(actualImg);
-				}
-				actualImg = img;
 			}
 			
 		]]>

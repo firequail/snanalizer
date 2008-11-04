@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:grupos="sna.admin.grupos.*" xmlns:recursos="sna.admin.recursos.*" xmlns:sna="sna.*" xmlns:admin="sna.admin.*" xmlns:analisis="sna.analisis.*" width="100%" height="100%"  >
+<mx:VBox creationCompleteEffect="{dissolve}" xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:grupos="sna.admin.grupos.*" xmlns:recursos="sna.admin.recursos.*" xmlns:sna="sna.*" xmlns:admin="sna.admin.*" xmlns:analisis="sna.analisis.*" width="100%" height="100%"  >
 	<mx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
@@ -12,6 +12,8 @@
 				if(grupos != null) {
 					grupos.init();
 				}
+				dissolve.end();
+				dissolve.play();
 			}
 			
 			private function logout():void {
@@ -41,5 +43,7 @@
 			</mx:Canvas>
 		</mx:TabNavigator>
 	</mx:Panel>
+	
+	<mx:Dissolve id="dissolve" duration="500" alphaFrom="0.0" alphaTo="1.0" target="{this}"/>
 	
 </mx:VBox>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:portal="sna.portal.*"  width="100%" height="100%">
+<mx:VBox creationCompleteEffect="{dissolve}" xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:sna="sna.*" xmlns:portal="sna.portal.*"  width="100%" height="100%">
 	<mx:Metadata>
 		[Event(name="logout", type="mx.events.FlexEvent")]
 	</mx:Metadata>
@@ -19,6 +19,8 @@
 	<mx:RemoteObject id="recursosService" destination="recursosService">
 		<mx:method name="getRecursoById" result="onGetRecursoById(event)"/>
 	</mx:RemoteObject>
+	
+	<mx:Dissolve id="dissolve" duration="500" alphaFrom="0.0" alphaTo="1.0" target="{this}"/>
 	
 	<mx:Script>
 		<![CDATA[
@@ -54,6 +56,8 @@
 			public function load():void {
 				recursosService.getRecursoById(recurso.id);
 				tabs.selectedIndex = 0;
+				dissolve.end();
+				dissolve.play();
 			}
 			
 			private function openPopUp(event:ResultEvent): void {
